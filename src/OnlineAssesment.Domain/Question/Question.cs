@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace OnlineAssesment.Domain
 {
-    public class Question
+    public class Question : ICanMigrate
     {
+        public Question() {
+            QuestionOptions = new List<QuestionOption>();
+        }
+
         public Guid QuestionId { get; set; }
+
         public QuestionType QuestionType { get; set; }
         public string QuestionBody { get; set; }
-        public ICollection<QuestionOption> QuestionOptions { get; set; }
         public string ReferenceRightAnswer { get; set; }
-
-        public CourseLevel QuestionLevel { get; set; }
+        public CourseLevel CourseLevel { get; set; }
 
         private int _questionDegree;
         public int QuestionDegree {
@@ -26,6 +29,8 @@ namespace OnlineAssesment.Domain
                 _questionDegree = value;
             }
         }
-        public Chapter Chapter { get; set; }
+
+        public virtual Chapter Chapter { get; set; }
+        public virtual ICollection<QuestionOption> QuestionOptions { get; set; }
     }
 }

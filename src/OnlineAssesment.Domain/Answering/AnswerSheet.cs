@@ -8,9 +8,16 @@ namespace OnlineAssesment.Domain
 {
     public class AnswerSheet
     {
-        public Guid AnswerSheetId { get; set; }
-        public ICollection<AnswerSheetItem> AnswerItems { get; set; }
+        public AnswerSheet() {
+            AnswerItems = new List<AnswerSheetItem>();
+        }
+
+        public int AnswerSheetId { get; set; }
+
         public DateTime SubmitDate { get; set; }
+
+        public virtual Student Student { get; set; }
         public virtual Examination Examination { get; set; }
+        public virtual ICollection<AnswerSheetItem> AnswerItems { get; set; }
     }
 }

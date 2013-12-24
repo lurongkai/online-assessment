@@ -15,7 +15,11 @@ namespace OnlineAssesment.Infrastructure
 
             modelBuilder.Configurations
                 .Add(new ExaminationMapping())
+                .Add(new ExaminationQuestionMapping())
+                .Add(new ExaminationQuestionOptionMapping())
                 .Add(new QuestionMapping())
+                .Add(new QuestionOptionMapping())
+                .Add(new ChapterMapping())
                 .Add(new AnswerSheetMapping());
         }
     }

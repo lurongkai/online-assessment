@@ -12,13 +12,15 @@ namespace OnlineAssesment.Domain
             Questions = new List<ExaminationQuestion>();
         }
 
-        public Guid ExaminationId { get; set; }
+        public int ExaminationId { get; set; }
         public string Description { get; set; }
         public CourseLevel CourseLevel { get; set; }
-        public DateTime BeginDate { get; set; }
+        public DateTime? BeginDate { get; set; }
+        public DateTime? DueDate { get; set; }
         public TimeSpan Duration { get; set; }
-        public ICollection<ExaminationQuestion> Questions { get; set; }
         public ExaminationState State { get; set; }
+
+        public virtual ICollection<ExaminationQuestion> Questions { get; set; }
 
         public int TotalScore {
             get {
