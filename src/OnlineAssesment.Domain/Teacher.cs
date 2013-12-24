@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace OnlineAssesment.Domain
 {
-    class Teacher
-    {
-    }
+    //public class Teacher : OnlineAssessmentMember
+    //{
+    //    public int TeacherId { get; set; }
+    //}
 }

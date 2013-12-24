@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace OnlineAssesment.Domain
 {
-    public class Student
+    public class Student : SystemUser
     {
+        public Student() {
+            AnswerSheets = new List<AnswerSheet>();
+        }
+
+        public string StudentId { get; set; }
+
+        public string JobTitle { get; set; }
+        public string Company { get; set; }
+        public CourseLevel StudingCourseLevel { get; set; }
+
+        public virtual SystemUser Membership { get; set; }
+        public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }
     }
 }
