@@ -13,6 +13,7 @@ namespace OnlineAssesment.Domain
         }
 
         public int ExaminationId { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public CourseLevel CourseLevel { get; set; }
         public DateTime? BeginDate { get; set; }

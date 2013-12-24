@@ -19,5 +19,11 @@ namespace OnlineAssesment.Domain
         public virtual Student Student { get; set; }
         public virtual Examination Examination { get; set; }
         public virtual ICollection<AnswerSheetItem> AnswerItems { get; set; }
+
+        public bool HasFullGrade {
+            get {
+                return !AnswerItems.Any(ai => ai.ObtainedScore == null);
+            }
+        }
     }
 }

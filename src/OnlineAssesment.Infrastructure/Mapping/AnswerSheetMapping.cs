@@ -17,6 +17,7 @@ namespace OnlineAssesment.Infrastructure.Mapping
             HasOptional(m => m.AnswerItems).WithRequired().WillCascadeOnDelete(true);
 
             Property(m => m.SubmitDate).IsRequired();
+            Ignore(m => m.HasFullGrade);
         }
     }
 

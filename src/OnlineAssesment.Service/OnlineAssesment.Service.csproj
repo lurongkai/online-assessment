@@ -43,9 +43,19 @@
     <Compile Include="Interfaces\IExaminationService.cs" />
     <Compile Include="Interfaces\IMembershipService.cs" />
     <Compile Include="Interfaces\IQuestionService.cs" />
+    <Compile Include="Message\RandomExaminationConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineAssesment.Domain\OnlineAssesment.Domain.csproj">
+      <Project>{99f60cc8-f279-401b-bc75-93a1779d42f8}</Project>
+      <Name>OnlineAssesment.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineAssesment.Infrastructure\OnlineAssesment.Infrastructure.csproj">
+      <Project>{867b92d6-5029-4080-8ada-8823e9bd1a10}</Project>
+      <Name>OnlineAssesment.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

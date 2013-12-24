@@ -12,6 +12,7 @@ namespace OnlineAssesment.Domain
 
         public Guid QuestionId { get; set; }
         public string Answer { get; set; }
+        public int? ObtainedScore { get; set; }
 
         public virtual ExaminationQuestion Question { get; set; }
     }

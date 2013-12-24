@@ -245,8 +245,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Evaluating\" />
     <Folder Include="Views\Exams\" />
-    <Folder Include="Views\Marking\" />
     <Folder Include="Views\Practice\" />
     <Folder Include="Views\Teacher\" />
     <Folder Include="Views\Testing\" />

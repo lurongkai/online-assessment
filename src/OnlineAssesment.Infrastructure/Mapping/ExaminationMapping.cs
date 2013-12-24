@@ -14,6 +14,7 @@ namespace OnlineAssesment.Infrastructure.Mapping
             HasKey(m => m.ExaminationId);
             HasMany(m => m.Questions).WithRequired().WillCascadeOnDelete(true);
 
+            Property(m => m.Title).IsRequired();
             Property(m => m.Description).IsOptional();
             Property(m => m.CourseLevel).IsRequired();
             Property(m => m.BeginDate).IsOptional();
