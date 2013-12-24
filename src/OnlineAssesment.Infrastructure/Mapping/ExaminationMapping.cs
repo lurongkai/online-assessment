@@ -34,6 +34,7 @@ namespace OnlineAssesment.Infrastructure.Mapping
             Property(m => m.QuestionId).IsRequired();
             Property(m => m.QuestionIndex).IsRequired();
             Property(m => m.Score).IsRequired();
+            Property(m => m.QuestionType).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
         }

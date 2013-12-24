@@ -58,7 +58,7 @@
     <Compile Include="Answering\AnswerSheetItem.cs" />
     <Compile Include="Examination\ExaminationQuestion.cs" />
     <Compile Include="Examination\ExaminationQuestionOption.cs" />
-    <Compile Include="Gender.cs" />
+    <Compile Include="Common\Gender.cs" />
     <Compile Include="ICanMigrate.cs" />
     <Compile Include="SystemUser.cs" />
     <Compile Include="Question\Chapter.cs" />
@@ -66,9 +66,9 @@
     <Compile Include="Examination\ExaminationState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question\Question.cs" />
-    <Compile Include="CourseLevel.cs" />
+    <Compile Include="Common\CourseLevel.cs" />
     <Compile Include="Question\QuestionOption.cs" />
-    <Compile Include="Question\QuestionType.cs" />
+    <Compile Include="Common\QuestionType.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Teacher.cs" />
   </ItemGroup>
