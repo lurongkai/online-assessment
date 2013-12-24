@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineAssesment.Domain
 {
-    public enum QuestionLevel
+    public enum CourseLevel
     {
         CoursewareDesignerLevel1,
         CoursewareDesignerLevel2,

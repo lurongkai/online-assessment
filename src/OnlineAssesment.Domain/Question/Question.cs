@@ -14,7 +14,7 @@ namespace OnlineAssesment.Domain
         public ICollection<QuestionOption> QuestionOptions { get; set; }
         public string ReferenceRightAnswer { get; set; }
 
-        public QuestionLevel QuestionLevel { get; set; }
+        public CourseLevel QuestionLevel { get; set; }
 
         private int _questionDegree;
         public int QuestionDegree {
