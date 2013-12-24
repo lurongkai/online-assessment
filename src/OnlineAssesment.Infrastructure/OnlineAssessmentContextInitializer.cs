@@ -15,16 +15,30 @@ namespace OnlineAssesment.Infrastructure
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var userManager = new UserManager<SystemUser>(new UserStore<SystemUser>(context));
 
+
             // add pre-defined roles.
             roleManager.Create(new IdentityRole("Admin"));
             roleManager.Create(new IdentityRole("Teacher"));
             roleManager.Create(new IdentityRole("Student"));
 
             // add admin.
-            userManager.Create(new SystemUser() {
+            var admin = new SystemUser() {
                 Name = "Admin",
                 UserName = "admin"
-            }, @"admin");
+            };
+            userManager.PasswordValidator = new MinimumLengthValidator(5);
+            if (userManager.Create(admin, @"admin").Succeeded) {
+                userManager.AddToRole(admin.Id, "Admin");
+            }
+            userManager.PasswordValidator = new MinimumLengthValidator(6);
+
+            userManager.Create(new Student() { 
+                Name = "Lu Rongkai",
+                UserName = "lurongkai",
+                StudingCourseLevel = 
+                    CourseLevel.CoursewareDesignerLevel1 |
+                    CourseLevel.CoursewareDesignerLevel2
+            }, @"lurongkai");
         }
     }
 }

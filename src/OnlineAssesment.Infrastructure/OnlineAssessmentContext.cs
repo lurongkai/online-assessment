@@ -14,8 +14,12 @@ namespace OnlineAssesment.Infrastructure
         public virtual DbSet<Examination> Examinations { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<AnswerSheet> AnswerSheets { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+#if DEBUG
+            Database.SetInitializer(new DropCreateDatabaseAlways<OnlineAssessmentContext>());
+#endif
             base.OnModelCreating(modelBuilder);
 
             Database.SetInitializer(new OnlineAssessmentContextInitializer());

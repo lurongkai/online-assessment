@@ -71,7 +71,7 @@ namespace OnlineAssesment.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new SystemUser() { UserName = model.UserName };
+                var user = new Student { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

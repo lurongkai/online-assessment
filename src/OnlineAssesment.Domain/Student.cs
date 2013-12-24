@@ -12,8 +12,6 @@ namespace OnlineAssesment.Domain
             AnswerSheets = new List<AnswerSheet>();
         }
 
-        public string StudentId { get; set; }
-
         public string JobTitle { get; set; }
         public string Company { get; set; }
         public CourseLevel StudingCourseLevel { get; set; }
