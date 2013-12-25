@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
     <li class="dropdown">
@@ -14,18 +15,10 @@
 }
 else
 {
-    <form class="navbar-form navbar-right" action="/Account/Login" method="post">
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div class="form-group">
-                <input type="text" name="username" placeholder="Username" class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-            @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "btn btn-default" })
-        }
-    </form>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录<b class="caret"></b></a>
+        <div class="dropdown-menu form-signin">
+            @Html.Partial("_login")
+        </div>
+    </li>
 }
