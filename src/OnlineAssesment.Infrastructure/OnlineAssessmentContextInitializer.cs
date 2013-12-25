@@ -31,14 +31,26 @@ namespace OnlineAssesment.Infrastructure
                 userManager.AddToRole(admin.Id, "Admin");
             }
             userManager.PasswordValidator = new MinimumLengthValidator(6);
-
-            userManager.Create(new Student() { 
-                Name = "Lu Rongkai",
-                UserName = "lurongkai",
+#if DEBUG
+            var student = new Student() { 
+                Name = "Test Student",
+                UserName = "student",
                 StudingCourseLevel = 
                     CourseLevel.CoursewareDesignerLevel1 |
                     CourseLevel.CoursewareDesignerLevel2
-            }, @"lurongkai");
+            };
+            var teacher = new SystemUser() { 
+                Name = "Test Teacher",
+                UserName = "teacher"
+            };
+
+            if (userManager.Create(student, @"student").Succeeded) {
+                userManager.AddToRole(student.Id, "Student");
+            }
+            if (userManager.Create(teacher, @"teacher").Succeeded) {
+                userManager.AddToRole(teacher.Id, "Teacher");
+            }
+#endif
         }
     }
 }

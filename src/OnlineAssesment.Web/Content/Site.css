@@ -155,6 +155,6 @@ footer {
   }
 }
 
-#sidebar .sub-item {
-    padding-left: 30px;
+.item-actived {
+    background-color: #E0E0E0;
 }

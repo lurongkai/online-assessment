@@ -6,8 +6,8 @@ using System.Web.Mvc;
 
 namespace OnlineAssesment.Web.Controllers
 {
-    [Authorize(Roles="Teacher")]
-    public class TeacherController : Controller
+    [Authorize(Roles="Student")]
+    public class StudentController : Controller
     {
         public ActionResult Index()
         {

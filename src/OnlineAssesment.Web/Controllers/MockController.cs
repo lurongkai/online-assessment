@@ -6,9 +6,10 @@ using System.Web.Mvc;
 
 namespace OnlineAssesment.Web.Controllers
 {
-    [Authorize(Roles="Teacher")]
-    public class TeacherController : Controller
+    public class MockController : Controller
     {
+        //
+        // GET: /Practice/
         public ActionResult Index()
         {
             return View();
