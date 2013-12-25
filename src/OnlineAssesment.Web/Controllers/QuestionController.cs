@@ -21,7 +21,7 @@ namespace OnlineAssesment.Web.Controllers
             return RedirectToAction("List", courseLevel ?? 1);
         }
 
-        public ActionResult List(int courseLevel) {
+        public ActionResult List(int courseLevel = 1) {
             if (courseLevel < 1 || courseLevel > 3) {
                 return RedirectToAction("Index", "Home");
             }

@@ -592,6 +592,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
     <Content Include="Views\Question\List.cshtml" />
+    <Content Include="Views\Question\_create-question.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
