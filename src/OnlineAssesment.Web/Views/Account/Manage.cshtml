@@ -4,6 +4,13 @@
     ViewBag.Title = "Manage Account";
 }
 
+@section notification_area {
+    @if (ViewData.ModelState.Count > 0)
+    {
+        <div class="alert alert-danger">@Html.ValidationSummary(true) </div>
+    }
+}
+
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">

@@ -13,20 +13,8 @@
 <body>
     @Html.Partial("_navigation")
 
-    @if (ViewData.ModelState.Count > 0)
-    {
-        <div class="alert alert-info">
-            <ul>
-                @foreach (var key in ViewData.ModelState.Keys)
-                {
-                    if (string.IsNullOrEmpty(key)) { continue; }
-                    <li>@key invalid.</li>
-                }
-            </ul>
-        </div>
-    }
-
     @RenderSection("notification_area", false)
+
     <div class="container" style="min-height: 500px;">
         @RenderBody()
     </div>
