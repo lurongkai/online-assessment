@@ -595,7 +595,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineAssesment.Domain\OnlineAssesment.Domain.csproj">
