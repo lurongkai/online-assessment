@@ -1,12 +1,20 @@
 ﻿/* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
 
 body {
+  padding-top: 70px;
   padding-bottom: 40px;
   color: #5a5a5a;
 }
 
+footer {
+  padding: 30px 0;
+}
 
 
 /* CUSTOMIZE THE NAVBAR
@@ -145,4 +153,8 @@ body {
   .featurette-heading {
     margin-top: 120px;
   }
+}
+
+#sidebar .sub-item {
+    padding-left: 30px;
 }
