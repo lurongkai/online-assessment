@@ -1,33 +1,34 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CompareAttribute = System.Web.Mvc.CompareAttribute;
 
 namespace OnlineAssesment.Web.Models
 {
     public class ManageUserViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "当前密码为必填")]
         [DataType(DataType.Password)]
         [Display(Name = "当前密码")]
         public string OldPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "新密码为必填")]
+        [StringLength(100, ErrorMessage = "密码长度须介于6 - 100间", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "新密码")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "确认密码")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "{0}和{1}输入不匹配")]
         public string ConfirmPassword { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage="用户名为必填")]
         [Display(Name = "用户名")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "密码为必填")]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string Password { get; set; }
@@ -38,19 +39,19 @@ namespace OnlineAssesment.Web.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "用户名为必填")]
         [Display(Name = "用户名")]
         public string UserName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "密码为必填")]
+        [StringLength(100, ErrorMessage = "密码长度须介于6 - 100间", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "确认密码")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "{0}和{1}输入不匹配")]
         public string ConfirmPassword { get; set; }
     }
 }

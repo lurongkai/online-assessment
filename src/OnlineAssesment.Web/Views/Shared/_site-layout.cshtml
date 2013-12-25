@@ -20,9 +20,23 @@
     </div>
 
     @Html.Partial("_footer")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", false)
+
+    @Scripts.Render(
+                "~/bundles/jquery",
+                "~/bundles/bootstrap",
+                "~/bundles/globalization",
+                "~/bundles/jquery-validation",
+                "~/bundles/validation-patch")
+
+    @RenderSection("scripts", false)culture
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Globalize.culture('@Request.UserLanguages.First()');
+            Globalize.culture('zh-CN');
+            console.log(Globalize.culture().name);
+        });
+    </script>
 </body>
 
 </html>
