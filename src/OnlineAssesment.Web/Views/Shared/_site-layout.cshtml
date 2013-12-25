@@ -13,10 +13,14 @@
 <body>
     @Html.Partial("_navigation")
 
-    @RenderBody()
+    @RenderSection("notification_area", false)
+    <div class="container" style="min-height: 500px;">
+        @RenderBody()
+    </div>
 
+    @Html.Partial("_footer")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("Scripts", false)
+    @RenderSection("scripts", false)
 </body>
 </html>
