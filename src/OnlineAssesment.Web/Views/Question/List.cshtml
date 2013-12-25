@@ -1,0 +1,45 @@
+﻿@model IEnumerable<OnlineAssesment.Domain.Question>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionBody)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceRightAnswer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionDegree)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionBody)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReferenceRightAnswer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionDegree)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.QuestionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.QuestionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.QuestionId })
+        </td>
+    </tr>
+}
+
+</table>

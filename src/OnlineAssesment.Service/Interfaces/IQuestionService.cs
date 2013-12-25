@@ -9,7 +9,7 @@ namespace OnlineAssesment.Service
 {
     public interface IQuestionService
     {
-        IList<Question> GetAllQuestion(CourseLevel courseLevel, QuestionType? questionType);
+        IEnumerable<Question> GetAllQuestion(CourseLevel courseLevel, QuestionType? questionType = null);
         Guid AddQuestion(Question question);
         void ModifyQuestion(Question question);
         void DeleteQuestion(Guid questionId);

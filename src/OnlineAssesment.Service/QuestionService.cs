@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineAssesment.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,15 @@ namespace OnlineAssesment.Service
 {
     public class QuestionService : IQuestionService
     {
-        public IList<Domain.Question> GetAllQuestion(Domain.CourseLevel courseLevel, Domain.QuestionType? questionType) {
+        public IEnumerable<Question> GetAllQuestion(Domain.CourseLevel courseLevel, QuestionType? questionType = null) {
+            return Enumerable.Empty<Question>();
+        }
+
+        public Guid AddQuestion(Question question) {
             throw new NotImplementedException();
         }
 
-        public Guid AddQuestion(Domain.Question question) {
-            throw new NotImplementedException();
-        }
-
-        public void ModifyQuestion(Domain.Question question) {
+        public void ModifyQuestion(Question question) {
             throw new NotImplementedException();
         }
 
