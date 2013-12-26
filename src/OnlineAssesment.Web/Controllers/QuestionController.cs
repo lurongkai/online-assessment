@@ -1,4 +1,5 @@
 ﻿using OnlineAssesment.Domain;
+using OnlineAssesment.Web.Extensions;
 using OnlineAssesment.Service;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,16 @@ namespace OnlineAssesment.Web.Controllers
             _questionService = questionService;
         }
 
-        public ActionResult Index(int? courseLevel)
+        public ActionResult Index(CourseLevel? courseLevel = null)
         {
-            return RedirectToAction("List", courseLevel ?? 1);
+            return RedirectToAction(
+                "List", 
+                new { courseLevel = courseLevel ?? CourseLevel.CoursewareDesignerLevel1 });
         }
 
-        public ActionResult List(int courseLevel = 1) {
-            if (courseLevel < 1 || courseLevel > 3) {
-                return RedirectToAction("Index", "Home");
-            }
-            
+        public ActionResult List(CourseLevel courseLevel) {            
             ViewBag.CourseLevel = courseLevel;
-            var level = ParseCourseLevel(courseLevel);
-            var questions = _questionService.GetAllQuestion(level);
+            var questions = _questionService.GetAllQuestion(courseLevel);
 
             var s = questions.ToList();
             s.Add(new Question {
@@ -41,16 +39,18 @@ namespace OnlineAssesment.Web.Controllers
             return View(s);
         }
 
-        public ActionResult CreateQuestion(int courseLevel, QuestionType questionType) {
+        [HttpGet]
+        public ActionResult CreateQuestion(CourseLevel courseLevel, QuestionType questionType) {
+            ViewBag.CourseLevel = courseLevel;
+            ViewBag.QuestionType = questionType;
             return View();
         }
 
-        private CourseLevel ParseCourseLevel(int courseLevel) {
-            if (courseLevel == 1) { return CourseLevel.CoursewareDesignerLevel1; }
-            if (courseLevel == 2) { return CourseLevel.CoursewareDesignerLevel2; }
-            if (courseLevel == 3) { return CourseLevel.CoursewareDesignerLevel3; }
-
-            throw new ArgumentException("courseLevel");
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateQuestion(Question newQuestion) {
+            _questionService.AddQuestion(newQuestion);
+            return RedirectToAction("List", new { courseLevel = newQuestion.CourseLevel });
         }
 	}
 }

@@ -172,10 +172,13 @@
     <Compile Include="Controllers\MockController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
+    <Compile Include="Extensions\CommonExtension.cs" />
+    <Compile Include="Extensions\CourseLevelExtension.cs" />
     <Compile Include="Extensions\QuestionExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SidebarActivator.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\PredefinedRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -593,6 +596,9 @@
     <Content Include="Views\Shared\_common-layout.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Question\CreateQuestion.cshtml" />
+    <Content Include="Views\Question\SingleSelectionPartial.cshtml" />
+    <Content Include="Views\Question\SubjectivePartial.cshtml" />
+    <Content Include="Views\Question\MultipleSelectionPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,50 +4,22 @@
     ViewBag.Title = "CreateQuestion";
 }
 
-<h2>CreateQuestion</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Question</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.QuestionId)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionBody, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionBody)
-                @Html.ValidationMessageFor(model => model.QuestionBody)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReferenceRightAnswer, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReferenceRightAnswer)
-                @Html.ValidationMessageFor(model => model.ReferenceRightAnswer)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionDegree, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionDegree)
-                @Html.ValidationMessageFor(model => model.QuestionDegree)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">新建试题</h3>
     </div>
-}
+    <div class="panel-body">
+        @if (ViewBag.QuestionType == QuestionType.SingleSelection) {
+            @Html.Partial("SingleSelectionPartial", new Question() { CourseLevel = (CourseLevel)ViewBag.CourseLevel })
+        }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+        @if (ViewBag.QuestionType == QuestionType.MultipleSelection) {
+            @Html.Partial("MultipleSelectionPartial", new Question() { CourseLevel = (CourseLevel)ViewBag.CourseLevel })
+        }
+
+        @if (ViewBag.QuestionType == QuestionType.Subjective) {
+            @Html.Partial("SubjectivePartial", new Question() { CourseLevel = (CourseLevel)ViewBag.CourseLevel })
+        }
+    </div>
 </div>

@@ -30,16 +30,24 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @item.QuestionBody
+                @item.QuestionBody.MaxLengthAs(20)
             </td>
             <td>
-                <span class="label label-default">@item.QuestionDegree</span>
+                @if (item.QuestionDegree < 3) {
+                    <span class="label label-default">@item.QuestionDegree</span>
+                } else if (item.QuestionDegree < 7) {
+                    <span class="label label-success">@item.QuestionDegree</span>
+                } else if (item.QuestionDegree < 9) {
+                    <span class="label label-warning">@item.QuestionDegree</span>
+                } else {
+                    <span class="label label-danger">@item.QuestionDegree</span>                
+                }
             </td>
             <td>
                 @item.QuestionType.GetString()
             </td>
             <td>
-                @item.Chapter.Title
+                @item.GetChapterTitle()
             </td>
             <td>
                 @Html.ActionLink("查看", "Details", new { id = item.QuestionId }, new { @class = "btn btn-default btn-xs" })
