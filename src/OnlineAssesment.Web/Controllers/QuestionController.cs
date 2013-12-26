@@ -28,15 +28,7 @@ namespace OnlineAssesment.Web.Controllers
             ViewBag.CourseLevel = courseLevel;
             var questions = _questionService.GetAllQuestion(courseLevel);
 
-            var s = questions.ToList();
-            s.Add(new Question {
-                QuestionBody = "Test",
-                QuestionDegree = 5,
-                Chapter = new Chapter() { Title = "Chapter1" },
-                QuestionType = QuestionType.SingleSelection,
-                CourseLevel = CourseLevel.CoursewareDesignerLevel1
-            });
-            return View(s);
+            return View(questions);
         }
 
         [HttpGet]
