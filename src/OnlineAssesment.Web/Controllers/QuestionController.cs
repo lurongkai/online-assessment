@@ -25,11 +25,24 @@ namespace OnlineAssesment.Web.Controllers
             if (courseLevel < 1 || courseLevel > 3) {
                 return RedirectToAction("Index", "Home");
             }
-
+            
+            ViewBag.CourseLevel = courseLevel;
             var level = ParseCourseLevel(courseLevel);
             var questions = _questionService.GetAllQuestion(level);
 
-            return View(questions);
+            var s = questions.ToList();
+            s.Add(new Question {
+                QuestionBody = "Test",
+                QuestionDegree = 5,
+                Chapter = new Chapter() { Title = "Chapter1" },
+                QuestionType = QuestionType.SingleSelection,
+                CourseLevel = CourseLevel.CoursewareDesignerLevel1
+            });
+            return View(s);
+        }
+
+        public ActionResult CreateQuestion(int courseLevel, QuestionType questionType) {
+            return View();
         }
 
         private CourseLevel ParseCourseLevel(int courseLevel) {

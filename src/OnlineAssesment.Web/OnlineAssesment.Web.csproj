@@ -171,9 +171,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MockController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
-    <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
+    <Compile Include="Extensions\QuestionExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -584,15 +583,16 @@
     <Content Include="Views\Shared\_login-partial.cshtml" />
     <Content Include="Views\Shared\_site-layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Teacher\Index.cshtml" />
-    <Content Include="Views\Teacher\_sidebar.cshtml" />
+    <Content Include="Views\Shared\_sidebar.cshtml" />
     <Content Include="Views\Shared\_navigation.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Shared\_login.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
     <Content Include="Views\Question\List.cshtml" />
-    <Content Include="Views\Question\_create-question.cshtml" />
+    <Content Include="Views\Shared\_common-layout.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Question\CreateQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -600,6 +600,7 @@
     <Folder Include="Views\Evaluating\" />
     <Folder Include="Views\Exam\" />
     <Folder Include="Views\Mock\" />
+    <Folder Include="Views\Question\DisplayTemplates\" />
     <Folder Include="Views\Student\" />
     <Folder Include="Views\Testing\" />
   </ItemGroup>

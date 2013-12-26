@@ -1,18 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_site-layout.cshtml";
 }
+
 
 <div class="row">
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas accordion-group" id="sidebar" role="navigation">
         @Html.Partial("_sidebar")
     </div>
     <div class="col-md-9" role="main">
-
+        @RenderBody()
     </div>
 </div>
 
 @section scripts {
-    <script type="text/javascript">
-
-    </script>
+    @RenderSection("page_script", false);
 }
