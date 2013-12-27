@@ -17,7 +17,7 @@ namespace OnlineAssesment.Web
 
             routes.MapRoute(
                 name: "Question",
-                url: "{controller}/{courseLevel}/{action}/{questionType}",
+                url: "Question/{courseLevel}/{action}/{questionType}",
                 defaults: new { controller = "Question", action = "Index", questionType = UrlParameter.Optional }
             );
 
