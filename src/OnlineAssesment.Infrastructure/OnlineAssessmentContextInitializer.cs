@@ -31,7 +31,7 @@ namespace OnlineAssesment.Infrastructure
                 userManager.AddToRole(admin.Id, "Admin");
             }
             userManager.PasswordValidator = new MinimumLengthValidator(6);
-#if DEBUG
+
             var student = new Student() { 
                 Name = "Test Student",
                 UserName = "student",
@@ -50,7 +50,7 @@ namespace OnlineAssesment.Infrastructure
             if (userManager.Create(teacher, @"teacher").Succeeded) {
                 userManager.AddToRole(teacher.Id, "Teacher");
             }
-#endif
+
         }
     }
 }
