@@ -18,7 +18,7 @@ namespace OnlineAssesment.Domain
         public CourseLevel CourseLevel { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? DueDate { get; set; }
-        public TimeSpan Duration { get; set; }
+        public long Duration { get; set; }
         public ExaminationState State { get; set; }
 
         public virtual ICollection<ExaminationQuestion> Questions { get; set; }
