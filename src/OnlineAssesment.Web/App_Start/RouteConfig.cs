@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineAssesment.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,13 @@ namespace OnlineAssesment.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+
+            routes.MapRoute(
+                name: "Question",
+                url: "{controller}/{courseLevel}/{action}/{questionType}",
+                defaults: new { controller = "Question", courseLevel = CourseLevel.Level1, action = "Index", questionType = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",

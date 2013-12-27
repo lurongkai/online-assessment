@@ -21,9 +21,9 @@
 @if (User.IsInRole("Teacher")) {
     <div class="list-group">
         <a href="#" class="list-group-item active">题库管理</a>
-        <a href="@Url.Action("List", "Question", new { courseLevel = CourseLevel.CoursewareDesignerLevel1 })" class="list-group-item @SidebarActivator.ActiveCheck(ViewContext, "question", "list", "CoursewareDesignerLevel1")">等级一<span class="badge bg_danger">0</span></a>
-        <a href="@Url.Action("List", "Question", new { courseLevel = CourseLevel.CoursewareDesignerLevel2 })" class="list-group-item @SidebarActivator.ActiveCheck(ViewContext, "question", "list", "CoursewareDesignerLevel2")">等级二<span class="badge bg_danger">0</span></a>
-        <a href="@Url.Action("List", "Question", new { courseLevel = CourseLevel.CoursewareDesignerLevel3 })" class="list-group-item @SidebarActivator.ActiveCheck(ViewContext, "question", "list", "CoursewareDesignerLevel3")">等级三<span class="badge bg_danger">0</span></a>
+        <a href="@Url.Action("List", "Question", new { courseLevel = CourseLevel.Level1 })" class="list-group-item @SidebarActivator.ActiveCheck(ViewContext, "question", "list", "Level1")">等级一<span class="badge bg_danger">0</span></a>
+        <a href="@Url.Action("List", "Question", new { courseLevel = CourseLevel.Level2 })" class="list-group-item @SidebarActivator.ActiveCheck(ViewContext, "question", "list", "Level2")">等级二<span class="badge bg_danger">0</span></a>
+        <a href="@Url.Action("List", "Question", new { courseLevel = CourseLevel.Level3 })" class="list-group-item @SidebarActivator.ActiveCheck(ViewContext, "question", "list", "Level3")">等级三<span class="badge bg_danger">0</span></a>
     </div>
 
     <div class="list-group">

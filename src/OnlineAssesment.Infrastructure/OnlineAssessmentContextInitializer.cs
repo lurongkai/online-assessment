@@ -36,8 +36,8 @@ namespace OnlineAssesment.Infrastructure
                 Name = "Test Student",
                 UserName = "student",
                 StudingCourseLevel = 
-                    CourseLevel.CoursewareDesignerLevel1 |
-                    CourseLevel.CoursewareDesignerLevel2
+                    CourseLevel.Level1 |
+                    CourseLevel.Level2
             };
             var teacher = new SystemUser() { 
                 Name = "Test Teacher",

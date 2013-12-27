@@ -21,7 +21,7 @@ namespace OnlineAssesment.Web.Controllers
         {
             return RedirectToAction(
                 "List", 
-                new { courseLevel = courseLevel ?? CourseLevel.CoursewareDesignerLevel1 });
+                new { courseLevel = courseLevel ?? CourseLevel.Level1 });
         }
 
         public ActionResult List(CourseLevel courseLevel) {            
