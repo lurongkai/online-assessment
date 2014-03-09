@@ -8,6 +8,6 @@ namespace OnlineAssesment.Domain
 {
     public class Teacher : SystemUser
     {
-        public Subject ResponsibleSubject { get; set; }
+        public virtual Subject ResponsibleSubject { get; set; }
     }
 }

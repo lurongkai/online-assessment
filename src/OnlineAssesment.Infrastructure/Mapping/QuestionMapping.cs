@@ -32,13 +32,4 @@ namespace OnlineAssesment.Infrastructure.Mapping
             Property(m => m.IsRightAnswer).IsRequired();
         }
     }
-
-    public class SubjectMapping : EntityTypeConfiguration<Subject>
-    {
-        public SubjectMapping() {
-            HasKey(m => m.SubjectId);
-
-            Property(m => m.Name).IsRequired();
-        }
-    }
 }

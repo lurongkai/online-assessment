@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\SubjectMapping.cs" />
     <Compile Include="Mapping\SystemMemberMapping.cs" />
     <Compile Include="OnlineAssessmentContextInitializer.cs" />
     <Compile Include="Mapping\AnswerSheetMapping.cs" />

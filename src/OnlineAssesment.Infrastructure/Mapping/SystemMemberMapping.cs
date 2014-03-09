@@ -13,18 +13,20 @@ namespace OnlineAssesment.Infrastructure.Mapping
     {
         public StudentMapping() {
             HasMany(m => m.AnswerSheets);
+            ToTable("Students");
 
             Property(m => m.JobTitle).IsOptional();
             Property(m => m.Company).IsOptional();
 
-            HasMany(m => m.LearningSubjects).WithMany();
+            HasMany(m => m.LearningSubjects).WithMany(m => m.SubscribedStudents);
         }
     }
 
     public class TeacherMapping : EntityTypeConfiguration<Teacher>
     {
         public TeacherMapping() {
-            HasRequired(m => m.ResponsibleSubject);
+            ToTable("Teachers");
+            HasRequired(m => m.ResponsibleSubject).WithOptional(m => m.ResponsibleTeacher);
         }
     }
 }
