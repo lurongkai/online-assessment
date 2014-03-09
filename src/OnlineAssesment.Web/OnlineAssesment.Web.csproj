@@ -14,7 +14,7 @@
     <RootNamespace>OnlineAssesment.Web</RootNamespace>
     <AssemblyName>OnlineAssesment.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -181,7 +181,6 @@
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Extensions\CommonExtension.cs" />
-    <Compile Include="Extensions\CourseLevelExtension.cs" />
     <Compile Include="Extensions\QuestionExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -638,7 +637,10 @@
     <Folder Include="Views\Mock\" />
     <Folder Include="Views\Question\DisplayTemplates\" />
     <Folder Include="Views\Student\" />
-    <Folder Include="Views\Testing\" />
+    <Folder Include="Views\TestComprehensive\" />
+    <Folder Include="Views\TestModularized\" />
+    <Folder Include="Views\TestPractice\" />
+    <Folder Include="Views\TestUnit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

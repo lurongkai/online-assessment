@@ -13,14 +13,13 @@ namespace OnlineAssesment.Infrastructure.Mapping
         public QuestionMapping() {
             HasKey(m => m.QuestionId);
             HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
-            HasOptional(m => m.Chapter).WithRequired();
 
             Property(m => m.QuestionType).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
             Property(m => m.QuestionDegree).IsRequired();
 
-            HasRequired(m => m.Subject).WithMany();
+            HasRequired(m => m.Subject).WithMany().HasForeignKey(m => m.SubjectId);
         }
     }
 

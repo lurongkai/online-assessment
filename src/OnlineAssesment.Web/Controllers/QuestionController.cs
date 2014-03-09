@@ -42,7 +42,7 @@ namespace OnlineAssesment.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateQuestion(Question newQuestion) {
             _questionService.AddQuestion(newQuestion);
-            return RedirectToAction("List", new { courseLevel = newQuestion.Subject });
+            return RedirectToAction("List", new { newQuestion.SubjectId });
         }
 	}
 }
