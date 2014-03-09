@@ -10,11 +10,11 @@ namespace OnlineAssesment.Service
 {
     public class QuestionService : IQuestionService
     {
-        public IEnumerable<Question> GetAllQuestion(CourseLevel courseLevel, QuestionType? questionType = null) {
+        public IEnumerable<Question> GetAllQuestion(Guid subjectId, QuestionType? questionType = null) {
             var context = new OnlineAssessmentContext();
             var courseQuestions = context
                 .Questions.Include("Chapter")
-                .Where(q => q.CourseLevel == courseLevel)
+                .Where(q => q.Subject.SubjectId == subjectId)
                 .Where(q => questionType == null ? true : q.QuestionType == questionType);
 
             return courseQuestions;

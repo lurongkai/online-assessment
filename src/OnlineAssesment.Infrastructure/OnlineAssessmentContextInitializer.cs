@@ -34,10 +34,11 @@ namespace OnlineAssesment.Infrastructure
 
             var student = new Student() { 
                 Name = "Test Student",
-                UserName = "student",
-                StudingCourseLevel = 
-                    CourseLevel.Level1 |
-                    CourseLevel.Level2
+                UserName = "student"
+                //,
+                //LearningSubjects = 
+                //    CourseLevel.Level1 |
+                //    CourseLevel.Level2
             };
             var teacher = new SystemUser() { 
                 Name = "Test Teacher",

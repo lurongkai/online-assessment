@@ -30,7 +30,7 @@ namespace OnlineAssesment.Infrastructure
                 .Add(new ExaminationQuestionOptionMapping())
                 .Add(new QuestionMapping())
                 .Add(new QuestionOptionMapping())
-                .Add(new ChapterMapping())
+                .Add(new SubjectMapping())
                 .Add(new AnswerSheetMapping())
                 .Add(new StudentMapping());
         }

@@ -16,7 +16,8 @@ namespace OnlineAssesment.Infrastructure.Mapping
 
             Property(m => m.JobTitle).IsOptional();
             Property(m => m.Company).IsOptional();
-            Property(m => m.StudingCourseLevel).IsRequired();
+
+            HasMany(m => m.LearningSubjects).WithMany();
         }
     }
 }

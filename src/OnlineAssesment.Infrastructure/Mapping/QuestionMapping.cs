@@ -18,8 +18,9 @@ namespace OnlineAssesment.Infrastructure.Mapping
             Property(m => m.QuestionType).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
-            Property(m => m.CourseLevel).IsRequired();
             Property(m => m.QuestionDegree).IsRequired();
+
+            HasRequired(m => m.Subject).WithMany();
         }
     }
 
@@ -33,12 +34,12 @@ namespace OnlineAssesment.Infrastructure.Mapping
         }
     }
 
-    public class ChapterMapping : EntityTypeConfiguration<Chapter>
+    public class SubjectMapping : EntityTypeConfiguration<Subject>
     {
-        public ChapterMapping() {
-            HasKey(m => m.ChapterId);
+        public SubjectMapping() {
+            HasKey(m => m.SubjectId);
 
-            Property(m => m.Title).IsRequired();
+            Property(m => m.Name).IsRequired();
         }
     }
 }

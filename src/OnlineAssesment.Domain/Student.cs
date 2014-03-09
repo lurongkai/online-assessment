@@ -14,7 +14,7 @@ namespace OnlineAssesment.Domain
 
         public string JobTitle { get; set; }
         public string Company { get; set; }
-        public CourseLevel StudingCourseLevel { get; set; }
+        public List<Subject> LearningSubjects { get; set; }
 
         public virtual SystemUser Membership { get; set; }
         public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }

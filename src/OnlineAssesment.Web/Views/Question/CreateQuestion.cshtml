@@ -11,7 +11,7 @@
     </div>
     <div class="panel-body">
         @if (ViewBag.QuestionType == QuestionType.SingleSelection) {
-            @Html.Partial("SingleSelectionPartial", new Question() { CourseLevel = (CourseLevel)ViewBag.CourseLevel })
+            @Html.Partial("SingleSelectionPartial", new Question() { SubjectId = ViewBag.SubjectId })
         }
 
         @if (ViewBag.QuestionType == QuestionType.MultipleSelection) {

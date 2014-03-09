@@ -5,9 +5,9 @@ using System.Text;
 
 namespace OnlineAssesment.Domain
 {
-    public class Chapter : ICanMigrate
+    public class Subject : ICanMigrate
     {
-        public Guid ChapterId { get; set; }
-        public string Title { get; set; }
+        public Guid SubjectId { get; set; }
+        public string Name { get; set; }
     }
 }
