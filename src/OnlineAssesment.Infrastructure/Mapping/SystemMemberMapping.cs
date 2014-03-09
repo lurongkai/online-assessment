@@ -20,4 +20,11 @@ namespace OnlineAssesment.Infrastructure.Mapping
             HasMany(m => m.LearningSubjects).WithMany();
         }
     }
+
+    public class TeacherMapping : EntityTypeConfiguration<Teacher>
+    {
+        public TeacherMapping() {
+            HasRequired(m => m.ResponsibleSubject);
+        }
+    }
 }

@@ -16,7 +16,7 @@ namespace OnlineAssesment.Domain
         public string Company { get; set; }
         public List<Subject> LearningSubjects { get; set; }
 
-        public virtual SystemUser Membership { get; set; }
+        // TODO: ??
         public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }
     }
 }
