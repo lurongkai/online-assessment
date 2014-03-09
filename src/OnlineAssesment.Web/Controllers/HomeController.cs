@@ -5,11 +5,18 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OnlineAssesment.Service;
 
 namespace OnlineAssesment.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IMembershipService _membershipService;
+        public HomeController(IMembershipService membershipService)
+        {
+            _membershipService = membershipService;
+        }
+
         public ActionResult Index() {
             if (!User.Identity.IsAuthenticated) {
                 return View();
@@ -19,7 +26,12 @@ namespace OnlineAssesment.Web.Controllers
         }
 
         [Authorize(Roles = "Student, Teacher")]
-        public ActionResult Dashboard() {
+        public ActionResult Dashboard()
+        {
+            var userId = (string)Session["UserId"];
+            var profile = _membershipService.GetProfile(userId);
+            ViewBag.Profile = profile;
+
             return View();
         }
 

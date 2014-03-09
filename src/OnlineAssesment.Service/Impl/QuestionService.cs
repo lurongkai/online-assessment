@@ -13,7 +13,7 @@ namespace OnlineAssesment.Service
         public IEnumerable<Question> GetAllQuestion(Guid subjectId, QuestionType? questionType = null) {
             var context = new OnlineAssessmentContext();
             var courseQuestions = context
-                .Questions.Include("Chapter")
+                .Questions
                 .Where(q => q.Subject.SubjectId == subjectId)
                 .Where(q => questionType == null ? true : q.QuestionType == questionType);
 

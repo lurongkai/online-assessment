@@ -57,16 +57,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnsweringService.cs" />
-    <Compile Include="ExaminationService.cs" />
+    <Compile Include="Impl\AnsweringService.cs" />
+    <Compile Include="Impl\ExaminationService.cs" />
     <Compile Include="Interfaces\IAnsweringService.cs" />
     <Compile Include="Interfaces\IExaminationService.cs" />
     <Compile Include="Interfaces\IMembershipService.cs" />
     <Compile Include="Interfaces\IQuestionService.cs" />
-    <Compile Include="MembershipService.cs" />
+    <Compile Include="Impl\MembershipService.cs" />
     <Compile Include="Message\RandomExaminationConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionService.cs" />
+    <Compile Include="Impl\QuestionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineAssesment.Domain\OnlineAssesment.Domain.csproj">
@@ -78,9 +78,7 @@
       <Name>OnlineAssesment.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Impl\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
