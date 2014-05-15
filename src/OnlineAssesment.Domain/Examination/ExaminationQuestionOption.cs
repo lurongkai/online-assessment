@@ -8,7 +8,11 @@ namespace OnlineAssesment.Domain
 {
     public class ExaminationQuestionOption
     {
-        public int ExaminationQuestionOptionId { get; set; }
+        public ExaminationQuestionOption()
+        {
+            ExaminationQuestionOptionId = Guid.NewGuid();
+        }
+        public Guid ExaminationQuestionOptionId { get; set; }
 
         public int OptionIndex { get; set; }
         public string Description { get; set; }

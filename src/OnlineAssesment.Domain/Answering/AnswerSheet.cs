@@ -8,11 +8,13 @@ namespace OnlineAssesment.Domain
 {
     public class AnswerSheet
     {
-        public AnswerSheet() {
+        public AnswerSheet()
+        {
+            AnswerSheetId = Guid.NewGuid();
             AnswerItems = new List<AnswerSheetItem>();
         }
 
-        public int AnswerSheetId { get; set; }
+        public Guid AnswerSheetId { get; set; }
 
         public DateTime SubmitDate { get; set; }
 

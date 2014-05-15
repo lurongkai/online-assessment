@@ -25,9 +25,8 @@ namespace OnlineAssesment.Infrastructure.Mapping
     {
         public AnswerSheetItemMapping() {
             HasKey(m => m.AnswerSheetItemId);
-            HasRequired(m => m.Question);
+            HasRequired(m => m.ExaminationQuestion);
 
-            Property(m => m.QuestionId).IsRequired();
             Property(m => m.Answer).IsOptional();
         }
     }

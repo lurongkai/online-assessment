@@ -23,7 +23,7 @@ namespace OnlineAssesment.Domain
 
         public virtual ICollection<ExaminationQuestion> Questions { get; set; }
 
-        public int TotalScore {
+        public float TotalScore {
             get {
                 return Questions.Sum(q => q.Score);
             }

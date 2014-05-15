@@ -22,6 +22,7 @@ namespace OnlineAssesment.Domain
         [Required(ErrorMessage="题目不能为空")]
         [Display(Name="题目")]
         public string QuestionBody { get; set; }
+
         [Required(ErrorMessage = "参考答案不能为空")]
         [Display(Name = "参考答案")]
         public string ReferenceRightAnswer { get; set; }
@@ -29,10 +30,10 @@ namespace OnlineAssesment.Domain
         public Guid SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        private double _questionDegree;
+        private float _questionDegree;
         [Required]
         [Display(Name = "难度")]
-        public double QuestionDegree {
+        public float QuestionDegree {
             get { return _questionDegree; }
             set {
                 if (value < 0 || value > 1.0) {

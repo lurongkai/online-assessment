@@ -8,12 +8,17 @@ namespace OnlineAssesment.Domain
 {
     public class AnswerSheetItem
     {
-        public int AnswerSheetItemId { get; set; }
+        public AnswerSheetItem()
+        {
+            AnswerSheetItemId = Guid.NewGuid();
+            Choices = new List<ExaminationQuestionOption>();
+        }
+        public Guid AnswerSheetItemId { get; set; }
 
-        public Guid QuestionId { get; set; }
         public string Answer { get; set; }
-        public int? ObtainedScore { get; set; }
+        public virtual ICollection<ExaminationQuestionOption> Choices { get; set; }
 
-        public virtual ExaminationQuestion Question { get; set; }
+        public virtual ExaminationQuestion ExaminationQuestion { get; set; }
+        public int? ObtainedScore { get; set; }
     }
 }
