@@ -11,10 +11,12 @@ namespace OnlineAssesment.Infrastructure
         {
         }
 
+        public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Examination> Examinations { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<AnswerSheet> AnswerSheets { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Teacher> Teachers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
 #if DEBUG
@@ -30,9 +32,10 @@ namespace OnlineAssesment.Infrastructure
                 .Add(new ExaminationQuestionOptionMapping())
                 .Add(new QuestionMapping())
                 .Add(new QuestionOptionMapping())
-                .Add(new ChapterMapping())
+                .Add(new SubjectMapping())
                 .Add(new AnswerSheetMapping())
-                .Add(new StudentMapping());
+                .Add(new StudentMapping())
+                .Add(new TeacherMapping());
         }
     }
 }

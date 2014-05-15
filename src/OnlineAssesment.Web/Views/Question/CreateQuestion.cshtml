@@ -11,15 +11,15 @@
     </div>
     <div class="panel-body">
         @if (ViewBag.QuestionType == QuestionType.SingleSelection) {
-            @Html.Partial("SingleSelectionPartial", new Question() { CourseLevel = (CourseLevel)ViewBag.CourseLevel })
+            @Html.Partial("SingleSelectionPartial", new Question() { SubjectId = ViewBag.SubjectId })
         }
 
         @if (ViewBag.QuestionType == QuestionType.MultipleSelection) {
-            @Html.Partial("MultipleSelectionPartial", new Question() { CourseLevel = (CourseLevel)ViewBag.CourseLevel })
+            @Html.Partial("MultipleSelectionPartial", new Question() { SubjectId = ViewBag.SubjectId })
         }
 
         @if (ViewBag.QuestionType == QuestionType.Subjective) {
-            @Html.Partial("SubjectivePartial", new Question() { CourseLevel = (CourseLevel)ViewBag.CourseLevel })
+            @Html.Partial("SubjectivePartial", new Question() { SubjectId = ViewBag.SubjectId })
         }
     </div>
 </div>

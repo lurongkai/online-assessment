@@ -17,23 +17,23 @@ namespace OnlineAssesment.Web.Controllers
             _questionService = questionService;
         }
 
-        public ActionResult Index(CourseLevel? courseLevel = null)
+        public ActionResult Index(Guid subjectId)
         {
             return RedirectToAction(
-                "List", 
-                new { courseLevel = courseLevel ?? CourseLevel.Level1 });
+                "List",
+                new { subjectId = subjectId });
         }
 
-        public ActionResult List(CourseLevel courseLevel) {            
-            ViewBag.CourseLevel = courseLevel;
-            var questions = _questionService.GetAllQuestion(courseLevel);
+        public ActionResult List(Guid subjectId) {
+            ViewBag.SubjectId = subjectId;
+            var questions = _questionService.GetAllQuestion(subjectId);
 
             return View(questions);
         }
 
         [HttpGet]
-        public ActionResult CreateQuestion(CourseLevel courseLevel, QuestionType questionType) {
-            ViewBag.CourseLevel = courseLevel;
+        public ActionResult CreateQuestion(Guid subjectId, QuestionType questionType) {
+            ViewBag.SubjectId = subjectId;
             ViewBag.QuestionType = questionType;
             return View();
         }
@@ -42,7 +42,7 @@ namespace OnlineAssesment.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateQuestion(Question newQuestion) {
             _questionService.AddQuestion(newQuestion);
-            return RedirectToAction("List", new { courseLevel = newQuestion.CourseLevel });
+            return RedirectToAction("List", new { newQuestion.SubjectId });
         }
 	}
 }

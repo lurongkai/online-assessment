@@ -32,17 +32,22 @@ namespace OnlineAssesment.Infrastructure
             }
             userManager.PasswordValidator = new MinimumLengthValidator(6);
 
+            var subject = new Subject()
+            {
+                Name = "Test Subject"
+            };
+            context.Subjects.Add(subject);
+
             var student = new Student() { 
                 Name = "Test Student",
-                UserName = "student",
-                StudingCourseLevel = 
-                    CourseLevel.Level1 |
-                    CourseLevel.Level2
+                UserName = "student"
             };
-            var teacher = new SystemUser() { 
+            var teacher = new Teacher() { 
                 Name = "Test Teacher",
-                UserName = "teacher"
+                UserName = "teacher",
+                ResponsibleSubject = subject
             };
+            student.LearningSubjects.Add(subject);
 
             if (userManager.Create(student, @"student").Succeeded) {
                 userManager.AddToRole(student.Id, "Student");

@@ -17,13 +17,17 @@ namespace OnlineAssesment.Domain
         public Guid QuestionId { get; set; }
 
         public QuestionType QuestionType { get; set; }
+        public QuestionSubject QuestionSubject { get; set; }
+
         [Required(ErrorMessage="题目不能为空")]
         [Display(Name="题目")]
         public string QuestionBody { get; set; }
         [Required(ErrorMessage = "参考答案不能为空")]
         [Display(Name = "参考答案")]
         public string ReferenceRightAnswer { get; set; }
-        public CourseLevel CourseLevel { get; set; }
+
+        public Guid SubjectId { get; set; }
+        public Subject Subject { get; set; }
 
         private int _questionDegree;
         [Required]
@@ -38,11 +42,10 @@ namespace OnlineAssesment.Domain
             }
         }
 
-        public virtual Chapter Chapter { get; set; }
         public virtual ICollection<QuestionOption> QuestionOptions { get; set; }
 
-        public string GetChapterTitle() {
-            return Chapter == null ? String.Empty : Chapter.Title;
-        }
+        //public string GetChapterTitle() {
+        //    return Chapter == null ? String.Empty : Chapter.Title;
+        //}
     }
 }
