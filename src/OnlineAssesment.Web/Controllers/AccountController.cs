@@ -47,6 +47,7 @@ namespace OnlineAssesment.Web.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+                    Session["UserId"] = user.Id;
                     return RedirectToLocal(returnUrl);
                 }
                 else

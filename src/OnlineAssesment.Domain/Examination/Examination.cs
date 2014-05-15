@@ -15,7 +15,7 @@ namespace OnlineAssesment.Domain
         public int ExaminationId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public CourseLevel CourseLevel { get; set; }
+        public Subject Subject { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? DueDate { get; set; }
         public long Duration { get; set; }

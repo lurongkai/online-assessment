@@ -16,11 +16,12 @@ namespace OnlineAssesment.Infrastructure.Mapping
 
             Property(m => m.Title).IsRequired();
             Property(m => m.Description).IsOptional();
-            Property(m => m.CourseLevel).IsRequired();
             Property(m => m.BeginDate).IsOptional();
             Property(m => m.DueDate).IsOptional();
             Property(m => m.Duration).IsRequired();
             Property(m => m.State).IsRequired();
+
+            HasRequired(m => m.Subject).WithOptional();
             
             Ignore(m => m.TotalScore);
         }

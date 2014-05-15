@@ -8,7 +8,7 @@ namespace OnlineAssesment.Service.Message
 {
     public class RandomExaminationConfig
     {
-        public CourseLevel CourseLevel { get; set; }
+        public Guid SubjectId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime? BeginDate { get; set; }
