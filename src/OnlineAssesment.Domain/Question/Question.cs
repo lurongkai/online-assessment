@@ -29,13 +29,13 @@ namespace OnlineAssesment.Domain
         public Guid SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        private int _questionDegree;
+        private double _questionDegree;
         [Required]
         [Display(Name = "难度")]
-        public int QuestionDegree {
+        public double QuestionDegree {
             get { return _questionDegree; }
             set {
-                if (value < 0 || value > 10) {
+                if (value < 0 || value > 1.0) {
                     throw new InvalidOperationException("invalid degree value. degree value should > 0 and < 10");
                 }
                 _questionDegree = value;
