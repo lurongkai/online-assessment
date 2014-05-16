@@ -7,5 +7,9 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
 {
     public class RandomExaminationGenerationService
     {
+        public RandomExaminationGenerationService()
+        {
+            
+        }
     }
 }
