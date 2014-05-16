@@ -1,16 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssesment.Web", "src\OnlineAssesment.Web\OnlineAssesment.Web.csproj", "{76C690C7-DA95-4979-8C64-46B137706362}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssesment.Domain", "src\OnlineAssesment.Domain\OnlineAssesment.Domain.csproj", "{99F60CC8-F279-401B-BC75-93A1779D42F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssesment.Service", "src\OnlineAssesment.Service\OnlineAssesment.Service.csproj", "{AB4DBA17-EBA1-48FA-B793-DE325CC098EB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssesment.Infrastructure", "src\OnlineAssesment.Infrastructure\OnlineAssesment.Infrastructure.csproj", "{867B92D6-5029-4080-8ADA-8823E9BD1A10}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5AD35B12-4489-4405-9341-EC4529FF41A1}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -18,7 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5AD35B
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Domain.Service", "OnlineAssessment.Domain.Service\OnlineAssessment.Domain.Service.csproj", "{2C7A36F1-78BF-4A2A-8C66-7FE329411AC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Web", "src\OnlineAssessment.Web\OnlineAssessment.Web.csproj", "{76C690C7-DA95-4979-8C64-46B137706362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Domain", "src\OnlineAssessment.Domain\OnlineAssessment.Domain.csproj", "{99F60CC8-F279-401B-BC75-93A1779D42F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Service", "src\OnlineAssessment.Service\OnlineAssessment.Service.csproj", "{AB4DBA17-EBA1-48FA-B793-DE325CC098EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Infrastructure", "src\OnlineAssessment.Infrastructure\OnlineAssessment.Infrastructure.csproj", "{867B92D6-5029-4080-8ADA-8823E9BD1A10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Domain.Service", "src\OnlineAssessment.Domain.Service\OnlineAssessment.Domain.Service.csproj", "{2C7A36F1-78BF-4A2A-8C66-7FE329411AC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
