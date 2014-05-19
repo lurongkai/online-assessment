@@ -1,0 +1,25 @@
+﻿@model OnlineAssessment.Domain.Question
+
+@{
+    ViewBag.Title = "CreateQuestion";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">新建试题</h3>
+    </div>
+    <div class="panel-body">
+        @if (ViewBag.QuestionType == QuestionType.SingleSelection) {
+            @Html.Partial("SingleSelectionPartial", new Question() { SubjectId = ViewBag.SubjectId })
+        }
+
+        @if (ViewBag.QuestionType == QuestionType.MultipleSelection) {
+            @Html.Partial("MultipleSelectionPartial", new Question() { SubjectId = ViewBag.SubjectId })
+        }
+
+        @if (ViewBag.QuestionType == QuestionType.Subjective) {
+            @Html.Partial("SubjectivePartial", new Question() { SubjectId = ViewBag.SubjectId })
+        }
+    </div>
+</div>
