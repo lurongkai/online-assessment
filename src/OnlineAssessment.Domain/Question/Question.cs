@@ -16,8 +16,8 @@ namespace OnlineAssessment.Domain
 
         public Guid QuestionId { get; set; }
 
-        public QuestionType QuestionType { get; set; }
-        public QuestionSubject QuestionSubject { get; set; }
+        public QuestionForm QuestionType { get; set; }
+        public QuestionCategory QuestionSubject { get; set; }
 
         [Required(ErrorMessage="题目不能为空")]
         [Display(Name="题目")]

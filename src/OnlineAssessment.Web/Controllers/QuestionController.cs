@@ -32,7 +32,7 @@ namespace OnlineAssessment.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateQuestion(Guid subjectId, QuestionType questionType) {
+        public ActionResult CreateQuestion(Guid subjectId, QuestionForm questionType) {
             ViewBag.SubjectId = subjectId;
             ViewBag.QuestionType = questionType;
             return View();

@@ -65,7 +65,7 @@
     <Compile Include="Common\Gender.cs" />
     <Compile Include="ICanMigrate.cs" />
     <Compile Include="News\News.cs" />
-    <Compile Include="Question\QuestionSubject.cs" />
+    <Compile Include="Question\QuestionCategory.cs" />
     <Compile Include="SystemUser.cs" />
     <Compile Include="Common\Subject.cs" />
     <Compile Include="Examination\Examination.cs" />
@@ -73,7 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question\Question.cs" />
     <Compile Include="Question\QuestionOption.cs" />
-    <Compile Include="Question\QuestionType.cs" />
+    <Compile Include="Question\QuestionForm.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Teacher.cs" />
   </ItemGroup>

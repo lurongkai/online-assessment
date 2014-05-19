@@ -17,7 +17,7 @@ namespace OnlineAssessment.Domain
         public Guid QuestionId { get; set; }
         public int QuestionIndex { get; set; }
         public float Score { get; set; }
-        public QuestionType QuestionType { get; set; }
+        public QuestionForm QuestionType { get; set; }
         public string QuestionBody { get; set; }
         public string ReferenceRightAnswer { get; set; }
 

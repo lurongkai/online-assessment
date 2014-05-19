@@ -10,7 +10,7 @@ namespace OnlineAssessment.Service
 {
     public class QuestionService : IQuestionService
     {
-        public IEnumerable<Question> GetAllQuestion(Guid subjectId, QuestionType? questionType = null) {
+        public IEnumerable<Question> GetAllQuestion(Guid subjectId, QuestionForm? questionType = null) {
             var context = new OnlineAssessmentContext();
             var courseQuestions = context
                 .Questions

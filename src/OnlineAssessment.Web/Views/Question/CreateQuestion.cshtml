@@ -10,15 +10,18 @@
         <h3 class="panel-title">新建试题</h3>
     </div>
     <div class="panel-body">
-        @if (ViewBag.QuestionType == QuestionType.SingleSelection) {
+        @if (ViewBag.QuestionType == QuestionForm.SingleSelection)
+        {
             @Html.Partial("SingleSelectionPartial", new Question() { SubjectId = ViewBag.SubjectId })
         }
 
-        @if (ViewBag.QuestionType == QuestionType.MultipleSelection) {
+        @if (ViewBag.QuestionType == QuestionForm.MultipleSelection)
+        {
             @Html.Partial("MultipleSelectionPartial", new Question() { SubjectId = ViewBag.SubjectId })
         }
 
-        @if (ViewBag.QuestionType == QuestionType.Subjective) {
+        @if (ViewBag.QuestionType == QuestionForm.Subjective)
+        {
             @Html.Partial("SubjectivePartial", new Question() { SubjectId = ViewBag.SubjectId })
         }
     </div>

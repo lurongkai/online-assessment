@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineAssessment.Domain
 {
-    public enum QuestionType
+    public enum QuestionForm
     {
         SingleSelection,
         MultipleSelection,
