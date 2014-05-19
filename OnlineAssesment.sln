@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Infrastruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Domain.Service", "src\OnlineAssessment.Domain.Service\OnlineAssessment.Domain.Service.csproj", "{2C7A36F1-78BF-4A2A-8C66-7FE329411AC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticAlgorithmTest", "src\GeneticAlgorithmTest\GeneticAlgorithmTest.csproj", "{8887DDFC-84BA-4768-A00A-210F46DA0DC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{2C7A36F1-78BF-4A2A-8C66-7FE329411AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C7A36F1-78BF-4A2A-8C66-7FE329411AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C7A36F1-78BF-4A2A-8C66-7FE329411AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8887DDFC-84BA-4768-A00A-210F46DA0DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8887DDFC-84BA-4768-A00A-210F46DA0DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8887DDFC-84BA-4768-A00A-210F46DA0DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8887DDFC-84BA-4768-A00A-210F46DA0DC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
