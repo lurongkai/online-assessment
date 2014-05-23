@@ -16,7 +16,7 @@ namespace OnlineAssessment.Domain
 
         public Guid QuestionId { get; set; }
 
-        public QuestionForm QuestionType { get; set; }
+        public QuestionForm QuestionForm { get; set; }
         public QuestionCategory QuestionSubject { get; set; }
 
         [Required(ErrorMessage="题目不能为空")]
@@ -30,10 +30,10 @@ namespace OnlineAssessment.Domain
         public Guid SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        private float _questionDegree;
+        private double _questionDegree;
         [Required]
         [Display(Name = "难度")]
-        public float QuestionDegree {
+        public double QuestionDegree {
             get { return _questionDegree; }
             set {
                 if (value < 0 || value > 1.0) {
@@ -48,5 +48,10 @@ namespace OnlineAssessment.Domain
         //public string GetChapterTitle() {
         //    return Chapter == null ? String.Empty : Chapter.Title;
         //}
+
+        public ExaminationQuestion ConvertToExaminationQuestion()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
