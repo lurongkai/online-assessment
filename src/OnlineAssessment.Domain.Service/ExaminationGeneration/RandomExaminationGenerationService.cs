@@ -13,11 +13,33 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             _allQuestion = allQuestion;
         }
 
-        public Examination GeneratePaper(PaperConstraint paperConstraint)
+		public Examination GeneratePaper(PaperConstraint paperConstraint, int populationAmount = 10, int maxCaculationCount = 500)
         {
-			InitializeQuestionPopulation (10, paperConstraint, _allQuestion);
-            throw new NotImplementedException();
+			var populations = InitializeQuestionPopulation (populationAmount, paperConstraint, _allQuestion).ToList();
+            
+			while (maxCaculationCount != 0)
+			{
+				populations = SelectOperation (populations, 10);
+				populations = CrossOperation (populations, 20);
+
+				if (populations.Any(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree))
+				{
+					var resultPopulation = populations.First (p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree);
+					return GenerateExamination (resultPopulation);
+				}
+
+				populations = ChangeOperation(populations, _allQuestion);
+
+				maxCaculationCount--;
+			}
+
+			throw new InvalidOperationException("no results.");
         }
+
+		private Examination GenerateExamination (QuestionPopulation resultPopulation)
+		{
+			throw new NotImplementedException ();
+		}
 
         #region Initialize Question Population
         private IEnumerable<QuestionPopulation> InitializeQuestionPopulation(
@@ -90,7 +112,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             return selectedPopulations;
         }
 
-		private List<QuestionPopulation> Cross(List<QuestionPopulation> populations, int amount)
+		private List<QuestionPopulation> CrossOperation(List<QuestionPopulation> populations, int amount)
 		{
 			var crossedUnitList = new List<QuestionPopulation>();
 			var r = new Random();
@@ -128,6 +150,26 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
 			return crossedUnitList;
 		}
 
+		private List<QuestionPopulation> ChangeOperation(List<QuestionPopulation> populations, IEnumerable<Question> questions)
+		{
+			var r = new Random();
+
+			foreach (var population in populations) {
+				var rIndex = r.Next(0, population.QuestionCount);
+				var question = population.Questions [rIndex];
+
+				var candidateQuestions = questions
+					.Where (q => q.Score == question.Score)
+					.Where (q => q.QuestionForm == question.QuestionForm);
+
+				if (candidateQuestions.Count() > 0) {
+					var rCandidateIndex = r.Next(0, candidateQuestions.Count());
+					population.Questions [rIndex] = questions.ElementAt(rCandidateIndex).ConvertToExaminationQuestion();
+				}
+			}
+
+			return populations;
+		}
         #endregion
     }
 
@@ -177,16 +219,19 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         public PaperConstraint(
             int totalScore,
             double degree,
+			double expectedAdaptationDegree,
             IDictionary<QuestionForm, int> questionQuota
             )
         {
             TotalScore = totalScore;
             Degree = degree;
+			ExpectedAdaptationDegree = expectedAdaptationDegree;
             QuestionQuota = questionQuota;
         }
 
         public int TotalScore { get; private set; }
         public double Degree { get; private set; }
+		public double ExpectedAdaptationDegree{ get; private set; }
         public IDictionary<QuestionForm, int> QuestionQuota { get; private set; }
     }
 
