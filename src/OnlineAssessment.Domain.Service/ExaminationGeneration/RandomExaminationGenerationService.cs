@@ -15,6 +15,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
 
         public Examination GeneratePaper(PaperConstraint paperConstraint)
         {
+			InitializeQuestionPopulation (10, paperConstraint, _allQuestion);
             throw new NotImplementedException();
         }
 
@@ -89,6 +90,43 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             return selectedPopulations;
         }
 
+		private List<QuestionPopulation> Cross(List<QuestionPopulation> populations, int amount)
+		{
+			var crossedUnitList = new List<QuestionPopulation>();
+			var r = new Random();
+
+			while (crossedUnitList.Count != amount)
+			{
+				int r1 = r.Next(0, populations.Count);
+				int r2 = r.Next(0, populations.Count);
+
+				if (r1 == r2) { continue; }
+
+				var population1 = populations[r1];
+				var population2 = populations[r2];
+
+				int crossPosition = r.Next(0, population1.QuestionCount - 2);
+
+				var questionScore1 = population1.Questions[crossPosition].Score + population1.Questions[crossPosition + 1].Score;
+				var questionScore2 = population2.Questions[crossPosition].Score + population2.Questions[crossPosition + 1].Score;
+
+				if (questionScore1 == questionScore2) { continue; }
+
+				for (int i = crossPosition; i < crossPosition + 2; i++)
+				{
+					var temp = population1.Questions [i];
+					population1.Questions[i] = population2.Questions[i];
+					population2.Questions[i] = temp;
+				}
+
+				if (crossedUnitList.Count < amount) { crossedUnitList.Add(population1); }
+				if (crossedUnitList.Count < amount) { crossedUnitList.Add(population2); }
+
+				crossedUnitList = crossedUnitList.Distinct (new PopulationComparer()).ToList ();
+			}
+
+			return crossedUnitList;
+		}
 
         #endregion
     }
@@ -124,6 +162,10 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             }
         }
 
+		internal int QuestionCount {
+			get { return Questions.Count; }
+		}
+
         internal void ClearAllQuestions()
         {
             Questions.Clear();
@@ -147,4 +189,26 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         public double Degree { get; private set; }
         public IDictionary<QuestionForm, int> QuestionQuota { get; private set; }
     }
+
+	internal class PopulationComparer : IEqualityComparer<QuestionPopulation>
+	{
+		public bool Equals(QuestionPopulation x, QuestionPopulation y)
+		{
+			bool result = true;
+			for (int i = 0; i < x.QuestionCount; i++)
+			{
+				if (x.Questions[i].QuestionId != y.Questions[i].QuestionId)
+				{
+					result = false;
+					break;
+				}
+			}
+			return result;
+		}
+
+		public int GetHashCode(QuestionPopulation obj)
+		{
+			return obj.ToString().GetHashCode();
+		}
+	}
 }
