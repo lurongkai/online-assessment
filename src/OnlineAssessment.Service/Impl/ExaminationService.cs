@@ -12,7 +12,7 @@ namespace OnlineAssessment.Service
             throw new NotImplementedException();
         }
 
-        public int AddExamination(Domain.Examination examination) {
+        public int AddExamination(Domain.ExaminationPaper examinationPaper) {
             throw new NotImplementedException();
         }
 

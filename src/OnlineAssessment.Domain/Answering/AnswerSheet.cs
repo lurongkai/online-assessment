@@ -19,7 +19,7 @@ namespace OnlineAssessment.Domain
         public DateTime SubmitDate { get; set; }
 
         public virtual Student Student { get; set; }
-        public virtual Examination Examination { get; set; }
+        public virtual ExaminationPaper ExaminationPaper { get; set; }
         public virtual ICollection<AnswerSheetItem> AnswerItems { get; set; }
 
         public bool HasFullGrade {

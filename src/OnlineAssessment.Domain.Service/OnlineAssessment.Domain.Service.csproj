@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExaminationGeneration\PaperConstraint.cs" />
+    <Compile Include="ExaminationGeneration\PopulationComparer.cs" />
+    <Compile Include="ExaminationGeneration\QuestionPopulation.cs" />
     <Compile Include="ExaminationGeneration\RandomExaminationGenerationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

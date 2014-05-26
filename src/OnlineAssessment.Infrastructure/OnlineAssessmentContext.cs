@@ -12,7 +12,7 @@ namespace OnlineAssessment.Infrastructure
         }
 
         public virtual DbSet<Subject> Subjects { get; set; }
-        public virtual DbSet<Examination> Examinations { get; set; }
+        public virtual DbSet<ExaminationPaper> Examinations { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<AnswerSheet> AnswerSheets { get; set; }
         public virtual DbSet<Student> Students { get; set; }

@@ -11,14 +11,14 @@ namespace OnlineAssessment.Domain
         public AnswerSheetItem()
         {
             AnswerSheetItemId = Guid.NewGuid();
-            Choices = new List<ExaminationQuestionOption>();
+            Choices = new List<PaperQuestionOption>();
         }
         public Guid AnswerSheetItemId { get; set; }
 
         public string Answer { get; set; }
-        public virtual ICollection<ExaminationQuestionOption> Choices { get; set; }
+        public virtual ICollection<PaperQuestionOption> Choices { get; set; }
 
-        public virtual ExaminationQuestion ExaminationQuestion { get; set; }
+        public virtual PaperQuestion PaperQuestion { get; set; }
         public int? ObtainedScore { get; set; }
     }
 }

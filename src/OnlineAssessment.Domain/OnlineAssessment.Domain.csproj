@@ -60,15 +60,15 @@
   <ItemGroup>
     <Compile Include="Answering\AnswerSheet.cs" />
     <Compile Include="Answering\AnswerSheetItem.cs" />
-    <Compile Include="Examination\ExaminationQuestion.cs" />
-    <Compile Include="Examination\ExaminationQuestionOption.cs" />
+    <Compile Include="Examination\PaperQuestion.cs" />
+    <Compile Include="Examination\PaperQuestionOption.cs" />
     <Compile Include="Common\Gender.cs" />
     <Compile Include="ICanMigrate.cs" />
     <Compile Include="News\News.cs" />
     <Compile Include="Question\QuestionCategory.cs" />
     <Compile Include="SystemUser.cs" />
     <Compile Include="Common\Subject.cs" />
-    <Compile Include="Examination\Examination.cs" />
+    <Compile Include="Examination\ExaminationPaper.cs" />
     <Compile Include="Examination\ExaminationState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question\Question.cs" />

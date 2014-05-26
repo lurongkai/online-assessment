@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain
 {
-    public class ExaminationQuestionOption
+    public class PaperQuestionOption
     {
-        public ExaminationQuestionOption()
+        public PaperQuestionOption()
         {
             ExaminationQuestionOptionId = Guid.NewGuid();
         }

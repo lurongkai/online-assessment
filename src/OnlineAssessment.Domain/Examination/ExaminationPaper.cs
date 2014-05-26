@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain
 {
-    public class Examination
+    public class ExaminationPaper
     {
-        public Examination() {
-            Questions = new List<ExaminationQuestion>();
+        public ExaminationPaper() {
+            Questions = new List<PaperQuestion>();
         }
 
         public int ExaminationId { get; set; }
@@ -21,7 +21,7 @@ namespace OnlineAssessment.Domain
         public long Duration { get; set; }
         public ExaminationState State { get; set; }
 
-        public virtual ICollection<ExaminationQuestion> Questions { get; set; }
+        public virtual ICollection<PaperQuestion> Questions { get; set; }
 
         public float TotalScore {
             get {

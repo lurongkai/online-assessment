@@ -13,7 +13,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
         public AnswerSheetMapping() {
             HasKey(m => m.AnswerSheetId);
             HasRequired(m => m.Student).WithMany();
-            HasRequired(m => m.Examination);
+            HasRequired(m => m.ExaminationPaper);
             HasOptional(m => m.AnswerItems).WithRequired().WillCascadeOnDelete(true);
 
             Property(m => m.SubmitDate).IsRequired();
@@ -25,7 +25,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
     {
         public AnswerSheetItemMapping() {
             HasKey(m => m.AnswerSheetItemId);
-            HasRequired(m => m.ExaminationQuestion);
+            HasRequired(m => m.PaperQuestion);
 
             Property(m => m.Answer).IsOptional();
         }

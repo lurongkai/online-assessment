@@ -13,38 +13,38 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             _allQuestion = allQuestion;
         }
 
-		public Examination GeneratePaper(PaperConstraint paperConstraint, int populationAmount = 10, int maxCaculationCount = 500)
+        public ExaminationPaper GenerateExaminationPaper(PaperConstraint paperConstraint, int populationAmount = 10, int maxCaculationCount = 500)
         {
-			var populations = InitializeQuestionPopulation (populationAmount, paperConstraint, _allQuestion).ToList();
-            
-			while (maxCaculationCount != 0)
-			{
-				populations = SelectOperation (populations, 10);
-				populations = CrossOperation (populations, 20);
+            var populations = InitializeQuestionPopulation(populationAmount, paperConstraint, _allQuestion).ToList();
 
-				if (populations.Any(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree))
-				{
-					var resultPopulation = populations.First (p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree);
-					return GenerateExamination (resultPopulation);
-				}
+            while (maxCaculationCount != 0)
+            {
+                populations = SelectOperation(populations, 10);
+                populations = CrossOperation(populations, 20);
 
-				populations = ChangeOperation(populations, _allQuestion);
+                if (populations.Any(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree))
+                {
+                    var resultPopulation = populations.First(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree);
+                    return GenerateExamination(resultPopulation);
+                }
 
-				maxCaculationCount--;
-			}
+                populations = ChangeOperation(populations, _allQuestion);
 
-			throw new InvalidOperationException("no results.");
+                maxCaculationCount--;
+            }
+
+            throw new InvalidOperationException("no results.");
         }
 
-		private Examination GenerateExamination (QuestionPopulation resultPopulation)
-		{
-			throw new NotImplementedException ();
-		}
+        private ExaminationPaper GenerateExamination(QuestionPopulation resultPopulation)
+        {
+            throw new NotImplementedException();
+        }
 
         #region Initialize Question Population
         private IEnumerable<QuestionPopulation> InitializeQuestionPopulation(
             int populationAmount,
-            PaperConstraint paperConstraint, 
+            PaperConstraint paperConstraint,
             ICollection<Question> questions)
         {
             for (int polulationIndex = 0; polulationIndex < populationAmount; polulationIndex++)
@@ -68,10 +68,10 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             }
         }
 
-        private IEnumerable<ExaminationQuestion> TakeRandomAmountQuestions(List<Question> candidateQuestions, int questionAmount)
+        private IEnumerable<PaperQuestion> TakeRandomAmountQuestions(List<Question> candidateQuestions, int questionAmount)
         {
             var r = new Random();
-            for (int questionIndex = 0; questionIndex < questionAmount; questionIndex ++)
+            for (int questionIndex = 0; questionIndex < questionAmount; questionIndex++)
             {
                 var rLocation = r.Next(0, candidateQuestions.Count - questionIndex);
                 yield return candidateQuestions[rLocation].ConvertToExaminationQuestion();
@@ -112,148 +112,66 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             return selectedPopulations;
         }
 
-		private List<QuestionPopulation> CrossOperation(List<QuestionPopulation> populations, int amount)
-		{
-			var crossedUnitList = new List<QuestionPopulation>();
-			var r = new Random();
+        private List<QuestionPopulation> CrossOperation(List<QuestionPopulation> populations, int amount)
+        {
+            var crossedUnitList = new List<QuestionPopulation>();
+            var r = new Random();
 
-			while (crossedUnitList.Count != amount)
-			{
-				int r1 = r.Next(0, populations.Count);
-				int r2 = r.Next(0, populations.Count);
+            while (crossedUnitList.Count != amount)
+            {
+                int r1 = r.Next(0, populations.Count);
+                int r2 = r.Next(0, populations.Count);
 
-				if (r1 == r2) { continue; }
+                if (r1 == r2) { continue; }
 
-				var population1 = populations[r1];
-				var population2 = populations[r2];
+                var population1 = populations[r1];
+                var population2 = populations[r2];
 
-				int crossPosition = r.Next(0, population1.QuestionCount - 2);
+                int crossPosition = r.Next(0, population1.QuestionCount - 2);
 
-				var questionScore1 = population1.Questions[crossPosition].Score + population1.Questions[crossPosition + 1].Score;
-				var questionScore2 = population2.Questions[crossPosition].Score + population2.Questions[crossPosition + 1].Score;
+                var questionScore1 = population1.Questions[crossPosition].Score + population1.Questions[crossPosition + 1].Score;
+                var questionScore2 = population2.Questions[crossPosition].Score + population2.Questions[crossPosition + 1].Score;
 
-				if (questionScore1 == questionScore2) { continue; }
+                if (questionScore1 == questionScore2) { continue; }
 
-				for (int i = crossPosition; i < crossPosition + 2; i++)
-				{
-					var temp = population1.Questions [i];
-					population1.Questions[i] = population2.Questions[i];
-					population2.Questions[i] = temp;
-				}
+                for (int i = crossPosition; i < crossPosition + 2; i++)
+                {
+                    var temp = population1.Questions[i];
+                    population1.Questions[i] = population2.Questions[i];
+                    population2.Questions[i] = temp;
+                }
 
-				if (crossedUnitList.Count < amount) { crossedUnitList.Add(population1); }
-				if (crossedUnitList.Count < amount) { crossedUnitList.Add(population2); }
+                if (crossedUnitList.Count < amount) { crossedUnitList.Add(population1); }
+                if (crossedUnitList.Count < amount) { crossedUnitList.Add(population2); }
 
-				crossedUnitList = crossedUnitList.Distinct (new PopulationComparer()).ToList ();
-			}
+                crossedUnitList = crossedUnitList.Distinct(new PopulationComparer()).ToList();
+            }
 
-			return crossedUnitList;
-		}
+            return crossedUnitList;
+        }
 
-		private List<QuestionPopulation> ChangeOperation(List<QuestionPopulation> populations, IEnumerable<Question> questions)
-		{
-			var r = new Random();
+        private List<QuestionPopulation> ChangeOperation(List<QuestionPopulation> populations, IEnumerable<Question> questions)
+        {
+            var r = new Random();
 
-			foreach (var population in populations) {
-				var rIndex = r.Next(0, population.QuestionCount);
-				var question = population.Questions [rIndex];
+            foreach (var population in populations)
+            {
+                var rIndex = r.Next(0, population.QuestionCount);
+                var question = population.Questions[rIndex];
 
-				var candidateQuestions = questions
-					.Where (q => q.Score == question.Score)
-					.Where (q => q.QuestionForm == question.QuestionForm);
+                var candidateQuestions = questions
+                    .Where(q => q.Score == question.Score)
+                    .Where(q => q.QuestionForm == question.QuestionForm);
 
-				if (candidateQuestions.Count() > 0) {
-					var rCandidateIndex = r.Next(0, candidateQuestions.Count());
-					population.Questions [rIndex] = questions.ElementAt(rCandidateIndex).ConvertToExaminationQuestion();
-				}
-			}
+                if (candidateQuestions.Count() > 0)
+                {
+                    var rCandidateIndex = r.Next(0, candidateQuestions.Count());
+                    population.Questions[rIndex] = questions.ElementAt(rCandidateIndex).ConvertToExaminationQuestion();
+                }
+            }
 
-			return populations;
-		}
+            return populations;
+        }
         #endregion
     }
-
-    internal class QuestionPopulation
-    {
-        private readonly PaperConstraint _paperConstraint;
-        public QuestionPopulation(PaperConstraint paperConstraint)
-        {
-            _paperConstraint = paperConstraint;
-
-            Questions = new List<ExaminationQuestion>();
-        }
-
-        public List<ExaminationQuestion> Questions { get; set; }
-
-        public int TotalScore {
-            get { return Questions.Sum(q => q.Score); }
-        }
-
-        public double Degree
-        {
-            get { return Questions.Sum(q => q.AvarageDegree) / TotalScore; }
-        }
-
-        public double AdaptationDegree
-        {
-            get
-            {
-                return Questions.Count == 0
-                    ? 0.00
-                    : 1 - Math.Abs(_paperConstraint.Degree - Degree);
-            }
-        }
-
-		internal int QuestionCount {
-			get { return Questions.Count; }
-		}
-
-        internal void ClearAllQuestions()
-        {
-            Questions.Clear();
-        }
-    }
-
-    public class PaperConstraint
-    {
-        public PaperConstraint(
-            int totalScore,
-            double degree,
-			double expectedAdaptationDegree,
-            IDictionary<QuestionForm, int> questionQuota
-            )
-        {
-            TotalScore = totalScore;
-            Degree = degree;
-			ExpectedAdaptationDegree = expectedAdaptationDegree;
-            QuestionQuota = questionQuota;
-        }
-
-        public int TotalScore { get; private set; }
-        public double Degree { get; private set; }
-		public double ExpectedAdaptationDegree{ get; private set; }
-        public IDictionary<QuestionForm, int> QuestionQuota { get; private set; }
-    }
-
-	internal class PopulationComparer : IEqualityComparer<QuestionPopulation>
-	{
-		public bool Equals(QuestionPopulation x, QuestionPopulation y)
-		{
-			bool result = true;
-			for (int i = 0; i < x.QuestionCount; i++)
-			{
-				if (x.Questions[i].QuestionId != y.Questions[i].QuestionId)
-				{
-					result = false;
-					break;
-				}
-			}
-			return result;
-		}
-
-		public int GetHashCode(QuestionPopulation obj)
-		{
-			return obj.ToString().GetHashCode();
-		}
-	}
 }

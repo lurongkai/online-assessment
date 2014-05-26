@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain
 {
-    public class ExaminationQuestion
+    public class PaperQuestion
     {
-        public ExaminationQuestion() {
-            QuestionOptions = new List<ExaminationQuestionOption>();
+        public PaperQuestion() {
+            QuestionOptions = new List<PaperQuestionOption>();
         }
 
         public int ExaminationQuestionId { get; set; }
@@ -18,11 +18,11 @@ namespace OnlineAssessment.Domain
         public int QuestionIndex { get; set; }
         public int Score { get; set; }
         public double QuestionDegree { get; set; }
-        public QuestionForm QuestionType { get; set; }
+        public QuestionForm QuestionForm { get; set; }
         public string QuestionBody { get; set; }
         public string ReferenceRightAnswer { get; set; }
 
-        public ICollection<ExaminationQuestionOption> QuestionOptions { get; set; }
+        public ICollection<PaperQuestionOption> QuestionOptions { get; set; }
 
         public double AvarageDegree
         {

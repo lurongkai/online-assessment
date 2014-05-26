@@ -18,6 +18,7 @@ namespace OnlineAssessment.Domain
 
         public QuestionForm QuestionForm { get; set; }
         public QuestionCategory QuestionSubject { get; set; }
+        public int Score { get; set; }
 
         [Required(ErrorMessage="题目不能为空")]
         [Display(Name="题目")]
@@ -49,7 +50,7 @@ namespace OnlineAssessment.Domain
         //    return Chapter == null ? String.Empty : Chapter.Title;
         //}
 
-        public ExaminationQuestion ConvertToExaminationQuestion()
+        public PaperQuestion ConvertToExaminationQuestion()
         {
             throw new NotImplementedException();
         }

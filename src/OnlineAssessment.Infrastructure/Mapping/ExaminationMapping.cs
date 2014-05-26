@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineAssessment.Infrastructure.Mapping
 {
-    public class ExaminationMapping : EntityTypeConfiguration<Examination>
+    public class ExaminationMapping : EntityTypeConfiguration<ExaminationPaper>
     {
         public ExaminationMapping() {
             HasKey(m => m.ExaminationId);
@@ -27,7 +27,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
         }
     }
 
-    public class ExaminationQuestionMapping : EntityTypeConfiguration<ExaminationQuestion>
+    public class ExaminationQuestionMapping : EntityTypeConfiguration<PaperQuestion>
     {
         public ExaminationQuestionMapping() {
             HasKey(m => m.ExaminationQuestionId);
@@ -36,13 +36,13 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.QuestionId).IsRequired();
             Property(m => m.QuestionIndex).IsRequired();
             Property(m => m.Score).IsRequired();
-            Property(m => m.QuestionType).IsRequired();
+            Property(m => m.QuestionForm).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
         }
     }
 
-    public class ExaminationQuestionOptionMapping : EntityTypeConfiguration<ExaminationQuestionOption>
+    public class ExaminationQuestionOptionMapping : EntityTypeConfiguration<PaperQuestionOption>
     {
         public ExaminationQuestionOptionMapping() {
             HasKey(m => m.ExaminationQuestionOptionId);

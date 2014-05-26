@@ -11,7 +11,7 @@ namespace OnlineAssessment.Service
     public interface IExaminationService
     {
         int GenerateRandomExamination(RandomExaminationConfig config);
-        int AddExamination(Examination examination);
+        int AddExamination(ExaminationPaper examinationPaper);
         void ActiveExamination(int examinationId);
         void ArchiveExamination(int examinationId);
     }
