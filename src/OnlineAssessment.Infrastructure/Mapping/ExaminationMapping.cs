@@ -43,10 +43,9 @@ namespace OnlineAssessment.Infrastructure.Mapping
 	{
 		public PaperQuestionMapping()
 		{
-			HasKey(m => m.ExaminationQuestionId);
+			HasKey(m => m.PaperQuestionId);
 			HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
 
-			Property(m => m.QuestionId).IsRequired();
 			Property(m => m.QuestionIndex).IsRequired();
 			Property(m => m.Score).IsRequired();
 			Property(m => m.QuestionForm).IsRequired();

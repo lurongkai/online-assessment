@@ -1,30 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain
 {
     public class PaperQuestion
     {
-        public PaperQuestion() {
+        public PaperQuestion()
+        {
+            PaperQuestionId = Guid.NewGuid();
             QuestionOptions = new List<PaperQuestionOption>();
         }
 
-        public int ExaminationQuestionId { get; set; }
-
-        public Guid QuestionId { get; set; }
+        public Guid PaperQuestionId { get; set; }
         public int QuestionIndex { get; set; }
         public int Score { get; set; }
-        public double QuestionDegree { get; set; }
+        public float QuestionDegree { get; set; }
         public QuestionForm QuestionForm { get; set; }
         public string QuestionBody { get; set; }
         public string ReferenceRightAnswer { get; set; }
+        public virtual ICollection<PaperQuestionOption> QuestionOptions { get; set; }
 
-        public ICollection<PaperQuestionOption> QuestionOptions { get; set; }
-
-        public double AvarageDegree
+        public float AvarageDegree
         {
             get { return QuestionDegree*Score; }
         }

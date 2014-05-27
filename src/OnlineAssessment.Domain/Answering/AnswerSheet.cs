@@ -19,12 +19,24 @@ namespace OnlineAssessment.Domain
         public DateTime SubmitDate { get; set; }
 
         public virtual Student Student { get; set; }
-        public virtual ExaminationPaper ExaminationPaper { get; set; }
+        public virtual Examination Examination { get; set; }
         public virtual ICollection<AnswerSheetItem> AnswerItems { get; set; }
 
         public bool HasFullGrade {
             get {
-                return !AnswerItems.Any(ai => ai.ObtainedScore == null);
+                return AnswerItems.All(ai => ai.ObtainedScore != null);
+            }
+        }
+
+        public void Evaluate() {
+            foreach (var answerSheetItem in AnswerItems)
+            {
+                if (answerSheetItem.ObtainedScore.HasValue)
+                {
+                    continue;
+                }
+
+                answerSheetItem.Evaluate();
             }
         }
     }

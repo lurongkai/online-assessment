@@ -60,6 +60,8 @@
   <ItemGroup>
     <Compile Include="Answering\AnswerSheet.cs" />
     <Compile Include="Answering\AnswerSheetItem.cs" />
+    <Compile Include="Answering\QuestionEvaluator.cs" />
+    <Compile Include="Examination\Examination.cs" />
     <Compile Include="Examination\PaperQuestion.cs" />
     <Compile Include="Examination\PaperQuestionOption.cs" />
     <Compile Include="Common\Gender.cs" />
