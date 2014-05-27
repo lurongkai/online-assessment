@@ -27,9 +27,9 @@ namespace OnlineAssessment.Infrastructure
             Database.SetInitializer(new OnlineAssessmentContextInitializer());
 
             modelBuilder.Configurations
-                .Add(new ExaminationMapping())
-                .Add(new ExaminationQuestionMapping())
-                .Add(new ExaminationQuestionOptionMapping())
+                .Add(new ExaminationPaperMapping())
+                .Add(new PaperQuestionMapping())
+                .Add(new PaperQuestionOptionMapping())
                 .Add(new QuestionMapping())
                 .Add(new QuestionOptionMapping())
                 .Add(new SubjectMapping())

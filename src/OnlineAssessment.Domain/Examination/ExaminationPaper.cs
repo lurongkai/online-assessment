@@ -12,7 +12,7 @@ namespace OnlineAssessment.Domain
             Questions = new List<PaperQuestion>();
         }
 
-        public int ExaminationId { get; set; }
+        public int ExaminationPaperId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public Subject Subject { get; set; }
