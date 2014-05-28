@@ -70,6 +70,10 @@
     <Compile Include="Impl\QuestionService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnlineAssessment.Domain.Service\OnlineAssessment.Domain.Service.csproj">
+      <Project>{2c7a36f1-78bf-4a2a-8c66-7fe329411ac2}</Project>
+      <Name>OnlineAssessment.Domain.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineAssessment.Domain\OnlineAssessment.Domain.csproj">
       <Project>{99f60cc8-f279-401b-bc75-93a1779d42f8}</Project>
       <Name>OnlineAssessment.Domain</Name>

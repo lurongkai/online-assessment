@@ -7,8 +7,8 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
 {
     public class RandomExaminationGenerationService
     {
-        private ICollection<Question> _allQuestion;
-        public RandomExaminationGenerationService(ICollection<Question> allQuestion)
+        private IEnumerable<Question> _allQuestion;
+        public RandomExaminationGenerationService(IEnumerable<Question> allQuestion)
         {
             _allQuestion = allQuestion;
         }
@@ -45,7 +45,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         private IEnumerable<QuestionPopulation> InitializeQuestionPopulation(
             int populationAmount,
             PaperConstraint paperConstraint,
-            ICollection<Question> questions)
+            IEnumerable<Question> questions)
         {
             for (int polulationIndex = 0; polulationIndex < populationAmount; polulationIndex++)
             {

@@ -14,5 +14,8 @@ namespace OnlineAssessment.Service
         Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper);
         void ActiveExamination(Guid examinationId);
         void ArchiveExamination(Guid examinationId);
+
+        Examination GetExamination(Guid examinationId);
+        ICollection<Examination> GetAvailableExaminations(string userId);
     }
 }
