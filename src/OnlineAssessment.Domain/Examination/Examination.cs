@@ -13,8 +13,9 @@ namespace OnlineAssessment.Domain
         public Guid ExaminationId { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? DueDate { get; set; }
-        public long Duration { get; set; }
+        public double Duration { get; set; }
 
+        public virtual Subject Subject { get; set; }
         public virtual ExaminationPaper Paper { get; set; }
         public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }
 

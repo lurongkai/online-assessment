@@ -16,7 +16,8 @@ namespace OnlineAssessment.Domain
         public string Name { get; set; }
 
         public virtual ICollection<Student> SubscribedStudents { get; set; }
-        public virtual ICollection<Question> Questions { get; set; } 
+        public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<Examination> Examinations { get; set; } 
         public virtual Teacher ResponsibleTeacher { get; set; }
     }
 }

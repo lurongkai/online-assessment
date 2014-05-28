@@ -12,6 +12,7 @@ namespace OnlineAssessment.Infrastructure
         }
 
         public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<Examination> Examinations { get; set; }
         public virtual DbSet<ExaminationPaper> ExaminationPapers { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<AnswerSheet> AnswerSheets { get; set; }
@@ -27,6 +28,7 @@ namespace OnlineAssessment.Infrastructure
             Database.SetInitializer(new OnlineAssessmentContextInitializer());
 
             modelBuilder.Configurations
+                .Add(new ExaminationMapping())
                 .Add(new ExaminationPaperMapping())
                 .Add(new PaperQuestionMapping())
                 .Add(new PaperQuestionOptionMapping())

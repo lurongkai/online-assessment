@@ -16,6 +16,6 @@ namespace OnlineAssessment.Service
         void ArchiveExamination(Guid examinationId);
 
         Examination GetExamination(Guid examinationId);
-        ICollection<Examination> GetAvailableExaminations(string userId);
+        ICollection<Examination> GetAvailableExaminations(string userId, Guid subjectId);
     }
 }
