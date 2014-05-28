@@ -22,6 +22,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Domain.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticAlgorithmTest", "src\GeneticAlgorithmTest\GeneticAlgorithmTest.csproj", "{8887DDFC-84BA-4768-A00A-210F46DA0DC5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specification", "Specification", "{21988DA9-BD48-457E-B28A-36F68D7942AC}"
+	ProjectSection(SolutionItems) = preProject
+		website-url.md = website-url.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

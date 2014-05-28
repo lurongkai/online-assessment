@@ -40,9 +40,10 @@ namespace OnlineAssessment.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateQuestion(Question newQuestion) {
-            _questionService.AddQuestion(newQuestion);
-            return RedirectToAction("List", new { newQuestion.SubjectId });
+        public ActionResult CreateQuestion(Guid subjectId, Question newQuestion)
+        {
+            _questionService.AddQuestion(subjectId, newQuestion);
+            return RedirectToAction("List", new { subjectId });
         }
 	}
 }

@@ -1,4 +1,5 @@
-﻿using OnlineAssessment.Domain;
+﻿using System.Data.Entity;
+using OnlineAssessment.Domain;
 using OnlineAssessment.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,11 @@ namespace OnlineAssessment.Service
             return courseQuestions;
         }
 
-        public Guid AddQuestion(Question question) {
+        public Guid AddQuestion(Guid subjectId, Question question)
+        {
             var context = new OnlineAssessmentContext();
-            context.Questions.Add(question);
+            var subject = context.Subjects.Find(subjectId);
+            subject.Questions.Add(question);
             context.SaveChanges();
 
             return question.QuestionId;
@@ -31,6 +34,7 @@ namespace OnlineAssessment.Service
         public void ModifyQuestion(Question question) {
             var context = new OnlineAssessmentContext();
             context.Questions.Attach(question);
+            context.Entry(question).State = EntityState.Modified;
             context.SaveChanges();
         }
 

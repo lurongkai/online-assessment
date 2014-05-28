@@ -9,9 +9,9 @@ namespace OnlineAssessment.Service
 {
     public interface IAnsweringService
     {
-        int UploadAnswerSheet(AnswerSheet answerSheet);
+        Guid UploadAnswerSheet(Guid examinationId, AnswerSheet answerSheet);
 
-        IList<AnswerSheetItem> GetAllUnevaluatedAnswers(int examinationId);
-        void EvaluatingAnswer(int answerId, int score);
+        IList<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId);
+        void EvaluatingAnswer(Guid answerId, int score);
     }
 }

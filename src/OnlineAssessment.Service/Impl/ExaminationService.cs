@@ -1,26 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OnlineAssessment.Domain;
+using OnlineAssessment.Service.Message;
 
 namespace OnlineAssessment.Service
 {
     public class ExaminationService : IExaminationService
     {
-        public int GenerateRandomExamination(Message.RandomExaminationConfig config) {
+        public Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config)
+        {
             throw new NotImplementedException();
         }
 
-        public int AddExamination(Domain.ExaminationPaper examinationPaper) {
+        public Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper)
+        {
             throw new NotImplementedException();
         }
 
-        public void ActiveExamination(int examinationId) {
+        public void ActiveExamination(Guid examinationId)
+        {
             throw new NotImplementedException();
         }
 
-        public void ArchiveExamination(int examinationId) {
+        public void ArchiveExamination(Guid examinationId)
+        {
             throw new NotImplementedException();
         }
     }

@@ -10,9 +10,9 @@ namespace OnlineAssessment.Service
 {
     public interface IExaminationService
     {
-        int GenerateRandomExamination(RandomExaminationConfig config);
-        int AddExamination(ExaminationPaper examinationPaper);
-        void ActiveExamination(int examinationId);
-        void ArchiveExamination(int examinationId);
+        Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config);
+        Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper);
+        void ActiveExamination(Guid examinationId);
+        void ArchiveExamination(Guid examinationId);
     }
 }
