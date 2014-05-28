@@ -46,7 +46,7 @@ namespace OnlineAssessment.Domain
             }
         }
 
-        public virtual ICollection<QuestionOption> QuestionOptions { get; set; }
+        public ICollection<QuestionOption> QuestionOptions { get; set; }
 
         public PaperQuestion ConvertToExaminationQuestion()
         {

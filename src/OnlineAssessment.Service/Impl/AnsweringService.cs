@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OnlineAssessment.Domain;
+using OnlineAssessment.Infrastructure;
 
 namespace OnlineAssessment.Service
 {
@@ -11,17 +12,37 @@ namespace OnlineAssessment.Service
     {
         public Guid UploadAnswerSheet(Guid examinationId, AnswerSheet answerSheet)
         {
-            throw new NotImplementedException();
+            using (var context = new OnlineAssessmentContext())
+            {
+                var examination = context.Examinations.Find(examinationId);
+                examination.AnswerSheets.Add(answerSheet);
+                context.SaveChanges();
+
+                return answerSheet.AnswerSheetId;
+            }
         }
 
-        public IList<Domain.AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId)
+        public IList<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId)
         {
-            throw new NotImplementedException();
+            using (var context = new OnlineAssessmentContext()) {
+                var examination = context.Examinations.Find(examinationId);
+                var unevaluatedAnswers = examination.AnswerSheets.SelectMany(a => a.AnswerItems)
+                    .Where(ai => ai.ObtainedScore == null);
+
+                return unevaluatedAnswers.ToList();
+            }
         }
 
-        public void EvaluatingAnswer(Guid answerId, int score)
+        public void EvaluatingAnswer(Guid answerSheetId, Guid answerId, int score)
         {
-            throw new NotImplementedException();
+            using (var context = new OnlineAssessmentContext())
+            {
+                var answerSheet = context.AnswerSheets.Find(answerSheetId);
+                var answer = answerSheet.AnswerItems.First(ai => ai.AnswerSheetItemId == answerId);
+                answer.ObtainedScore = score;
+
+                context.SaveChanges();
+            }
         }
     }
 }

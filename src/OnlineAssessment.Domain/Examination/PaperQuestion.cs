@@ -18,7 +18,7 @@ namespace OnlineAssessment.Domain
         public QuestionForm QuestionForm { get; set; }
         public string QuestionBody { get; set; }
         public string ReferenceRightAnswer { get; set; }
-        public virtual ICollection<PaperQuestionOption> QuestionOptions { get; set; }
+        public ICollection<PaperQuestionOption> QuestionOptions { get; set; }
 
         public float AvarageDegree
         {

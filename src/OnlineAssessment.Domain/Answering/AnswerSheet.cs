@@ -20,7 +20,7 @@ namespace OnlineAssessment.Domain
 
         public virtual Student Student { get; set; }
         public virtual Examination Examination { get; set; }
-        public virtual ICollection<AnswerSheetItem> AnswerItems { get; set; }
+        public ICollection<AnswerSheetItem> AnswerItems { get; set; }
 
         public bool HasFullGrade {
             get {

@@ -12,6 +12,6 @@ namespace OnlineAssessment.Service
         Guid UploadAnswerSheet(Guid examinationId, AnswerSheet answerSheet);
 
         IList<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId);
-        void EvaluatingAnswer(Guid answerId, int score);
+        void EvaluatingAnswer(Guid answerSheetId, Guid answerId, int score);
     }
 }

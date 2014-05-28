@@ -16,7 +16,7 @@ namespace OnlineAssessment.Service
             var courseQuestions = context
                 .Questions
                 .Where(q => q.Subject.SubjectId == subjectId)
-                .Where(q => questionType == null ? true : q.QuestionForm == questionType);
+                .Where(q => questionType == null || q.QuestionForm == questionType);
 
             return courseQuestions;
         }
