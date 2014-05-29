@@ -1,13 +1,10 @@
-﻿@using OnlineAssessment.Web.Models;
-@using Microsoft.AspNet.Identity;
-@{
+﻿@{
     ViewBag.Title = "Manage Account";
     Layout = "~/Views/Shared/_site-layout.cshtml";
 }
 
 @section notification_area {
-    @if (ViewData.ModelState.Count > 0)
-    {
+    @if (ViewData.ModelState.Count > 0) {
         <div class="alert alert-danger">@Html.ValidationSummary(true) </div>
     }
 }

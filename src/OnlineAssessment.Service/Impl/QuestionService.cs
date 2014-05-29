@@ -1,11 +1,9 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineAssessment.Service
 {
@@ -13,7 +11,7 @@ namespace OnlineAssessment.Service
     {
         public IEnumerable<Question> GetAllQuestion(Guid subjectId, QuestionForm? questionType = null) {
             var context = new OnlineAssessmentContext();
-            var courseQuestions = context
+            IQueryable<Question> courseQuestions = context
                 .Questions
                 .Where(q => q.Subject.SubjectId == subjectId)
                 .Where(q => questionType == null || q.QuestionForm == questionType);
@@ -21,10 +19,9 @@ namespace OnlineAssessment.Service
             return courseQuestions;
         }
 
-        public Guid AddQuestion(Guid subjectId, Question question)
-        {
+        public Guid AddQuestion(Guid subjectId, Question question) {
             var context = new OnlineAssessmentContext();
-            var subject = context.Subjects.Find(subjectId);
+            Subject subject = context.Subjects.Find(subjectId);
             subject.Questions.Add(question);
             context.SaveChanges();
 
@@ -40,7 +37,7 @@ namespace OnlineAssessment.Service
 
         public void DeleteQuestion(Guid questionId) {
             var context = new OnlineAssessmentContext();
-            var question = context.Questions.Find(questionId);
+            Question question = context.Questions.Find(questionId);
             context.Questions.Remove(question);
             context.SaveChanges();
         }

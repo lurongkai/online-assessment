@@ -5,8 +5,7 @@ namespace OnlineAssessment.Domain
 {
     public class Examination
     {
-        public Examination()
-        {
+        public Examination() {
             ExaminationId = Guid.NewGuid();
         }
 

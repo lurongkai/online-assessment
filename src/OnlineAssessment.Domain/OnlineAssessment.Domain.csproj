@@ -68,7 +68,7 @@
     <Compile Include="ICanMigrate.cs" />
     <Compile Include="News\News.cs" />
     <Compile Include="Question\QuestionCategory.cs" />
-    <Compile Include="SystemUser.cs" />
+    <Compile Include="ApplicationUser.cs" />
     <Compile Include="Common\Subject.cs" />
     <Compile Include="Examination\ExaminationPaper.cs" />
     <Compile Include="Examination\ExaminationState.cs" />

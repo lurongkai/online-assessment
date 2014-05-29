@@ -6,8 +6,7 @@ namespace OnlineAssessment.Domain
 {
     public class ExaminationPaper
     {
-        public ExaminationPaper()
-        {
+        public ExaminationPaper() {
             ExaminationPaperId = Guid.NewGuid();
             Questions = new List<PaperQuestion>();
         }
@@ -23,8 +22,7 @@ namespace OnlineAssessment.Domain
 
         public virtual ICollection<PaperQuestion> Questions { get; set; }
 
-        public float TotalScore
-        {
+        public float TotalScore {
             get { return Questions.Sum(q => q.Score); }
         }
     }

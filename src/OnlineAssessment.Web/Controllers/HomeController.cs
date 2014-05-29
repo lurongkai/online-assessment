@@ -1,19 +1,14 @@
-﻿using OnlineAssessment.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using OnlineAssessment.Domain;
 using OnlineAssessment.Service;
 
 namespace OnlineAssessment.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IMembershipService _membershipService;
-        public HomeController(IMembershipService membershipService)
-        {
+        private readonly IMembershipService _membershipService;
+
+        public HomeController(IMembershipService membershipService) {
             _membershipService = membershipService;
         }
 
@@ -26,10 +21,9 @@ namespace OnlineAssessment.Web.Controllers
         }
 
         [Authorize(Roles = "Student, Teacher")]
-        public ActionResult Dashboard()
-        {
-            var userId = (string)Session["UserId"];
-            var profile = _membershipService.GetProfile(userId);
+        public ActionResult Dashboard() {
+            var userId = (string) Session["UserId"];
+            ApplicationUser profile = _membershipService.GetProfile(userId);
             ViewBag.Profile = profile;
 
             return View();

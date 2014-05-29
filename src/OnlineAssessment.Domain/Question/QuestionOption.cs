@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace OnlineAssessment.Domain
 {
     public class QuestionOption : ICanMigrate
     {
-        public QuestionOption()
-        {
+        public QuestionOption() {
             QuestionOptionId = Guid.NewGuid();
         }
 

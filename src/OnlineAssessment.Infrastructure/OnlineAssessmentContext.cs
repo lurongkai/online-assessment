@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Infrastructure.Mapping;
-using System.Data.Entity;
 
 namespace OnlineAssessment.Infrastructure
 {
-    public class OnlineAssessmentContext : IdentityDbContext<SystemUser>
+    public class OnlineAssessmentContext : IdentityDbContext<ApplicationUser>
     {
-        public OnlineAssessmentContext(): base("DefaultConnection")
-        {
-        }
+        public OnlineAssessmentContext() : base("DefaultConnection") {}
 
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Examination> Examinations { get; set; }

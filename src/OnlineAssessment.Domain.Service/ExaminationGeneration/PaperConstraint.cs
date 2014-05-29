@@ -9,8 +9,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             double degree,
             double expectedAdaptationDegree,
             IDictionary<QuestionForm, int> questionQuota
-            )
-        {
+            ) {
             TotalScore = totalScore;
             Degree = degree;
             ExpectedAdaptationDegree = expectedAdaptationDegree;

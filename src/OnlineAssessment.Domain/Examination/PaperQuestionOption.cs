@@ -4,8 +4,7 @@ namespace OnlineAssessment.Domain
 {
     public class PaperQuestionOption
     {
-        public PaperQuestionOption()
-        {
+        public PaperQuestionOption() {
             ExaminationQuestionOptionId = Guid.NewGuid();
         }
 

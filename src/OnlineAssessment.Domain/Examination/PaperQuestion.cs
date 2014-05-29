@@ -5,8 +5,7 @@ namespace OnlineAssessment.Domain
 {
     public class PaperQuestion
     {
-        public PaperQuestion()
-        {
+        public PaperQuestion() {
             PaperQuestionId = Guid.NewGuid();
             QuestionOptions = new List<PaperQuestionOption>();
         }
@@ -20,8 +19,7 @@ namespace OnlineAssessment.Domain
         public string ReferenceRightAnswer { get; set; }
         public ICollection<PaperQuestionOption> QuestionOptions { get; set; }
 
-        public float AvarageDegree
-        {
+        public float AvarageDegree {
             get { return QuestionDegree*Score; }
         }
     }

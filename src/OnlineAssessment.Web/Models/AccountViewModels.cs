@@ -23,7 +23,7 @@ namespace OnlineAssessment.Web.Models
 
     public class LoginViewModel
     {
-        [Required(ErrorMessage="用户名为必填")]
+        [Required(ErrorMessage = "用户名为必填")]
         [Display(Name = "用户名")]
         public string UserName { get; set; }
 

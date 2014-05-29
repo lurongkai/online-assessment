@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain
 {
     public class AnswerSheetItem
     {
-        public AnswerSheetItem()
-        {
+        public AnswerSheetItem() {
             AnswerSheetItemId = Guid.NewGuid();
             Choices = new List<PaperQuestionOption>();
         }
+
         public Guid AnswerSheetItemId { get; set; }
 
         public string Answer { get; set; }
@@ -21,8 +19,7 @@ namespace OnlineAssessment.Domain
         public virtual PaperQuestion PaperQuestion { get; set; }
         public int? ObtainedScore { get; set; }
 
-        internal void Evaluate()
-        {
+        internal void Evaluate() {
             var evaluator = new QuestionEvaluator();
             evaluator.Evaluate(this);
         }

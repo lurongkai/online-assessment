@@ -10,47 +10,47 @@
             新建题目 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-            <li>@Html.ActionLink("单选题", "CreateQuestion", new { SubjectId = ViewBag.SubjectId, questionType = QuestionForm.SingleSelection })</li>
-            <li>@Html.ActionLink("多选题", "CreateQuestion", new { SubjectId = ViewBag.SubjectId, questionType = QuestionForm.MultipleSelection })</li>
+            <li>@Html.ActionLink("单选题", "CreateQuestion", new {ViewBag.SubjectId, questionType = QuestionForm.SingleSelection})</li>
+            <li>@Html.ActionLink("多选题", "CreateQuestion", new {ViewBag.SubjectId, questionType = QuestionForm.MultipleSelection})</li>
             <li class="divider"></li>
-            <li>@Html.ActionLink("主观题", "CreateQuestion", new { SubjectId = ViewBag.SubjectId, questionType = QuestionForm.Subjective })</li>
+            <li>@Html.ActionLink("主观题", "CreateQuestion", new {ViewBag.SubjectId, questionType = QuestionForm.Subjective})</li>
         </ul>
     </div>
 </p>
 
 <p>
     <table class="table table-hover table-bordered">
-    <tr>
-        <th>题目</th>
-        <th>难度</th>
-        <th>类型</th>
-        <th>操作</th>
-    </tr>
-    @foreach (var item in Model) {
         <tr>
-            <td>
-                @item.QuestionBody.MaxLengthAs(20)
-            </td>
-            <td>
-                @if (item.QuestionDegree < 3) {
-                    <span class="label label-default">@item.QuestionDegree</span>
-                } else if (item.QuestionDegree < 7) {
-                    <span class="label label-success">@item.QuestionDegree</span>
-                } else if (item.QuestionDegree < 9) {
-                    <span class="label label-warning">@item.QuestionDegree</span>
-                } else {
-                    <span class="label label-danger">@item.QuestionDegree</span>                
-                }
-            </td>
-            <td>
-                @item.QuestionForm.GetString()
-            </td>
-            <td>
-                @Html.ActionLink("查看", "Details", new { id = item.QuestionId }, new { @class = "btn btn-default btn-xs" })
-                @Html.ActionLink("编辑", "Edit", new { id = item.QuestionId }, new { @class = "btn btn-primary btn-xs" })
-                @Html.ActionLink("删除", "Delete", new { id = item.QuestionId }, new { @class = "btn btn-danger btn-xs" })
-            </td>
+            <th>题目</th>
+            <th>难度</th>
+            <th>类型</th>
+            <th>操作</th>
         </tr>
-    }
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @item.QuestionBody.MaxLengthAs(20)
+                </td>
+                <td>
+                    @if (item.QuestionDegree < 3) {
+                        <span class="label label-default">@item.QuestionDegree</span>
+                    } else if (item.QuestionDegree < 7) {
+                        <span class="label label-success">@item.QuestionDegree</span>
+                    } else if (item.QuestionDegree < 9) {
+                        <span class="label label-warning">@item.QuestionDegree</span>
+                    } else {
+                        <span class="label label-danger">@item.QuestionDegree</span>
+                    }
+                </td>
+                <td>
+                    @item.QuestionForm.GetString()
+                </td>
+                <td>
+                    @Html.ActionLink("查看", "Details", new {id = item.QuestionId}, new {@class = "btn btn-default btn-xs"})
+                    @Html.ActionLink("编辑", "Edit", new {id = item.QuestionId}, new {@class = "btn btn-primary btn-xs"})
+                    @Html.ActionLink("删除", "Delete", new {id = item.QuestionId}, new {@class = "btn btn-danger btn-xs"})
+                </td>
+            </tr>
+        }
     </table>
 </p>

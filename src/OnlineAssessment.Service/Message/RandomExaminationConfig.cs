@@ -1,8 +1,6 @@
-﻿using OnlineAssessment.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using OnlineAssessment.Domain;
 using OnlineAssessment.Domain.Service.ExaminationGeneration;
 
 namespace OnlineAssessment.Service.Message
@@ -23,14 +21,12 @@ namespace OnlineAssessment.Service.Message
 
         public double ExpectedAdaptationDegree { get; set; }
 
-        internal PaperConstraint AsPaperConstraint()
-        {
-            var questionQuota = GetQuestionQuota();
+        internal PaperConstraint AsPaperConstraint() {
+            IDictionary<QuestionForm, int> questionQuota = GetQuestionQuota();
             return new PaperConstraint(TotalScore, Degree, ExpectedAdaptationDegree, questionQuota);
         }
 
-        private IDictionary<QuestionForm, int> GetQuestionQuota()
-        {
+        private IDictionary<QuestionForm, int> GetQuestionQuota() {
             var quota = new Dictionary<QuestionForm, int>();
 
             quota.Add(QuestionForm.SingleSelection, SingleSelectionQuestionQuantity);

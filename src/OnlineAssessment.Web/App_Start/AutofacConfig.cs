@@ -1,22 +1,17 @@
-﻿using Autofac;
+﻿using System.Web.Mvc;
+using Autofac;
 using Autofac.Integration.Mvc;
 using OnlineAssessment.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace OnlineAssessment.Web
 {
     public class AutofacConfig
     {
-        public static void RegisterIoc()
-        {
+        public static void RegisterIoc() {
             var builder = new ContainerBuilder();
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterControllers(typeof (MvcApplication).Assembly);
             SetupServiceInjection(builder);
-            var container = builder.Build();
+            IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace OnlineAssessment.Domain
 {
     public class Subject : ICanMigrate
     {
-        public Subject()
-        {
+        public Subject() {
             SubjectId = Guid.NewGuid();
         }
 
@@ -17,7 +14,7 @@ namespace OnlineAssessment.Domain
 
         public virtual ICollection<Student> SubscribedStudents { get; set; }
         public virtual ICollection<Question> Questions { get; set; }
-        public virtual ICollection<Examination> Examinations { get; set; } 
+        public virtual ICollection<Examination> Examinations { get; set; }
         public virtual Teacher ResponsibleTeacher { get; set; }
     }
 }

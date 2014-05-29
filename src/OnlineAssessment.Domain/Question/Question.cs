@@ -8,8 +8,7 @@ namespace OnlineAssessment.Domain
     {
         private float _questionDegree;
 
-        public Question()
-        {
+        public Question() {
             QuestionId = Guid.NewGuid();
             QuestionOptions = new List<QuestionOption>();
         }
@@ -33,13 +32,10 @@ namespace OnlineAssessment.Domain
 
         [Required]
         [Display(Name = "难度")]
-        public float QuestionDegree
-        {
+        public float QuestionDegree {
             get { return _questionDegree; }
-            set
-            {
-                if (value < 0 || value > 1.0)
-                {
+            set {
+                if (value < 0 || value > 1.0) {
                     throw new InvalidOperationException("invalid degree value. degree value should > 0 and < 1.0");
                 }
                 _questionDegree = value;
@@ -48,8 +44,7 @@ namespace OnlineAssessment.Domain
 
         public ICollection<QuestionOption> QuestionOptions { get; set; }
 
-        public PaperQuestion ConvertToExaminationQuestion()
-        {
+        public PaperQuestion ConvertToExaminationQuestion() {
             throw new NotImplementedException();
         }
     }

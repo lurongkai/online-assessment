@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace OnlineAssessment.Domain
 {
-    public class Student : SystemUser
+    public class Student : ApplicationUser
     {
-        public Student()
-        {
+        public Student() {
             LearningSubjects = new List<Subject>();
             AnswerSheets = new List<AnswerSheet>();
         }
@@ -18,7 +13,6 @@ namespace OnlineAssessment.Domain
         public string Company { get; set; }
 
         public virtual ICollection<Subject> LearningSubjects { get; set; }
-        // TODO: ??
         public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }
     }
 }

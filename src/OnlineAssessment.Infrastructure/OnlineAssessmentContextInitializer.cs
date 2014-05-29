@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineAssessment.Domain;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
 
 namespace OnlineAssessment.Infrastructure
 {
@@ -13,7 +9,7 @@ namespace OnlineAssessment.Infrastructure
     {
         protected override void Seed(OnlineAssessmentContext context) {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var userManager = new UserManager<SystemUser>(new UserStore<SystemUser>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
 
             // add pre-defined roles.
@@ -22,7 +18,7 @@ namespace OnlineAssessment.Infrastructure
             roleManager.Create(new IdentityRole("Student"));
 
             // add admin.
-            var admin = new SystemUser() {
+            var admin = new ApplicationUser {
                 Name = "Admin",
                 UserName = "admin"
             };
@@ -32,17 +28,16 @@ namespace OnlineAssessment.Infrastructure
             }
             userManager.PasswordValidator = new MinimumLengthValidator(6);
 
-            var subject = new Subject()
-            {
+            var subject = new Subject {
                 Name = "Test Subject"
             };
             context.Subjects.Add(subject);
 
-            var student = new Student() { 
+            var student = new Student {
                 Name = "Test Student",
                 UserName = "student"
             };
-            var teacher = new Teacher() { 
+            var teacher = new Teacher {
                 Name = "Test Teacher",
                 UserName = "teacher",
                 ResponsibleSubject = subject
@@ -55,7 +50,6 @@ namespace OnlineAssessment.Infrastructure
             if (userManager.Create(teacher, @"teacher").Succeeded) {
                 userManager.AddToRole(teacher.Id, "Teacher");
             }
-
         }
     }
 }

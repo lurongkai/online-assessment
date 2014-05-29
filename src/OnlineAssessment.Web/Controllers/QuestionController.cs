@@ -1,32 +1,29 @@
-﻿using OnlineAssessment.Domain;
-using OnlineAssessment.Web.Extensions;
-using OnlineAssessment.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using OnlineAssessment.Domain;
+using OnlineAssessment.Service;
 
 namespace OnlineAssessment.Web.Controllers
 {
-    [Authorize(Roles="Teacher")]
+    [Authorize(Roles = "Teacher")]
     public class QuestionController : Controller
     {
-        private IQuestionService _questionService;
+        private readonly IQuestionService _questionService;
+
         public QuestionController(IQuestionService questionService) {
             _questionService = questionService;
         }
 
-        public ActionResult Index(Guid subjectId)
-        {
+        public ActionResult Index(Guid subjectId) {
             return RedirectToAction(
                 "List",
-                new { subjectId = subjectId });
+                new {subjectId});
         }
 
         public ActionResult List(Guid subjectId) {
             ViewBag.SubjectId = subjectId;
-            var questions = _questionService.GetAllQuestion(subjectId);
+            IEnumerable<Question> questions = _questionService.GetAllQuestion(subjectId);
 
             return View(questions);
         }
@@ -40,10 +37,9 @@ namespace OnlineAssessment.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateQuestion(Guid subjectId, Question newQuestion)
-        {
+        public ActionResult CreateQuestion(Guid subjectId, Question newQuestion) {
             _questionService.AddQuestion(subjectId, newQuestion);
-            return RedirectToAction("List", new { subjectId });
+            return RedirectToAction("List", new {subjectId});
         }
-	}
+    }
 }
