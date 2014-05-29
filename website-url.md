@@ -28,13 +28,13 @@ Examination Paper:
 /{SubjectId}/Paper/Delete/{ExaminationPaperId}
 
 Examination:
-/{SubjectId}/Exam/List
-/{SubjectId}/Exam/Archive/{ExaminationPaperId}
-/{SubjectId}/Exam/Active/{ExaminationPaperId}
+/{SubjectId}/ExamManage/List
+/{SubjectId}/ExamManage/Archive/{ExaminationPaperId}
+/{SubjectId}/ExamManage/Active/{ExaminationPaperId}
 
 Evaluating:
-/{SubjectId}/Evaluating/{ExaminationPaperId}/List
-/{SubjectId}/Evaluating/{ExaminationPaperId}/Evalute
+/{SubjectId}/Eval/{ExaminationPaperId}/List
+/{SubjectId}/Eval/{ExaminationPaperId}/Evalute
 
 Student
 -----
