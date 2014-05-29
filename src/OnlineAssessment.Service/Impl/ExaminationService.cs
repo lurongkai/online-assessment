@@ -72,7 +72,7 @@ namespace OnlineAssessment.Service
             }
         }
 
-        public ICollection<Examination> GetAvailableExaminations(string userId, Guid subjectId) {
+        public IEnumerable<Examination> GetStudentAvailableExaminations(string userId, Guid subjectId) {
             using (var context = new OnlineAssessmentContext()) {
                 var subject = context.Subjects.Find(subjectId);
                 var student = context.Students.Find(userId);
@@ -80,10 +80,10 @@ namespace OnlineAssessment.Service
                     var examinations = subject.Examinations
                         .Where(e => e.State == ExaminationState.Active)
                         .Where(e => !e.HasStudentAnswerSheet(student));
-                    return examinations.ToList();
+                    return examinations;
                 }
 
-                return Enumerable.Empty<Examination>().ToList();
+                return Enumerable.Empty<Examination>();
             }
         }
     }

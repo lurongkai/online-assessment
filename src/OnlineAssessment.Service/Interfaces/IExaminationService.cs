@@ -9,10 +9,11 @@ namespace OnlineAssessment.Service
     {
         Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config);
         Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper);
+
         void ActiveExamination(Guid examinationId);
         void ArchiveExamination(Guid examinationId);
 
         Examination GetExamination(Guid examinationId);
-        ICollection<Examination> GetAvailableExaminations(string userId, Guid subjectId);
+        IEnumerable<Examination> GetStudentAvailableExaminations(string userId, Guid subjectId);
     }
 }

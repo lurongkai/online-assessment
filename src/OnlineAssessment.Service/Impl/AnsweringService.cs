@@ -22,13 +22,13 @@ namespace OnlineAssessment.Service
             }
         }
 
-        public IList<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId) {
+        public IEnumerable<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId) {
             using (var context = new OnlineAssessmentContext()) {
                 var examination = context.Examinations.Find(examinationId);
                 var unevaluatedAnswers = examination.AnswerSheets.SelectMany(a => a.AnswerItems)
                     .Where(ai => ai.ObtainedScore == null);
 
-                return unevaluatedAnswers.ToList();
+                return unevaluatedAnswers;
             }
         }
 

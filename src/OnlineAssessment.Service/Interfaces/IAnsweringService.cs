@@ -8,7 +8,7 @@ namespace OnlineAssessment.Service
     {
         Guid UploadAnswerSheet(Guid examinationId, string studentId, AnswerSheet answerSheet);
 
-        IList<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId);
+        IEnumerable<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId);
         void EvaluatingAnswer(Guid answerSheetId, Guid answerId, int score);
     }
 }
