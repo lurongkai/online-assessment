@@ -14,7 +14,7 @@
     <RootNamespace>OnlineAssessment.Web</RootNamespace>
     <AssemblyName>OnlineAssessment.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />

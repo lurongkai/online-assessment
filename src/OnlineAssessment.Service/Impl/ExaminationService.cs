@@ -79,7 +79,7 @@ namespace OnlineAssessment.Service
                 if (student.LearningSubjects.Contains(subject)) {
                     var examinations = subject.Examinations
                         .Where(e => e.State == ExaminationState.Active)
-                        .Where(e => !e.AnswerSheets.Select(a => a.Student.Id).Contains(student.Id));
+                        .Where(e => !e.HasStudentAnswerSheet(student));
                     return examinations.ToList();
                 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OnlineAssessment.Domain
 {
@@ -19,5 +20,9 @@ namespace OnlineAssessment.Domain
         public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }
 
         public ExaminationState State { get; set; }
+
+        public bool HasStudentAnswerSheet(Student student) {
+            return AnswerSheets.Any(a => a.Student.Id == student.Id);
+        }
     }
 }
