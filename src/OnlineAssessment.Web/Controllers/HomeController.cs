@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using OnlineAssessment.Domain;
 using OnlineAssessment.Service;
 
 namespace OnlineAssessment.Web.Controllers
@@ -23,7 +22,7 @@ namespace OnlineAssessment.Web.Controllers
         [Authorize(Roles = "Student, Teacher")]
         public ActionResult Dashboard() {
             var userId = (string) Session["UserId"];
-            ApplicationUser profile = _membershipService.GetProfile(userId);
+            var profile = _membershipService.GetProfile(userId);
             ViewBag.Profile = profile;
 
             return View();

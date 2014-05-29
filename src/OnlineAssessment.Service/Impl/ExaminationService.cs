@@ -13,13 +13,13 @@ namespace OnlineAssessment.Service
     {
         public Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config) {
             using (var context = new OnlineAssessmentContext()) {
-                IQueryable<Question> questions = context
+                var questions = context
                     .Questions
-                    .Where(q => q.Subject.SubjectId == config.SubjectId)
-                    .Include("QuestionOptions");
+                    .Include(q => q.QuestionOptions)
+                    .Where(q => q.Subject.SubjectId == config.SubjectId);
                 var generator = new RandomExaminationGenerationService(questions);
 
-                ExaminationPaper paper = generator.GenerateExaminationPaper(config.AsPaperConstraint());
+                var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint());
                 context.ExaminationPapers.Add(paper);
                 context.SaveChanges();
 
@@ -29,7 +29,7 @@ namespace OnlineAssessment.Service
 
         public Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper) {
             using (var context = new OnlineAssessmentContext()) {
-                ExaminationPaper paper = context.ExaminationPapers.Find(examinationPaperId);
+                var paper = context.ExaminationPapers.Find(examinationPaperId);
                 var examination = new Examination();
                 examination.BeginDate = examinationPaper.BeginDate;
                 examination.DueDate = examinationPaper.EndDate;
@@ -37,7 +37,7 @@ namespace OnlineAssessment.Service
                 examination.Paper = paper;
 
                 if (examinationPaper.BeginImmediately) {
-                    examination.State = ExaminationState.Normal;
+                    examination.State = ExaminationState.Active;
                 } else {
                     examination.State = ExaminationState.Pending;
                 }
@@ -51,15 +51,15 @@ namespace OnlineAssessment.Service
 
         public void ActiveExamination(Guid examinationId) {
             using (var context = new OnlineAssessmentContext()) {
-                Examination examination = context.Examinations.Find(examinationId);
-                examination.State = ExaminationState.Normal;
+                var examination = context.Examinations.Find(examinationId);
+                examination.State = ExaminationState.Active;
                 context.SaveChanges();
             }
         }
 
         public void ArchiveExamination(Guid examinationId) {
             using (var context = new OnlineAssessmentContext()) {
-                Examination examination = context.Examinations.Find(examinationId);
+                var examination = context.Examinations.Find(examinationId);
                 examination.State = ExaminationState.Archived;
                 context.SaveChanges();
             }
@@ -67,18 +67,18 @@ namespace OnlineAssessment.Service
 
         public Examination GetExamination(Guid examinationId) {
             using (var context = new OnlineAssessmentContext()) {
-                Examination examination = context.Examinations.Find(examinationId);
+                var examination = context.Examinations.Find(examinationId);
                 return examination;
             }
         }
 
         public ICollection<Examination> GetAvailableExaminations(string userId, Guid subjectId) {
             using (var context = new OnlineAssessmentContext()) {
-                Subject subject = context.Subjects.Find(subjectId);
-                Student student = context.Students.Find(userId);
+                var subject = context.Subjects.Find(subjectId);
+                var student = context.Students.Find(userId);
                 if (student.LearningSubjects.Contains(subject)) {
-                    IEnumerable<Examination> examinations = subject.Examinations
-                        .Where(e => e.State == ExaminationState.Normal)
+                    var examinations = subject.Examinations
+                        .Where(e => e.State == ExaminationState.Active)
                         .Where(e => !e.AnswerSheets.Select(a => a.Student.Id).Contains(student.Id));
                     return examinations.ToList();
                 }

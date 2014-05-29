@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -58,7 +57,7 @@ namespace OnlineAssessment.Web.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
                 var user = new Student {UserName = model.UserName};
-                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
@@ -80,7 +79,7 @@ namespace OnlineAssessment.Web.Controllers
         public async Task<ActionResult> Manage(ManageUserViewModel model) {
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (ModelState.IsValid) {
-                IdentityResult result =
+                var result =
                     await
                         UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                 if (result.Succeeded) {
@@ -118,7 +117,7 @@ namespace OnlineAssessment.Web.Controllers
 
         private async Task SignInAsync(ApplicationUser user, bool isPersistent) {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            ClaimsIdentity identity =
+            var identity =
                 await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = isPersistent}, identity);
         }

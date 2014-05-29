@@ -22,7 +22,7 @@ namespace OnlineAssessment.Service.Message
         public double ExpectedAdaptationDegree { get; set; }
 
         internal PaperConstraint AsPaperConstraint() {
-            IDictionary<QuestionForm, int> questionQuota = GetQuestionQuota();
+            var questionQuota = GetQuestionQuota();
             return new PaperConstraint(TotalScore, Degree, ExpectedAdaptationDegree, questionQuota);
         }
 

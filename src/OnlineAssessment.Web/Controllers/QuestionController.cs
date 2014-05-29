@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Service;
@@ -23,7 +22,7 @@ namespace OnlineAssessment.Web.Controllers
 
         public ActionResult List(Guid subjectId) {
             ViewBag.SubjectId = subjectId;
-            IEnumerable<Question> questions = _questionService.GetAllQuestion(subjectId);
+            var questions = _questionService.GetAllQuestion(subjectId);
 
             return View(questions);
         }

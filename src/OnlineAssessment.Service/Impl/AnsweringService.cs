@@ -8,9 +8,13 @@ namespace OnlineAssessment.Service
 {
     public class AnsweringService : IAnsweringService
     {
-        public Guid UploadAnswerSheet(Guid examinationId, AnswerSheet answerSheet) {
+        public Guid UploadAnswerSheet(Guid examinationId, string studentId, AnswerSheet answerSheet) {
             using (var context = new OnlineAssessmentContext()) {
-                Examination examination = context.Examinations.Find(examinationId);
+                var examination = context.Examinations.Find(examinationId);
+                var student = context.Students.Find(studentId);
+
+                answerSheet.Student = student;
+
                 examination.AnswerSheets.Add(answerSheet);
                 context.SaveChanges();
 
@@ -20,8 +24,8 @@ namespace OnlineAssessment.Service
 
         public IList<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId) {
             using (var context = new OnlineAssessmentContext()) {
-                Examination examination = context.Examinations.Find(examinationId);
-                IEnumerable<AnswerSheetItem> unevaluatedAnswers = examination.AnswerSheets.SelectMany(a => a.AnswerItems)
+                var examination = context.Examinations.Find(examinationId);
+                var unevaluatedAnswers = examination.AnswerSheets.SelectMany(a => a.AnswerItems)
                     .Where(ai => ai.ObtainedScore == null);
 
                 return unevaluatedAnswers.ToList();
@@ -30,8 +34,8 @@ namespace OnlineAssessment.Service
 
         public void EvaluatingAnswer(Guid answerSheetId, Guid answerId, int score) {
             using (var context = new OnlineAssessmentContext()) {
-                AnswerSheet answerSheet = context.AnswerSheets.Find(answerSheetId);
-                AnswerSheetItem answer = answerSheet.AnswerItems.First(ai => ai.AnswerSheetItemId == answerId);
+                var answerSheet = context.AnswerSheets.Find(answerSheetId);
+                var answer = answerSheet.AnswerItems.First(ai => ai.AnswerSheetItemId == answerId);
                 answer.ObtainedScore = score;
 
                 context.SaveChanges();

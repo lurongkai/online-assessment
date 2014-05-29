@@ -7,7 +7,7 @@ namespace OnlineAssessment.Service
     {
         public ApplicationUser GetProfile(string userId) {
             using (var context = new OnlineAssessmentContext()) {
-                ApplicationUser user = context.Users.Find(userId);
+                var user = context.Users.Find(userId);
 
                 return user;
             }

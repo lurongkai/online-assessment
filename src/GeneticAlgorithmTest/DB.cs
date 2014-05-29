@@ -15,7 +15,7 @@ namespace GeneticAlgorithmTest
             Problem model;
             var rand = new Random();
             List<int> Points;
-            for (int i = 1; i <= 5000; i++) {
+            for (var i = 1; i <= 5000; i++) {
                 model = new Problem();
                 model.ID = i;
 
@@ -54,8 +54,8 @@ namespace GeneticAlgorithmTest
 
                 Points = new List<int>();
                 //每题1到4个知识点
-                int count = rand.Next(1, 5);
-                for (int j = 0; j < count; j++) {
+                var count = rand.Next(1, 5);
+                for (var j = 0; j < count; j++) {
                     Points.Add(rand.Next(1, 100));
                 }
                 model.Points = Points;

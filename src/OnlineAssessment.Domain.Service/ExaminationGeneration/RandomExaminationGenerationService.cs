@@ -14,7 +14,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
 
         public ExaminationPaper GenerateExaminationPaper(PaperConstraint paperConstraint, int populationAmount = 10,
             int maxCaculationCount = 500) {
-            List<QuestionPopulation> populations =
+            var populations =
                 InitializeQuestionPopulation(populationAmount, paperConstraint, _allQuestion).ToList();
 
             while (maxCaculationCount != 0) {
@@ -22,7 +22,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
                 populations = CrossOperation(populations, 20);
 
                 if (populations.Any(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree)) {
-                    QuestionPopulation resultPopulation =
+                    var resultPopulation =
                         populations.First(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree);
                     return GenerateExamination(resultPopulation);
                 }
@@ -45,15 +45,15 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             int populationAmount,
             PaperConstraint paperConstraint,
             IEnumerable<Question> questions) {
-            for (int polulationIndex = 0; polulationIndex < populationAmount; polulationIndex++) {
+            for (var polulationIndex = 0; polulationIndex < populationAmount; polulationIndex++) {
                 var population = new QuestionPopulation(paperConstraint);
 
                 while (paperConstraint.TotalScore != population.TotalScore) {
                     population.ClearAllQuestions();
                     foreach (var quota in paperConstraint.QuestionQuota) {
-                        QuestionForm questionForm = quota.Key;
-                        int questionAmount = quota.Value;
-                        List<Question> candidateQuestions =
+                        var questionForm = quota.Key;
+                        var questionAmount = quota.Value;
+                        var candidateQuestions =
                             questions.Where(q => q.QuestionForm == questionForm).ToList();
 
                         population.Questions.AddRange(TakeRandomAmountQuestions(candidateQuestions, questionAmount));
@@ -67,11 +67,11 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         private IEnumerable<PaperQuestion> TakeRandomAmountQuestions(List<Question> candidateQuestions,
             int questionAmount) {
             var r = new Random();
-            for (int questionIndex = 0; questionIndex < questionAmount; questionIndex++) {
-                int rLocation = r.Next(0, candidateQuestions.Count - questionIndex);
+            for (var questionIndex = 0; questionIndex < questionAmount; questionIndex++) {
+                var rLocation = r.Next(0, candidateQuestions.Count - questionIndex);
                 yield return candidateQuestions[rLocation].ConvertToExaminationQuestion();
 
-                Question temp = candidateQuestions[candidateQuestions.Count - 1 - questionIndex];
+                var temp = candidateQuestions[candidateQuestions.Count - 1 - questionIndex];
                 candidateQuestions[candidateQuestions.Count - 1 - questionIndex] = candidateQuestions[rLocation];
                 candidateQuestions[rLocation] = temp;
             }
@@ -84,12 +84,12 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         private List<QuestionPopulation> SelectOperation(List<QuestionPopulation> populations, int amount) {
             var selectedPopulations = new List<QuestionPopulation>();
 
-            double totalAdaptationDegree = selectedPopulations.Sum(p => p.AdaptationDegree);
+            var totalAdaptationDegree = selectedPopulations.Sum(p => p.AdaptationDegree);
 
             var r = new Random();
             while (selectedPopulations.Count != amount) {
-                double acc = 0.00;
-                double shot = r.Next(1, 100)*0.01*totalAdaptationDegree;
+                var acc = 0.00;
+                var shot = r.Next(1, 100)*0.01*totalAdaptationDegree;
 
                 foreach (QuestionPopulation population in populations) {
                     acc += population.AdaptationDegree;
@@ -109,29 +109,29 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             var r = new Random();
 
             while (crossedUnitList.Count != amount) {
-                int r1 = r.Next(0, populations.Count);
-                int r2 = r.Next(0, populations.Count);
+                var r1 = r.Next(0, populations.Count);
+                var r2 = r.Next(0, populations.Count);
 
                 if (r1 == r2) {
                     continue;
                 }
 
-                QuestionPopulation population1 = populations[r1];
-                QuestionPopulation population2 = populations[r2];
+                var population1 = populations[r1];
+                var population2 = populations[r2];
 
-                int crossPosition = r.Next(0, population1.QuestionCount - 2);
+                var crossPosition = r.Next(0, population1.QuestionCount - 2);
 
-                int questionScore1 = population1.Questions[crossPosition].Score +
+                var questionScore1 = population1.Questions[crossPosition].Score +
                                      population1.Questions[crossPosition + 1].Score;
-                int questionScore2 = population2.Questions[crossPosition].Score +
+                var questionScore2 = population2.Questions[crossPosition].Score +
                                      population2.Questions[crossPosition + 1].Score;
 
                 if (questionScore1 == questionScore2) {
                     continue;
                 }
 
-                for (int i = crossPosition; i < crossPosition + 2; i++) {
-                    PaperQuestion temp = population1.Questions[i];
+                for (var i = crossPosition; i < crossPosition + 2; i++) {
+                    var temp = population1.Questions[i];
                     population1.Questions[i] = population2.Questions[i];
                     population2.Questions[i] = temp;
                 }
@@ -154,15 +154,15 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             var r = new Random();
 
             foreach (QuestionPopulation population in populations) {
-                int rIndex = r.Next(0, population.QuestionCount);
-                PaperQuestion question = population.Questions[rIndex];
+                var rIndex = r.Next(0, population.QuestionCount);
+                var question = population.Questions[rIndex];
 
-                IEnumerable<Question> candidateQuestions = questions
+                var candidateQuestions = questions
                     .Where(q => q.Score == question.Score)
                     .Where(q => q.QuestionForm == question.QuestionForm);
 
                 if (candidateQuestions.Count() > 0) {
-                    int rCandidateIndex = r.Next(0, candidateQuestions.Count());
+                    var rCandidateIndex = r.Next(0, candidateQuestions.Count());
                     population.Questions[rIndex] = questions.ElementAt(rCandidateIndex).ConvertToExaminationQuestion();
                 }
             }

@@ -26,7 +26,7 @@ namespace GeneticAlgorithmTest
         /// </summary>
         public double Difficulty {
             get {
-                double diff = 0.00;
+                var diff = 0.00;
                 ProblemList.ForEach(delegate(Problem p) { diff += p.Difficulty*p.Score; });
                 return diff/SumScore;
             }
@@ -44,7 +44,7 @@ namespace GeneticAlgorithmTest
         /// </summary>
         public int SumScore {
             get {
-                int sum = 0;
+                var sum = 0;
                 ProblemList.ForEach(delegate(Problem p) { sum += p.Score; });
                 return sum;
             }

@@ -11,7 +11,7 @@ namespace OnlineAssessment.Service
     {
         public IEnumerable<Question> GetAllQuestion(Guid subjectId, QuestionForm? questionType = null) {
             var context = new OnlineAssessmentContext();
-            IQueryable<Question> courseQuestions = context
+            var courseQuestions = context
                 .Questions
                 .Where(q => q.Subject.SubjectId == subjectId)
                 .Where(q => questionType == null || q.QuestionForm == questionType);
@@ -21,7 +21,7 @@ namespace OnlineAssessment.Service
 
         public Guid AddQuestion(Guid subjectId, Question question) {
             var context = new OnlineAssessmentContext();
-            Subject subject = context.Subjects.Find(subjectId);
+            var subject = context.Subjects.Find(subjectId);
             subject.Questions.Add(question);
             context.SaveChanges();
 
@@ -37,7 +37,7 @@ namespace OnlineAssessment.Service
 
         public void DeleteQuestion(Guid questionId) {
             var context = new OnlineAssessmentContext();
-            Question question = context.Questions.Find(questionId);
+            var question = context.Questions.Find(questionId);
             context.Questions.Remove(question);
             context.SaveChanges();
         }

@@ -6,7 +6,7 @@ namespace OnlineAssessment.Domain
     internal class QuestionEvaluator
     {
         internal void Evaluate(AnswerSheetItem answerSheetItem) {
-            QuestionForm questionForm = answerSheetItem.PaperQuestion.QuestionForm;
+            var questionForm = answerSheetItem.PaperQuestion.QuestionForm;
             if (questionForm == QuestionForm.SingleSelection) {
                 EvaluateSingleSelection(answerSheetItem);
             }
@@ -21,7 +21,7 @@ namespace OnlineAssessment.Domain
                 throw new InvalidOperationException("single selection can only choice one answer.");
             }
 
-            PaperQuestionOption answer = answerSheetItem.Choices.FirstOrDefault();
+            var answer = answerSheetItem.Choices.FirstOrDefault();
 
             if (answer != null && answer.IsRightAnswer) {
                 answerSheetItem.ObtainedScore = answerSheetItem.PaperQuestion.Score;
@@ -41,8 +41,8 @@ namespace OnlineAssessment.Domain
                 return;
             }
 
-            int rightAnswerCount = answerSheetItem.Choices.Count(c => c.IsRightAnswer);
-            int allRightAnswerCount = answerSheetItem.GetRightAnswerCount();
+            var rightAnswerCount = answerSheetItem.Choices.Count(c => c.IsRightAnswer);
+            var allRightAnswerCount = answerSheetItem.GetRightAnswerCount();
 
             if (rightAnswerCount == allRightAnswerCount) {
                 answerSheetItem.ObtainedScore = answerSheetItem.PaperQuestion.Score;

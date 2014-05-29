@@ -11,7 +11,7 @@ namespace OnlineAssessment.Web
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof (MvcApplication).Assembly);
             SetupServiceInjection(builder);
-            IContainer container = builder.Build();
+            var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 

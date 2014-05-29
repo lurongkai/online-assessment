@@ -3,7 +3,7 @@
     public enum ExaminationState
     {
         Pending,
-        Normal,
+        Active,
         Archived
     }
 }

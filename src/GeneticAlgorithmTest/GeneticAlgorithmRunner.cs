@@ -23,10 +23,10 @@ namespace GeneticAlgorithmTest
         /// <returns>初始种群</returns>
         public List<Unit> CSZQ(int count, Paper paper, List<Problem> problemList) {
             var unitList = new List<Unit>();
-            int[] eachTypeCount = paper.EachTypeCount;
+            var eachTypeCount = paper.EachTypeCount;
             Unit unit;
             var rand = new Random();
-            for (int i = 0; i < count; i++) {
+            for (var i = 0; i < count; i++) {
                 unit = new Unit();
                 unit.ID = i + 1;
                 unit.AdaptationDegree = 0.00;
@@ -36,15 +36,15 @@ namespace GeneticAlgorithmTest
                     unit.ProblemList.Clear();
 
                     //各题型题目数量限制
-                    for (int j = 0; j < eachTypeCount.Length; j++) {
-                        List<Problem> oneTypeProblem = problemList
+                    for (var j = 0; j < eachTypeCount.Length; j++) {
+                        var oneTypeProblem = problemList
                             .Where(o => o.Type == (j + 1))
                             .Where(p => IsContain(paper, p))
                             .ToList();
                         var temp = new Problem();
-                        for (int k = 0; k < eachTypeCount[j]; k++) {
+                        for (var k = 0; k < eachTypeCount[j]; k++) {
                             //选择不重复的题目
-                            int index = rand.Next(0, oneTypeProblem.Count - k);
+                            var index = rand.Next(0, oneTypeProblem.Count - k);
                             unit.ProblemList.Add(oneTypeProblem[index]);
                             temp = oneTypeProblem[oneTypeProblem.Count - 1 - k];
                             oneTypeProblem[oneTypeProblem.Count - 1 - k] = oneTypeProblem[index];
@@ -70,12 +70,12 @@ namespace GeneticAlgorithmTest
         /// <returns>List</returns>
         public List<Unit> GetKPCoverage(List<Unit> unitList, Paper paper) {
             List<int> kp;
-            for (int i = 0; i < unitList.Count; i++) {
+            for (var i = 0; i < unitList.Count; i++) {
                 kp = new List<int>();
                 unitList[i].ProblemList.ForEach(delegate(Problem p) { kp.AddRange(p.Points); });
 
                 //个体所有题目知识点并集跟期望试卷知识点交集
-                IEnumerable<int> common = kp.Intersect(paper.Points);
+                var common = kp.Intersect(paper.Points);
                 unitList[i].KPCoverage = common.Count()*1.00/paper.Points.Count;
             }
             return unitList;
@@ -91,7 +91,7 @@ namespace GeneticAlgorithmTest
         /// <returns>List</returns>
         public List<Unit> GetAdaptationDegree(List<Unit> unitList, Paper paper, double KPCoverage, double Difficulty) {
             unitList = GetKPCoverage(unitList, paper);
-            for (int i = 0; i < unitList.Count; i++) {
+            for (var i = 0; i < unitList.Count; i++) {
                 unitList[i].AdaptationDegree = 1 - (1 - unitList[i].KPCoverage)*KPCoverage -
                                                Math.Abs(unitList[i].Difficulty - paper.Difficulty)*Difficulty;
             }
@@ -114,11 +114,11 @@ namespace GeneticAlgorithmTest
             var rand = new Random();
             while (selectedUnitList.Count != count) {
                 //选择一个0—1的随机数字
-                double degree = 0.00;
-                double randDegree = rand.Next(1, 100)*0.01*AllAdaptationDegree;
+                var degree = 0.00;
+                var randDegree = rand.Next(1, 100)*0.01*AllAdaptationDegree;
 
                 //选择符合要求的个体
-                for (int j = 0; j < unitList.Count; j++) {
+                for (var j = 0; j < unitList.Count; j++) {
                     degree += unitList[j].AdaptationDegree;
                     if (degree >= randDegree) {
                         //不重复选择
@@ -144,8 +144,8 @@ namespace GeneticAlgorithmTest
             var rand = new Random();
             while (crossedUnitList.Count != count) {
                 //随机选择两个个体
-                int indexOne = rand.Next(0, unitList.Count);
-                int indexTwo = rand.Next(0, unitList.Count);
+                var indexOne = rand.Next(0, unitList.Count);
+                var indexTwo = rand.Next(0, unitList.Count);
                 Unit unitOne;
                 Unit unitTwo;
                 if (indexOne != indexTwo) {
@@ -153,7 +153,7 @@ namespace GeneticAlgorithmTest
                     unitTwo = unitList[indexTwo];
 
                     //随机选择一个交叉位置
-                    int crossPosition = rand.Next(0, unitOne.ProblemCount - 2);
+                    var crossPosition = rand.Next(0, unitOne.ProblemCount - 2);
 
                     //保证交叉的题目分数合相同
                     double scoreOne = unitOne.ProblemList[crossPosition].Score +
@@ -168,7 +168,7 @@ namespace GeneticAlgorithmTest
                         unitNewTwo.ProblemList.AddRange(unitTwo.ProblemList);
 
                         //交换交叉位置后面两道题
-                        for (int i = crossPosition; i < crossPosition + 2; i++) {
+                        for (var i = crossPosition; i < crossPosition + 2; i++) {
                             unitNewOne.ProblemList[i] = new Problem(unitTwo.ProblemList[i]);
                             unitNewTwo.ProblemList[i] = new Problem(unitOne.ProblemList[i]);
                         }
@@ -205,33 +205,33 @@ namespace GeneticAlgorithmTest
         /// <returns>List</returns>
         public List<Unit> Change(List<Unit> unitList, List<Problem> problemList, Paper paper) {
             var rand = new Random();
-            int index = 0;
+            var index = 0;
             unitList.ForEach(delegate(Unit u) {
                 //随机选择一道题
                 index = rand.Next(0, u.ProblemList.Count);
-                Problem temp = u.ProblemList[index];
+                var temp = u.ProblemList[index];
 
                 //得到这道题的知识点
                 var problem = new Problem();
-                for (int i = 0; i < temp.Points.Count; i++) {
+                for (var i = 0; i < temp.Points.Count; i++) {
                     if (paper.Points.Contains(temp.Points[i])) {
                         problem.Points.Add(temp.Points[i]);
                     }
                 }
 
                 //从数据库中选择包含此题有效知识点的同类型同分数不同题号试题
-                IEnumerable<Problem> otherDB = from a in problemList
+                var otherDB = from a in problemList
                     where a.Points.Intersect(problem.Points).Count() > 0
                     select a;
 
-                List<Problem> smallDB =
+                var smallDB =
                     otherDB.Where(p => IsContain(paper, p))
                         .Where(o => o.Score == temp.Score && o.Type == temp.Type && o.ID != temp.ID)
                         .ToList();
 
                 //从符合要求的试题中随机选一题替换
                 if (smallDB.Count > 0) {
-                    int changeIndex = rand.Next(0, smallDB.Count);
+                    var changeIndex = rand.Next(0, smallDB.Count);
                     u.ProblemList[index] = smallDB[changeIndex];
                 }
             });
@@ -303,16 +303,16 @@ namespace GeneticAlgorithmTest
             };
 
             //迭代次数计数器
-            int count = 1;
+            var count = 1;
 
             //适应度期望值
-            double expand = 0.98;
+            var expand = 0.98;
 
             //最大迭代次数
-            int runCount = 500;
+            var runCount = 500;
 
             //初始化种群
-            List<Unit> unitList = CSZQ(20, paper, db.ProblemDB);
+            var unitList = CSZQ(20, paper, db.ProblemDB);
             Console.WriteLine("\n\n      -------遗传算法组卷系统(http://www.cnblogs.com/durongjian/)---------\n\n");
             Console.WriteLine("初始种群：");
             //ShowUnit(unitList);
@@ -357,7 +357,7 @@ namespace GeneticAlgorithmTest
         /// <returns>bool</returns>
         public bool IsEnd(List<Unit> unitList, double endcondition) {
             if (unitList.Count > 0) {
-                for (int i = 0; i < unitList.Count; i++) {
+                for (var i = 0; i < unitList.Count; i++) {
                     if (unitList[i].AdaptationDegree >= endcondition) {
                         return true;
                     }
@@ -412,7 +412,7 @@ namespace GeneticAlgorithmTest
         /// <param name="problem">一首试题</param>
         /// <returns>bool</returns>
         private bool IsContain(Paper paper, Problem problem) {
-            for (int i = 0; i < problem.Points.Count; i++) {
+            for (var i = 0; i < problem.Points.Count; i++) {
                 if (paper.Points.Contains(problem.Points[i])) {
                     return true;
                 }
