@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace OnlineAssessment.Web.Controllers
+namespace OnlineAssessment.Web.Core.Controllers
 {
-    public class PaperController : Controller
+    public class AdminController : Controller
     {
-        // GET: Paper
+        // GET: Admin
         public ActionResult Index()
         {
             return View();

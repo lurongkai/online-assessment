@@ -1,6 +1,6 @@
 ﻿using OnlineAssessment.Domain;
 
-namespace OnlineAssessment.Web.Extensions
+namespace OnlineAssessment.Web.Core.Extensions
 {
     public static class QuestionExtension
     {

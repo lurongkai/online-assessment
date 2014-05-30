@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace OnlineAssessment.Web.Controllers
+namespace OnlineAssessment.Web.Core.Controllers
 {
     public class ExaminationManageController : Controller
     {

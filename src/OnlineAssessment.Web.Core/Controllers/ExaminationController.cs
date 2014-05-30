@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace OnlineAssessment.Web.Controllers
+namespace OnlineAssessment.Web.Core.Controllers
 {
     public class ExaminationController : Controller
     {

@@ -6,9 +6,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Infrastructure;
-using OnlineAssessment.Web.Models;
+using OnlineAssessment.Web.Core.Models;
 
-namespace OnlineAssessment.Web.Controllers
+namespace OnlineAssessment.Web.Core.Controllers
 {
     [Authorize]
     public class AccountController : Controller

@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Service;
 
-namespace OnlineAssessment.Web.Controllers
+namespace OnlineAssessment.Web.Core.Controllers
 {
     [Authorize(Roles = "Teacher")]
     public class QuestionController : Controller

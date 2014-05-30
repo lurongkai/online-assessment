@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using OnlineAssessment.Service;
+using OnlineAssessment.Web.Core.Controllers;
 
 namespace OnlineAssessment.Web
 {
@@ -9,7 +10,8 @@ namespace OnlineAssessment.Web
     {
         public static void RegisterIoc() {
             var builder = new ContainerBuilder();
-            builder.RegisterControllers(typeof (MvcApplication).Assembly);
+            builder.RegisterControllers(typeof(AutofacConfig).Assembly);
+            builder.RegisterControllers(typeof(HomeController).Assembly);
             SetupServiceInjection(builder);
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

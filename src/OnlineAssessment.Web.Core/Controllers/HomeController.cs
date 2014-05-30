@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using OnlineAssessment.Service;
 
-namespace OnlineAssessment.Web.Controllers
+namespace OnlineAssessment.Web.Core.Controllers
 {
     public class HomeController : Controller
     {

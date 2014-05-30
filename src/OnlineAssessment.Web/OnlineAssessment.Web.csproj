@@ -14,14 +14,14 @@
     <RootNamespace>OnlineAssessment.Web</RootNamespace>
     <AssemblyName>OnlineAssessment.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <IISExpressSSLPort />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -109,6 +109,7 @@
       <HintPath>..\..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,28 +172,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutofacConfig.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\EvaluatingController.cs" />
-    <Compile Include="Controllers\ExaminationController.cs" />
-    <Compile Include="Controllers\ExaminationManageController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PaperController.cs" />
-    <Compile Include="Controllers\QuestionController.cs" />
-    <Compile Include="Controllers\TestingController.cs" />
-    <Compile Include="Extensions\CommonExtension.cs" />
-    <Compile Include="Extensions\QuestionExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\SidebarActivator.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\PredefinedRole.cs" />
+    <Compile Include="App_Code\AutofacConfig.cs" />
+    <Compile Include="App_Code\BundleConfig.cs" />
+    <Compile Include="App_Code\FilterConfig.cs" />
+    <Compile Include="App_Code\RouteConfig.cs" />
+    <Compile Include="App_Code\Startup.Auth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -600,7 +587,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -659,6 +648,10 @@
     <ProjectReference Include="..\OnlineAssessment.Service\OnlineAssessment.Service.csproj">
       <Project>{ab4dba17-eba1-48fa-b793-de325cc098eb}</Project>
       <Name>OnlineAssessment.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineAssessment.Web.Core\OnlineAssessment.Web.Core.csproj">
+      <Project>{51aea70a-5c1e-41db-bee8-2f6b7f7912b1}</Project>
+      <Name>OnlineAssessment.Web.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

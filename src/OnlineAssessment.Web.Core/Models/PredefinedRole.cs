@@ -1,4 +1,4 @@
-﻿namespace OnlineAssessment.Web.Models
+﻿namespace OnlineAssessment.Web.Core.Models
 {
     public enum PredefinedRole
     {
