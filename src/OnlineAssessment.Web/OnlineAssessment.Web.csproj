@@ -177,10 +177,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EvaluatingController.cs" />
-    <Compile Include="Controllers\ExamController.cs" />
+    <Compile Include="Controllers\ExaminationController.cs" />
+    <Compile Include="Controllers\ExaminationManageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MockController.cs" />
+    <Compile Include="Controllers\PaperController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Extensions\CommonExtension.cs" />
@@ -636,14 +638,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Evaluating\" />
-    <Folder Include="Views\Exam\" />
-    <Folder Include="Views\Mock\" />
+    <Folder Include="Views\ExaminationManage\" />
+    <Folder Include="Views\Examination\" />
+    <Folder Include="Views\Paper\" />
     <Folder Include="Views\Question\DisplayTemplates\" />
-    <Folder Include="Views\Student\" />
-    <Folder Include="Views\TestComprehensive\" />
-    <Folder Include="Views\TestModularized\" />
-    <Folder Include="Views\TestPractice\" />
-    <Folder Include="Views\TestUnit\" />
+    <Folder Include="Views\Testing\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

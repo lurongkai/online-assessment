@@ -36,6 +36,10 @@ namespace OnlineAssessment.Web
 
             #endregion
 
+            routes.MapRoute("Admin", "Admin/{action}",
+                new {controller = "Admin", action = "Index"}
+                );
+
             routes.MapRoute("Default", "{controller}/{action}/{id}",
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional}
                 );

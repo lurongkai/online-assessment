@@ -2,7 +2,7 @@
 
 namespace OnlineAssessment.Web.Controllers
 {
-    public class ExamController : Controller
+    public class ExaminationController : Controller
     {
         //
         // GET: /Exam/
