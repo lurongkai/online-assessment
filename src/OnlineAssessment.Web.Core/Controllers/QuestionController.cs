@@ -14,12 +14,6 @@ namespace OnlineAssessment.Web.Core.Controllers
             _questionService = questionService;
         }
 
-        public ActionResult Index(Guid subjectId) {
-            return RedirectToAction(
-                "List",
-                new {subjectId});
-        }
-
         public ActionResult List(Guid subjectId) {
             ViewBag.SubjectId = subjectId;
             var questions = _questionService.GetAllQuestion(subjectId);
@@ -28,15 +22,15 @@ namespace OnlineAssessment.Web.Core.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateQuestion(Guid subjectId, QuestionForm questionType) {
+		public ActionResult Create(Guid subjectId, QuestionForm questionForm) {
             ViewBag.SubjectId = subjectId;
-            ViewBag.QuestionType = questionType;
+			ViewBag.questionForm = questionForm;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateQuestion(Guid subjectId, Question newQuestion) {
+		public ActionResult Create(Guid subjectId, Question newQuestion) {
             _questionService.AddQuestion(subjectId, newQuestion);
             return RedirectToAction("List", new {subjectId});
         }

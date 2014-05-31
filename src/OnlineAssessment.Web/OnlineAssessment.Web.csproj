@@ -200,6 +200,9 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Question\DisplayTemplates\Question.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\QuestionDegree.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\QuestionForm.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -612,10 +615,10 @@
     <Content Include="Views\Question\List.cshtml" />
     <Content Include="Views\Shared\_common-layout.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
-    <Content Include="Views\Question\CreateQuestion.cshtml" />
-    <Content Include="Views\Question\SingleSelectionPartial.cshtml" />
-    <Content Include="Views\Question\SubjectivePartial.cshtml" />
-    <Content Include="Views\Question\MultipleSelectionPartial.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\_singleSelectionPartial.cshtml" />
+    <Content Include="Views\Question\_subjectivePartial.cshtml" />
+    <Content Include="Views\Question\_multipleSelectionPartial.cshtml" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
@@ -626,7 +629,7 @@
     <Folder Include="Views\ExaminationManage\" />
     <Folder Include="Views\Examination\" />
     <Folder Include="Views\Paper\" />
-    <Folder Include="Views\Question\DisplayTemplates\" />
+    <Folder Include="Views\Question\EditTemplates\" />
     <Folder Include="Views\Testing\" />
   </ItemGroup>
   <ItemGroup>

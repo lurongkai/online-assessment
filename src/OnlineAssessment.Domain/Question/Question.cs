@@ -15,6 +15,7 @@ namespace OnlineAssessment.Domain
 
         public Guid QuestionId { get; set; }
 
+        [UIHint("QuestionDegree")]
         public QuestionForm QuestionForm { get; set; }
         public QuestionCategory QuestionSubject { get; set; }
         public int Score { get; set; }

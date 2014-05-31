@@ -10,10 +10,10 @@
             新建题目 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-            <li>@Html.ActionLink("单选题", "CreateQuestion", new {ViewBag.SubjectId, questionType = QuestionForm.SingleSelection})</li>
-            <li>@Html.ActionLink("多选题", "CreateQuestion", new {ViewBag.SubjectId, questionType = QuestionForm.MultipleSelection})</li>
+            <li>@Html.ActionLink("单选题", "Create", new { ViewBag.SubjectId, questionForm = QuestionForm.SingleSelection })</li>
+            <li>@Html.ActionLink("多选题", "Create", new { ViewBag.SubjectId, questionForm = QuestionForm.MultipleSelection })</li>
             <li class="divider"></li>
-            <li>@Html.ActionLink("主观题", "CreateQuestion", new {ViewBag.SubjectId, questionType = QuestionForm.Subjective})</li>
+            <li>@Html.ActionLink("主观题", "Create", new { ViewBag.SubjectId, questionForm = QuestionForm.Subjective })</li>
         </ul>
     </div>
 </p>
@@ -32,18 +32,10 @@
                     @item.QuestionBody.MaxLengthAs(20)
                 </td>
                 <td>
-                    @if (item.QuestionDegree < 3) {
-                        <span class="label label-default">@item.QuestionDegree</span>
-                    } else if (item.QuestionDegree < 7) {
-                        <span class="label label-success">@item.QuestionDegree</span>
-                    } else if (item.QuestionDegree < 9) {
-                        <span class="label label-warning">@item.QuestionDegree</span>
-                    } else {
-                        <span class="label label-danger">@item.QuestionDegree</span>
-                    }
+                    @Html.DisplayFor(m => item.QuestionDegree)
                 </td>
                 <td>
-                    @item.QuestionForm.GetString()
+                    @Html.DisplayFor(m => item.QuestionForm)
                 </td>
                 <td>
                     @Html.ActionLink("查看", "Details", new {id = item.QuestionId}, new {@class = "btn btn-default btn-xs"})

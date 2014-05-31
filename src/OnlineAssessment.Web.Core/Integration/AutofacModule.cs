@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System.Data.Entity;
+using Autofac;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineAssessment.Domain;
@@ -15,9 +16,9 @@ namespace OnlineAssessment.Web.Core.Integration
             builder.RegisterType<MembershipService>().As<IMembershipService>().InstancePerRequest();
             builder.RegisterType<QuestionService>().As<IQuestionService>().InstancePerRequest();
 
-            builder.RegisterType<OnlineAssessmentContext>().InstancePerRequest();
-            builder.RegisterType<UserStore<ApplicationUser>>().As<IUserStore<ApplicationUser>>();
-            builder.RegisterType<UserManager<ApplicationUser>>();
+            builder.RegisterType<OnlineAssessmentContext>().As<DbContext>().InstancePerRequest();
+            builder.RegisterType<UserStore<ApplicationUser>>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<UserManager<ApplicationUser>>().InstancePerRequest();
         }
     }
 }
