@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.4.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
@@ -131,6 +134,7 @@
     <Compile Include="Extensions\CommonExtension.cs" />
     <Compile Include="Extensions\QuestionExtension.cs" />
     <Compile Include="Helpers\SidebarActivator.cs" />
+    <Compile Include="Integration\AutofacModule.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\PredefinedRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

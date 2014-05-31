@@ -19,11 +19,11 @@ namespace OnlineAssessment.Web.Core.Controllers
             return RedirectToAction("Dashboard");
         }
 
-        [Authorize(Roles = "Student, Teacher")]
+		[Authorize(Roles = "Student, Teacher, Admin")]
         public ActionResult Dashboard() {
-            var userId = (string) Session["UserId"];
-            var profile = _membershipService.GetProfile(userId);
-            ViewBag.Profile = profile;
+			// var userId = (string) Session["UserId"];
+			// var profile = _membershipService.GetProfile(userId);
+			// ViewBag.Profile = profile;
 
             return View();
         }

@@ -69,10 +69,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.0.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
@@ -640,14 +636,6 @@
     <ProjectReference Include="..\OnlineAssessment.Domain\OnlineAssessment.Domain.csproj">
       <Project>{99f60cc8-f279-401b-bc75-93a1779d42f8}</Project>
       <Name>OnlineAssessment.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OnlineAssessment.Infrastructure\OnlineAssessment.Infrastructure.csproj">
-      <Project>{867b92d6-5029-4080-8ada-8823e9bd1a10}</Project>
-      <Name>OnlineAssessment.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OnlineAssessment.Service\OnlineAssessment.Service.csproj">
-      <Project>{ab4dba17-eba1-48fa-b793-de325cc098eb}</Project>
-      <Name>OnlineAssessment.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\OnlineAssessment.Web.Core\OnlineAssessment.Web.Core.csproj">
       <Project>{51aea70a-5c1e-41db-bee8-2f6b7f7912b1}</Project>

@@ -2,10 +2,8 @@
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using OnlineAssessment.Domain;
-using OnlineAssessment.Infrastructure;
 using OnlineAssessment.Web.Core.Models;
 
 namespace OnlineAssessment.Web.Core.Controllers
@@ -13,14 +11,11 @@ namespace OnlineAssessment.Web.Core.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new OnlineAssessmentContext()))) {}
+        private UserManager<ApplicationUser> _userManager;
 
         public AccountController(UserManager<ApplicationUser> userManager) {
-            UserManager = userManager;
+            _userManager = userManager;
         }
-
-        public UserManager<ApplicationUser> UserManager { get; private set; }
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl) {
@@ -33,10 +28,9 @@ namespace OnlineAssessment.Web.Core.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl) {
             if (ModelState.IsValid) {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
+                var user = await _userManager.FindAsync(model.UserName, model.Password);
                 if (user != null) {
                     await SignInAsync(user, model.RememberMe);
-                    Session["UserId"] = user.Id;
                     return RedirectToLocal(returnUrl);
                 }
                 ModelState.AddModelError("", "Invalid username or password.");
@@ -57,7 +51,7 @@ namespace OnlineAssessment.Web.Core.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
                 var user = new Student {UserName = model.UserName};
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
@@ -81,13 +75,12 @@ namespace OnlineAssessment.Web.Core.Controllers
             if (ModelState.IsValid) {
                 var result =
                     await
-                        UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                        _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                 if (result.Succeeded) {
                     return RedirectToAction("Manage");
                 }
                 AddErrors(result);
             }
-
 
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -99,9 +92,9 @@ namespace OnlineAssessment.Web.Core.Controllers
         }
 
         protected override void Dispose(bool disposing) {
-            if (disposing && UserManager != null) {
-                UserManager.Dispose();
-                UserManager = null;
+            if (disposing && _userManager != null) {
+                _userManager.Dispose();
+                _userManager = null;
             }
             base.Dispose(disposing);
         }
@@ -117,8 +110,7 @@ namespace OnlineAssessment.Web.Core.Controllers
 
         private async Task SignInAsync(ApplicationUser user, bool isPersistent) {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            var identity =
-                await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = isPersistent}, identity);
         }
 
