@@ -43,6 +43,10 @@ namespace OnlineAssessment.Web
                 new { controller = "Admin", action = "Index" }, defaultNamespaces
                 );
 
+            routes.MapRoute("Dashboard", "Home/{subjectId}/Dashboard",
+                new { controller = "Home", action = "Dashboard" }, defaultNamespaces
+                );
+
             routes.MapRoute("Default", "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }, defaultNamespaces
                 );

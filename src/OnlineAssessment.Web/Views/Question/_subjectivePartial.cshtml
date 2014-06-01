@@ -1,6 +1,6 @@
 ﻿@model OnlineAssessment.Domain.Question
 
-@{ Model.QuestionDegree = 5; }
+@{ Model.QuestionDegree = 0.5; }
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -34,16 +34,16 @@
                     @Html.DropDownListFor(
                         model => model.QuestionDegree,
                         new List<SelectListItem> {
-                            new SelectListItem {Text = "1", Value = "1"},
-                            new SelectListItem {Text = "2", Value = "2"},
-                            new SelectListItem {Text = "3", Value = "3"},
-                            new SelectListItem {Text = "4", Value = "4"},
-                            new SelectListItem {Text = "5", Value = "5"},
-                            new SelectListItem {Text = "6", Value = "6"},
-                            new SelectListItem {Text = "7", Value = "7"},
-                            new SelectListItem {Text = "8", Value = "8"},
-                            new SelectListItem {Text = "9", Value = "9"},
-                            new SelectListItem {Text = "10", Value = "10"}
+                            new SelectListItem {Text = "0.1", Value = "0.1"},
+                            new SelectListItem {Text = "0.2", Value = "0.2"},
+                            new SelectListItem {Text = "0.3", Value = "0.3"},
+                            new SelectListItem {Text = "0.4", Value = "0.4"},
+                            new SelectListItem {Text = "0.5", Value = "0.5"},
+                            new SelectListItem {Text = "0.6", Value = "0.6"},
+                            new SelectListItem {Text = "0.7", Value = "0.7"},
+                            new SelectListItem {Text = "0.8", Value = "0.8"},
+                            new SelectListItem {Text = "0.9", Value = "0.9"},
+                            new SelectListItem {Text = "1.0", Value = "1.0"}
                         },
                         new {@class = "form-control"})
                     @Html.ValidationMessageFor(model => model.QuestionDegree)

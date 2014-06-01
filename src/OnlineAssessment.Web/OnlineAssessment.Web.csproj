@@ -200,9 +200,9 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <Content Include="Views\Question\DisplayTemplates\Question.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\QuestionDegree.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\QuestionForm.cshtml" />
+    <Content Include="Views\Home\ChoiceSubject.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -629,6 +629,7 @@
     <Folder Include="Views\ExaminationManage\" />
     <Folder Include="Views\Examination\" />
     <Folder Include="Views\Paper\" />
+    <Folder Include="Views\Question\DisplayTemplates\" />
     <Folder Include="Views\Question\EditTemplates\" />
     <Folder Include="Views\Testing\" />
   </ItemGroup>

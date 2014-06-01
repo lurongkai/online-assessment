@@ -11,6 +11,7 @@ namespace OnlineAssessment.Domain
 
         public Guid SubjectId { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
 
         public virtual Teacher ResponsibleTeacher { get; set; }
         public virtual ICollection<Student> SubscribedStudents { get; set; }

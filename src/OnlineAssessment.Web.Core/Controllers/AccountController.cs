@@ -32,6 +32,7 @@ namespace OnlineAssessment.Web.Core.Controllers
                 var user = await _userManager.FindAsync(model.UserName, model.Password);
                 if (user != null) {
                     await SignInAsync(user, model.RememberMe);
+                    Session["UserId"] = user.Id;
                     return RedirectToLocal(returnUrl);
                 }
                 ModelState.AddModelError("", "Invalid username or password.");

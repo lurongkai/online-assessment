@@ -6,7 +6,7 @@ namespace OnlineAssessment.Domain
 {
     public class Question : ICanMigrate
     {
-        private float _questionDegree;
+        private double _questionDegree;
 
         public Question() {
             QuestionId = Guid.NewGuid();
@@ -33,7 +33,7 @@ namespace OnlineAssessment.Domain
 
         [Required]
         [Display(Name = "难度")]
-        public float QuestionDegree {
+        public double QuestionDegree {
             get { return _questionDegree; }
             set {
                 if (value < 0 || value > 1.0) {

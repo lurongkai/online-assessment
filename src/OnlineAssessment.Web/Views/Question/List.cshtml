@@ -32,10 +32,10 @@
                     @item.QuestionBody.MaxLengthAs(20)
                 </td>
                 <td>
-                    @Html.DisplayFor(m => item.QuestionDegree)
+                    @Html.DisplayFor(m => item.QuestionDegree, "QuestionDegree")
                 </td>
                 <td>
-                    @Html.DisplayFor(m => item.QuestionForm)
+                    @Html.DisplayFor(m => item.QuestionForm, "QuestionForm")
                 </td>
                 <td>
                     @Html.ActionLink("查看", "Details", new {id = item.QuestionId}, new {@class = "btn btn-default btn-xs"})
