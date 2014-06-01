@@ -34,5 +34,23 @@ namespace OnlineAssessment.Web.Core.Controllers
             _questionService.AddQuestion(subjectId, newQuestion);
             return RedirectToAction("List", new {subjectId});
         }
+
+        [HttpGet]
+        public ActionResult Delete(Guid subjectId, Guid questionId) {
+            _questionService.DeleteQuestion(questionId);
+            return RedirectToAction("List", new { subjectId });
+        }
+
+        [HttpGet]
+        public ActionResult Edit(Guid subjectId, Guid questionId) {
+            var question = _questionService.GetQuestion(questionId);
+            return View(question);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Guid subjectId, Question editedQuestion) {
+            _questionService.ModifyQuestion(editedQuestion);
+            return RedirectToAction("List", new { subjectId });
+        }
     }
 }

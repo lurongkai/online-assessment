@@ -18,13 +18,13 @@ Teacher
 -----
 Question:
 /{SubjectId}/Question/List
-/{SubjectId}/Question/New
+/{SubjectId}/Question/Create
 /{SubjectId}/Question/Delete/{QuestionId}
 /{SubjectId}/Question/Edit/{QuestionId}
 
 Examination Paper:
 /{SubjectId}/Paper/List
-/{SubjectId}/Paper/New
+/{SubjectId}/Paper/Create
 /{SubjectId}/Paper/Delete/{ExaminationPaperId}
 
 Examination:
