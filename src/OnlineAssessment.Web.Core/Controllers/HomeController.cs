@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Web.Mvc;
 using OnlineAssessment.Service;
 using System.Collections.Generic;
@@ -29,17 +30,18 @@ namespace OnlineAssessment.Web.Core.Controllers
         }
 
         [Authorize]
-        public ActionResult ChoiceSubject()
-        {
+        public ActionResult ChoiceSubject() {
+            var identity = User.Identity as ClaimsIdentity;
+            var userId = identity.FindFirst("UserId").Value;
             if (User.IsInRole("Teacher"))
             {
-                var subject = _membershipService.GetTeacherSubject(Session["UserId"].ToString());
+                var subject = _membershipService.GetTeacherSubject(userId);
                 return RedirectToAction("Dashboard", new {subjectId = subject.SubjectId});
             }
 
             if (User.IsInRole("Student"))
             {
-                var subjects = _membershipService.GetStudentSubjects(Session["UserId"].ToString());
+                var subjects = _membershipService.GetStudentSubjects(userId);
 
                 if (subjects.Count() == 1) {
                     return RedirectToAction("Dashboard", new { subjectId = subjects.First().SubjectId });

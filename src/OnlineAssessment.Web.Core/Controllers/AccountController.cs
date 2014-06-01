@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -32,7 +33,6 @@ namespace OnlineAssessment.Web.Core.Controllers
                 var user = await _userManager.FindAsync(model.UserName, model.Password);
                 if (user != null) {
                     await SignInAsync(user, model.RememberMe);
-                    Session["UserId"] = user.Id;
                     return RedirectToLocal(returnUrl);
                 }
                 ModelState.AddModelError("", "Invalid username or password.");
@@ -113,6 +113,7 @@ namespace OnlineAssessment.Web.Core.Controllers
         private async Task SignInAsync(ApplicationUser user, bool isPersistent) {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            identity.AddClaim(new Claim("UserId", user.Id));
             AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = isPersistent}, identity);
         }
 
