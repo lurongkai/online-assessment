@@ -10,5 +10,7 @@ namespace OnlineAssessment.Service
 
         IEnumerable<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId);
         void EvaluatingAnswer(Guid answerSheetId, Guid answerId, int score);
+
+        AnswerSheet GetAnswerSheet(Guid answerSheetId);
     }
 }

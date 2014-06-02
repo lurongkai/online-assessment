@@ -1,25 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using OnlineAssessment.Service;
 using OnlineAssessment.Service.Message;
 
 namespace OnlineAssessment.Web.Core.Controllers
 {
     public class PaperController : Controller
     {
-        public ActionResult List(Guid subjectId)
-        {
-            return View();
+        private readonly IExaminationService _examinationService;
+        public PaperController(IExaminationService examinationService) {
+            _examinationService = examinationService;
+        }
+
+        public ActionResult List(Guid subjectId) {
+            var allPapers = _examinationService.GetAllExaminationPapers(subjectId);
+            return View(allPapers);
         }
 
         public ActionResult Create(Guid subjectId, ExaminationPaperConfig config) {
-            throw new NotImplementedException();
+            var paperId = _examinationService.GenerateRandomExaminationPaper(config);
+            return RedirectToAction("View", new {subjectId = subjectId, paperId = paperId});
         }
 
         public ActionResult View(Guid subjectId, Guid paperId) {
-            throw new NotImplementedException();
+            var paper = _examinationService.GetExaminationPaper(paperId);
+            return View(paper);
         }
     }
 }

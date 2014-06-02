@@ -49,6 +49,20 @@ namespace OnlineAssessment.Service
             }
         }
 
+        public IEnumerable<ExaminationPaper> GetAllExaminationPapers(Guid subjectId) {
+            using (var context = new OnlineAssessmentContext()) {
+                var papers = context.ExaminationPapers.Where(p => p.Subject.SubjectId == subjectId);
+                return papers;
+            }
+        }
+
+        public ExaminationPaper GetExaminationPaper(Guid paperId) {
+            using (var context = new OnlineAssessmentContext()) {
+                var paper = context.ExaminationPapers.Find(paperId);
+                return paper;
+            }
+        }
+
         public void ActiveExamination(Guid examinationId) {
             using (var context = new OnlineAssessmentContext()) {
                 var examination = context.Examinations.Find(examinationId);
@@ -68,6 +82,13 @@ namespace OnlineAssessment.Service
         public Examination GetExamination(Guid examinationId) {
             using (var context = new OnlineAssessmentContext()) {
                 var examination = context.Examinations.Find(examinationId);
+                return examination;
+            }
+        }
+
+        public IEnumerable<Examination> GetAllExaminations(Guid subjectId) {
+            using (var context = new OnlineAssessmentContext()) {
+                var examination = context.Examinations.Where(e => e.Subject.SubjectId == subjectId);
                 return examination;
             }
         }

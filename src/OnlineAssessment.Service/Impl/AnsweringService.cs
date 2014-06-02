@@ -41,5 +41,12 @@ namespace OnlineAssessment.Service
                 context.SaveChanges();
             }
         }
+
+        public AnswerSheet GetAnswerSheet(Guid answerSheetId) {
+            using (var context = new OnlineAssessmentContext()) {
+                var answerSheet = context.AnswerSheets.Find(answerSheetId);
+                return answerSheet;
+            }
+        }
     }
 }
