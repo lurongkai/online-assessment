@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Service;
+using OnlineAssessment.Web.Core.Models;
 
 namespace OnlineAssessment.Web.Core.Controllers
 {
@@ -59,6 +60,21 @@ namespace OnlineAssessment.Web.Core.Controllers
         public ActionResult SubjectDelete(string subjectKey) {
             _subjectService.DeleteSubject(subjectKey);
             return RedirectToAction("SubjectList");
+        }
+
+        #endregion
+
+        #region User
+
+        public ActionResult UserList() {
+            var viewModel = new UserManageViewModel();
+
+            var teacherRole = _roleManager.FindByName("Teacher");
+            var studentRole = _roleManager.FindByName("Student");
+
+            //var teachers  = _userManager.Users.Where(u => u.Roles.Contains(teacherRole))
+
+            return View(viewModel);
         }
 
         #endregion
