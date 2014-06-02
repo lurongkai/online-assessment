@@ -6,7 +6,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        @Html.HiddenFor(model => model.SubjectId)
+        @Html.HiddenFor(model => model.subjectKey)
         @Html.Hidden("QuestionForm", "Subjective")
 
         <div class="form-group">
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-7 text-right">
                 <input type="submit" value="保存" class="btn btn-primary" />
-                @Html.ActionLink("返回", "List", new {Model.SubjectId}, new {@class = "btn btn-default"})
+                @Html.ActionLink("返回", "List", new {Model.subjectKey}, new {@class = "btn btn-default"})
             </div>
         </div>
     </div>

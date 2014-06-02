@@ -10,7 +10,7 @@
         <h3 class="panel-title">新建试题</h3>
     </div>
     <div class="panel-body">
-        @using (Html.BeginForm(new { subjectId = ViewBag.SubjectId })) {
+        @using (Html.BeginForm(new { subjectKey = ViewBag.subjectKey })) {
             @Html.AntiForgeryToken()
             if (ViewBag.QuestionForm == QuestionForm.SingleSelection) {
                 @Html.Partial("_singleSelectionPartial", new Question {QuestionForm = ViewBag.QuestionForm})

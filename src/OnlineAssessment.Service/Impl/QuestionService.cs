@@ -9,11 +9,11 @@ namespace OnlineAssessment.Service
 {
     public class QuestionService : IQuestionService
     {
-        public IEnumerable<Question> GetAllQuestion(Guid subjectId, QuestionForm? questionType = null) {
+        public IEnumerable<Question> GetAllQuestion(string subjectKey, QuestionForm? questionType = null) {
             using (var context = new OnlineAssessmentContext()) {
                 var courseQuestions = context
                     .Questions
-                    .Where(q => q.Subject.SubjectId == subjectId)
+                    .Where(q => q.Subject.SubjectKey == subjectKey)
                     .Where(q => questionType == null || q.QuestionForm == questionType);
 
                 return courseQuestions;
@@ -28,9 +28,9 @@ namespace OnlineAssessment.Service
             }
         }
 
-        public Guid AddQuestion(Guid subjectId, Question question) {
+        public Guid AddQuestion(string subjectKey, Question question) {
             using (var context = new OnlineAssessmentContext()) {
-                var subject = context.Subjects.Find(subjectId);
+                var subject = context.Subjects.Find(subjectKey);
                 subject.Questions.Add(question);
                 context.SaveChanges();
 

@@ -28,10 +28,15 @@ namespace OnlineAssessment.Infrastructure
             }
             userManager.PasswordValidator = new MinimumLengthValidator(6);
 
-            var subject = new Subject {
-                Name = "Test Subject"
+            var subject1 = new Subject {
+                SubjectKey = "CAI-L1",
+                Name = "网络课件设计师一级"
             };
-            context.Subjects.Add(subject);
+            var subject2 = new Subject {
+                SubjectKey = "CAI-L2",
+                Name = "网络课件设计师二级"
+            }; 
+            context.Subjects.Add(subject1);
 
             var student = new Student {
                 Name = "Test Student",
@@ -40,9 +45,10 @@ namespace OnlineAssessment.Infrastructure
             var teacher = new Teacher {
                 Name = "Test Teacher",
                 UserName = "teacher",
-                ResponsibleSubject = subject
+                ResponsibleSubject = subject1
             };
-            student.LearningSubjects.Add(subject);
+            student.LearningSubjects.Add(subject1);
+            student.LearningSubjects.Add(subject2);
 
             if (userManager.Create(student, @"student").Succeeded) {
                 userManager.AddToRole(student.Id, "Student");

@@ -12,17 +12,17 @@ namespace OnlineAssessment.Web.Core.Controllers
             _examinationService = examinationService;
         }
 
-        public ActionResult List(Guid subjectId) {
-            var allPapers = _examinationService.GetAllExaminationPapers(subjectId);
+        public ActionResult List(string subjectKey) {
+            var allPapers = _examinationService.GetAllExaminationPapers(subjectKey);
             return View(allPapers);
         }
 
-        public ActionResult Create(Guid subjectId, ExaminationPaperConfig config) {
+        public ActionResult Create(string subjectKey, ExaminationPaperConfig config) {
             var paperId = _examinationService.GenerateRandomExaminationPaper(config);
-            return RedirectToAction("View", new {subjectId = subjectId, paperId = paperId});
+            return RedirectToAction("View", new {subjectKey = subjectKey, paperId = paperId});
         }
 
-        public ActionResult View(Guid subjectId, Guid paperId) {
+        public ActionResult View(string subjectKey, Guid paperId) {
             var paper = _examinationService.GetExaminationPaper(paperId);
             return View(paper);
         }

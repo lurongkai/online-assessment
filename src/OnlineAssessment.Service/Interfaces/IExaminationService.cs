@@ -10,14 +10,14 @@ namespace OnlineAssessment.Service
         Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config);
         Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper);
 
-        IEnumerable<ExaminationPaper> GetAllExaminationPapers(Guid subjectId);
+        IEnumerable<ExaminationPaper> GetAllExaminationPapers(string subjectKey);
         ExaminationPaper GetExaminationPaper(Guid paperId);
 
         void ActiveExamination(Guid examinationId);
         void ArchiveExamination(Guid examinationId);
 
         Examination GetExamination(Guid examinationId);
-        IEnumerable<Examination> GetAllExaminations(Guid subjectId, ExaminationState? examinationState);
-        IEnumerable<Examination> GetStudentAvailableExaminations(string userId, Guid subjectId);
+        IEnumerable<Examination> GetAllExaminations(string subjectKey, ExaminationState? examinationState);
+        IEnumerable<Examination> GetStudentAvailableExaminations(string userId, string subjectKey);
     }
 }

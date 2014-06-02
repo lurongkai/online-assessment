@@ -28,7 +28,7 @@ namespace OnlineAssessment.Domain
         [Display(Name = "参考答案")]
         public string ReferenceRightAnswer { get; set; }
 
-        public Guid SubjectId { get; set; }
+        public string subjectKey { get; set; }
         public virtual Subject Subject { get; set; }
 
         [Required]

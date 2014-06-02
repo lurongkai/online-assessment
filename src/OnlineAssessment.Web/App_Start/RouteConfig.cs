@@ -13,16 +13,16 @@ namespace OnlineAssessment.Web
 
             #region Teacher Url
 
-            routes.MapRoute("Question", "{subjectId}/Question/{action}/{questionId}",
+            routes.MapRoute("Question", "{subjectKey}/Question/{action}/{questionId}",
                 new { controller = "Question", action = "List", questionId = UrlParameter.Optional }, defaultNamespaces
                 );
-            routes.MapRoute("ExaminationPaper", "{subjectId}/Paper/{action}/{paperId}",
+            routes.MapRoute("ExaminationPaper", "{subjectKey}/Paper/{action}/{paperId}",
                 new { controller = "Paper", action = "List", paperId = UrlParameter.Optional }, defaultNamespaces
                 );
-            routes.MapRoute("ExaminationManage", "{subjectId}/ExamManage/{action}/{examinationId}",
+            routes.MapRoute("ExaminationManage", "{subjectKey}/ExamManage/{action}/{examinationId}",
                 new { controller = "ExaminationManage", examinationId = "List" }, defaultNamespaces
                 );
-            routes.MapRoute("Evaluating", "{subjectId}/Eval/{examinationPaperId}/{action}",
+            routes.MapRoute("Evaluating", "{subjectKey}/Eval/{examinationPaperId}/{action}",
                 new { controller = "Evaluating", action = "List" }, defaultNamespaces
                 );
 
@@ -30,10 +30,10 @@ namespace OnlineAssessment.Web
 
             #region Student Url
 
-            routes.MapRoute("Testing", "{subjectId}/Test/{questionCategory}/{action}/{testingDate}",
+            routes.MapRoute("Testing", "{subjectKey}/Test/{questionCategory}/{action}/{testingDate}",
                 new { controller = "Testing", action = "Begin", testingDate = UrlParameter.Optional }, defaultNamespaces
                 );
-            routes.MapRoute("Examination", "{subjectId}/Exam/{action}/{examinationId}",
+            routes.MapRoute("Examination", "{subjectKey}/Exam/{action}/{examinationId}",
                 new { controller = "Examination", action = "List", examinationId = UrlParameter.Optional }, defaultNamespaces
                 );
 
@@ -43,7 +43,7 @@ namespace OnlineAssessment.Web
                 new { controller = "Admin", action = "Index" }, defaultNamespaces
                 );
 
-            routes.MapRoute("Dashboard", "{subjectId}/Dashboard",
+            routes.MapRoute("Dashboard", "{subjectKey}/Dashboard",
                 new { controller = "Home", action = "Dashboard" }, defaultNamespaces
                 );
 

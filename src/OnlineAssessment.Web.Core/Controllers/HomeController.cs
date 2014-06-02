@@ -37,7 +37,7 @@ namespace OnlineAssessment.Web.Core.Controllers
             if (User.IsInRole("Teacher"))
             {
                 var subject = _membershipService.GetTeacherSubject(userId);
-                return RedirectToAction("Dashboard", new {subjectId = subject.SubjectId});
+                return RedirectToAction("Dashboard", new {subjectKey = subject.SubjectKey});
             }
 
             if (User.IsInRole("Student"))
@@ -45,8 +45,9 @@ namespace OnlineAssessment.Web.Core.Controllers
                 var subjects = _membershipService.GetStudentSubjects(userId);
 
                 if (subjects.Count() == 1) {
-                    return RedirectToAction("Dashboard", new { subjectId = subjects.First().SubjectId });
+                    return RedirectToAction("Dashboard", new { subjectKey = subjects.First().SubjectKey });
                 }
+                return View(subjects);
             }
 
             return View(Enumerable.Empty<Subject>());

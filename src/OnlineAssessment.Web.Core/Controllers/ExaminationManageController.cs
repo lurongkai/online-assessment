@@ -16,14 +16,14 @@ namespace OnlineAssessment.Web.Core.Controllers
             _examinationService = examinationService;
         }
 
-        public ActionResult List(Guid subjectId, ExaminationState state) {
-            var examinations = _examinationService.GetAllExaminations(subjectId, state);
+        public ActionResult List(string subjectKey, ExaminationState state) {
+            var examinations = _examinationService.GetAllExaminations(subjectKey, state);
             return View(examinations);
         }
 
-        public ActionResult Create(Guid subjectId, Guid paperId, ExaminationConfig config) {
+        public ActionResult Create(string subjectKey, Guid paperId, ExaminationConfig config) {
             _examinationService.AddExamination(paperId, config);
-            return RedirectToAction("List", new {subjectId = subjectId});
+            return RedirectToAction("List", new {subjectKey = subjectKey});
         }
     }
 }

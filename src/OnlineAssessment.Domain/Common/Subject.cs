@@ -5,11 +5,7 @@ namespace OnlineAssessment.Domain
 {
     public class Subject : ICanMigrate
     {
-        public Subject() {
-            SubjectId = Guid.NewGuid();
-        }
-
-        public Guid SubjectId { get; set; }
+        public string SubjectKey { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 

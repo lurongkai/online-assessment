@@ -6,7 +6,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
     public class SubjectMapping : EntityTypeConfiguration<Subject>
     {
         public SubjectMapping() {
-            HasKey(m => m.SubjectId);
+            HasKey(m => m.SubjectKey);
 
             Property(m => m.Name).IsRequired();
             Property(m => m.Description).IsOptional();

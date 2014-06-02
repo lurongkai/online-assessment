@@ -14,43 +14,43 @@ namespace OnlineAssessment.Web.Core.Controllers
             _questionService = questionService;
         }
 
-        public ActionResult List(Guid subjectId) {
-            ViewBag.SubjectId = subjectId;
-            var questions = _questionService.GetAllQuestion(subjectId);
+        public ActionResult List(string subjectKey) {
+            ViewBag.subjectKey = subjectKey;
+            var questions = _questionService.GetAllQuestion(subjectKey);
 
             return View(questions);
         }
 
         [HttpGet]
-		public ActionResult Create(Guid subjectId, QuestionForm questionForm) {
-            ViewBag.SubjectId = subjectId;
+		public ActionResult Create(string subjectKey, QuestionForm questionForm) {
+            ViewBag.subjectKey = subjectKey;
 			ViewBag.questionForm = questionForm;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-		public ActionResult Create(Guid subjectId, Question newQuestion) {
-            _questionService.AddQuestion(subjectId, newQuestion);
-            return RedirectToAction("List", new {subjectId});
+		public ActionResult Create(string subjectKey, Question newQuestion) {
+            _questionService.AddQuestion(subjectKey, newQuestion);
+            return RedirectToAction("List", new {subjectKey});
         }
 
         [HttpGet]
-        public ActionResult Delete(Guid subjectId, Guid questionId) {
+        public ActionResult Delete(string subjectKey, Guid questionId) {
             _questionService.DeleteQuestion(questionId);
-            return RedirectToAction("List", new { subjectId });
+            return RedirectToAction("List", new { subjectKey });
         }
 
         [HttpGet]
-        public ActionResult Edit(Guid subjectId, Guid questionId) {
+        public ActionResult Edit(string subjectKey, Guid questionId) {
             var question = _questionService.GetQuestion(questionId);
             return View(question);
         }
 
         [HttpPost]
-        public ActionResult Edit(Guid subjectId, Question editedQuestion) {
+        public ActionResult Edit(string subjectKey, Question editedQuestion) {
             _questionService.ModifyQuestion(editedQuestion);
-            return RedirectToAction("List", new { subjectId });
+            return RedirectToAction("List", new { subjectKey });
         }
     }
 }

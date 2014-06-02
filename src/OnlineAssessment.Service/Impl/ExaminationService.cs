@@ -16,7 +16,7 @@ namespace OnlineAssessment.Service
                 var questions = context
                     .Questions
                     .Include(q => q.QuestionOptions)
-                    .Where(q => q.Subject.SubjectId == config.SubjectId);
+                    .Where(q => q.Subject.SubjectKey == config.SubjectKey);
                 var generator = new RandomExaminationGenerationService(questions);
 
                 var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint());
@@ -49,9 +49,9 @@ namespace OnlineAssessment.Service
             }
         }
 
-        public IEnumerable<ExaminationPaper> GetAllExaminationPapers(Guid subjectId) {
+        public IEnumerable<ExaminationPaper> GetAllExaminationPapers(string subjectKey) {
             using (var context = new OnlineAssessmentContext()) {
-                var papers = context.ExaminationPapers.Where(p => p.Subject.SubjectId == subjectId);
+                var papers = context.ExaminationPapers.Where(p => p.Subject.SubjectKey == subjectKey);
                 return papers;
             }
         }
@@ -86,18 +86,18 @@ namespace OnlineAssessment.Service
             }
         }
 
-        public IEnumerable<Examination> GetAllExaminations(Guid subjectId, ExaminationState? examinationState) {
+        public IEnumerable<Examination> GetAllExaminations(string subjectKey, ExaminationState? examinationState) {
             using (var context = new OnlineAssessmentContext()) {
                 var examination = context.Examinations
-                    .Where(e => e.Subject.SubjectId == subjectId)
+                    .Where(e => e.Subject.SubjectKey == subjectKey)
                     .Where(e => examinationState == null || e.State == examinationState.Value);
                 return examination;
             }
         }
 
-        public IEnumerable<Examination> GetStudentAvailableExaminations(string userId, Guid subjectId) {
+        public IEnumerable<Examination> GetStudentAvailableExaminations(string userId, string subjectKey) {
             using (var context = new OnlineAssessmentContext()) {
-                var subject = context.Subjects.Find(subjectId);
+                var subject = context.Subjects.Find(subjectKey);
                 var student = context.Students.Find(userId);
                 if (student.LearningSubjects.Contains(subject)) {
                     var examinations = subject.Examinations

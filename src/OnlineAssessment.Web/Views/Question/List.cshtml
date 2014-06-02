@@ -10,10 +10,10 @@
             新建题目 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-            <li>@Html.ActionLink("单选题", "Create", new { ViewBag.SubjectId, questionForm = QuestionForm.SingleSelection })</li>
-            <li>@Html.ActionLink("多选题", "Create", new { ViewBag.SubjectId, questionForm = QuestionForm.MultipleSelection })</li>
+            <li>@Html.ActionLink("单选题", "Create", new { ViewBag.subjectKey, questionForm = QuestionForm.SingleSelection })</li>
+            <li>@Html.ActionLink("多选题", "Create", new { ViewBag.subjectKey, questionForm = QuestionForm.MultipleSelection })</li>
             <li class="divider"></li>
-            <li>@Html.ActionLink("主观题", "Create", new { ViewBag.SubjectId, questionForm = QuestionForm.Subjective })</li>
+            <li>@Html.ActionLink("主观题", "Create", new { ViewBag.subjectKey, questionForm = QuestionForm.Subjective })</li>
         </ul>
     </div>
 </p>

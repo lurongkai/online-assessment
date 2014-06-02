@@ -7,7 +7,7 @@ namespace OnlineAssessment.Service.Message
 {
     public class ExaminationPaperConfig
     {
-        public Guid SubjectId { get; set; }
+        public string SubjectKey { get; set; }
 
         public string Title { get; set; }
         public string Description { get; set; }
