@@ -15,6 +15,7 @@ namespace OnlineAssessment.Web.Core.Integration
             builder.RegisterType<ExaminationService>().As<IExaminationService>().InstancePerRequest();
             builder.RegisterType<MembershipService>().As<IMembershipService>().InstancePerRequest();
             builder.RegisterType<QuestionService>().As<IQuestionService>().InstancePerRequest();
+            builder.RegisterType<SubjectService>().As<ISubjectService>().InstancePerRequest();
 
             builder.RegisterType<OnlineAssessmentContext>().As<DbContext>().InstancePerRequest();
             builder.RegisterType<UserStore<ApplicationUser>>().As<IUserStore<ApplicationUser>>().InstancePerRequest();

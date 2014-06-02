@@ -54,8 +54,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Impl\SubjectService.cs" />
     <Compile Include="Impl\AnsweringService.cs" />
     <Compile Include="Impl\ExaminationService.cs" />
+    <Compile Include="Interfaces\ISubjectService.cs" />
     <Compile Include="Interfaces\IAnsweringService.cs" />
     <Compile Include="Interfaces\IExaminationService.cs" />
     <Compile Include="Interfaces\IMembershipService.cs" />

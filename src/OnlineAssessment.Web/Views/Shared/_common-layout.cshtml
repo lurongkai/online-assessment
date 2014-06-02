@@ -2,6 +2,11 @@
     Layout = "~/Views/Shared/_site-layout.cshtml";
 }
 
+@section notification_area {
+    @if (ViewBag.Message != null) {
+        <div class="alert alert-danger">@ViewBag.Message</div>
+    }
+}
 
 <div class="row">
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas accordion-group" id="sidebar" role="navigation">
