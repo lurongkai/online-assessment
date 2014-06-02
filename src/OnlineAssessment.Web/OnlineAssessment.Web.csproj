@@ -212,6 +212,9 @@
     <Content Include="Views\Examination\View.cshtml" />
     <Content Include="Views\Examination\Answering.cshtml" />
     <Content Include="Views\Evaluating\List.cshtml" />
+    <Content Include="Views\Home\_studentMenu.cshtml" />
+    <Content Include="Views\Home\_adminMenu.cshtml" />
+    <Content Include="Views\Home\_teacherMenu.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -615,7 +618,6 @@
     <Content Include="Views\Shared\_login-partial.cshtml" />
     <Content Include="Views\Shared\_site-layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_sidebar.cshtml" />
     <Content Include="Views\Shared\_navigation.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Shared\_login.cshtml" />

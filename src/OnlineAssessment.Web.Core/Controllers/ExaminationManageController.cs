@@ -1,4 +1,5 @@
-﻿using OnlineAssessment.Service;
+﻿using OnlineAssessment.Domain;
+using OnlineAssessment.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace OnlineAssessment.Web.Core.Controllers
             _examinationService = examinationService;
         }
 
-        public ActionResult List(Guid subjectId) {
-            var examinations = _examinationService.GetAllExaminations(subjectId);
+        public ActionResult List(Guid subjectId, ExaminationState state) {
+            var examinations = _examinationService.GetAllExaminations(subjectId, state);
             return View(examinations);
         }
 

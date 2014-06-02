@@ -5,7 +5,18 @@
 
 <div class="row">
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas accordion-group" id="sidebar" role="navigation">
-        @Html.Partial("_sidebar")
+        @if (User.IsInRole("Student")) {
+            @Html.Action("StudentMenu", "Home")
+        }
+        
+        @if (User.IsInRole("Teacher")) {
+            @Html.Action("TeacherMenu", "Home")
+        }
+        
+        @if (User.IsInRole("Admin")) {
+            @Html.Action("AdminMenu", "Home")
+        }
+        @*@Html.Partial("_sidebar")*@
     </div>
     <div class="col-md-9" role="main">
         @RenderBody()

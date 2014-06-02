@@ -5,6 +5,7 @@ using OnlineAssessment.Service;
 using System.Collections.Generic;
 using OnlineAssessment.Domain;
 using System.Linq;
+using OnlineAssessment.Web.Core.Models;
 
 namespace OnlineAssessment.Web.Core.Controllers
 {
@@ -53,17 +54,23 @@ namespace OnlineAssessment.Web.Core.Controllers
 
         [Authorize(Roles = "Student, Teacher, Admin")]
         public ActionResult Dashboard() {
-			// var userId = (string) Session["UserId"];
-			// var profile = _membershipService.GetProfile(userId);
-			// ViewBag.Profile = profile;
-
             return View();
         }
 
         [ChildActionOnly]
-        public ActionResult TeacherSubjects()
+        public ActionResult StudentMenu()
         {
-            return PartialView();
+            return PartialView("_studentMenu");
+        }
+
+        [ChildActionOnly]
+        public ActionResult TeacherMenu() {
+            return PartialView("_teacherMenu");
+        }
+
+        [ChildActionOnly]
+        public ActionResult AdminMenu() {
+            return PartialView("_adminMenu");
         }
 
         public ActionResult About() {

@@ -86,9 +86,11 @@ namespace OnlineAssessment.Service
             }
         }
 
-        public IEnumerable<Examination> GetAllExaminations(Guid subjectId) {
+        public IEnumerable<Examination> GetAllExaminations(Guid subjectId, ExaminationState? examinationState) {
             using (var context = new OnlineAssessmentContext()) {
-                var examination = context.Examinations.Where(e => e.Subject.SubjectId == subjectId);
+                var examination = context.Examinations
+                    .Where(e => e.Subject.SubjectId == subjectId)
+                    .Where(e => examinationState == null || e.State == examinationState.Value);
                 return examination;
             }
         }

@@ -17,7 +17,7 @@ namespace OnlineAssessment.Service
         void ArchiveExamination(Guid examinationId);
 
         Examination GetExamination(Guid examinationId);
-        IEnumerable<Examination> GetAllExaminations(Guid subjectId);
+        IEnumerable<Examination> GetAllExaminations(Guid subjectId, ExaminationState? examinationState);
         IEnumerable<Examination> GetStudentAvailableExaminations(string userId, Guid subjectId);
     }
 }
