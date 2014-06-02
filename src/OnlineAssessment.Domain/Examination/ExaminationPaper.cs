@@ -14,16 +14,12 @@ namespace OnlineAssessment.Domain
         public Guid ExaminationPaperId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime? BeginDate { get; set; }
-        public DateTime? DueDate { get; set; }
-        public double Duration { get; set; }
-        public ExaminationState State { get; set; }
 
         public virtual Subject Subject { get; set; }
         public virtual Examination Examination { get; set; }
         public ICollection<PaperQuestion> Questions { get; set; }
 
-        public float TotalScore {
+        public int TotalScore {
             get { return Questions.Sum(q => q.Score); }
         }
     }

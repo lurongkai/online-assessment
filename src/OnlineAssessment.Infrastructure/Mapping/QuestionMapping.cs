@@ -7,14 +7,17 @@ namespace OnlineAssessment.Infrastructure.Mapping
     {
         public QuestionMapping() {
             HasKey(m => m.QuestionId);
-            HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
 
             Property(m => m.QuestionForm).IsRequired();
+            Property(m => m.QuestionCategory).IsRequired();
+            Property(m => m.Score).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
             Property(m => m.QuestionDegree).IsRequired();
 
             HasRequired(m => m.Subject).WithMany().HasForeignKey(m => m.SubjectId);
+
+            HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
         }
     }
 

@@ -13,6 +13,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.Company).IsOptional();
 
             HasMany(m => m.LearningSubjects).WithMany(m => m.SubscribedStudents);
+            HasMany(m => m.AnswerSheets);
         }
     }
 
@@ -20,6 +21,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
     {
         public TeacherMapping() {
             ToTable("Teachers");
+
             HasRequired(m => m.ResponsibleSubject).WithOptional(m => m.ResponsibleTeacher);
         }
     }

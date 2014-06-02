@@ -9,6 +9,13 @@ namespace OnlineAssessment.Infrastructure.Mapping
             HasKey(m => m.SubjectId);
 
             Property(m => m.Name).IsRequired();
+            Property(m => m.Description).IsOptional();
+
+            HasRequired(m => m.ResponsibleTeacher).WithRequiredDependent().WillCascadeOnDelete(true);
+
+            HasMany(m => m.SubscribedStudents);
+            HasMany(m => m.Questions);
+            HasMany(m => m.Examinations);
         }
     }
 }

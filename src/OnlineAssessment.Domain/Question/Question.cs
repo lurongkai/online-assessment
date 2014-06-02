@@ -15,9 +15,9 @@ namespace OnlineAssessment.Domain
 
         public Guid QuestionId { get; set; }
 
-        [UIHint("QuestionDegree")]
+        [UIHint("QuestionForm")]
         public QuestionForm QuestionForm { get; set; }
-        public QuestionCategory QuestionSubject { get; set; }
+        public QuestionCategory QuestionCategory { get; set; }
         public int Score { get; set; }
 
         [Required(ErrorMessage = "题目不能为空")]
@@ -32,6 +32,7 @@ namespace OnlineAssessment.Domain
         public virtual Subject Subject { get; set; }
 
         [Required]
+        [UIHint("QuestionDegree")]
         [Display(Name = "难度")]
         public double QuestionDegree {
             get { return _questionDegree; }
