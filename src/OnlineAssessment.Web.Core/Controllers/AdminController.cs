@@ -71,7 +71,23 @@ namespace OnlineAssessment.Web.Core.Controllers
 
             var teacherRole = _roleManager.FindByName("Teacher");
             var studentRole = _roleManager.FindByName("Student");
-
+            var teachers = _userManager.Users
+                .Where(u => u.Roles.Any(r => r.RoleId == teacherRole.Id))
+                .Select(u => new UserViewModel() {
+                    Name = u.Name,
+                    Username = u.UserName,
+                    RoleName = "Teacher",
+                    IsTeacher = true
+                });
+            var students = _userManager.Users
+                .Where(u => u.Roles.Any(r => r.RoleId == studentRole.Id))
+                .Select(u => new UserViewModel() {
+                    Name = u.Name,
+                    Username = u.UserName,
+                    RoleName = "Student",
+                    IsTeacher = false
+                });
+            viewModel.Users = teachers.Concat(students);
             //var teachers  = _userManager.Users.Where(u => u.Roles.Contains(teacherRole))
 
             return View(viewModel);

@@ -18,6 +18,6 @@ namespace OnlineAssessment.Web.Core.Models
 
     public class UserManageViewModel
     {
-        IEnumerable<UserViewModel> Users { get; set; } 
+       public IEnumerable<UserViewModel> Users { get; set; } 
     }
 }
