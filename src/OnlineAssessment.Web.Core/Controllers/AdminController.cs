@@ -15,9 +15,11 @@ namespace OnlineAssessment.Web.Core.Controllers
     {
         private ISubjectService _subjectService;
         private UserManager<ApplicationUser> _userManager;
-        public AdminController(ISubjectService subjectService, UserManager<ApplicationUser> userManager) {
+        private RoleManager<IdentityRole> _roleManager;
+        public AdminController(ISubjectService subjectService, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager) {
             _subjectService = subjectService;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public ActionResult Dashboard() {
@@ -65,12 +67,29 @@ namespace OnlineAssessment.Web.Core.Controllers
             return View();
         }
 
+        #region Teacher
         public ActionResult TeacherList() {
+            var teachers = _roleManager.FindByName("Teacher").Users;
+            return View(teachers);
+        }
+
+        public ActionResult TeacherCreate() {
             return View();
         }
 
-        public ActionResult StudentList() {
+        public ActionResult TeacherCreate(Teacher teacher, string password) {
+            var teacherRole = _roleManager.FindByName("Teacher");
+            _userManager.Create(teacher, password);
             return View();
         }
+
+        #endregion
+
+        #region Student
+        public ActionResult StudentList() {
+            var students = _roleManager.FindByName("Student").Users;
+            return View(students);
+        }
+        #endregion
     }
 }
