@@ -16,15 +16,39 @@ namespace OnlineAssessment.Web.Core.Controllers
             var allPapers = _examinationService.GetAllExaminationPapers(subjectKey);
             return View(allPapers);
         }
-
+        [HttpGet]
+        public ActionResult Create(string subjectKey) {
+            return View();
+        }
+        [HttpPost]
         public ActionResult Create(string subjectKey, ExaminationPaperConfig config) {
+            config.SubjectKey = subjectKey;
             var paperId = _examinationService.GenerateRandomExaminationPaper(config);
-            return RedirectToAction("View", new {subjectKey = subjectKey, paperId = paperId});
+            return RedirectToAction("View", new { subjectKey = subjectKey, paperId = paperId });
+        }
+
+        public ActionResult Delete(Guid paperId) {
+            try {
+                _examinationService.DeleteExaminationPaper(paperId);
+                return RedirectToAction("List");
+            } catch {
+                ViewBag.Message = "试卷当前不能被删除，可能正在使用";
+                return RedirectToAction("List");
+            }
         }
 
         public ActionResult View(string subjectKey, Guid paperId) {
             var paper = _examinationService.GetExaminationPaper(paperId);
             return View(paper);
+        }
+        [HttpGet]
+        public ActionResult NewExamination(Guid paperId) {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult NewExamination(string subjectKey, Guid paperId, ExaminationConfig config) {
+            _examinationService.AddExamination(paperId, config);
+            return RedirectToAction("List", "ExaminationManage", new { subjectKey = subjectKey });
         }
     }
 }

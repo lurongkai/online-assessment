@@ -14,6 +14,7 @@ namespace OnlineAssessment.Domain
         public Guid ExaminationPaperId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public double Degree { get; set; }
 
         public virtual Subject Subject { get; set; }
         public virtual Examination Examination { get; set; }

@@ -51,7 +51,7 @@ namespace OnlineAssessment.Service
 
         public IEnumerable<ExaminationPaper> GetAllExaminationPapers(string subjectKey) {
             using (var context = new OnlineAssessmentContext()) {
-                var papers = context.ExaminationPapers.Where(p => p.Subject.SubjectKey == subjectKey);
+                var papers = context.ExaminationPapers.Where(p => p.Subject.SubjectKey == subjectKey).ToList();
                 return papers;
             }
         }
@@ -107,6 +107,15 @@ namespace OnlineAssessment.Service
                 }
 
                 return Enumerable.Empty<Examination>();
+            }
+        }
+
+        public void DeleteExaminationPaper(Guid paperId) {
+            using (var context = new OnlineAssessmentContext()) {
+                var paper = context.ExaminationPapers.Find(paperId);
+                context.ExaminationPapers.Remove(paper);
+
+                context.SaveChanges();
             }
         }
     }

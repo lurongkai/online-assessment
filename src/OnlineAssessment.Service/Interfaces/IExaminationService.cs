@@ -19,5 +19,7 @@ namespace OnlineAssessment.Service
         Examination GetExamination(Guid examinationId);
         IEnumerable<Examination> GetAllExaminations(string subjectKey, ExaminationState? examinationState);
         IEnumerable<Examination> GetStudentAvailableExaminations(string userId, string subjectKey);
+
+        void DeleteExaminationPaper(Guid paperId);
     }
 }
