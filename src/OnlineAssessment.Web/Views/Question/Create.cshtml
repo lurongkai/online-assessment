@@ -26,3 +26,24 @@
         }
     </div>
 </div>
+
+@section page_script {
+    <script>
+        var optionCount = 1;
+
+        function AddNewOption() {
+            var container = $(".question-option");
+            optionCount += 1;
+            var html =
+                '<div class="input-group">' +
+                    '    <span class="input-group-addon">' +
+                    '        <input id="QuestionOptions_' + optionCount + '__IsRightAnswer" name="QuestionOptions[' + optionCount + '].IsRightAnswer" type="checkbox" value="true">' +
+                    '        <input name="QuestionOptions[' + optionCount + '].IsRightAnswer" type="hidden" value="false">' +
+                    '    </span>' +
+                    '    <input class="form-control" id="QuestionOptions_' + optionCount + '__Description" name="QuestionOptions[' + optionCount + '].Description" type="text" value="">' +
+                    '</div>';
+            var option = $(html);
+            container.append(option);
+        }
+    </script>
+}

@@ -25,7 +25,14 @@ namespace OnlineAssessment.Web.Core.Controllers
 		public ActionResult Create(string subjectKey, QuestionForm questionForm) {
             ViewBag.subjectKey = subjectKey;
 			ViewBag.questionForm = questionForm;
-            return View();
+            var question = new Question();
+            if (questionForm != QuestionForm.Subjective) {
+                question.QuestionOptions.Add(new QuestionOption() {
+                    IsRightAnswer = true,
+                    Description = "Default"
+                });
+            }
+            return View(question);
         }
 
         [HttpPost]
