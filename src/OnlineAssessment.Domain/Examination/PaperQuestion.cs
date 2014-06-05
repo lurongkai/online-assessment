@@ -20,7 +20,7 @@ namespace OnlineAssessment.Domain
         public ICollection<PaperQuestionOption> QuestionOptions { get; set; }
 
         public double AvarageDegree {
-            get { return QuestionDegree*Score; }
+            get { return QuestionDegree * Score; }
         }
     }
 }
