@@ -24,11 +24,11 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             get { return Questions.Sum(q => q.AvarageDegreeFactor) / TotalScore; }
         }
 
-        public double AdaptationDegree {
+        public double Fitness {
             get {
                 return Questions.Count == 0
                     ? 0.00
-                    : 1 - Math.Abs(_paperConstraint.Degree - Degree);
+                    : 1.00 - Math.Abs(_paperConstraint.Degree - Degree);
             }
         }
 

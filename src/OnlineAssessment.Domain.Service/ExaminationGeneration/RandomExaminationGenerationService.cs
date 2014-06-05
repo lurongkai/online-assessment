@@ -15,22 +15,23 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             _maxCaculationCount = maxCaculationCount;
         }
 
-        public ExaminationPaper GenerateExaminationPaper(PaperConstraint paperConstraint, int populationAmount = 10) {
+        public ExaminationPaper GenerateExaminationPaper(PaperConstraint paperConstraint, int populationAmount) {
             var populations = InitializeQuestionPopulation(populationAmount, paperConstraint, _allQuestion).ToList();
 
             var counter = _maxCaculationCount;
             while (counter != 0)
             {
-                if (populations.Any(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree)) {
-                    var resultPopulation = populations.First(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree);
+                if (populations.Any(p => p.Fitness > paperConstraint.ExpectedFitness)) {
+                    var resultPopulation = populations.First(p => p.Fitness > paperConstraint.ExpectedFitness);
                     return GenerateExamination(resultPopulation);
                 }
 
                 populations = SelectOperation(populations);
                 populations = CrossOperation(populations);
 
-                if (populations.Any(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree)) {
-                    var resultPopulation = populations.First(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree);
+                if (populations.Any(p => p.Fitness > paperConstraint.ExpectedFitness))
+                {
+                    var resultPopulation = populations.First(p => p.Fitness > paperConstraint.ExpectedFitness);
                     return GenerateExamination(resultPopulation);
                 }
 
@@ -107,13 +108,13 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
 
             var selectedPopulations = new List<QuestionPopulation>();
 
-            var totalAdaptationDegree = selectedPopulations.Sum(p => p.AdaptationDegree);
+            var totalAdaptationDegree = selectedPopulations.Sum(p => p.Fitness);
             while (selectedPopulations.Count != amount) {
                 var acc = 0.00;
                 var shot = r.Next(1, 100) * 0.01 * totalAdaptationDegree;
 
                 foreach (QuestionPopulation population in populations) {
-                    acc += population.AdaptationDegree;
+                    acc += population.Fitness;
                     if (acc >= shot) {
                         if (!selectedPopulations.Contains(population)) {
                             selectedPopulations.Add(population);
