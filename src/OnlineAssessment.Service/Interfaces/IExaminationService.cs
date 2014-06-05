@@ -8,7 +8,7 @@ namespace OnlineAssessment.Service
     public interface IExaminationService
     {
         Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config);
-        Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper);
+        Guid AddExamination(string subjectKey, Guid examinationPaperId, ExaminationConfig examinationPaper);
 
         IEnumerable<ExaminationPaper> GetAllExaminationPapers(string subjectKey);
         ExaminationPaper GetExaminationPaper(Guid paperId);

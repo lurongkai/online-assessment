@@ -24,7 +24,6 @@ namespace OnlineAssessment.Domain
         [Display(Name = "题目")]
         public string QuestionBody { get; set; }
 
-        [Required(ErrorMessage = "参考答案不能为空")]
         [Display(Name = "参考答案")]
         public string ReferenceRightAnswer { get; set; }
 
@@ -46,8 +45,27 @@ namespace OnlineAssessment.Domain
 
         public ICollection<QuestionOption> QuestionOptions { get; set; }
 
-        public PaperQuestion ConvertToExaminationQuestion() {
-            throw new NotImplementedException();
+        public PaperQuestion ConvertToExaminationQuestion()
+        {
+            var q = new PaperQuestion()
+            {
+                QuestionBody = QuestionBody,
+                QuestionDegree = QuestionDegree,
+                QuestionForm = QuestionForm,
+                ReferenceRightAnswer = ReferenceRightAnswer,
+                Score = Score
+            };
+
+            foreach (var questionOption in QuestionOptions)
+            {
+                q.QuestionOptions.Add(new PaperQuestionOption()
+                {
+                    Description = questionOption.Description,
+                    IsRightAnswer = questionOption.IsRightAnswer
+                });
+            }
+
+            return q;
         }
     }
 }

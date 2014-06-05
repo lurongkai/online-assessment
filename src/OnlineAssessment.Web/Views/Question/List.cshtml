@@ -24,6 +24,7 @@
             <th>题目</th>
             <th>难度</th>
             <th>类型</th>
+            <th>分数</th>
             <th>操作</th>
         </tr>
         @foreach (var item in Model) {
@@ -38,9 +39,12 @@
                     @Html.DisplayFor(m => item.QuestionForm, "QuestionForm")
                 </td>
                 <td>
-                    @Html.ActionLink("查看", "Details", new {id = item.QuestionId}, new {@class = "btn btn-default btn-xs"})
-                    @Html.ActionLink("编辑", "Edit", new {id = item.QuestionId}, new {@class = "btn btn-primary btn-xs"})
-                    @Html.ActionLink("删除", "Delete", new {id = item.QuestionId}, new {@class = "btn btn-danger btn-xs"})
+                    @item.Score
+                </td>
+                <td>
+                    @Html.ActionLink("查看", "Details", new { questionId = item.QuestionId }, new { @class = "btn btn-default btn-xs" })
+                    @Html.ActionLink("编辑", "Edit", new { questionId = item.QuestionId }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("删除", "Delete", new { questionId = item.QuestionId }, new { @class = "btn btn-danger btn-xs" })
                 </td>
             </tr>
         }

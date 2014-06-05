@@ -35,8 +35,14 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             throw new InvalidOperationException("no results.");
         }
 
-        private ExaminationPaper GenerateExamination(QuestionPopulation resultPopulation) {
-            throw new NotImplementedException();
+        private ExaminationPaper GenerateExamination(QuestionPopulation resultPopulation)
+        {
+            var paper = new ExaminationPaper()
+            {
+                Degree = resultPopulation.Degree,
+                Questions = resultPopulation.Questions
+            };
+            return paper;
         }
 
         #region Initialize Question Population

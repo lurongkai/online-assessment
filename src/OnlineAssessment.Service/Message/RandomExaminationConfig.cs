@@ -39,9 +39,10 @@ namespace OnlineAssessment.Service.Message
 
     public class ExaminationConfig
     {
+        public string Title { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public TimeSpan Duration { get; set; }
+        public int Duration { get; set; }
 
         public bool BeginImmediately { get; set; }
     }

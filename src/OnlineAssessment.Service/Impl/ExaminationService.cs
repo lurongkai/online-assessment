@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Domain.Service.ExaminationGeneration;
@@ -12,7 +13,9 @@ namespace OnlineAssessment.Service
     public class ExaminationService : IExaminationService
     {
         public Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config) {
-            using (var context = new OnlineAssessmentContext()) {
+            using (var context = new OnlineAssessmentContext())
+            {
+                var subject = context.Subjects.Find(config.SubjectKey);
                 var questions = context
                     .Questions
                     .Include(q => q.QuestionOptions)
@@ -20,6 +23,10 @@ namespace OnlineAssessment.Service
                 var generator = new RandomExaminationGenerationService(questions);
 
                 var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint());
+                paper.Title = config.Title;
+                paper.Description = config.Description;
+                paper.Subject = subject;
+
                 context.ExaminationPapers.Add(paper);
                 context.SaveChanges();
 
@@ -27,14 +34,19 @@ namespace OnlineAssessment.Service
             }
         }
 
-        public Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper) {
-            using (var context = new OnlineAssessmentContext()) {
+        public Guid AddExamination(string subjectKey, Guid examinationPaperId, ExaminationConfig examinationPaper) {
+            using (var context = new OnlineAssessmentContext())
+            {
+                var subject = context.Subjects.Find(subjectKey);
                 var paper = context.ExaminationPapers.Find(examinationPaperId);
+
                 var examination = new Examination();
+                examination.Title = examinationPaper.Title;
                 examination.BeginDate = examinationPaper.BeginDate;
                 examination.DueDate = examinationPaper.EndDate;
-                examination.Duration = examinationPaper.Duration.TotalMinutes;
+                examination.Duration = examinationPaper.Duration;
                 examination.Paper = paper;
+                examination.Subject = subject;
 
                 if (examinationPaper.BeginImmediately) {
                     examination.State = ExaminationState.Active;
@@ -90,7 +102,8 @@ namespace OnlineAssessment.Service
             using (var context = new OnlineAssessmentContext()) {
                 var examination = context.Examinations
                     .Where(e => e.Subject.SubjectKey == subjectKey)
-                    .Where(e => examinationState == null || e.State == examinationState.Value);
+                    .Where(e => examinationState == null || e.State == examinationState.Value)
+                    .ToList();
                 return examination;
             }
         }
@@ -102,7 +115,8 @@ namespace OnlineAssessment.Service
                 if (student.LearningSubjects.Contains(subject)) {
                     var examinations = subject.Examinations
                         .Where(e => e.State == ExaminationState.Active)
-                        .Where(e => !e.HasStudentAnswerSheet(student));
+                        .Where(e => !e.HasStudentAnswerSheet(student))
+                        .ToList();
                     return examinations;
                 }
 
