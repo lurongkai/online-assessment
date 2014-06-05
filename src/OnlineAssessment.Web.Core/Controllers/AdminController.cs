@@ -42,7 +42,7 @@ namespace OnlineAssessment.Web.Core.Controllers
                 _subjectService.AddSubject(subject);
                 return RedirectToAction("SubjectList");
             } catch {
-                ViewBag.Message = "输入有误";
+                ViewBag.Message = "科目key已经存在";
                 return View();
             }
         }
