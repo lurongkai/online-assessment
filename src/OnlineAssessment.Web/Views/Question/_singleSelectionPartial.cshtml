@@ -12,15 +12,11 @@
         </div>
     </div>
     <div class="form-group">
-        @{
-            var defaultOption = new QuestionOption();
-        }
         @Html.Label("QuestionOptions", "选项", new { @class = "control-label col-md-2" })
-
         <div class="col-md-10 question-option">
             <div class="input-group">
                 <span class="input-group-addon">
-                    @Html.CheckBox("QuestionOptions[0].IsRightAnswer")
+                    @Html.CheckBox("QuestionOptions[0].IsRightAnswer", true)
                 </span>
                 @Html.TextBox("QuestionOptions[0].Description", "", new { @class = "form-control" })
             </div>
