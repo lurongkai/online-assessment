@@ -1,32 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain
 {
     public class Examination
     {
         public Examination() {
-            Questions = new List<ExaminationQuestion>();
+            ExaminationId = Guid.NewGuid();
         }
 
-        public int ExaminationId { get; set; }
+        public Guid ExaminationId { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-        public Subject Subject { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? DueDate { get; set; }
-        public long Duration { get; set; }
+        public double Duration { get; set; }
+
+        public virtual Subject Subject { get; set; }
+        public virtual ExaminationPaper Paper { get; set; }
+        public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }
+
         public ExaminationState State { get; set; }
 
-        public virtual ICollection<ExaminationQuestion> Questions { get; set; }
-
-        public float TotalScore {
-            get {
-                return Questions.Sum(q => q.Score);
-            }
+        public bool HasStudentAnswerSheet(Student student) {
+            return AnswerSheets.Any(a => a.Student.Id == student.Id);
         }
     }
 }

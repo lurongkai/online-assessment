@@ -1,10 +1,5 @@
-﻿using OnlineAssessment.Domain;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
+using OnlineAssessment.Domain;
 
 namespace OnlineAssessment.Infrastructure.Mapping
 {
@@ -12,14 +7,17 @@ namespace OnlineAssessment.Infrastructure.Mapping
     {
         public QuestionMapping() {
             HasKey(m => m.QuestionId);
-            HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
 
-            Property(m => m.QuestionType).IsRequired();
+            Property(m => m.QuestionForm).IsRequired();
+            Property(m => m.QuestionCategory).IsRequired();
+            Property(m => m.Score).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
             Property(m => m.QuestionDegree).IsRequired();
 
-            HasRequired(m => m.Subject).WithMany().HasForeignKey(m => m.SubjectId);
+            HasRequired(m => m.Subject).WithMany().HasForeignKey(m => m.subjectKey);
+
+            HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
         }
     }
 

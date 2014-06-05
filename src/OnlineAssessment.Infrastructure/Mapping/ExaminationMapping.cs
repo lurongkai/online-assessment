@@ -1,10 +1,5 @@
-﻿using OnlineAssessment.Domain;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
+using OnlineAssessment.Domain;
 
 namespace OnlineAssessment.Infrastructure.Mapping
 {
@@ -12,39 +7,60 @@ namespace OnlineAssessment.Infrastructure.Mapping
     {
         public ExaminationMapping() {
             HasKey(m => m.ExaminationId);
-            HasMany(m => m.Questions).WithRequired().WillCascadeOnDelete(true);
 
             Property(m => m.Title).IsRequired();
-            Property(m => m.Description).IsOptional();
             Property(m => m.BeginDate).IsOptional();
             Property(m => m.DueDate).IsOptional();
             Property(m => m.Duration).IsRequired();
             Property(m => m.State).IsRequired();
 
-            HasRequired(m => m.Subject).WithOptional();
-            
+            HasRequired(m => m.Subject);
+            HasRequired(m => m.Paper).WithOptional();
+
+            HasMany(m => m.AnswerSheets);
+        }
+    }
+
+    public class ExaminationPaperMapping : EntityTypeConfiguration<ExaminationPaper>
+    {
+        public ExaminationPaperMapping() {
+            HasKey(m => m.ExaminationPaperId);
+            HasMany(m => m.Questions).WithRequired().WillCascadeOnDelete(true);
+
+            Property(m => m.Title).IsRequired();
+            Property(m => m.Description).IsOptional();
+            Property(m => m.Degree).IsRequired();
+
+            HasRequired(m => m.Subject);
+            HasOptional(m => m.Examination);
+
+            HasMany(m => m.Questions);
+
             Ignore(m => m.TotalScore);
         }
     }
 
-    public class ExaminationQuestionMapping : EntityTypeConfiguration<ExaminationQuestion>
+    public class PaperQuestionMapping : EntityTypeConfiguration<PaperQuestion>
     {
-        public ExaminationQuestionMapping() {
-            HasKey(m => m.ExaminationQuestionId);
-            HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
+        public PaperQuestionMapping() {
+            HasKey(m => m.PaperQuestionId);
 
-            Property(m => m.QuestionId).IsRequired();
             Property(m => m.QuestionIndex).IsRequired();
             Property(m => m.Score).IsRequired();
-            Property(m => m.QuestionType).IsRequired();
+            Property(m => m.QuestionDegree).IsRequired();
+            Property(m => m.QuestionForm).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
+
+            HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
+
+            Ignore(m => m.AvarageDegree);
         }
     }
 
-    public class ExaminationQuestionOptionMapping : EntityTypeConfiguration<ExaminationQuestionOption>
+    public class PaperQuestionOptionMapping : EntityTypeConfiguration<PaperQuestionOption>
     {
-        public ExaminationQuestionOptionMapping() {
+        public PaperQuestionOptionMapping() {
             HasKey(m => m.ExaminationQuestionOptionId);
 
             Property(m => m.OptionIndex).IsRequired();

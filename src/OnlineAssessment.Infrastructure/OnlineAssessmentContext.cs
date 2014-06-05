@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Infrastructure.Mapping;
-using System.Data.Entity;
 
 namespace OnlineAssessment.Infrastructure
 {
-    public class OnlineAssessmentContext : IdentityDbContext<SystemUser>
+    public class OnlineAssessmentContext : IdentityDbContext<ApplicationUser>
     {
-        public OnlineAssessmentContext(): base("DefaultConnection")
-        {
-        }
+        public OnlineAssessmentContext() : base("DefaultConnection") {}
 
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Examination> Examinations { get; set; }
+        public virtual DbSet<ExaminationPaper> ExaminationPapers { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<AnswerSheet> AnswerSheets { get; set; }
         public virtual DbSet<Student> Students { get; set; }
@@ -28,8 +27,9 @@ namespace OnlineAssessment.Infrastructure
 
             modelBuilder.Configurations
                 .Add(new ExaminationMapping())
-                .Add(new ExaminationQuestionMapping())
-                .Add(new ExaminationQuestionOptionMapping())
+                .Add(new ExaminationPaperMapping())
+                .Add(new PaperQuestionMapping())
+                .Add(new PaperQuestionOptionMapping())
                 .Add(new QuestionMapping())
                 .Add(new QuestionOptionMapping())
                 .Add(new SubjectMapping())

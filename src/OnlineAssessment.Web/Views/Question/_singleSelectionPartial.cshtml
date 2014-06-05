@@ -1,0 +1,83 @@
+﻿@model OnlineAssessment.Domain.Question
+
+@{ Model.QuestionDegree = 0.5; }
+
+<div class="form-horizontal">
+    @Html.Hidden("QuestionForm", "SingleSelection")
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuestionBody, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.QuestionBody, new { @class = "form-control", rows = 5 })
+            @Html.ValidationMessageFor(model => model.QuestionBody)
+        </div>
+    </div>
+    <div class="form-group">
+        @{
+            var defaultOption = new QuestionOption();
+        }
+        @Html.Label("QuestionOptions", "选项", new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10 question-option">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    @Html.CheckBox("QuestionOptions[0].IsRightAnswer")
+                </span>
+                @Html.TextBox("QuestionOptions[0].Description", "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3  col-md-offset-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    @Html.LabelFor(model => model.QuestionDegree)
+                </span>
+                @Html.DropDownListFor(
+                    model => model.QuestionDegree,
+                    new List<SelectListItem> {
+                        new SelectListItem {Text = "0.1", Value = "0.1"},
+                        new SelectListItem {Text = "0.2", Value = "0.2"},
+                        new SelectListItem {Text = "0.3", Value = "0.3"},
+                        new SelectListItem {Text = "0.4", Value = "0.4"},
+                        new SelectListItem {Text = "0.5", Value = "0.5"},
+                        new SelectListItem {Text = "0.6", Value = "0.6"},
+                        new SelectListItem {Text = "0.7", Value = "0.7"},
+                        new SelectListItem {Text = "0.8", Value = "0.8"},
+                        new SelectListItem {Text = "0.9", Value = "0.9"},
+                        new SelectListItem {Text = "1.0", Value = "1.0"}
+                    },
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.QuestionDegree)
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    @Html.LabelFor(model => model.Score, "分数")
+                </span>
+                @Html.DropDownListFor(
+                             model => model.Score,
+                    new List<SelectListItem> {
+                        new SelectListItem {Text = "1", Value = "1"},
+                        new SelectListItem {Text = "2", Value = "2"},
+                        new SelectListItem {Text = "3", Value = "3"},
+                        new SelectListItem {Text = "4", Value = "4"},
+                        new SelectListItem {Text = "5", Value = "5"},
+                        new SelectListItem {Text = "6", Value = "6"},
+                        new SelectListItem {Text = "7", Value = "7"},
+                        new SelectListItem {Text = "8", Value = "8"},
+                        new SelectListItem {Text = "9", Value = "9"},
+                        new SelectListItem {Text = "10", Value = "10"}
+                    },
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Score)
+            </div>
+        </div>
+        <div class="col-md-3 text-right">
+            <button type="button" onclick="AddNewOption()" class="btn btn-info">添加选项</button>
+            <input type="submit" value="保存" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+

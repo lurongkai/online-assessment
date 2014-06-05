@@ -1,17 +1,16 @@
-﻿using OnlineAssessment.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OnlineAssessment.Domain;
 
 namespace OnlineAssessment.Service
 {
     public interface IAnsweringService
     {
-        int UploadAnswerSheet(AnswerSheet answerSheet);
+        Guid UploadAnswerSheet(Guid examinationId, string studentId, AnswerSheet answerSheet);
 
-        IList<AnswerSheetItem> GetAllUnevaluatedAnswers(int examinationId);
-        void EvaluatingAnswer(int answerId, int score);
+        IEnumerable<AnswerSheetItem> GetAllUnevaluatedAnswers(Guid examinationId);
+        void EvaluatingAnswer(Guid answerSheetId, Guid answerId, int score);
+
+        AnswerSheet GetAnswerSheet(Guid answerSheetId);
     }
 }

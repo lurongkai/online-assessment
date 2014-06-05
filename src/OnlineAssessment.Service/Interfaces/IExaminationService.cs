@@ -1,18 +1,25 @@
-﻿using OnlineAssessment.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OnlineAssessment.Domain;
 using OnlineAssessment.Service.Message;
 
 namespace OnlineAssessment.Service
 {
     public interface IExaminationService
     {
-        int GenerateRandomExamination(RandomExaminationConfig config);
-        int AddExamination(Examination examination);
-        void ActiveExamination(int examinationId);
-        void ArchiveExamination(int examinationId);
+        Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config);
+        Guid AddExamination(Guid examinationPaperId, ExaminationConfig examinationPaper);
+
+        IEnumerable<ExaminationPaper> GetAllExaminationPapers(string subjectKey);
+        ExaminationPaper GetExaminationPaper(Guid paperId);
+
+        void ActiveExamination(Guid examinationId);
+        void ArchiveExamination(Guid examinationId);
+
+        Examination GetExamination(Guid examinationId);
+        IEnumerable<Examination> GetAllExaminations(string subjectKey, ExaminationState? examinationState);
+        IEnumerable<Examination> GetStudentAvailableExaminations(string userId, string subjectKey);
+
+        void DeleteExaminationPaper(Guid paperId);
     }
 }

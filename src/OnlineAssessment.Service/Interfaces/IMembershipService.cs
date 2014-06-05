@@ -1,14 +1,13 @@
-﻿using System;
+﻿using OnlineAssessment.Domain;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineAssessment.Domain;
 
 namespace OnlineAssessment.Service
 {
     public interface IMembershipService
     {
-        SystemUser GetProfile(string userId);
+        ApplicationUser GetProfile(string userId);
+
+        IEnumerable<Subject> GetStudentSubjects(string studentId);
+        Subject GetTeacherSubject(string teacherId);
     }
 }

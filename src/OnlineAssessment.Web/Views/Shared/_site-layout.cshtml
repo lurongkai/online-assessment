@@ -1,42 +1,42 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <title>@ViewBag.Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @Styles.Render("~/Content/css")
+    <head>
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @Styles.Render("~/Content/css")
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-    @Html.Partial("_navigation")
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        @Html.Partial("_navigation")
 
-    @RenderSection("notification_area", false)
+        @RenderSection("notification_area", false)
 
-    <div class="container" style="min-height: 500px;">
-        @RenderBody()
-    </div>
+        <div class="container" style="min-height: 500px;">
+            @RenderBody()
+        </div>
 
-    @Html.Partial("_footer")
+        @Html.Partial("_footer")
 
-    @Scripts.Render(
-                "~/bundles/jquery",
-                "~/bundles/bootstrap",
-                "~/bundles/globalization",
-                "~/bundles/jquery-validation",
-                "~/bundles/validation-patch")
+        @Scripts.Render(
+            "~/bundles/jquery",
+            "~/bundles/bootstrap",
+            "~/bundles/globalization",
+            "~/bundles/jquery-validation",
+            "~/bundles/validation-patch")
 
-    @RenderSection("scripts", false)
+        @RenderSection("scripts", false)
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //Globalize.culture('@Request.UserLanguages.First()');
-            Globalize.culture('zh-CN');
-            console.log(Globalize.culture().name);
-        });
-    </script>
-</body>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                //Globalize.culture('@Request.UserLanguages.First()');
+                Globalize.culture('zh-CN');
+                console.log(Globalize.culture().name);
+            });
+        </script>
+    </body>
 
 </html>

@@ -1,44 +1,58 @@
-﻿using OnlineAssessment.Domain;
-using OnlineAssessment.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OnlineAssessment.Domain;
+using OnlineAssessment.Infrastructure;
 
 namespace OnlineAssessment.Service
 {
     public class QuestionService : IQuestionService
     {
-        public IEnumerable<Question> GetAllQuestion(Guid subjectId, QuestionType? questionType = null) {
-            var context = new OnlineAssessmentContext();
-            var courseQuestions = context
-                .Questions
-                .Where(q => q.Subject.SubjectId == subjectId)
-                .Where(q => questionType == null ? true : q.QuestionType == questionType);
+        public IEnumerable<Question> GetAllQuestion(string subjectKey, QuestionForm? questionType = null) {
+            using (var context = new OnlineAssessmentContext()) {
+                var courseQuestions = context
+                    .Questions
+                    .Where(q => q.Subject.SubjectKey == subjectKey)
+                    .Where(q => questionType == null || q.QuestionForm == questionType)
+                    .ToList();
 
-            return courseQuestions;
+                return courseQuestions;
+            }
         }
 
-        public Guid AddQuestion(Question question) {
-            var context = new OnlineAssessmentContext();
-            context.Questions.Add(question);
-            context.SaveChanges();
+        public Question GetQuestion(Guid questionId) {
+            using (var context = new OnlineAssessmentContext()) {
+                var question = context.Questions.Find(questionId);
 
-            return question.QuestionId;
+                return question;
+            }
+        }
+
+        public Guid AddQuestion(string subjectKey, Question question) {
+            using (var context = new OnlineAssessmentContext()) {
+                var subject = context.Subjects.Find(subjectKey);
+                subject.Questions.Add(question);
+                context.SaveChanges();
+
+                return question.QuestionId;
+            }
         }
 
         public void ModifyQuestion(Question question) {
-            var context = new OnlineAssessmentContext();
-            context.Questions.Attach(question);
-            context.SaveChanges();
+            using (var context = new OnlineAssessmentContext()) {
+                context.Questions.Attach(question);
+                context.Entry(question).State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
         public void DeleteQuestion(Guid questionId) {
-            var context = new OnlineAssessmentContext();
-            var question = context.Questions.Find(questionId);
-            context.Questions.Remove(question);
-            context.SaveChanges();
+            using (var context = new OnlineAssessmentContext()) {
+                var question = context.Questions.Find(questionId);
+                context.Questions.Remove(question);
+                context.SaveChanges();
+            }
         }
     }
 }

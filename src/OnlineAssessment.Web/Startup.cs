@@ -1,13 +1,14 @@
 ﻿using Microsoft.Owin;
+using OnlineAssessment.Web;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(OnlineAssessment.Web.Startup))]
+[assembly: OwinStartup(typeof (Startup))]
+
 namespace OnlineAssessment.Web
 {
     public partial class Startup
     {
-        public void Configuration(IAppBuilder app)
-        {
+        public void Configuration(IAppBuilder app) {
             ConfigureAuth(app);
         }
     }

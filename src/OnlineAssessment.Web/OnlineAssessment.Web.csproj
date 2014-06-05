@@ -14,14 +14,14 @@
     <RootNamespace>OnlineAssessment.Web</RootNamespace>
     <AssemblyName>OnlineAssessment.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <IISExpressSSLPort />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,10 +69,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.0.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
@@ -109,6 +105,7 @@
       <HintPath>..\..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,26 +168,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EvaluatingController.cs" />
-    <Compile Include="Controllers\ExamController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MockController.cs" />
-    <Compile Include="Controllers\QuestionController.cs" />
-    <Compile Include="Controllers\TestingController.cs" />
-    <Compile Include="Extensions\CommonExtension.cs" />
-    <Compile Include="Extensions\QuestionExtension.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Helpers\SidebarActivator.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\PredefinedRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -215,6 +200,28 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Shared\DisplayTemplates\QuestionDegree.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\QuestionForm.cshtml" />
+    <Content Include="Views\Home\ChoiceSubject.cshtml" />
+    <Content Include="Views\Paper\List.cshtml" />
+    <Content Include="Views\Paper\Create.cshtml" />
+    <Content Include="Views\Paper\View.cshtml" />
+    <Content Include="Views\ExaminationManage\List.cshtml" />
+    <Content Include="Views\ExaminationManage\Create.cshtml" />
+    <Content Include="Views\Examination\List.cshtml" />
+    <Content Include="Views\Examination\View.cshtml" />
+    <Content Include="Views\Examination\Answering.cshtml" />
+    <Content Include="Views\Evaluating\List.cshtml" />
+    <Content Include="Views\Home\_studentMenu.cshtml" />
+    <Content Include="Views\Home\_adminMenu.cshtml" />
+    <Content Include="Views\Home\_teacherMenu.cshtml" />
+    <Content Include="Views\Admin\SubjectList.cshtml" />
+    <Content Include="Views\Admin\NewsList.cshtml" />
+    <Content Include="Views\Admin\TeacherList.cshtml" />
+    <Content Include="Views\Admin\StudentList.cshtml" />
+    <Content Include="Views\Admin\SubjectCreate.cshtml" />
+    <Content Include="Views\Admin\SubjectEdit.cshtml" />
+    <Content Include="Views\Admin\UserList.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -598,7 +605,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -616,7 +625,6 @@
     <Content Include="Views\Shared\_login-partial.cshtml" />
     <Content Include="Views\Shared\_site-layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_sidebar.cshtml" />
     <Content Include="Views\Shared\_navigation.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Shared\_login.cshtml" />
@@ -625,25 +633,18 @@
     <Content Include="Views\Question\List.cshtml" />
     <Content Include="Views\Shared\_common-layout.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
-    <Content Include="Views\Question\CreateQuestion.cshtml" />
-    <Content Include="Views\Question\SingleSelectionPartial.cshtml" />
-    <Content Include="Views\Question\SubjectivePartial.cshtml" />
-    <Content Include="Views\Question\MultipleSelectionPartial.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\_singleSelectionPartial.cshtml" />
+    <Content Include="Views\Question\_subjectivePartial.cshtml" />
+    <Content Include="Views\Question\_multipleSelectionPartial.cshtml" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Evaluating\" />
-    <Folder Include="Views\Exam\" />
-    <Folder Include="Views\Mock\" />
     <Folder Include="Views\Question\DisplayTemplates\" />
-    <Folder Include="Views\Student\" />
-    <Folder Include="Views\TestComprehensive\" />
-    <Folder Include="Views\TestModularized\" />
-    <Folder Include="Views\TestPractice\" />
-    <Folder Include="Views\TestUnit\" />
+    <Folder Include="Views\Question\EditTemplates\" />
+    <Folder Include="Views\Testing\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -653,13 +654,9 @@
       <Project>{99f60cc8-f279-401b-bc75-93a1779d42f8}</Project>
       <Name>OnlineAssessment.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OnlineAssessment.Infrastructure\OnlineAssessment.Infrastructure.csproj">
-      <Project>{867b92d6-5029-4080-8ada-8823e9bd1a10}</Project>
-      <Name>OnlineAssessment.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OnlineAssessment.Service\OnlineAssessment.Service.csproj">
-      <Project>{ab4dba17-eba1-48fa-b793-de325cc098eb}</Project>
-      <Name>OnlineAssessment.Service</Name>
+    <ProjectReference Include="..\OnlineAssessment.Web.Core\OnlineAssessment.Web.Core.csproj">
+      <Project>{51aea70a-5c1e-41db-bee8-2f6b7f7912b1}</Project>
+      <Name>OnlineAssessment.Web.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
