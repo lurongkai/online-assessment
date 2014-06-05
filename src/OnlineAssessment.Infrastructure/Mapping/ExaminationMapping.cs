@@ -15,8 +15,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.State).IsRequired();
 
             HasRequired(m => m.Subject);
-            HasRequired(m => m.Paper).WithOptional();
-
+            HasRequired(m => m.Paper);
             HasMany(m => m.AnswerSheets);
         }
     }
@@ -34,7 +33,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
             HasRequired(m => m.Subject);
 
             HasMany(m => m.Examinations);
-            HasMany(m => m.Questions);
+            HasMany(m => m.Questions).WithRequired();
 
             Ignore(m => m.TotalScore);
         }
