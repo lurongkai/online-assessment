@@ -21,7 +21,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         }
 
         public double Degree {
-            get { return Questions.Sum(q => q.AvarageDegree) / TotalScore; }
+            get { return Questions.Sum(q => q.AvarageDegreeFactor) / TotalScore; }
         }
 
         public double AdaptationDegree {

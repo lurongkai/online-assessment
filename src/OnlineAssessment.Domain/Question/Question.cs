@@ -45,24 +45,20 @@ namespace OnlineAssessment.Domain
 
         public ICollection<QuestionOption> QuestionOptions { get; set; }
 
-        public PaperQuestion ConvertToExaminationQuestion()
+        public PaperQuestion ConvertToPaperQuestion()
         {
             var q = new PaperQuestion()
             {
-                QuestionBody = QuestionBody,
-                QuestionDegree = QuestionDegree,
+                Score = Score,
+                Degree = QuestionDegree,
                 QuestionForm = QuestionForm,
-                ReferenceRightAnswer = ReferenceRightAnswer,
-                Score = Score
+                QuestionBody = QuestionBody,
+                ReferenceRightAnswer = ReferenceRightAnswer
             };
 
             foreach (var questionOption in QuestionOptions)
             {
-                q.QuestionOptions.Add(new PaperQuestionOption()
-                {
-                    Description = questionOption.Description,
-                    IsRightAnswer = questionOption.IsRightAnswer
-                });
+                q.QuestionOptions.Add(questionOption.ConvertToPaperQuestionOption());
             }
 
             return q;

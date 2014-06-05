@@ -11,5 +11,14 @@ namespace OnlineAssessment.Domain
         public Guid QuestionOptionId { get; set; }
         public string Description { get; set; }
         public bool IsRightAnswer { get; set; }
+
+        internal PaperQuestionOption ConvertToPaperQuestionOption()
+        {
+            return new PaperQuestionOption()
+            {
+                Description = Description,
+                IsRightAnswer = IsRightAnswer
+            };
+        }
     }
 }

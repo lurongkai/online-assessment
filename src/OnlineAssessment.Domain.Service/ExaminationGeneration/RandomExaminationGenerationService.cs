@@ -85,7 +85,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
             var r = new Random();
             for (var questionIndex = 0; questionIndex < questionAmount; questionIndex++) {
                 var rLocation = r.Next(0, candidateQuestions.Count - questionIndex);
-                yield return candidateQuestions[rLocation].ConvertToExaminationQuestion();
+                yield return candidateQuestions[rLocation].ConvertToPaperQuestion();
 
                 var temp = candidateQuestions[candidateQuestions.Count - 1 - questionIndex];
                 candidateQuestions[candidateQuestions.Count - 1 - questionIndex] = candidateQuestions[rLocation];
@@ -188,7 +188,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
 
                 if (candidateQuestions.Any()) {
                     var rCandidateIndex = r.Next(0, candidateQuestions.Count());
-                    population.Questions[rIndex] = questions.ElementAt(rCandidateIndex).ConvertToExaminationQuestion();
+                    population.Questions[rIndex] = questions.ElementAt(rCandidateIndex).ConvertToPaperQuestion();
                 }
             }
 

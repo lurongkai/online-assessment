@@ -47,14 +47,14 @@ namespace OnlineAssessment.Infrastructure.Mapping
 
             Property(m => m.QuestionIndex).IsRequired();
             Property(m => m.Score).IsRequired();
-            Property(m => m.QuestionDegree).IsRequired();
+            Property(m => m.Degree).IsRequired();
             Property(m => m.QuestionForm).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
 
             HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
 
-            Ignore(m => m.AvarageDegree);
+            Ignore(m => m.AvarageDegreeFactor);
         }
     }
 
