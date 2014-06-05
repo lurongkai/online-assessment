@@ -14,12 +14,11 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
 
         public ExaminationPaper GenerateExaminationPaper(PaperConstraint paperConstraint, int populationAmount = 10,
             int maxCaculationCount = 500) {
-            var populations =
-                InitializeQuestionPopulation(populationAmount, paperConstraint, _allQuestion).ToList();
+            var populations = InitializeQuestionPopulation(populationAmount, paperConstraint, _allQuestion).ToList();
 
             while (maxCaculationCount != 0) {
-                populations = SelectOperation(populations, 10);
-                populations = CrossOperation(populations, 20);
+                populations = SelectOperation(populations, populationAmount);
+                populations = CrossOperation(populations, populationAmount);
 
                 if (populations.Any(p => p.AdaptationDegree > paperConstraint.ExpectedAdaptationDegree)) {
                     var resultPopulation =
@@ -88,6 +87,8 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         #region Question Population Operators
 
         private List<QuestionPopulation> SelectOperation(List<QuestionPopulation> populations, int amount) {
+            if (amount < 2) { return populations; }
+
             var selectedPopulations = new List<QuestionPopulation>();
 
             var totalAdaptationDegree = selectedPopulations.Sum(p => p.AdaptationDegree);
@@ -111,6 +112,8 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         }
 
         private List<QuestionPopulation> CrossOperation(List<QuestionPopulation> populations, int amount) {
+            if (amount < 2) { return populations; }
+
             var crossedUnitList = new List<QuestionPopulation>();
             var r = new Random();
 

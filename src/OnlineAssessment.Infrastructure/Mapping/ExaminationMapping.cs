@@ -32,8 +32,8 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.Degree).IsRequired();
 
             HasRequired(m => m.Subject);
-            HasOptional(m => m.Examination);
 
+            HasMany(m => m.Examinations);
             HasMany(m => m.Questions);
 
             Ignore(m => m.TotalScore);

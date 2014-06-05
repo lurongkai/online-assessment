@@ -22,7 +22,12 @@ namespace OnlineAssessment.Service
                     .Where(q => q.Subject.SubjectKey == config.SubjectKey);
                 var generator = new RandomExaminationGenerationService(questions);
 
-                var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint());
+                int populationAmount = 10;
+                if (questions.Count() < 10)
+                {
+                    populationAmount = questions.Count();
+                }
+                var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint(), populationAmount);
                 paper.Title = config.Title;
                 paper.Description = config.Description;
                 paper.Subject = subject;
