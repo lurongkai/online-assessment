@@ -11,6 +11,7 @@ namespace OnlineAssessment.Domain
         }
 
         public Guid ExaminationId { get; set; }
+        public string Title { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? DueDate { get; set; }
         public double Duration { get; set; }

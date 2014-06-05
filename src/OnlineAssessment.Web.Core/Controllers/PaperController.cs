@@ -41,14 +41,5 @@ namespace OnlineAssessment.Web.Core.Controllers
             var paper = _examinationService.GetExaminationPaper(paperId);
             return View(paper);
         }
-        [HttpGet]
-        public ActionResult NewExamination(Guid paperId) {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult NewExamination(string subjectKey, Guid paperId, ExaminationConfig config) {
-            _examinationService.AddExamination(paperId, config);
-            return RedirectToAction("List", "ExaminationManage", new { subjectKey = subjectKey });
-        }
     }
 }

@@ -8,6 +8,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
         public ExaminationMapping() {
             HasKey(m => m.ExaminationId);
 
+            Property(m => m.Title).IsRequired();
             Property(m => m.BeginDate).IsOptional();
             Property(m => m.DueDate).IsOptional();
             Property(m => m.Duration).IsRequired();
@@ -28,6 +29,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
 
             Property(m => m.Title).IsRequired();
             Property(m => m.Description).IsOptional();
+            Property(m => m.Degree).IsRequired();
 
             HasRequired(m => m.Subject);
             HasOptional(m => m.Examination);

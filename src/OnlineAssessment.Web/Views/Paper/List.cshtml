@@ -22,7 +22,7 @@
                     @item.Degree
                 </td>
                 <td>
-                    @Html.ActionLink("添加考试", "NewExamination", new { paperId = item.ExaminationPaperId }, new { @class = "btn btn-danger btn-xs" })
+                    @Html.ActionLink("添加考试", "Create", "ExaminationManage", new { paperId = item.ExaminationPaperId }, new { @class = "btn btn-danger btn-xs" })
                     @Html.ActionLink("删除", "Delete", new { paperId = item.ExaminationPaperId }, new { @class = "btn btn-danger btn-xs" })
                 </td>
             </tr>

@@ -20,10 +20,27 @@ namespace OnlineAssessment.Web.Core.Controllers
             var examinations = _examinationService.GetAllExaminations(subjectKey, state);
             return View(examinations);
         }
-
+        [HttpGet]
+        public ActionResult Create(string subjectKey, Guid paperId)
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult Create(string subjectKey, Guid paperId, ExaminationConfig config) {
             _examinationService.AddExamination(paperId, config);
             return RedirectToAction("List", new {subjectKey = subjectKey});
+        }
+
+        public ActionResult Active(string subjectKey, Guid examinationId)
+        {
+            _examinationService.ActiveExamination(examinationId);
+            return RedirectToAction("List", new { subjectKey = subjectKey });
+        }
+
+        public ActionResult Archive(string subjectKey, Guid examinationId)
+        {
+            _examinationService.ArchiveExamination(examinationId);
+            return RedirectToAction("List", new { subjectKey = subjectKey });
         }
     }
 }
