@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineAssessment.Domain;
@@ -68,6 +69,98 @@ namespace OnlineAssessment.Infrastructure
                 userManager.AddToRole(teacher.Id, "Teacher");
             }
             #endregion
+
+            #region Create Question Fake Data
+
+            var r = new Random();
+
+            for (var i = 1; i <= 10000; i++) {
+                var question = new Question() {
+                    QuestionBody = Guid.NewGuid().ToString(),
+                    QuestionCategory = QuestionCategory.ModularizedTheoryExam
+                };
+                //试题难度系数取0.3到1之间的随机值
+                question.QuestionDegree = r.Next(30, 100) * 0.01;
+
+                //单选题1分
+                if (i <= 2000) {
+                    question.QuestionForm = QuestionForm.SingleSelection;
+                    question.Score = 1;
+                    question.QuestionOptions.Add(new QuestionOption() {
+                        Description = Guid.NewGuid().ToString(),
+                        IsRightAnswer = true
+                    });
+                    for (int optionIndex = 0; optionIndex < r.Next(3, 6); optionIndex++) {
+                        question.QuestionOptions.Add(new QuestionOption() {
+                            Description = Guid.NewGuid().ToString(),
+                            IsRightAnswer = false
+                        });
+                    }
+                }
+
+                //单选题2分
+                if (i > 2000 && i <= 4000) {
+                    question.QuestionForm = QuestionForm.SingleSelection;
+                    question.Score = 2;
+                    question.QuestionOptions.Add(new QuestionOption() {
+                        Description = Guid.NewGuid().ToString(),
+                        IsRightAnswer = true
+                    });
+                    for (int optionIndex = 0; optionIndex < r.Next(3, 6); optionIndex++) {
+                        question.QuestionOptions.Add(new QuestionOption() {
+                            Description = Guid.NewGuid().ToString(),
+                            IsRightAnswer = false
+                        });
+                    }
+                }
+
+                //多选题2分
+                if (i > 4000 && i <= 6000) {
+                    question.QuestionForm = QuestionForm.SingleSelection;
+                    question.Score = 2;
+                    question.QuestionOptions.Add(new QuestionOption() {
+                        Description = Guid.NewGuid().ToString(),
+                        IsRightAnswer = true
+                    });
+                    for (int optionIndex = 0; optionIndex < r.Next(3, 6); optionIndex++) {
+                        question.QuestionOptions.Add(new QuestionOption() {
+                            Description = Guid.NewGuid().ToString(),
+                            IsRightAnswer = r.Next(0,10) < 3
+                        });
+                    }
+                }
+
+                //多选题3-4分
+                if (i > 6000 && i <= 8000) {
+                    question.QuestionForm = QuestionForm.SingleSelection;
+                    question.Score = r.Next(2, 5);
+                    question.QuestionOptions.Add(new QuestionOption() {
+                        Description = Guid.NewGuid().ToString(),
+                        IsRightAnswer = true
+                    });
+                    for (int optionIndex = 0; optionIndex < r.Next(3, 6); optionIndex++) {
+                        question.QuestionOptions.Add(new QuestionOption() {
+                            Description = Guid.NewGuid().ToString(),
+                            IsRightAnswer = r.Next(0, 10) < 3
+                        });
+                    }
+                }
+
+                //问答题分数为难度系数*10
+                if (i > 8000 && i <= 10000) {
+                    question.QuestionForm = QuestionForm.Subjective;
+                    question.Score = question.QuestionDegree > 0.3 
+                        ? (int)Math.Floor(question.QuestionDegree * 10) 
+                        : 3;
+                    question.ReferenceRightAnswer = Guid.NewGuid().ToString();
+                }
+
+                subject1.Questions.Add(question);
+            }
+
+            #endregion
+
+            context.SaveChanges();
         }
     }
 }

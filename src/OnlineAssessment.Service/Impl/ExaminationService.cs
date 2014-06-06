@@ -30,9 +30,10 @@ namespace OnlineAssessment.Service
                 var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint(), populationAmount);
                 paper.Title = config.Title;
                 paper.Description = config.Description;
-                paper.Subject = subject;
+                //paper.Subject = subject;
 
-                context.ExaminationPapers.Add(paper);
+                //context.ExaminationPapers.Add(paper);
+                subject.ExaminationPapers.Add(paper);
                 context.SaveChanges();
 
                 return paper.ExaminationPaperId;
@@ -51,7 +52,7 @@ namespace OnlineAssessment.Service
                 examination.DueDate = examinationPaper.EndDate;
                 examination.Duration = examinationPaper.Duration;
                 examination.Paper = paper;
-                examination.Subject = subject;
+                //examination.Subject = subject;
 
                 if (examinationPaper.BeginImmediately) {
                     examination.State = ExaminationState.Active;
@@ -59,7 +60,8 @@ namespace OnlineAssessment.Service
                     examination.State = ExaminationState.Pending;
                 }
 
-                context.Examinations.Add(examination);
+                //context.Examinations.Add(examination);
+                subject.Examinations.Add(examination);
                 context.SaveChanges();
 
                 return examination.ExaminationId;
@@ -68,7 +70,8 @@ namespace OnlineAssessment.Service
 
         public IEnumerable<ExaminationPaper> GetAllExaminationPapers(string subjectKey) {
             using (var context = new OnlineAssessmentContext()) {
-                var papers = context.ExaminationPapers.Where(p => p.Subject.SubjectKey == subjectKey).ToList();
+                var subject = context.Subjects.Find(subjectKey);
+                var papers = subject.ExaminationPapers.ToList();
                 return papers;
             }
         }
@@ -105,8 +108,9 @@ namespace OnlineAssessment.Service
 
         public IEnumerable<Examination> GetAllExaminations(string subjectKey, ExaminationState? examinationState) {
             using (var context = new OnlineAssessmentContext()) {
-                var examination = context.Examinations
-                    .Where(e => e.Subject.SubjectKey == subjectKey)
+                var subject = context.Subjects.Find(subjectKey);
+                var examination = subject.Examinations
+                    //.Where(e => e.Subject.SubjectKey == subjectKey)
                     .Where(e => examinationState == null || e.State == examinationState.Value)
                     .ToList();
                 return examination;
@@ -119,6 +123,7 @@ namespace OnlineAssessment.Service
                 var student = context.Students.Find(userId);
                 if (student.LearningSubjects.Contains(subject)) {
                     var examinations = subject.Examinations
+                        //.Where(e => e.Subject.SubjectKey == subjectKey)
                         .Where(e => e.State == ExaminationState.Active)
                         .Where(e => !e.HasStudentAnswerSheet(student))
                         .ToList();

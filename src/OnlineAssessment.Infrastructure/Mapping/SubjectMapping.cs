@@ -14,7 +14,6 @@ namespace OnlineAssessment.Infrastructure.Mapping
             HasRequired(m => m.ResponsibleTeacher).WithRequiredDependent().WillCascadeOnDelete(true);
 
             HasMany(m => m.SubscribedStudents);
-            HasMany(m => m.Examinations);
         }
     }
 }
