@@ -30,9 +30,7 @@ namespace OnlineAssessment.Service
                 var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint(), populationAmount);
                 paper.Title = config.Title;
                 paper.Description = config.Description;
-                //paper.Subject = subject;
 
-                //context.ExaminationPapers.Add(paper);
                 subject.ExaminationPapers.Add(paper);
                 context.SaveChanges();
 
@@ -52,7 +50,6 @@ namespace OnlineAssessment.Service
                 examination.DueDate = examinationPaper.EndDate;
                 examination.Duration = examinationPaper.Duration;
                 examination.Paper = paper;
-                //examination.Subject = subject;
 
                 if (examinationPaper.BeginImmediately) {
                     examination.State = ExaminationState.Active;
@@ -60,7 +57,6 @@ namespace OnlineAssessment.Service
                     examination.State = ExaminationState.Pending;
                 }
 
-                //context.Examinations.Add(examination);
                 subject.Examinations.Add(examination);
                 context.SaveChanges();
 
@@ -110,7 +106,6 @@ namespace OnlineAssessment.Service
             using (var context = new OnlineAssessmentContext()) {
                 var subject = context.Subjects.Find(subjectKey);
                 var examination = subject.Examinations
-                    //.Where(e => e.Subject.SubjectKey == subjectKey)
                     .Where(e => examinationState == null || e.State == examinationState.Value)
                     .ToList();
                 return examination;
@@ -123,7 +118,6 @@ namespace OnlineAssessment.Service
                 var student = context.Students.Find(userId);
                 if (student.LearningSubjects.Contains(subject)) {
                     var examinations = subject.Examinations
-                        //.Where(e => e.Subject.SubjectKey == subjectKey)
                         .Where(e => e.State == ExaminationState.Active)
                         .Where(e => !e.HasStudentAnswerSheet(student))
                         .ToList();
