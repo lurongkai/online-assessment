@@ -11,10 +11,10 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         public QuestionPopulation(PaperConstraint paperConstraint) {
             _paperConstraint = paperConstraint;
 
-            Questions = new List<PaperQuestion>();
+            Questions = new List<QuestionCharacter>();
         }
 
-        public List<PaperQuestion> Questions { get; set; }
+        public List<QuestionCharacter> Questions { get; set; }
 
         public int TotalScore {
             get { return Questions.Sum(q => q.Score); }

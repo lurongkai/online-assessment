@@ -18,9 +18,5 @@ namespace OnlineAssessment.Domain
         public string QuestionBody { get; set; }
         public string ReferenceRightAnswer { get; set; }
         public ICollection<PaperQuestionOption> QuestionOptions { get; set; }
-
-        public double AvarageDegreeFactor {
-            get { return Degree * Score; }
-        }
     }
 }

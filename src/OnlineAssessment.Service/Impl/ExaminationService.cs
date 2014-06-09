@@ -19,7 +19,14 @@ namespace OnlineAssessment.Service
                 var questions = context
                     .Questions
                     .Include(q => q.QuestionOptions)
-                    .Where(q => q.Subject.SubjectKey == config.SubjectKey);
+                    .Where(q => q.Subject.SubjectKey == config.SubjectKey)
+                    .Select(q => new QuestionCharacter()
+                    {
+                        QuestionId = q.QuestionId,
+                        QuestionForm = q.QuestionForm,
+                        QuestionDegree = q.QuestionDegree,
+                        Score = q.Score
+                    });
                 var generator = new RandomExaminationGenerationService(questions.ToList());
 
                 int populationAmount = 10;
@@ -30,7 +37,6 @@ namespace OnlineAssessment.Service
                 var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint(), populationAmount);
                 paper.Title = config.Title;
                 paper.Description = config.Description;
-                paper.TotalScore = config.TotalScore;
 
                 subject.ExaminationPapers.Add(paper);
                 context.SaveChanges();

@@ -49,8 +49,6 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.ReferenceRightAnswer).IsOptional();
 
             HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
-
-            Ignore(m => m.AvarageDegreeFactor);
         }
     }
 
