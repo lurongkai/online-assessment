@@ -16,6 +16,7 @@ namespace OnlineAssessment.Infrastructure
         public virtual DbSet<AnswerSheet> AnswerSheets { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<News> News { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
 #if DEBUG
@@ -35,7 +36,8 @@ namespace OnlineAssessment.Infrastructure
                 .Add(new SubjectMapping())
                 .Add(new AnswerSheetMapping())
                 .Add(new StudentMapping())
-                .Add(new TeacherMapping());
+                .Add(new TeacherMapping())
+                .Add(new NewsMapping());
         }
     }
 }
