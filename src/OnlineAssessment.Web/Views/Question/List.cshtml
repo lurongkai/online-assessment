@@ -50,3 +50,13 @@
         }
     </table>
 </p>
+<p>
+    <div class="btn-group">
+        @if (ViewBag.Page > 1)
+        {
+            @Html.ActionLink("上一页", "List", new {page = ViewBag.Page - 1}, new {@class = "btn btn-default"})
+        }
+
+        @Html.ActionLink("下一页", "List", new { page = ViewBag.Page + 1 }, new { @class = "btn btn-default" })
+    </div>
+</p>
