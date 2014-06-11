@@ -47,6 +47,8 @@
     <Compile Include="ExaminationGeneration\QuestionPopulation.cs" />
     <Compile Include="ExaminationGeneration\RandomExaminationGenerationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GeneticAlgorithm\Chromosome.cs" />
+    <Compile Include="GeneticAlgorithm\Population.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineAssessment.Domain\OnlineAssessment.Domain.csproj">
@@ -65,4 +67,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="GeneticAlgorithm\" />
+  </ItemGroup>
 </Project>
