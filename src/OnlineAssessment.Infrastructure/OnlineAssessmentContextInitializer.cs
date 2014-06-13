@@ -128,6 +128,20 @@ namespace OnlineAssessment.Infrastructure
 
             #endregion
 
+            #region News
+
+            for (int i = 0; i < 10; i++)
+            {
+                context.News.Add(new News()
+                {
+                    Title = Guid.NewGuid().ToString(),
+                    Content = Guid.NewGuid().ToString(),
+                    PublishedDate = DateTime.Now.AddDays(new Random().Next(1, 100))
+                });
+            }
+
+            #endregion
+
             context.SaveChanges();
         }
     }

@@ -222,6 +222,9 @@
     <Content Include="Views\Admin\SubjectCreate.cshtml" />
     <Content Include="Views\Admin\SubjectEdit.cshtml" />
     <Content Include="Views\Admin\UserList.cshtml" />
+    <Content Include="Views\Admin\NewsCreate.cshtml" />
+    <Content Include="Views\Admin\NewsEdit.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

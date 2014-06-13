@@ -16,7 +16,7 @@
             </ul>
             @if (ViewData["DisableNavControl"] == null || !(bool) ViewData["DisableNavControl"]) {
                 <ul class="nav navbar-nav navbar-right">
-                    @Html.Partial("_login-partial")
+                    @Html.Partial("_login-partial", new LoginViewModel())
                 </ul>
             }
         </div>

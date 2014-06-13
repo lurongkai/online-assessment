@@ -14,9 +14,10 @@ namespace OnlineAssessment.Web.Core.Controllers
             _questionService = questionService;
         }
 
-        public ActionResult List(string subjectKey) {
+        public ActionResult List(string subjectKey, int? page) {
             ViewBag.subjectKey = subjectKey;
-            var questions = _questionService.GetAllQuestion(subjectKey);
+            ViewBag.Page = page ?? 1;
+            var questions = _questionService.GetAllQuestion(subjectKey, page);
 
             return View(questions);
         }
