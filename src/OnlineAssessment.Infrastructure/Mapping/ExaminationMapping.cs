@@ -28,11 +28,10 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.Title).IsRequired();
             Property(m => m.Description).IsOptional();
             Property(m => m.Degree).IsRequired();
+            Property(m => m.TotalScore).IsRequired();
 
             HasMany(m => m.Examinations);
             HasMany(m => m.Questions).WithRequired();
-
-            Ignore(m => m.TotalScore);
         }
     }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using OnlineAssessment.Domain;
-using OnlineAssessment.Domain.Service.ExaminationGeneration;
+using OnlineAssessment.Domain.Service.PaperGeneration;
 
 namespace OnlineAssessment.Service.Message
 {
@@ -19,11 +19,9 @@ namespace OnlineAssessment.Service.Message
         public int MutipleSelectionQuestionQuantity { get; set; }
         public int SubjectiveQuestionQuantity { get; set; }
 
-        public double ExpectedAdaptationDegree { get; set; }
-
         internal PaperConstraint AsPaperConstraint() {
             var questionQuota = GetQuestionQuota();
-            return new PaperConstraint(TotalScore, Degree, ExpectedAdaptationDegree, questionQuota);
+            return new PaperConstraint(TotalScore, Degree, questionQuota);
         }
 
         private IDictionary<QuestionForm, int> GetQuestionQuota() {
