@@ -28,13 +28,14 @@ namespace OnlineAssessment.Service
                         QuestionScore = q.Score
                     });
 				var generator = new OnlineAssessment.Domain.Service.PaperGeneration.SimplePaperGenerationService(questions.ToList());
-				var questionList = generator
-					.GenerateExaminationPaper(config.AsPaperConstraint())
-					.GeneSeries.Select(qc => qc.QuestionId).ToList();
+                var p = generator.GenerateExaminationPaper(config.AsPaperConstraint());
+                var questionList = p.GeneSeries.Select(qc => qc.QuestionId).ToList();
 
 				var paper = new ExaminationPaper() {
 					Title = config.Title,
-					Description = config.Description
+					Description = config.Description,
+                    Degree = p.Degree,
+                    TotalScore = p.TotalScore
 				};
 
 				foreach(var question in context.Questions.Where(q => questionList.Contains(q.QuestionId)).ToList()){

@@ -19,8 +19,6 @@ namespace OnlineAssessment.Domain
         public virtual ICollection<Examination> Examinations { get; set; }
         public ICollection<PaperQuestion> Questions { get; set; }
 
-        public int TotalScore {
-            get { return Questions.Sum(q => q.Score); }
-        }
+        public int TotalScore { get; set; }
     }
 }

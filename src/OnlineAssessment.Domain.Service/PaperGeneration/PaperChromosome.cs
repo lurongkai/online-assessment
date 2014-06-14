@@ -14,14 +14,21 @@ namespace OnlineAssessment.Domain.Service.PaperGeneration
 		public PaperChromosome(double expectedDegree)
 		{
 			_expectedDegree = expectedDegree;
+		    GeneSeries = new List<QuestionCharacter>();
 		}
 
 		public int TotalScore {
-			get { return GeneSeries.Sum(q => q.QuestionScore); }
+			get { return GeneSeries.Count == 0
+                            ? 0 
+                            : GeneSeries.Sum(q => q.QuestionScore); }
 		}
 
 		public double Degree {
-			get { return GeneSeries.Sum(q => q.QuestionScore * q.QuestionDegree) / TotalScore; }
+            get {
+                return GeneSeries.Count == 0
+                          ? 0
+                          : GeneSeries.Sum(q => q.QuestionScore * q.QuestionDegree) / TotalScore;
+            }
 		}
 
 		public double Fitness {
