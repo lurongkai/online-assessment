@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-3  col-md-offset-2">
+        <div class="col-md-6  col-md-offset-2">
             <div class="input-group">
                 <span class="input-group-addon">
                     @Html.LabelFor(model => model.QuestionDegree)
@@ -47,29 +47,6 @@
                     },
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.QuestionDegree)
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    @Html.LabelFor(model => model.Score, "分数")
-                </span>
-                @Html.DropDownListFor(
-                             model => model.Score,
-                    new List<SelectListItem> {
-                        new SelectListItem {Text = "1", Value = "1"},
-                        new SelectListItem {Text = "2", Value = "2"},
-                        new SelectListItem {Text = "3", Value = "3"},
-                        new SelectListItem {Text = "4", Value = "4"},
-                        new SelectListItem {Text = "5", Value = "5"},
-                        new SelectListItem {Text = "6", Value = "6"},
-                        new SelectListItem {Text = "7", Value = "7"},
-                        new SelectListItem {Text = "8", Value = "8"},
-                        new SelectListItem {Text = "9", Value = "9"},
-                        new SelectListItem {Text = "10", Value = "10"}
-                    },
-                    new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Score)
             </div>
         </div>
         <div class="col-md-4">

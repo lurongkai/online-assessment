@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using OnlineAssessment.Domain;
-using OnlineAssessment.Domain.Service.ExaminationGeneration;
+using OnlineAssessment.Domain.Service.PaperGeneration;
 using OnlineAssessment.Infrastructure;
 using OnlineAssessment.Service.Message;
 
@@ -25,18 +25,21 @@ namespace OnlineAssessment.Service
                         QuestionId = q.QuestionId,
                         QuestionForm = q.QuestionForm,
                         QuestionDegree = q.QuestionDegree,
-                        Score = q.Score
+                        QuestionScore = q.Score
                     });
-                var generator = new RandomExaminationGenerationService(questions.ToList());
+				var generator = new OnlineAssessment.Domain.Service.PaperGeneration.SimplePaperGenerationService(questions.ToList());
+				var questionList = generator
+					.GenerateExaminationPaper(config.AsPaperConstraint())
+					.GeneSeries.Select(qc => qc.QuestionId).ToList();
 
-                int populationAmount = 10;
-                if (questions.Count() < 10)
-                {
-                    populationAmount = questions.Count();
-                }
-                var paper = generator.GenerateExaminationPaper(config.AsPaperConstraint(), populationAmount);
-                paper.Title = config.Title;
-                paper.Description = config.Description;
+				var paper = new ExaminationPaper() {
+					Title = config.Title,
+					Description = config.Description
+				};
+
+				foreach(var question in context.Questions.Where(q => questionList.Contains(q.QuestionId)).ToList()){
+					paper.Questions.Add(question.ConvertToPaperQuestion());
+				}
 
                 subject.ExaminationPapers.Add(paper);
                 context.SaveChanges();

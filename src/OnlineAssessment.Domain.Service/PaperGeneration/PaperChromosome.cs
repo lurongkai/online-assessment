@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using OnlineAssessment.Domain.Service.GeneticAlgorithm;
 using System.Collections.Generic;
 
 namespace OnlineAssessment.Domain.Service.PaperGeneration
@@ -18,11 +17,11 @@ namespace OnlineAssessment.Domain.Service.PaperGeneration
 		}
 
 		public int TotalScore {
-			get { return GeneSeries.Sum(q => q.Score); }
+			get { return GeneSeries.Sum(q => q.QuestionScore); }
 		}
 
 		public double Degree {
-			get { return GeneSeries.Sum(q => q.Score * q.QuestionDegree) / TotalScore; }
+			get { return GeneSeries.Sum(q => q.QuestionScore * q.QuestionDegree) / TotalScore; }
 		}
 
 		public double Fitness {

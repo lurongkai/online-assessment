@@ -39,6 +39,14 @@ namespace OnlineAssessment.Web.Core.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 		public ActionResult Create(string subjectKey, Question newQuestion) {
+            if (newQuestion.QuestionForm == QuestionForm.SingleSelection) { newQuestion.Score = 2; }
+            if (newQuestion.QuestionForm == QuestionForm.MultipleSelection) { newQuestion.Score = 3; }
+            if (newQuestion.QuestionForm == QuestionForm.Subjective) {
+                newQuestion.Score = newQuestion.QuestionDegree > 0.3
+                    ? (int)Math.Floor(newQuestion.QuestionDegree * 10)
+                    : 3;
+            }
+
             _questionService.AddQuestion(subjectKey, newQuestion);
             return RedirectToAction("List", new {subjectKey});
         }
