@@ -70,6 +70,7 @@
     <Compile Include="Examination\ExaminationState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question\Question.cs" />
+    <Compile Include="Question\QuestionCharacter.cs" />
     <Compile Include="Question\QuestionOption.cs" />
     <Compile Include="Question\QuestionForm.cs" />
     <Compile Include="Account\Student.cs" />

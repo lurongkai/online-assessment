@@ -16,8 +16,7 @@ namespace OnlineAssessment.Domain
         public string Description { get; set; }
         public double Degree { get; set; }
 
-        public virtual Subject Subject { get; set; }
-        public virtual Examination Examination { get; set; }
+        public virtual ICollection<Examination> Examinations { get; set; }
         public ICollection<PaperQuestion> Questions { get; set; }
 
         public int TotalScore {

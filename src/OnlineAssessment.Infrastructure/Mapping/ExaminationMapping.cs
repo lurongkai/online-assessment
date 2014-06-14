@@ -14,9 +14,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.Duration).IsRequired();
             Property(m => m.State).IsRequired();
 
-            HasRequired(m => m.Subject);
-            HasRequired(m => m.Paper).WithOptional();
-
+            HasRequired(m => m.Paper);
             HasMany(m => m.AnswerSheets);
         }
     }
@@ -31,10 +29,8 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.Description).IsOptional();
             Property(m => m.Degree).IsRequired();
 
-            HasRequired(m => m.Subject);
-            HasOptional(m => m.Examination);
-
-            HasMany(m => m.Questions);
+            HasMany(m => m.Examinations);
+            HasMany(m => m.Questions).WithRequired();
 
             Ignore(m => m.TotalScore);
         }
@@ -47,14 +43,12 @@ namespace OnlineAssessment.Infrastructure.Mapping
 
             Property(m => m.QuestionIndex).IsRequired();
             Property(m => m.Score).IsRequired();
-            Property(m => m.QuestionDegree).IsRequired();
+            Property(m => m.Degree).IsRequired();
             Property(m => m.QuestionForm).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();
 
             HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
-
-            Ignore(m => m.AvarageDegree);
         }
     }
 

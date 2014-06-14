@@ -15,10 +15,16 @@ namespace OnlineAssessment.Web.Core.Controllers
     public class AdminController : Controller
     {
         private ISubjectService _subjectService;
+        private IManagementService _managementService;
         private UserManager<ApplicationUser> _userManager;
         private RoleManager<IdentityRole> _roleManager;
-        public AdminController(ISubjectService subjectService, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager) {
+
+        public AdminController(ISubjectService subjectService, 
+            IManagementService managementService,
+            UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> roleManager) {
             _subjectService = subjectService;
+            _managementService = managementService;
             _userManager = userManager;
             _roleManager = roleManager;
         }
@@ -42,7 +48,7 @@ namespace OnlineAssessment.Web.Core.Controllers
                 _subjectService.AddSubject(subject);
                 return RedirectToAction("SubjectList");
             } catch {
-                ViewBag.Message = "输入有误";
+                ViewBag.Message = "科目key已经存在";
                 return View();
             }
         }
@@ -95,9 +101,45 @@ namespace OnlineAssessment.Web.Core.Controllers
 
         #endregion
 
-        public ActionResult NewsList() {
+        #region News
+        public ActionResult NewsList(int? page)
+        {
+            var news = _managementService.GetAllNews(page);
+            return View(news);
+        }
+        [HttpGet]
+        public ActionResult NewsCreate()
+        {
             return View();
         }
+        [HttpPost]
+        public ActionResult NewsCreate(News news)
+        {
+            news.PublishedDate = DateTime.Now;
+
+            _managementService.CreateNews(news);
+            return RedirectToAction("NewsList");
+        }
+        [HttpGet]
+        public ActionResult NewsEdit(Guid newsId)
+        {
+            var news = _managementService.GetNews(newsId);
+            return View(news);
+        }
+        [HttpPost]
+        public ActionResult NewsEdit(News editedNews)
+        {
+            _managementService.EditNews(editedNews);
+            return RedirectToAction("NewsList");
+        }
+
+        public ActionResult NewsDelete(Guid newsId)
+        {
+            _managementService.DeleteNews(newsId);
+            return RedirectToAction("NewsList");
+        }
+
+        #endregion
 
         #region Teacher
         public ActionResult TeacherList() {

@@ -9,12 +9,15 @@ namespace OnlineAssessment.Service
 {
     public class QuestionService : IQuestionService
     {
-        public IEnumerable<Question> GetAllQuestion(string subjectKey, QuestionForm? questionType = null) {
+        public IEnumerable<Question> GetAllQuestion(string subjectKey, int? page, QuestionForm? questionType = null) {
             using (var context = new OnlineAssessmentContext()) {
                 var courseQuestions = context
                     .Questions
                     .Where(q => q.Subject.SubjectKey == subjectKey)
                     .Where(q => questionType == null || q.QuestionForm == questionType)
+                    .OrderByDescending(q => q.QuestionId)
+                    .Skip(50 * (page ?? 1 - 1))
+                    .Take(50)
                     .ToList();
 
                 return courseQuestions;

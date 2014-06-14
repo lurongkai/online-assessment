@@ -7,7 +7,7 @@ namespace OnlineAssessment.Domain.Service.ExaminationGeneration
         public bool Equals(QuestionPopulation x, QuestionPopulation y) {
             var result = true;
             for (var i = 0; i < x.QuestionCount; i++) {
-                if (x.Questions[i].PaperQuestionId != y.Questions[i].PaperQuestionId) {
+                if (x.Questions[i].QuestionId != y.Questions[i].QuestionId) {
                     result = false;
                     break;
                 }

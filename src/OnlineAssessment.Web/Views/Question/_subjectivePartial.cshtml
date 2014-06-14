@@ -1,38 +1,37 @@
-﻿@model OnlineAssessment.Domain.Question
+﻿@model Question
 
 @{ Model.QuestionDegree = 0.5; }
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.HiddenFor(model => model.subjectKey)
-        @Html.Hidden("QuestionForm", "Subjective")
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.subjectKey)
+    @Html.Hidden("QuestionForm", "Subjective")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionBody, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.QuestionBody, new {@class = "form-control", rows = 5})
-                @Html.ValidationMessageFor(model => model.QuestionBody)
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuestionBody, new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.QuestionBody, new {@class = "form-control", rows = 5})
+            @Html.ValidationMessageFor(model => model.QuestionBody)
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReferenceRightAnswer, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.ReferenceRightAnswer, new {@class = "form-control", rows = 5})
-                @Html.ValidationMessageFor(model => model.ReferenceRightAnswer)
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReferenceRightAnswer, new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.ReferenceRightAnswer, new {@class = "form-control", rows = 5})
+            @Html.ValidationMessageFor(model => model.ReferenceRightAnswer)
         </div>
-        <div class="form-group">
-            <div class="col-md-3  col-md-offset-2">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        @Html.LabelFor(model => model.QuestionDegree)
-                    </span>
-                    @Html.DropDownListFor(
+    </div>
+    <div class="form-group">
+        <div class="col-md-3  col-md-offset-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    @Html.LabelFor(model => model.QuestionDegree)
+                </span>
+                @Html.DropDownListFor(
                     model => model.QuestionDegree,
-                    new List<SelectListItem> {
+                    new List<SelectListItem>
+                    {
                         new SelectListItem {Text = "0.1", Value = "0.1"},
                         new SelectListItem {Text = "0.2", Value = "0.2"},
                         new SelectListItem {Text = "0.3", Value = "0.3"},
@@ -44,18 +43,19 @@
                         new SelectListItem {Text = "0.9", Value = "0.9"},
                         new SelectListItem {Text = "1.0", Value = "1.0"}
                     },
-                    new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.QuestionDegree)
-                </div>
+                    new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.QuestionDegree)
             </div>
-            <div class="col-md-3">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        @Html.LabelFor(model => model.Score, "分数")
-                    </span>
-                    @Html.DropDownListFor(
-                             model => model.Score,
-                    new List<SelectListItem> {
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    @Html.LabelFor(model => model.Score, "分数")
+                </span>
+                @Html.DropDownListFor(
+                    model => model.Score,
+                    new List<SelectListItem>
+                    {
                         new SelectListItem {Text = "1", Value = "1"},
                         new SelectListItem {Text = "2", Value = "2"},
                         new SelectListItem {Text = "3", Value = "3"},
@@ -67,14 +67,14 @@
                         new SelectListItem {Text = "9", Value = "9"},
                         new SelectListItem {Text = "10", Value = "10"}
                     },
-                    new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Score)
-                </div>
+                    new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Score)
             </div>
-            <div class="col-md-3 text-right">
-                <button type="button" onclick="AddNewOption()" class="btn btn-info">添加选项</button>
+        </div>
+        <div class="col-md-4">
+            <div class="pull-right">
                 <input type="submit" value="保存" class="btn btn-primary" />
             </div>
         </div>
     </div>
-}
+</div>

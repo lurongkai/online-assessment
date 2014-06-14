@@ -16,7 +16,6 @@ namespace OnlineAssessment.Domain
         public DateTime? DueDate { get; set; }
         public double Duration { get; set; }
 
-        public virtual Subject Subject { get; set; }
         public virtual ExaminationPaper Paper { get; set; }
         public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }
 

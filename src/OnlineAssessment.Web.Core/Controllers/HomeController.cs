@@ -11,14 +11,17 @@ namespace OnlineAssessment.Web.Core.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMembershipService _membershipService;
+        private readonly IManagementService _managementService;
 
-        public HomeController(IMembershipService membershipService) {
-            _membershipService = membershipService;
+        public HomeController(IManagementService managementService) {
+            _managementService = managementService;
         }
 
         public ActionResult Index() {
-            if (!User.Identity.IsAuthenticated) {
+            if (!User.Identity.IsAuthenticated)
+            {
+                var news = _managementService.GetAllNews(1, 3);
+                ViewBag.News = news;
                 return View();
             }
 
@@ -30,19 +33,25 @@ namespace OnlineAssessment.Web.Core.Controllers
             return RedirectToAction("ChoiceSubject");
         }
 
+        public ActionResult News(Guid newsId)
+        {
+            var news = _managementService.GetNews(newsId);
+            return View(news);
+        }
+
         [Authorize]
         public ActionResult ChoiceSubject() {
             var identity = User.Identity as ClaimsIdentity;
             var userId = identity.FindFirst("UserId").Value;
             if (User.IsInRole("Teacher"))
             {
-                var subject = _membershipService.GetTeacherSubject(userId);
+                var subject = _managementService.GetTeacherSubject(userId);
                 return RedirectToAction("Dashboard", new {subjectKey = subject.SubjectKey});
             }
 
             if (User.IsInRole("Student"))
             {
-                var subjects = _membershipService.GetStudentSubjects(userId);
+                var subjects = _managementService.GetStudentSubjects(userId);
 
                 if (subjects.Count() == 1) {
                     return RedirectToAction("Dashboard", new { subjectKey = subjects.First().SubjectKey });

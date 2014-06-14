@@ -15,7 +15,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
             Property(m => m.ReferenceRightAnswer).IsOptional();
             Property(m => m.QuestionDegree).IsRequired();
 
-            HasRequired(m => m.Subject).WithMany().HasForeignKey(m => m.subjectKey);
+            HasRequired(m => m.Subject).WithMany(m => m.Questions).HasForeignKey(m => m.subjectKey);
 
             HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
         }

@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\NewsMapping.cs" />
     <Compile Include="Mapping\SubjectMapping.cs" />
     <Compile Include="Mapping\ApplicationMemberMapping.cs" />
     <Compile Include="OnlineAssessmentContextInitializer.cs" />

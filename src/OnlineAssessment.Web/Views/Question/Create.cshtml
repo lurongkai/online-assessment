@@ -29,19 +29,19 @@
 
 @section page_script {
     <script>
-        var optionCount = 1;
+        var optionIndex = 0;
 
         function AddNewOption() {
             var container = $(".question-option");
-            optionCount += 1;
+            optionIndex += 1;
             var html =
                 '<div class="input-group">' +
-                    '    <span class="input-group-addon">' +
-                    '        <input id="QuestionOptions_' + optionCount + '__IsRightAnswer" name="QuestionOptions[' + optionCount + '].IsRightAnswer" type="checkbox" value="true">' +
-                    '        <input name="QuestionOptions[' + optionCount + '].IsRightAnswer" type="hidden" value="false">' +
-                    '    </span>' +
-                    '    <input class="form-control" id="QuestionOptions_' + optionCount + '__Description" name="QuestionOptions[' + optionCount + '].Description" type="text" value="">' +
-                    '</div>';
+                '    <span class="input-group-addon">' +
+                '        <input id="QuestionOptions_' + optionIndex + '__IsRightAnswer" name="QuestionOptions[' + optionIndex + '].IsRightAnswer" type="checkbox" value="false">' +
+                '        <input checked="checked" name="QuestionOptions[' + optionIndex + '].IsRightAnswer" type="hidden" value="true">' +
+                '    </span>' +
+                '    <input class="form-control" id="QuestionOptions_' + optionIndex + '__Description" name="QuestionOptions[' + optionIndex + '].Description" type="text" value="">' +
+                '</div>';
             var option = $(html);
             container.append(option);
         }
