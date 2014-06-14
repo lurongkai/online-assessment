@@ -44,15 +44,16 @@
   <ItemGroup>
     <Compile Include="ExaminationGeneration\PaperConstraint.cs" />
     <Compile Include="ExaminationGeneration\PopulationComparer.cs" />
-    <Compile Include="ExaminationGeneration\QuestionPopulation.cs" />
     <Compile Include="ExaminationGeneration\RandomExaminationGenerationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GeneticAlgorithm\Chromosome.cs" />
     <Compile Include="GeneticAlgorithm\Population.cs" />
     <Compile Include="GeneticAlgorithm\Gene.cs" />
-    <Compile Include="PaperGeneration\QuestionGene.cs" />
     <Compile Include="PaperGeneration\PaperChromosome.cs" />
     <Compile Include="GeneticAlgorithm\IChromesomeFactory.cs" />
+    <Compile Include="PaperGeneration\SimplePaperGenerationService.cs" />
+    <Compile Include="PaperGeneration\PaperConstraint.cs" />
+    <Compile Include="ExaminationGeneration\QuestionPopulation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineAssessment.Domain\OnlineAssessment.Domain.csproj">
