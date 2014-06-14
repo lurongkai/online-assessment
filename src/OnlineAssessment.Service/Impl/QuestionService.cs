@@ -15,7 +15,7 @@ namespace OnlineAssessment.Service
                     .Questions
                     .Where(q => q.Subject.SubjectKey == subjectKey)
                     .Where(q => questionType == null || q.QuestionForm == questionType)
-                    .OrderByDescending(q => q.QuestionId)
+                    .OrderByDescending(q => q.QuestionForm)
                     .Skip(50 * (page ?? 1 - 1))
                     .Take(50)
                     .ToList();

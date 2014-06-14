@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Service;
@@ -26,7 +27,30 @@ namespace OnlineAssessment.Web.Core.Controllers
 		public ActionResult Create(string subjectKey, QuestionForm questionForm) {
             ViewBag.subjectKey = subjectKey;
 			ViewBag.questionForm = questionForm;
-            var question = new Question();
+
+            ViewBag.QuestionCategory = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "UnitTesting", Text = "单元测试" },
+                new SelectListItem { Value = "ComprehensiveTesting", Text = "综合题测试" },
+                new SelectListItem { Value = "SimulationTesting", Text = "模拟考试" },
+                new SelectListItem { Value = "ModularizedTheoryExam", Text = "模块化考试-理论模块" },
+                new SelectListItem { Value = "ModularizedSkillExam", Text = "模块化考试-技能模块" },
+                new SelectListItem { Value = "ModularizedSkillExtensionExam", Text = "模块化考试-拓展技能模块" }
+            };
+            ViewBag.QuestionDegree = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0.1", Text = "0.1" },
+                new SelectListItem { Value = "0.2", Text = "0.2" },
+                new SelectListItem { Value = "0.3", Text = "0.3" },
+                new SelectListItem { Value = "0.4", Text = "0.4" },
+                new SelectListItem { Value = "0.5", Text = "0.5" },
+                new SelectListItem { Value = "0.6", Text = "0.6" },
+                new SelectListItem { Value = "0.7", Text = "0.7" },
+                new SelectListItem { Value = "0.8", Text = "0.8" },
+                new SelectListItem { Value = "0.9", Text = "0.9" }
+            };
+
+                var question = new Question();
             if (questionForm != QuestionForm.Subjective) {
                 question.QuestionOptions.Add(new QuestionOption() {
                     IsRightAnswer = true,
