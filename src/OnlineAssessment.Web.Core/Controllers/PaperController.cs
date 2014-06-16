@@ -23,8 +23,9 @@ namespace OnlineAssessment.Web.Core.Controllers
         [HttpPost]
         public ActionResult Create(string subjectKey, ExaminationPaperConfig config) {
             config.SubjectKey = subjectKey;
-            var paperId = _examinationService.GenerateRandomExaminationPaper(config);
-            return RedirectToAction("View", new { subjectKey = subjectKey, paperId = paperId });
+			var paperId = _examinationService.GenerateRandomExaminationPaper(config);
+			return RedirectToAction("List");
+			// return RedirectToAction("View", new { subjectKey = subjectKey, paperId = paperId });
         }
 
         public ActionResult Delete(Guid paperId) {
