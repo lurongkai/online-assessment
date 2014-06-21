@@ -119,6 +119,7 @@
     <Compile Include="Integration\AutofacModule.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\UserManageViewModel.cs" />
+    <Compile Include="Models\Examination\ExaminationResultViewModel.cs" />
     <Compile Include="Models\Menu\TeacherMenuViewModel.cs" />
     <Compile Include="Models\PredefinedRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
