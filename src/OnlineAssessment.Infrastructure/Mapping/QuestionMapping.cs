@@ -9,7 +9,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
             HasKey(m => m.QuestionId);
 
             Property(m => m.QuestionForm).IsRequired();
-            Property(m => m.QuestionCategory).IsRequired();
+            Property(m => m.QuestionModule).IsRequired();
             Property(m => m.Score).IsRequired();
             Property(m => m.QuestionBody).IsRequired();
             Property(m => m.ReferenceRightAnswer).IsOptional();

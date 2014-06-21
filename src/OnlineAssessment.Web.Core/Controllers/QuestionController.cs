@@ -30,12 +30,9 @@ namespace OnlineAssessment.Web.Core.Controllers
 
             ViewBag.QuestionCategory = new List<SelectListItem>
             {
-                new SelectListItem { Value = "UnitTesting", Text = "单元测试" },
-                new SelectListItem { Value = "ComprehensiveTesting", Text = "综合题测试" },
-                new SelectListItem { Value = "SimulationTesting", Text = "模拟考试" },
-                new SelectListItem { Value = "ModularizedTheoryExam", Text = "模块化考试-理论模块" },
-                new SelectListItem { Value = "ModularizedSkillExam", Text = "模块化考试-技能模块" },
-                new SelectListItem { Value = "ModularizedSkillExtensionExam", Text = "模块化考试-拓展技能模块" }
+                new SelectListItem { Value = "Theory", Text = "理论模块" },
+                new SelectListItem { Value = "Skill", Text = "技能模块" },
+                new SelectListItem { Value = "SkillExtension", Text = "拓展技能模块" }
             };
             ViewBag.QuestionDegree = new List<SelectListItem>
             {

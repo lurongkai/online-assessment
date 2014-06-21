@@ -20,6 +20,7 @@ namespace OnlineAssessment.Domain
         public virtual ICollection<AnswerSheet> AnswerSheets { get; set; }
 
         public ExaminationState State { get; set; }
+        public ExaminationType ExaminationType { get; set; }
 
         public bool HasStudentAnswerSheet(Student student) {
             return AnswerSheets.Any(a => a.Student.Id == student.Id);
