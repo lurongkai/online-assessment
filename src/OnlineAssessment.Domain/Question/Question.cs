@@ -17,7 +17,7 @@ namespace OnlineAssessment.Domain
 
         [UIHint("QuestionForm")]
         public QuestionForm QuestionForm { get; set; }
-        public QuestionCategory QuestionCategory { get; set; }
+        public QuestionModule QuestionModule { get; set; }
         public int Score { get; set; }
 
         [Required(ErrorMessage = "题目不能为空")]

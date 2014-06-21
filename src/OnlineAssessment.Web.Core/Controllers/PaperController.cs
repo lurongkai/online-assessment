@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using OnlineAssessment.Service;
 using OnlineAssessment.Service.Message;
+using System.Collections.Generic;
 
 namespace OnlineAssessment.Web.Core.Controllers
 {
@@ -18,6 +19,13 @@ namespace OnlineAssessment.Web.Core.Controllers
         }
         [HttpGet]
         public ActionResult Create(string subjectKey) {
+            ViewBag.ExaminationType = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "SimulationExam", Text = "模拟考试" },
+                new SelectListItem { Value = "TheoryExam", Text = "模块化理论考试" },
+                new SelectListItem { Value = "SkillExam", Text = "模块化拓展技能考试" },
+                new SelectListItem { Value = "SkillExtensionExam", Text = "模块化拓展技能考试" }
+            };
             return View();
         }
         [HttpPost]

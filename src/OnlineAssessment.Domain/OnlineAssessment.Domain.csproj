@@ -61,9 +61,10 @@
     <Compile Include="Examination\PaperQuestion.cs" />
     <Compile Include="Examination\PaperQuestionOption.cs" />
     <Compile Include="Common\Gender.cs" />
+    <Compile Include="Examination\ExaminationType.cs" />
     <Compile Include="ICanMigrate.cs" />
     <Compile Include="News\News.cs" />
-    <Compile Include="Question\QuestionCategory.cs" />
+    <Compile Include="Question\QuestionModule.cs" />
     <Compile Include="Account\ApplicationUser.cs" />
     <Compile Include="Common\Subject.cs" />
     <Compile Include="Examination\ExaminationPaper.cs" />

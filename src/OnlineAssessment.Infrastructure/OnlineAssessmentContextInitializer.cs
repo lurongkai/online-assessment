@@ -77,7 +77,7 @@ namespace OnlineAssessment.Infrastructure
             for (var i = 1; i <= 5000; i++) {
                 var question = new Question() {
                     QuestionBody = Guid.NewGuid().ToString(),
-                    QuestionCategory = QuestionCategory.ModularizedTheoryExam
+                    QuestionModule = QuestionModule.Theory
                 };
                 //试题难度系数取0.3到1之间的随机值
                 question.QuestionDegree = r.Next(30, 100) * 0.01;

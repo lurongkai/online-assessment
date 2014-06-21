@@ -19,6 +19,8 @@ namespace OnlineAssessment.Service.Message
         public int MutipleSelectionQuestionQuantity { get; set; }
         public int SubjectiveQuestionQuantity { get; set; }
 
+        public ExaminationType ExaminationType { get; set; }
+
         internal PaperConstraint AsPaperConstraint() {
             var questionQuota = GetQuestionQuota();
             return new PaperConstraint(TotalScore, Degree, questionQuota);
