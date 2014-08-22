@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Web.Mvc;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Service;
+using OnlineAssessment.Web.Core.Models.Examination;
 
 namespace OnlineAssessment.Web.Core.Controllers
 {
@@ -42,7 +43,9 @@ namespace OnlineAssessment.Web.Core.Controllers
 
         public ActionResult View(string subjectKey, Guid answerSheetId) {
             var answerSheet = _answeringService.GetAnswerSheet(answerSheetId);
-            return View(answerSheet);
+			// TODO: do calculation.
+			var viewModel = new ExaminationResultViewModel();
+			return View(viewModel);
         }
     }
 }

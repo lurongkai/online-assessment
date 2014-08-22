@@ -10,12 +10,12 @@ namespace OnlineAssessment.Domain
     {
         public Guid QuestionId { get; set; }
         public QuestionForm QuestionForm { get; set; }
-        public int Score { get; set; }
+        public int QuestionScore { get; set; }
         public double QuestionDegree { get; set; }
 
 
         public double AvarageDegreeFactor {
-            get { return QuestionDegree * Score; }
+            get { return QuestionDegree * QuestionScore; }
         }
     }
 }

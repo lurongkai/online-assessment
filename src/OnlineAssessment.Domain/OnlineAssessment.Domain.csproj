@@ -32,6 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -40,12 +48,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -61,9 +63,10 @@
     <Compile Include="Examination\PaperQuestion.cs" />
     <Compile Include="Examination\PaperQuestionOption.cs" />
     <Compile Include="Common\Gender.cs" />
+    <Compile Include="Examination\ExaminationType.cs" />
     <Compile Include="ICanMigrate.cs" />
     <Compile Include="News\News.cs" />
-    <Compile Include="Question\QuestionCategory.cs" />
+    <Compile Include="Question\QuestionModule.cs" />
     <Compile Include="Account\ApplicationUser.cs" />
     <Compile Include="Common\Subject.cs" />
     <Compile Include="Examination\ExaminationPaper.cs" />

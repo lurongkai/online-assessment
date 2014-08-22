@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5AD35B
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Web", "src\OnlineAssessment.Web\OnlineAssessment.Web.csproj", "{76C690C7-DA95-4979-8C64-46B137706362}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "OnlineAssessment.Web", "src\OnlineAssessment.Web\OnlineAssessment.Web.csproj", "{76C690C7-DA95-4979-8C64-46B137706362}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessment.Domain", "src\OnlineAssessment.Domain\OnlineAssessment.Domain.csproj", "{99F60CC8-F279-401B-BC75-93A1779D42F8}"
 EndProject
