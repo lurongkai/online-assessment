@@ -12,9 +12,9 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.QuestionModule, "模块", new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.QuestionModule, "模块", new {@class = "control-label col-md-2"})
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.QuestionModule, (IEnumerable<SelectListItem>)ViewBag.QuestionCategory, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.QuestionModule, (IEnumerable<SelectListItem>) ViewBag.QuestionCategory, new {@class = "form-control"})
             @Html.ValidationMessageFor(model => model.QuestionBody)
         </div>
     </div>
@@ -31,7 +31,7 @@
                 <span class="input-group-addon">
                     @Html.LabelFor(model => model.QuestionDegree)
                 </span>
-                @Html.DropDownListFor(m => m.QuestionDegree, (IEnumerable<SelectListItem>)ViewBag.QuestionDegree, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.QuestionDegree, (IEnumerable<SelectListItem>) ViewBag.QuestionDegree, new {@class = "form-control"})
                 @Html.ValidationMessageFor(model => model.QuestionDegree)
             </div>
         </div>

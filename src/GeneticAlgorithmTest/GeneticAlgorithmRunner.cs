@@ -1,4 +1,23 @@
-﻿using System;
+﻿// Author:
+//      Lu Rongkai <lurongkai@gmail.com>
+// 
+// Copyright (c) 2014 lurongkai
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -122,9 +141,7 @@ namespace GeneticAlgorithmTest
                     degree += unitList[j].AdaptationDegree;
                     if (degree >= randDegree) {
                         //不重复选择
-                        if (!selectedUnitList.Contains(unitList[j])) {
-                            selectedUnitList.Add(unitList[j]);
-                        }
+                        if (!selectedUnitList.Contains(unitList[j])) { selectedUnitList.Add(unitList[j]); }
                         break;
                     }
                 }
@@ -176,12 +193,8 @@ namespace GeneticAlgorithmTest
                         //添加到新种群集合中
                         unitNewOne.ID = crossedUnitList.Count;
                         unitNewTwo.ID = unitNewOne.ID + 1;
-                        if (crossedUnitList.Count < count) {
-                            crossedUnitList.Add(unitNewOne);
-                        }
-                        if (crossedUnitList.Count < count) {
-                            crossedUnitList.Add(unitNewTwo);
-                        }
+                        if (crossedUnitList.Count < count) { crossedUnitList.Add(unitNewOne); }
+                        if (crossedUnitList.Count < count) { crossedUnitList.Add(unitNewTwo); }
                     }
                 }
 
@@ -213,21 +226,17 @@ namespace GeneticAlgorithmTest
 
                 //得到这道题的知识点
                 var problem = new Problem();
-                for (var i = 0; i < temp.Points.Count; i++) {
-                    if (paper.Points.Contains(temp.Points[i])) {
-                        problem.Points.Add(temp.Points[i]);
-                    }
-                }
+                for (var i = 0; i < temp.Points.Count; i++) { if (paper.Points.Contains(temp.Points[i])) { problem.Points.Add(temp.Points[i]); } }
 
                 //从数据库中选择包含此题有效知识点的同类型同分数不同题号试题
                 var otherDB = from a in problemList
-                    where a.Points.Intersect(problem.Points).Count() > 0
-                    select a;
+                              where a.Points.Intersect(problem.Points).Count() > 0
+                              select a;
 
                 var smallDB =
                     otherDB.Where(p => IsContain(paper, p))
-                        .Where(o => o.Score == temp.Score && o.Type == temp.Type && o.ID != temp.ID)
-                        .ToList();
+                           .Where(o => o.Score == temp.Score && o.Type == temp.Type && o.ID != temp.ID)
+                           .ToList();
 
                 //从符合要求的试题中随机选一题替换
                 if (smallDB.Count > 0) {
@@ -251,12 +260,14 @@ namespace GeneticAlgorithmTest
             var db = new DB();
 
             //期望试卷
-            var paper = new Paper {
+            var paper = new Paper
+            {
                 ID = 1,
                 TotalScore = 100,
                 Difficulty = 0.72,
                 Points =
-                    new List<int> {
+                    new List<int>
+                    {
                         1,
                         3,
                         5,
@@ -333,9 +344,7 @@ namespace GeneticAlgorithmTest
                 unitList = Cross(unitList, 20, paper);
 
                 //是否可以结束（有符合要求试卷即可结束）
-                if (IsEnd(unitList, expand)) {
-                    break;
-                }
+                if (IsEnd(unitList, expand)) { break; }
 
                 //变异
                 unitList = Change(unitList, db.ProblemDB, paper);
@@ -356,13 +365,7 @@ namespace GeneticAlgorithmTest
         /// <param name="endcondition">结束条件（适应度要求）</param>
         /// <returns>bool</returns>
         public bool IsEnd(List<Unit> unitList, double endcondition) {
-            if (unitList.Count > 0) {
-                for (var i = 0; i < unitList.Count; i++) {
-                    if (unitList[i].AdaptationDegree >= endcondition) {
-                        return true;
-                    }
-                }
-            }
+            if (unitList.Count > 0) { for (var i = 0; i < unitList.Count; i++) { if (unitList[i].AdaptationDegree >= endcondition) { return true; } } }
             return false;
         }
 
@@ -412,11 +415,7 @@ namespace GeneticAlgorithmTest
         /// <param name="problem">一首试题</param>
         /// <returns>bool</returns>
         private bool IsContain(Paper paper, Problem problem) {
-            for (var i = 0; i < problem.Points.Count; i++) {
-                if (paper.Points.Contains(problem.Points[i])) {
-                    return true;
-                }
-            }
+            for (var i = 0; i < problem.Points.Count; i++) { if (paper.Points.Contains(problem.Points[i])) { return true; } }
             return false;
         }
 

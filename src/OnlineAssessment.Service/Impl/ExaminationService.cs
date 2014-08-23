@@ -1,10 +1,27 @@
-﻿using System;
+﻿// Author:
+//      Lu Rongkai <lurongkai@gmail.com>
+// 
+// Copyright (c) 2014 lurongkai
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
 using OnlineAssessment.Domain;
-using OnlineAssessment.Domain.Service.PaperGeneration;
 using OnlineAssessment.Infrastructure;
 using OnlineAssessment.Service.Message;
 
@@ -13,8 +30,7 @@ namespace OnlineAssessment.Service
     public class ExaminationService : IExaminationService
     {
         public Guid GenerateRandomExaminationPaper(ExaminationPaperConfig config) {
-            using (var context = new OnlineAssessmentContext())
-            {
+            using (var context = new OnlineAssessmentContext()) {
                 var subject = context.Subjects.Find(config.SubjectKey);
                 var questions = context
                     .Questions
@@ -27,20 +43,19 @@ namespace OnlineAssessment.Service
                         QuestionDegree = q.QuestionDegree,
                         QuestionScore = q.Score
                     });
-				var generator = new OnlineAssessment.Domain.Service.PaperGeneration.SimplePaperGenerationService(questions.ToList());
+                var generator = new OnlineAssessment.Domain.Service.PaperGeneration.SimplePaperGenerationService(questions.ToList());
                 var p = generator.GenerateExaminationPaper(config.AsPaperConstraint());
                 var questionList = p.GeneSeries.Select(qc => qc.QuestionId).ToList();
 
-				var paper = new ExaminationPaper() {
-					Title = config.Title,
-					Description = config.Description,
+                var paper = new ExaminationPaper()
+                {
+                    Title = config.Title,
+                    Description = config.Description,
                     Degree = p.Degree,
                     TotalScore = p.TotalScore
-				};
+                };
 
-				foreach(var question in context.Questions.Where(q => questionList.Contains(q.QuestionId)).ToList()){
-					paper.Questions.Add(question.ConvertToPaperQuestion());
-				}
+                foreach (var question in context.Questions.Where(q => questionList.Contains(q.QuestionId)).ToList()) { paper.Questions.Add(question.ConvertToPaperQuestion()); }
 
                 subject.ExaminationPapers.Add(paper);
                 context.SaveChanges();
@@ -50,8 +65,7 @@ namespace OnlineAssessment.Service
         }
 
         public Guid AddExamination(string subjectKey, Guid examinationPaperId, ExaminationConfig examinationPaper) {
-            using (var context = new OnlineAssessmentContext())
-            {
+            using (var context = new OnlineAssessmentContext()) {
                 var subject = context.Subjects.Find(subjectKey);
                 var paper = context.ExaminationPapers.Find(examinationPaperId);
 
@@ -62,11 +76,8 @@ namespace OnlineAssessment.Service
                 examination.Duration = examinationPaper.Duration;
                 examination.Paper = paper;
 
-                if (examinationPaper.BeginImmediately) {
-                    examination.State = ExaminationState.Active;
-                } else {
-                    examination.State = ExaminationState.Pending;
-                }
+                if (examinationPaper.BeginImmediately) { examination.State = ExaminationState.Active; }
+                else { examination.State = ExaminationState.Pending; }
 
                 subject.Examinations.Add(examination);
                 context.SaveChanges();
@@ -117,8 +128,8 @@ namespace OnlineAssessment.Service
             using (var context = new OnlineAssessmentContext()) {
                 var subject = context.Subjects.Find(subjectKey);
                 var examination = subject.Examinations
-                    .Where(e => examinationState == null || e.State == examinationState.Value)
-                    .ToList();
+                                         .Where(e => examinationState == null || e.State == examinationState.Value)
+                                         .ToList();
                 return examination;
             }
         }
@@ -129,9 +140,9 @@ namespace OnlineAssessment.Service
                 var student = context.Students.Find(userId);
                 if (student.LearningSubjects.Contains(subject)) {
                     var examinations = subject.Examinations
-                        .Where(e => e.State == ExaminationState.Active)
-                        .Where(e => !e.HasStudentAnswerSheet(student))
-                        .ToList();
+                                              .Where(e => e.State == ExaminationState.Active)
+                                              .Where(e => !e.HasStudentAnswerSheet(student))
+                                              .ToList();
                     return examinations;
                 }
 
