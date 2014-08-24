@@ -16,6 +16,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+// 
+// Source code hosted on: https://github.com/lurongkai/online-assessment
 
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -40,10 +42,8 @@ namespace OnlineAssessment.Infrastructure
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
 #if DEBUG
             Database.SetInitializer(new DropCreateDatabaseAlways<OnlineAssessmentContext>());
-#endif
-            base.OnModelCreating(modelBuilder);
-
             Database.SetInitializer(new OnlineAssessmentContextInitializer());
+#endif
 
             modelBuilder.Configurations
                         .Add(new ExaminationMapping())
@@ -57,6 +57,8 @@ namespace OnlineAssessment.Infrastructure
                         .Add(new StudentMapping())
                         .Add(new TeacherMapping())
                         .Add(new NewsMapping());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

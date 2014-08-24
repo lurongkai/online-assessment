@@ -43,6 +43,8 @@ GNU General Public License for more details.&#xD;
 You should have received a copy of the GNU General Public License&#xD;
 along with this program; if not, write to the Free Software&#xD;
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA&#xD;
+&#xD;
+Source code hosted on: https://github.com/lurongkai/online-assessment&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/Environment/ExternalSources/FirstTimeFormShown/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/ExternalSources/NavigationMode/@EntryValue">Disabled</s:String>
