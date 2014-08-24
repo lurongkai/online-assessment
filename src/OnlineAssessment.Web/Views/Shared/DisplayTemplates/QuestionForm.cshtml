@@ -1,11 +1,6 @@
 ﻿@model QuestionForm
            
-@if (Model == QuestionForm.SingleSelection) {
-    <span>单选题</span>
-} else if (Model == QuestionForm.MultipleSelection) {
-    <span>多选题</span>
-} else if (Model == QuestionForm.Subjective) {
-    <span>主观题</span>
-} else {
-    <span>未知</span>
-}
+@if (Model == QuestionForm.SingleSelection) { <span>单选题</span> }
+else if (Model == QuestionForm.MultipleSelection) { <span>多选题</span> }
+else if (Model == QuestionForm.Subjective) { <span>主观题</span> }
+else { <span>未知</span> }

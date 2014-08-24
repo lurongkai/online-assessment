@@ -1,7 +1,28 @@
-﻿using System;
+﻿// Author:
+//      Lu Rongkai <lurongkai@gmail.com>
+// 
+// Copyright (c) 2014 lurongkai
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+// 
+// Source code hosted on: https://github.com/lurongkai/online-assessment
+
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Collections.Generic;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Infrastructure;
 
@@ -11,15 +32,14 @@ namespace OnlineAssessment.Service
     {
         public ApplicationUser GetProfile(string userId) {
             using (var context = new OnlineAssessmentContext()) {
-                ApplicationUser user = context.Users.Find(userId);
+                var user = context.Users.Find(userId);
 
                 return user;
             }
         }
 
         public IEnumerable<Subject> GetStudentSubjects(string studentId) {
-            using (var context = new OnlineAssessmentContext())
-            {
+            using (var context = new OnlineAssessmentContext()) {
                 var student = context.Students.Find(studentId);
                 return student.LearningSubjects;
             }
@@ -32,21 +52,17 @@ namespace OnlineAssessment.Service
             }
         }
 
-        public IEnumerable<News> GetAllNews(int? page, int pageSize = 50)
-        {
-            using (var context = new OnlineAssessmentContext())
-            {
+        public IEnumerable<News> GetAllNews(int? page, int pageSize = 50) {
+            using (var context = new OnlineAssessmentContext()) {
                 return context.News.OrderByDescending(n => n.PublishedDate)
-                    .Skip(pageSize * (page ?? 1 - 1))
-                    .Take(pageSize)
-                    .ToList();
+                              .Skip(pageSize*(page ?? 1 - 1))
+                              .Take(pageSize)
+                              .ToList();
             }
         }
 
-        public Guid CreateNews(News news)
-        {
-            using (var context = new OnlineAssessmentContext())
-            {
+        public Guid CreateNews(News news) {
+            using (var context = new OnlineAssessmentContext()) {
                 context.News.Add(news);
                 context.SaveChanges();
 
@@ -55,11 +71,10 @@ namespace OnlineAssessment.Service
         }
 
         public void DeleteNews(Guid newsId) {
-            using (var context = new OnlineAssessmentContext())
-            {
+            using (var context = new OnlineAssessmentContext()) {
                 var news = context.News.Find(newsId);
                 context.News.Remove(news);
-                
+
                 context.SaveChanges();
             }
         }

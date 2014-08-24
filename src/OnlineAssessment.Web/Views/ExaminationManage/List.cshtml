@@ -9,8 +9,7 @@
             <th>考试时长</th>
             <th>操作</th>
         </tr>
-        @foreach (var item in Model)
-        {
+        @foreach (var item in Model) {
             <tr>
                 <td>
                     @item.Title
@@ -25,17 +24,10 @@
                     @item.Duration
                 </td>
                 <td>
-                    @if (item.State == ExaminationState.Pending)
-                    {
-                        @Html.ActionLink("激活", "Active", new { examinationId = item.ExaminationId }, new { @class = "btn btn-primary btn-xs" })
-                    }
-                    @if (item.State == ExaminationState.Active)
-                    {
-                        @Html.ActionLink("归档", "Archive", new { examinationId = item.ExaminationId }, new { @class = "btn btn-danger btn-xs" })
-                    }
+                    @if (item.State == ExaminationState.Pending) { @Html.ActionLink("激活", "Active", new {examinationId = item.ExaminationId}, new {@class = "btn btn-primary btn-xs"}) }
+                    @if (item.State == ExaminationState.Active) { @Html.ActionLink("归档", "Archive", new {examinationId = item.ExaminationId}, new {@class = "btn btn-danger btn-xs"}) }
                 </td>
             </tr>
         }
     </table>
 </p>
-

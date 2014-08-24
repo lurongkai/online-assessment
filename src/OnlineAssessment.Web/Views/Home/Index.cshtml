@@ -12,8 +12,7 @@
             <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
         </ol>
         <div class="carousel-inner">
-            @for (int i = 0; i< 3; i++)
-            {
+            @for (var i = 0; i < 3; i++) {
                 News item = ViewBag.News[i];
                 var classProperty = "item" + (i == 0 ? " active" : "");
                 <div class="@classProperty">
@@ -21,7 +20,7 @@
                         <div class="carousel-caption">
                             <h1>@item.Title - @item.PublishedDate.ToString("d")</h1>
                             <p>@item.Content.MaxLengthAs(300)</p>
-                            <p>@Html.ActionLink("详细", "News", new { newsId = item.NewsId }, new { @class = "btn btn-lg btn-primary" })</p>
+                            <p>@Html.ActionLink("详细", "News", new {newsId = item.NewsId}, new {@class = "btn btn-lg btn-primary"})</p>
                         </div>
                     </div>
                 </div>

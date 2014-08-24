@@ -10,10 +10,10 @@
             新建题目 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-            <li>@Html.ActionLink("单选题", "Create", new { ViewBag.subjectKey, questionForm = QuestionForm.SingleSelection })</li>
-            <li>@Html.ActionLink("多选题", "Create", new { ViewBag.subjectKey, questionForm = QuestionForm.MultipleSelection })</li>
+            <li>@Html.ActionLink("单选题", "Create", new {ViewBag.subjectKey, questionForm = QuestionForm.SingleSelection})</li>
+            <li>@Html.ActionLink("多选题", "Create", new {ViewBag.subjectKey, questionForm = QuestionForm.MultipleSelection})</li>
             <li class="divider"></li>
-            <li>@Html.ActionLink("主观题", "Create", new { ViewBag.subjectKey, questionForm = QuestionForm.Subjective })</li>
+            <li>@Html.ActionLink("主观题", "Create", new {ViewBag.subjectKey, questionForm = QuestionForm.Subjective})</li>
         </ul>
     </div>
 </p>
@@ -42,9 +42,9 @@
                     @item.Score
                 </td>
                 <td>
-                    @Html.ActionLink("查看", "Details", new { questionId = item.QuestionId }, new { @class = "btn btn-default btn-xs" })
-                    @Html.ActionLink("编辑", "Edit", new { questionId = item.QuestionId }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("删除", "Delete", new { questionId = item.QuestionId }, new { @class = "btn btn-danger btn-xs" })
+                    @Html.ActionLink("查看", "Details", new {questionId = item.QuestionId}, new {@class = "btn btn-default btn-xs"})
+                    @Html.ActionLink("编辑", "Edit", new {questionId = item.QuestionId}, new {@class = "btn btn-primary btn-xs"})
+                    @Html.ActionLink("删除", "Delete", new {questionId = item.QuestionId}, new {@class = "btn btn-danger btn-xs"})
                 </td>
             </tr>
         }
@@ -52,11 +52,8 @@
 </p>
 <p>
     <div class="btn-group">
-        @if (ViewBag.Page > 1)
-        {
-            @Html.ActionLink("上一页", "List", new {page = ViewBag.Page - 1}, new {@class = "btn btn-default"})
-        }
+        @if (ViewBag.Page > 1) { @Html.ActionLink("上一页", "List", new {page = ViewBag.Page - 1}, new {@class = "btn btn-default"}) }
 
-        @Html.ActionLink("下一页", "List", new { page = ViewBag.Page + 1 }, new { @class = "btn btn-default" })
+        @Html.ActionLink("下一页", "List", new {page = ViewBag.Page + 1}, new {@class = "btn btn-default"})
     </div>
 </p>

@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ExaminationPaper>
 <p>
-    @Html.ActionLink("新建", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("新建", "Create", null, new {@class = "btn btn-primary"})
 </p>
 <p>
     <table class="table table-hover table-bordered">
@@ -22,8 +22,8 @@
                     @item.Degree
                 </td>
                 <td>
-                    @Html.ActionLink("添加考试", "Create", "ExaminationManage", new { paperId = item.ExaminationPaperId }, new { @class = "btn btn-danger btn-xs" })
-                    @Html.ActionLink("删除", "Delete", new { paperId = item.ExaminationPaperId }, new { @class = "btn btn-danger btn-xs" })
+                    @Html.ActionLink("添加考试", "Create", "ExaminationManage", new {paperId = item.ExaminationPaperId}, new {@class = "btn btn-danger btn-xs"})
+                    @Html.ActionLink("删除", "Delete", new {paperId = item.ExaminationPaperId}, new {@class = "btn btn-danger btn-xs"})
                 </td>
             </tr>
         }
