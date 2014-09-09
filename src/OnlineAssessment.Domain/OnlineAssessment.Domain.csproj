@@ -61,6 +61,7 @@
     <Compile Include="Answering\AnswerSheet.cs" />
     <Compile Include="Answering\AnswerSheetItem.cs" />
     <Compile Include="Answering\QuestionEvaluator.cs" />
+    <Compile Include="N\Course.cs" />
     <Compile Include="Examination\Examination.cs" />
     <Compile Include="Examination\PaperQuestion.cs" />
     <Compile Include="Examination\PaperQuestionOption.cs" />
@@ -68,6 +69,12 @@
     <Compile Include="Examination\ExaminationType.cs" />
     <Compile Include="ICanMigrate.cs" />
     <Compile Include="News\News.cs" />
+    <Compile Include="N\Exam.cs" />
+    <Compile Include="N\ExamSchedule.cs" />
+    <Compile Include="N\IAggregateMember.cs" />
+    <Compile Include="N\Paper.cs" />
+    <Compile Include="N\Problem.cs" />
+    <Compile Include="N\ValueObject.cs" />
     <Compile Include="Question\QuestionModule.cs" />
     <Compile Include="Account\ApplicationUser.cs" />
     <Compile Include="Common\Subject.cs" />
@@ -80,6 +87,7 @@
     <Compile Include="Question\QuestionForm.cs" />
     <Compile Include="Account\Student.cs" />
     <Compile Include="Account\Teacher.cs" />
+    <Compile Include="N\Subject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
