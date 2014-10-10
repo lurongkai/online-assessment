@@ -10,5 +10,9 @@ namespace OnlineAssessment.Domain.N
     {
 
         public ICollection<Option> Options { get; set; }
+
+        public override int Evaluate() {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain.N
 {
-    public class Question
+    public class Exam
     {
-        public Guid QuestionId { get; set; }
+        public Guid ExamId { get; set; }
 
-        public string Body { get; set; }
+        public Paper Paper { get; set; }
+        public ExamSchedule Schedule { get; set; }
     }
 }
