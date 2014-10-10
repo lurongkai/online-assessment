@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain.N
 {
-    public class Course
+    public class SelectableQuestion : Question
     {
-        public string CourseKey { get; set; }
+
+        public ICollection<Option> Options { get; set; }
     }
 }

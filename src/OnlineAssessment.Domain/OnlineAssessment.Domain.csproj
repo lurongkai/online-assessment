@@ -72,8 +72,11 @@
     <Compile Include="N\Exam.cs" />
     <Compile Include="N\ExamSchedule.cs" />
     <Compile Include="N\IAggregateMember.cs" />
+    <Compile Include="N\Option.cs" />
     <Compile Include="N\Paper.cs" />
-    <Compile Include="N\Problem.cs" />
+    <Compile Include="N\Question.cs" />
+    <Compile Include="N\SelectableQuestion.cs" />
+    <Compile Include="N\SubjectiveQuestion.cs" />
     <Compile Include="N\ValueObject.cs" />
     <Compile Include="Question\QuestionModule.cs" />
     <Compile Include="Account\ApplicationUser.cs" />

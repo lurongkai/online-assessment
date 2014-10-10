@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain.N
 {
-    public class Course
+    public class Question
     {
-        public string CourseKey { get; set; }
+        public Guid QuestionId { get; set; }
+
+        public string Body { get; set; }
     }
 }

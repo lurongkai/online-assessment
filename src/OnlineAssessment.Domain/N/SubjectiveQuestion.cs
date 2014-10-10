@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineAssessment.Domain.N
 {
-    public class Course
+    public class SubjectiveQuestion : Question
     {
-        public string CourseKey { get; set; }
     }
 }
