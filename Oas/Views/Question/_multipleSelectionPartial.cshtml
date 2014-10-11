@@ -1,0 +1,49 @@
+﻿@model OnlineAssessment.Domain.Question
+
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.subjectKey)
+    @Html.Hidden("QuestionForm", "MultipleSelection")
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuestionBody, new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.QuestionBody, new {@class = "form-control", rows = 5})
+            @Html.ValidationMessageFor(model => model.QuestionBody)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuestionModule, "模块", new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.QuestionModule, (IEnumerable<SelectListItem>) ViewBag.QuestionCategory, new {@class = "form-control"})
+            @Html.ValidationMessageFor(model => model.QuestionBody)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("QuestionOptions", "选项", new {@class = "control-label col-md-2"})
+        <div class="col-md-10 question-option">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    @Html.CheckBox("QuestionOptions[0].IsRightAnswer", true)
+                </span>
+                @Html.TextBox("QuestionOptions[0].Description", "", new {@class = "form-control"})
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6  col-md-offset-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    @Html.LabelFor(model => model.QuestionDegree)
+                </span>
+                @Html.DropDownListFor(m => m.QuestionDegree, (IEnumerable<SelectListItem>) ViewBag.QuestionDegree, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.QuestionDegree)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="pull-right">
+                <button type="button" onclick=" AddNewOption() " class="btn btn-info">添加选项</button>
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("职业技能培训系统模拟考核平台", "Index", "Home", null, new {@class = "navbar-brand active"})
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            @if (ViewData["DisableNavControl"] == null || !(bool) ViewData["DisableNavControl"]) {
+                <ul class="nav navbar-nav navbar-right">
+                    @Html.Partial("_login-partial", new LoginViewModel())
+                </ul>
+            }
+        </div>
+    </div>
+</div>

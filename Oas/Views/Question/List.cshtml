@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Question>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<p>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            新建题目 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("单选题", "Create", new {ViewBag.subjectKey, questionForm = QuestionForm.SingleSelection})</li>
+            <li>@Html.ActionLink("多选题", "Create", new {ViewBag.subjectKey, questionForm = QuestionForm.MultipleSelection})</li>
+            <li class="divider"></li>
+            <li>@Html.ActionLink("主观题", "Create", new {ViewBag.subjectKey, questionForm = QuestionForm.Subjective})</li>
+        </ul>
+    </div>
+</p>
+
+<p>
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>题目</th>
+            <th>难度</th>
+            <th>类型</th>
+            <th>分数</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @item.QuestionBody.MaxLengthAs(20)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.QuestionDegree, "QuestionDegree")
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.QuestionForm, "QuestionForm")
+                </td>
+                <td>
+                    @item.Score
+                </td>
+                <td>
+                    @Html.ActionLink("查看", "Details", new {questionId = item.QuestionId}, new {@class = "btn btn-default btn-xs"})
+                    @Html.ActionLink("编辑", "Edit", new {questionId = item.QuestionId}, new {@class = "btn btn-primary btn-xs"})
+                    @Html.ActionLink("删除", "Delete", new {questionId = item.QuestionId}, new {@class = "btn btn-danger btn-xs"})
+                </td>
+            </tr>
+        }
+    </table>
+</p>
+<p>
+    <div class="btn-group">
+        @if (ViewBag.Page > 1) { @Html.ActionLink("上一页", "List", new {page = ViewBag.Page - 1}, new {@class = "btn btn-default"}) }
+
+        @Html.ActionLink("下一页", "List", new {page = ViewBag.Page + 1}, new {@class = "btn btn-default"})
+    </div>
+</p>

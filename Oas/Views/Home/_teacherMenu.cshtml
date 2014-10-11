@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="list-group">
+    <a href="#" class="list-group-item active">科目管理</a>
+    <a href="@Url.Action("List", "Question")" class="list-group-item">题库管理</a>
+    <a href="@Url.Action("List", "Paper")" class="list-group-item">试卷管理</a>
+</div>
+
+<div class="list-group">
+    <a href="#" class="list-group-item active">考试管理</a>
+    <a href="@Url.Action("List", "ExaminationManage", new {state = ExaminationState.Pending})" class="list-group-item">准备中</a>
+    <a href="@Url.Action("List", "ExaminationManage", new {state = ExaminationState.Active})" class="list-group-item">已激活</a>
+    <a href="@Url.Action("List", "ExaminationManage", new {state = ExaminationState.Archived})" class="list-group-item">已归档</a>
+</div>
+
+@*<div class="list-group">
+    <a href="#" class="list-group-item active">手动阅卷</a>
+    <a href="#" class="list-group-item">未完成<span class="badge bg_danger">0</span></a>
+    <a href="#" class="list-group-item">已批阅<span class="badge bg_danger">0</span></a>
+</div>*@

@@ -1,0 +1,11 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="list-group">
+    <a href="#" class="list-group-item active">管理</a>
+    <a href="@Url.Action("SubjectList", "Admin")" class="list-group-item">科目管理</a>
+    <a href="@Url.Action("TeacherList", "Admin")" class="list-group-item">教师管理</a>
+    <a href="@Url.Action("StudentList", "Admin")" class="list-group-item">学生管理</a>
+    <a href="@Url.Action("NewsList", "Admin")" class="list-group-item">信息管理</a>
+</div>

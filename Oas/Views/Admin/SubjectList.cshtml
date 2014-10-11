@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Subject>
+@{
+    ViewBag.Title = "SubjectList";
+    Layout = "~/Views/Shared/_common-layout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("新建", "SubjectCreate", null, new {@class = "btn btn-primary"})
+</p>
+<p>
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>名称</th>
+            <th>课程key</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.SubjectKey
+                </td>
+                <td>
+                    @Html.ActionLink("编辑", "SubjectEdit", new {subjectKey = item.SubjectKey}, new {@class = "btn btn-primary btn-xs"})
+                    @Html.ActionLink("删除", "SubjectDelete", new {subjectKey = item.SubjectKey}, new {@class = "btn btn-danger btn-xs"})
+                </td>
+            </tr>
+        }
+    </table>
+</p>
