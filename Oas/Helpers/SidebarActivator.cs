@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace OnlineAssessment.Web.Core.Helpers
+namespace Oas.Helpers
 {
     public class SidebarActivator
     {

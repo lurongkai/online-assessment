@@ -1,20 +1,19 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using OnlineAssessment.Domain;
-using OnlineAssessment.Web.Core.Models;
+using Oas.Membership;
+using Oas.Models;
 
-namespace OnlineAssessment.Web.Core.Controllers
+namespace Oas.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private UserManager<ApplicationUser> _userManager;
+        private OasUserManager _userManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager) {
+        public AccountController(OasUserManager userManager) {
             _userManager = userManager;
         }
 
@@ -37,7 +36,6 @@ namespace OnlineAssessment.Web.Core.Controllers
                 ModelState.AddModelError("", "Invalid username or password.");
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -51,7 +49,7 @@ namespace OnlineAssessment.Web.Core.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
-                var user = new Student {UserName = model.UserName};
+                var user = new OasIdentity {UserName = model.UserName};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
                     await SignInAsync(user, isPersistent: false);
@@ -60,7 +58,6 @@ namespace OnlineAssessment.Web.Core.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -75,13 +72,11 @@ namespace OnlineAssessment.Web.Core.Controllers
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (ModelState.IsValid) {
                 var result =
-                    await
-                        _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                    await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                 if (result.Succeeded) { return RedirectToAction("Manage"); }
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -100,17 +95,13 @@ namespace OnlineAssessment.Web.Core.Controllers
 
         #region Helpers
 
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
-
         private IAuthenticationManager AuthenticationManager {
             get { return HttpContext.GetOwinContext().Authentication; }
         }
 
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent) {
+        private async Task SignInAsync(OasIdentity user, bool isPersistent) {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            identity.AddClaim(new Claim("UserId", user.Id));
             AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = isPersistent}, identity);
         }
 

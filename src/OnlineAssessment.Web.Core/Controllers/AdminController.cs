@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineAssessment.Domain;
@@ -48,8 +47,7 @@ namespace OnlineAssessment.Web.Core.Controllers
             try {
                 _subjectService.AddSubject(subject);
                 return RedirectToAction("SubjectList");
-            }
-            catch {
+            } catch {
                 ViewBag.Message = "科目key已经存在";
                 return View();
             }
@@ -83,8 +81,7 @@ namespace OnlineAssessment.Web.Core.Controllers
             var studentRole = _roleManager.FindByName("Student");
             var teachers = _userManager.Users
                                        .Where(u => u.Roles.Any(r => r.RoleId == teacherRole.Id))
-                                       .Select(u => new UserViewModel()
-                                       {
+                                       .Select(u => new UserViewModel() {
                                            Name = u.Name,
                                            Username = u.UserName,
                                            RoleName = "Teacher",
@@ -92,8 +89,7 @@ namespace OnlineAssessment.Web.Core.Controllers
                                        });
             var students = _userManager.Users
                                        .Where(u => u.Roles.Any(r => r.RoleId == studentRole.Id))
-                                       .Select(u => new UserViewModel()
-                                       {
+                                       .Select(u => new UserViewModel() {
                                            Name = u.Name,
                                            Username = u.UserName,
                                            RoleName = "Student",

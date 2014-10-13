@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Oas.Domain;
+using Oas.Service.Messages;
 
 namespace Oas.Service.Interfaces
 {
     public interface IQuestionService
     {
-        IEnumerable<Question> GetAllQuestion(string subjectKey, int? page, QuestionForm? questionType = null);
+        IEnumerable<Question> GetAllQuestion(string courseName, PaginationData paginationData);
         Question GetQuestion(Guid questionId);
-        Guid AddQuestion(string subjectKey, Question question);
-        void ModifyQuestion(Question question);
+
+        Guid CreateQuestion(string courseName, Question question);
+        void ModifyQuestion(Guid questionId, Question question);
         void DeleteQuestion(Guid questionId);
     }
 }

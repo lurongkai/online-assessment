@@ -1,17 +1,14 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using OnlineAssessment.Domain;
+using Oas.Domain;
 
-namespace OnlineAssessment.Infrastructure.Mapping
+namespace Oas.Infrastructure.Mapping
 {
     public class StudentMapping : EntityTypeConfiguration<Student>
     {
         public StudentMapping() {
             ToTable("Students");
 
-            Property(m => m.JobTitle).IsOptional();
-            Property(m => m.Company).IsOptional();
-
-            HasMany(m => m.LearningSubjects).WithMany(m => m.SubscribedStudents);
+            HasMany(m => m.SubscribeCourses);
         }
     }
 
@@ -20,7 +17,7 @@ namespace OnlineAssessment.Infrastructure.Mapping
         public TeacherMapping() {
             ToTable("Teachers");
 
-            HasRequired(m => m.ResponsibleSubject).WithOptional(m => m.ResponsibleTeacher);
+            HasRequired(m => m.TeachCourse);
         }
     }
 }

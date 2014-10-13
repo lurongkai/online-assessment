@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace OnlineAssessment.Web.Core.Models
+namespace Oas.Models
 {
     public class UserViewModel
     {

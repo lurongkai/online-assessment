@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OnlineAssessment.Web.Core.Models
+namespace Oas.Models
 {
     public class ManageUserViewModel
     {

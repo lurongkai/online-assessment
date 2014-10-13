@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using OnlineAssessment.Domain;
+using Oas.Domain.Application;
 
-namespace OnlineAssessment.Infrastructure.Mapping
+namespace Oas.Infrastructure.Mapping
 {
     public class NewsMapping : EntityTypeConfiguration<News>
     {

@@ -17,8 +17,7 @@ namespace OnlineAssessment.Service
                     .Questions
                     .Include(q => q.QuestionOptions)
                     .Where(q => q.Subject.SubjectKey == config.SubjectKey)
-                    .Select(q => new QuestionCharacter()
-                    {
+                    .Select(q => new QuestionCharacter() {
                         QuestionId = q.QuestionId,
                         QuestionForm = q.QuestionForm,
                         QuestionDegree = q.QuestionDegree,
@@ -28,8 +27,7 @@ namespace OnlineAssessment.Service
                 var p = generator.GenerateExaminationPaper(config.AsPaperConstraint());
                 var questionList = p.GeneSeries.Select(qc => qc.QuestionId).ToList();
 
-                var paper = new ExaminationPaper()
-                {
+                var paper = new ExaminationPaper() {
                     Title = config.Title,
                     Description = config.Description,
                     Degree = p.Degree,
@@ -57,8 +55,7 @@ namespace OnlineAssessment.Service
                 examination.Duration = examinationPaper.Duration;
                 examination.Paper = paper;
 
-                if (examinationPaper.BeginImmediately) { examination.State = ExaminationState.Active; }
-                else { examination.State = ExaminationState.Pending; }
+                if (examinationPaper.BeginImmediately) { examination.State = ExaminationState.Active; } else { examination.State = ExaminationState.Pending; }
 
                 subject.Examinations.Add(examination);
                 context.SaveChanges();

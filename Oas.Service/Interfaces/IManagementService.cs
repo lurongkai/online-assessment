@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using Oas.Domain;
+using Oas.Domain.Application;
+using Oas.Service.Messages;
 
 namespace Oas.Service.Interfaces
 {
     public interface IManagementService
     {
-        ApplicationUser GetProfile(string userId);
-
-        IEnumerable<Subject> GetStudentSubjects(string studentId);
-        Subject GetTeacherSubject(string teacherId);
-
-        IEnumerable<News> GetAllNews(int? page, int pageSize = 50);
-        Guid CreateNews(News news);
-        void DeleteNews(Guid newsId);
+        IEnumerable<News> GetAllNews(PaginationData paginationData);
         News GetNews(Guid newsId);
-        void EditNews(News modifiedNews);
+
+        Guid CreateNews(News news);
+        void ModifyNews(Guid newsId, News modifiedNews);
+        void DeleteNews(Guid newsId);
+
+        void CreateTeacher(Guid courseId, Teacher teacher);
+        void CreateStudent(Student student);
+
+        void SubscribeCourse(Guid courseId, Guid studentId);
     }
 }

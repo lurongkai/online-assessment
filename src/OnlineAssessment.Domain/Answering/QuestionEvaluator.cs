@@ -17,8 +17,7 @@ namespace OnlineAssessment.Domain
 
             var answer = answerSheetItem.Choices.FirstOrDefault();
 
-            if (answer != null && answer.IsRightAnswer) { answerSheetItem.ObtainedScore = answerSheetItem.PaperQuestion.Score; }
-            else { answerSheetItem.ObtainedScore = 0; }
+            if (answer != null && answer.IsRightAnswer) { answerSheetItem.ObtainedScore = answerSheetItem.PaperQuestion.Score; } else { answerSheetItem.ObtainedScore = 0; }
         }
 
         private void EvaluateMultipleSelection(AnswerSheetItem answerSheetItem) {
@@ -33,8 +32,7 @@ namespace OnlineAssessment.Domain
             var rightAnswerCount = answerSheetItem.Choices.Count(c => c.IsRightAnswer);
             var allRightAnswerCount = answerSheetItem.GetRightAnswerCount();
 
-            if (rightAnswerCount == allRightAnswerCount) { answerSheetItem.ObtainedScore = answerSheetItem.PaperQuestion.Score; }
-            else { answerSheetItem.ObtainedScore = answerSheetItem.PaperQuestion.Score/2; }
+            if (rightAnswerCount == allRightAnswerCount) { answerSheetItem.ObtainedScore = answerSheetItem.PaperQuestion.Score; } else { answerSheetItem.ObtainedScore = answerSheetItem.PaperQuestion.Score/2; }
         }
     }
 }

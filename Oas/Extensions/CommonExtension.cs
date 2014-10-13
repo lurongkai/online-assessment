@@ -1,4 +1,4 @@
-﻿namespace OnlineAssessment.Web.Core.Extensions
+﻿namespace Oas.Extensions
 {
     public static class CommonExtension
     {

@@ -1,33 +1,37 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using OnlineAssessment.Domain;
+using Oas.Domain;
 
-namespace OnlineAssessment.Infrastructure.Mapping
+namespace Oas.Infrastructure.Mapping
 {
-    public class QuestionMapping : EntityTypeConfiguration<Question>
+    public class SelectableQuestionMapping : EntityTypeConfiguration<SelectableQuestion>
     {
-        public QuestionMapping() {
+        public SelectableQuestionMapping() {
+            Map(m => m.MapInheritedProperties());
+            ToTable("SelectableQuestions");
+
             HasKey(m => m.QuestionId);
-
-            Property(m => m.QuestionForm).IsRequired();
-            Property(m => m.QuestionModule).IsRequired();
-            Property(m => m.Score).IsRequired();
-            Property(m => m.QuestionBody).IsRequired();
-            Property(m => m.ReferenceRightAnswer).IsOptional();
-            Property(m => m.QuestionDegree).IsRequired();
-
-            HasRequired(m => m.Subject).WithMany(m => m.Questions).HasForeignKey(m => m.subjectKey);
-
-            HasMany(m => m.QuestionOptions).WithRequired().WillCascadeOnDelete(true);
+            HasMany(m => m.Options).WithRequired().WillCascadeOnDelete(true);
         }
     }
 
-    public class QuestionOptionMapping : EntityTypeConfiguration<QuestionOption>
+    public class SubjectiveQuestionMapping : EntityTypeConfiguration<SubjectiveQuestion>
+    {
+        public SubjectiveQuestionMapping() {
+            Map(m => m.MapInheritedProperties());
+            ToTable("SubjectiveQuestions");
+
+            HasKey(m => m.QuestionId);
+            HasRequired(m => m.Answer);
+        }
+    }
+
+    public class QuestionOptionMapping : EntityTypeConfiguration<Option>
     {
         public QuestionOptionMapping() {
-            HasKey(m => m.QuestionOptionId);
+            HasKey(m => m.OptionId);
 
-            Property(m => m.Description).IsRequired();
-            Property(m => m.IsRightAnswer).IsRequired();
+            Property(m => m.Content).IsRequired();
+            Property(m => m.IsRight).IsRequired();
         }
     }
 }

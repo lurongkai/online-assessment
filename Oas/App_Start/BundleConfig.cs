@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace OnlineAssessment.Web
+namespace Oas
 {
     public class BundleConfig
     {

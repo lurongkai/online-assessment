@@ -168,19 +168,23 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\EvaluatingController.cs" />
-    <Compile Include="Controllers\ExaminationController.cs" />
-    <Compile Include="Controllers\ExaminationManageController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EvalController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
+    <Compile Include="Controllers\ExerciseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaperController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\SimulationController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Extensions\CommonExtension.cs" />
-    <Compile Include="Extensions\QuestionExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SidebarActivator.cs" />
-    <Compile Include="Integration\AutofacModule.cs" />
+    <Compile Include="Integration\DatabaseModule.cs" />
+    <Compile Include="Integration\ServiceModule.cs" />
+    <Compile Include="Integration\MembershipModule.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\UserManageViewModel.cs" />
     <Compile Include="Models\Examination\ExaminationResultViewModel.cs" />
@@ -625,8 +629,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\Exercise\" />
     <Folder Include="Views\Question\DisplayTemplates\" />
     <Folder Include="Views\Question\EditTemplates\" />
+    <Folder Include="Views\Simulation\" />
+    <Folder Include="Views\Subject\" />
     <Folder Include="Views\Testing\" />
   </ItemGroup>
   <ItemGroup>
@@ -634,7 +642,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Oas.Domain\Oas.Domain.csproj">
@@ -644,6 +651,10 @@
     <ProjectReference Include="..\Oas.Infrastructure\Oas.Infrastructure.csproj">
       <Project>{99fdd5dd-74c8-400d-bdcb-214619eaa805}</Project>
       <Name>Oas.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oas.Membership\Oas.Membership.csproj">
+      <Project>{76503a03-598b-42c6-899e-83f75bab1c17}</Project>
+      <Name>Oas.Membership</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oas.Service\Oas.Service.csproj">
       <Project>{f84aa510-a09d-4b0c-844e-6d01e463a983}</Project>

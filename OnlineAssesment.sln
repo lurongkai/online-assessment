@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oas.Infrastructure", "Oas.I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oas.Service", "Oas.Service\Oas.Service.csproj", "{F84AA510-A09D-4B0C-844E-6D01E463A983}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrate", "Migrate", "{AD7B3723-4138-4284-9EC2-070CD117A4C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oas.Membership", "Oas.Membership\Oas.Membership.csproj", "{76503A03-598B-42C6-899E-83F75BAB1C17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,9 +85,21 @@ Global
 		{F84AA510-A09D-4B0C-844E-6D01E463A983}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F84AA510-A09D-4B0C-844E-6D01E463A983}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F84AA510-A09D-4B0C-844E-6D01E463A983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76503A03-598B-42C6-899E-83F75BAB1C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76503A03-598B-42C6-899E-83F75BAB1C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76503A03-598B-42C6-899E-83F75BAB1C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76503A03-598B-42C6-899E-83F75BAB1C17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{76C690C7-DA95-4979-8C64-46B137706362} = {AD7B3723-4138-4284-9EC2-070CD117A4C2}
+		{99F60CC8-F279-401B-BC75-93A1779D42F8} = {AD7B3723-4138-4284-9EC2-070CD117A4C2}
+		{AB4DBA17-EBA1-48FA-B793-DE325CC098EB} = {AD7B3723-4138-4284-9EC2-070CD117A4C2}
+		{867B92D6-5029-4080-8ADA-8823E9BD1A10} = {AD7B3723-4138-4284-9EC2-070CD117A4C2}
+		{2C7A36F1-78BF-4A2A-8C66-7FE329411AC2} = {AD7B3723-4138-4284-9EC2-070CD117A4C2}
+		{51AEA70A-5C1E-41DB-BEE8-2F6B7F7912B1} = {AD7B3723-4138-4284-9EC2-070CD117A4C2}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = src\OnlineAssessment.Web\OnlineAssessment.Web.csproj

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Security.Claims;
-using System.Web.Mvc;
 using OnlineAssessment.Domain;
 using OnlineAssessment.Service;
 using OnlineAssessment.Web.Core.Models.Examination;

@@ -43,18 +43,22 @@
     <Compile Include="Exams\Exam.cs" />
     <Compile Include="Exams\ExamSchedule.cs" />
     <Compile Include="IAggregateMember.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="Application\News.cs" />
     <Compile Include="Papers\Paper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questions\Option.cs" />
     <Compile Include="Questions\Question.cs" />
     <Compile Include="Questions\SelectableQuestion.cs" />
     <Compile Include="Questions\SubjectiveQuestion.cs" />
-    <Compile Include="Service\PaperGeneration\PaperChromosome.cs" />
-    <Compile Include="Service\PaperGeneration\PaperConstraint.cs" />
-    <Compile Include="Service\PaperGeneration\SimplePaperGenerationService.cs" />
+    <Compile Include="Student.cs" />
     <Compile Include="Subjects\Subject.cs" />
     <Compile Include="Subjects\SubjectPin.cs" />
+    <Compile Include="Teacher.cs" />
     <Compile Include="ValueObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -45,8 +45,7 @@ namespace OnlineAssessment.Domain
         public ICollection<QuestionOption> QuestionOptions { get; set; }
 
         public PaperQuestion ConvertToPaperQuestion() {
-            var q = new PaperQuestion()
-            {
+            var q = new PaperQuestion() {
                 Score = Score,
                 Degree = QuestionDegree,
                 QuestionForm = QuestionForm,

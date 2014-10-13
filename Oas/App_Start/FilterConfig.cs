@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace OnlineAssessment.Web
+namespace Oas
 {
     public class FilterConfig
     {

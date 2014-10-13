@@ -1,4 +1,4 @@
-﻿namespace OnlineAssessment.Web.Core.Models
+﻿namespace Oas.Models
 {
     public class TeacherMenuViewModel
     {

@@ -68,7 +68,7 @@
     <Compile Include="Common\Gender.cs" />
     <Compile Include="Examination\ExaminationType.cs" />
     <Compile Include="ICanMigrate.cs" />
-    <Compile Include="News\News.cs" />
+    <Compile Include="Application\News.cs" />
     <Compile Include="N\Exams\Exam.cs" />
     <Compile Include="N\Exams\ExamSchedule.cs" />
     <Compile Include="N\IAggregateMember.cs" />

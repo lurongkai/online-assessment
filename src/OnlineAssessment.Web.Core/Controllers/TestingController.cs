@@ -1,6 +1,4 @@
-﻿using System.Web.Mvc;
-
-namespace OnlineAssessment.Web.Core.Controllers
+﻿namespace OnlineAssessment.Web.Core.Controllers
 {
     public class TestingController : Controller
     {

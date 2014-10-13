@@ -7,8 +7,7 @@ namespace OnlineAssessment.Web
     {
         public static void RegisterRoutes(RouteCollection routes) {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            var defaultNamespaces = new string[]
-            {
+            var defaultNamespaces = new string[] {
                 "OnlineAssessment.Web.Core.Controllers"
             };
 

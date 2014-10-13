@@ -13,8 +13,7 @@ namespace OnlineAssessment.Domain
         public bool IsRightAnswer { get; set; }
 
         internal PaperQuestionOption ConvertToPaperQuestionOption() {
-            return new PaperQuestionOption()
-            {
+            return new PaperQuestionOption() {
                 Description = Description,
                 IsRightAnswer = IsRightAnswer
             };

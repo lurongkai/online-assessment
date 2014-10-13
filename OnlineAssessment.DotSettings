@@ -25,27 +25,7 @@
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/SIMPLE_EMBEDDED_STATEMENT_STYLE/@EntryValue">ON_SINGLE_LINE</s:String>
 	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_LIMIT/@EntryValue">200</s:Int64>
 	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_LINES/@EntryValue">False</s:Boolean>
-	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">Author:&#xD;
-     Lu Rongkai &lt;lurongkai@gmail.com&gt;&#xD;
-&#xD;
-Copyright (c) $CURRENT_YEAR$ lurongkai&#xD;
-&#xD;
-This program is free software; you can redistribute it and/or modify&#xD;
-it under the terms of the GNU General Public License as published by&#xD;
-the Free Software Foundation; either version 2 of the License, or&#xD;
-(at your option) any later version.&#xD;
-&#xD;
-This program is distributed in the hope that it will be useful,&#xD;
-but WITHOUT ANY WARRANTY; without even the implied warranty of&#xD;
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the&#xD;
-GNU General Public License for more details.&#xD;
-&#xD;
-You should have received a copy of the GNU General Public License&#xD;
-along with this program; if not, write to the Free Software&#xD;
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA&#xD;
-&#xD;
-Source code hosted on: https://github.com/lurongkai/online-assessment&#xD;
-</s:String>
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue"></s:String>
 	<s:Boolean x:Key="/Default/Environment/ExternalSources/FirstTimeFormShown/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/ExternalSources/NavigationMode/@EntryValue">Disabled</s:String>
 	<s:Boolean x:Key="/Default/Environment/Feedback/ShouldPrompt/@EntryValue">False</s:Boolean>

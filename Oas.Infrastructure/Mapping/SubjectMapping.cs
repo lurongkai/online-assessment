@@ -1,19 +1,12 @@
 using System.Data.Entity.ModelConfiguration;
-using OnlineAssessment.Domain;
+using Oas.Domain;
 
-namespace OnlineAssessment.Infrastructure.Mapping
+namespace Oas.Infrastructure.Mapping
 {
     public class SubjectMapping : EntityTypeConfiguration<Subject>
     {
         public SubjectMapping() {
-            HasKey(m => m.SubjectKey);
-
-            Property(m => m.Name).IsRequired();
-            Property(m => m.Description).IsOptional();
-
-            HasRequired(m => m.ResponsibleTeacher).WithRequiredDependent().WillCascadeOnDelete(true);
-
-            HasMany(m => m.SubscribedStudents);
+            HasKey(m => m.Name);
         }
     }
 }

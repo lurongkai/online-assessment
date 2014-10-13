@@ -1,4 +1,4 @@
-﻿namespace OnlineAssessment.Web.Core.Models.Examination
+﻿namespace Oas.Models.Examination
 {
     public class ExaminationResultViewModel
     {
