@@ -21,7 +21,7 @@ namespace Oas.Infrastructure.Mapping
             ToTable("SubjectiveQuestions");
 
             HasKey(m => m.QuestionId);
-            HasRequired(m => m.Answer);
+            Property(m => m.Answer).IsRequired();
         }
     }
 

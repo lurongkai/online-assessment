@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Mapping\AnswerSheetMapping.cs" />
     <Compile Include="Mapping\ApplicationMemberMapping.cs" />
+    <Compile Include="Mapping\CourseMapping.cs" />
     <Compile Include="Mapping\ExaminationMapping.cs" />
     <Compile Include="Mapping\NewsMapping.cs" />
     <Compile Include="Mapping\QuestionMapping.cs" />

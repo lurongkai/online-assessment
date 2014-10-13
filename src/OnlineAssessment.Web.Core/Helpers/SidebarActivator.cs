@@ -1,4 +1,6 @@
-﻿namespace OnlineAssessment.Web.Core.Helpers
+﻿using System.Web.Mvc;
+
+namespace OnlineAssessment.Web.Core.Helpers
 {
     public class SidebarActivator
     {

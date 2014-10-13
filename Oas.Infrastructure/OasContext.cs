@@ -30,6 +30,7 @@ namespace Oas.Infrastructure
 #endif
 
             modelBuilder.Configurations
+                .Add(new CourseMapping())
                 //.Add(new ExaminationMapping())
                 //.Add(new ExaminationPaperMapping())
                 //.Add(new PaperQuestionMapping())
