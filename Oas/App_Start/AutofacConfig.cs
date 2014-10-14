@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Oas
 {
@@ -10,7 +12,6 @@ namespace Oas
             var builder = new ContainerBuilder();
 
             builder.RegisterAssemblyModules(typeof (AutofacConfig).Assembly);
-
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

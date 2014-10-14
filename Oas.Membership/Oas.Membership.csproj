@@ -56,13 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OasIdentity.cs" />
+    <Compile Include="OasIdentityUser.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="OasIdentityDbContext.cs" />
-    <Compile Include="OasIdentityRole.cs" />
     <Compile Include="OasRoleManager.cs" />
-    <Compile Include="OasUserManager.cs" />
     <Compile Include="OasRoleStore.cs" />
+    <Compile Include="OasUserManager.cs" />
     <Compile Include="OasUserStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Oas.Membership
 {
-    public abstract class OasRoleManager : RoleManager<OasIdentityRole>
+    public class OasRoleManager : RoleManager<IdentityRole>
     {
-        public OasRoleManager(OasRoleStore store) : base(store) {}
+        public OasRoleManager(IRoleStore<IdentityRole, string> store) : base(store) { }
     }
 }

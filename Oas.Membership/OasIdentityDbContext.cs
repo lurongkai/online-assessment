@@ -2,6 +2,6 @@
 
 namespace Oas.Membership
 {
-    public class OasIdentityDbContext : IdentityDbContext<OasIdentity>
+    public class OasIdentityDbContext : IdentityDbContext<OasIdentityUser>
     {}
 }

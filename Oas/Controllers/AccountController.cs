@@ -49,7 +49,7 @@ namespace Oas.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
-                var user = new OasIdentity {UserName = model.UserName};
+                var user = new OasIdentityUser {UserName = model.UserName};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
                     await SignInAsync(user, isPersistent: false);
@@ -99,7 +99,7 @@ namespace Oas.Controllers
             get { return HttpContext.GetOwinContext().Authentication; }
         }
 
-        private async Task SignInAsync(OasIdentity user, bool isPersistent) {
+        private async Task SignInAsync(OasIdentityUser user, bool isPersistent) {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = isPersistent}, identity);

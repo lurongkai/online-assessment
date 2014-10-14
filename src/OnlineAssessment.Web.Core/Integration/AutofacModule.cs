@@ -19,10 +19,11 @@ namespace OnlineAssessment.Web.Core.Integration
 
             builder.RegisterType<OnlineAssessmentContext>().As<DbContext>().InstancePerRequest();
             builder.RegisterType<UserStore<ApplicationUser>>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
-            builder.RegisterType<RoleStore<IdentityRole>>().As<IRoleStore<IdentityRole, string>>().InstancePerDependency();
+            //builder.RegisterType<RoleStore<IdentityRole>>().As<IRoleStore<IdentityRole, string>>().InstancePerDependency();
+            
             builder.RegisterType<UserManager<ApplicationUser>>().InstancePerRequest();
             //builder.RegisterType<IdentityRole>();
-            builder.RegisterType<RoleManager<IdentityRole>>().InstancePerRequest();
+            //builder.RegisterType<RoleManager<IdentityRole>>().InstancePerRequest();
         }
     }
 }

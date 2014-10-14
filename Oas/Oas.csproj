@@ -646,8 +646,6 @@
     <Content Include="Views\Shared\_login.cshtml" />
     <Content Include="Views\Shared\_navigation.cshtml" />
     <Content Include="Views\Shared\_site-layout.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\QuestionDegree.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\QuestionForm.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 
 namespace Oas.Membership
 {
-    public class OasUserStore : UserStore<OasIdentity>
+    public class OasUserStore : UserStore<OasIdentityUser>
     {
         public OasUserStore(OasIdentityDbContext context) : base(context) {}
     }

@@ -2,8 +2,8 @@
 
 namespace Oas.Membership
 {
-    public class OasRoleStore : RoleStore<OasIdentityRole>
+    public class OasRoleStore : RoleStore<IdentityRole>
     {
-        public OasRoleStore(OasIdentityDbContext context) : base(context) {}
+        public OasRoleStore(OasIdentityDbContext context) : base(context) { }
     }
 }
