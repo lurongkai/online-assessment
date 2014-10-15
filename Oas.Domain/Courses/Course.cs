@@ -2,6 +2,6 @@
 {
     public class Course
     {
-        public string CourseKey { get; set; }
+        public string CourseName { get; set; }
     }
 }

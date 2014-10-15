@@ -23,6 +23,10 @@ namespace Oas.Controllers
             _roleManager = roleManager;
         }
 
+        public ActionResult Index() {
+            throw new NotImplementedException();
+        }
+
         public ActionResult PublishNews() {
             throw new NotImplementedException();
         }
