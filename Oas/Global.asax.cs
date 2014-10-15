@@ -4,7 +4,7 @@ using System.Web.Routing;
 
 namespace Oas
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class OasApplication : System.Web.HttpApplication
     {
         protected void Application_Start() {
             AreaRegistration.RegisterAllAreas();

@@ -10,9 +10,10 @@ namespace Oas
     {
         public static void RegisterIoc() {
             var builder = new ContainerBuilder();
-
-            builder.RegisterAssemblyModules(typeof (AutofacConfig).Assembly);
+            builder.RegisterControllers(typeof(OasApplication).Assembly);
+            builder.RegisterAssemblyModules(typeof(OasApplication).Assembly);
             var container = builder.Build();
+
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }

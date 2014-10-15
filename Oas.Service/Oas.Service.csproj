@@ -39,6 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Impl\CourseService.cs" />
+    <Compile Include="Impl\ExerciseService.cs" />
+    <Compile Include="Impl\ManagementService.cs" />
+    <Compile Include="Impl\QuestionService.cs" />
+    <Compile Include="Impl\SimulationService.cs" />
     <Compile Include="Interfaces\IExerciseService.cs" />
     <Compile Include="Interfaces\IManagementService.cs" />
     <Compile Include="Interfaces\IQuestionService.cs" />
@@ -53,9 +58,7 @@
       <Name>Oas.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Impl\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
