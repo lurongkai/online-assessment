@@ -3,8 +3,11 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Oas.Domain;
 using Oas.Membership;
 using Oas.Models;
+using Oas.Service.Interfaces;
+using System;
 
 namespace Oas.Controllers
 {
@@ -12,9 +15,11 @@ namespace Oas.Controllers
     public class AccountController : Controller
     {
         private OasUserManager _userManager;
+        private IManagementService _managementService;
 
-        public AccountController(OasUserManager userManager) {
+        public AccountController(OasUserManager userManager, IManagementService managementService) {
             _userManager = userManager;
+            _managementService = managementService;
         }
 
         [AllowAnonymous]
@@ -49,9 +54,10 @@ namespace Oas.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
-                var user = new OasIdentityUser {UserName = model.UserName};
+                var user = new OasIdentityUser { UserName = model.UserName };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
+                    CreateStudentAsync(user);
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -97,6 +103,11 @@ namespace Oas.Controllers
 
         private IAuthenticationManager AuthenticationManager {
             get { return HttpContext.GetOwinContext().Authentication; }
+        }
+
+        private void CreateStudentAsync(OasIdentityUser user) {
+            var student = new Student() { MemberId = new Guid(user.Id) };
+            _managementService.CreateStudent(student);
         }
 
         private async Task SignInAsync(OasIdentityUser user, bool isPersistent) {

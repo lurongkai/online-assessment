@@ -199,7 +199,6 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ExerciseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PaperController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\SimulationController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />

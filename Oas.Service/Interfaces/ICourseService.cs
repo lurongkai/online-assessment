@@ -11,8 +11,8 @@ namespace Oas.Service.Interfaces
         IEnumerable<Course> GetStudentCourses(Guid studentId);
         Course GetTeacherTeachCourse(Guid teacherId);
 
-        Guid CreateSubject(Guid courseId, string subjectName);
-        void ModifySubject(Guid subjectId, Subject editedSubject);
+        Guid CreateSubject(Guid courseId,  Subject subject);
+        void ModifySubject(Guid subjectId, Subject subject);
         void DeleteSubject(Guid subjectId);
 
         void PinSubject(Guid subjectId);

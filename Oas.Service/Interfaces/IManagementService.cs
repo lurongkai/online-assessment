@@ -12,12 +12,13 @@ namespace Oas.Service.Interfaces
         News GetNews(Guid newsId);
 
         Guid CreateNews(News news);
-        void ModifyNews(Guid newsId, News modifiedNews);
+        void ModifyNews(Guid newsId, News news);
         void DeleteNews(Guid newsId);
 
-        void CreateTeacher(Guid courseId, Teacher teacher);
+        void CreateTeacher(Teacher teacher);
         void CreateStudent(Student student);
 
-        void SubscribeCourse(Guid courseId, Guid studentId);
+        void SubscribeCourse(Guid studentId, string courseName);
+        void AssigningCourse(Guid teacherId, string courseName);
     }
 }
