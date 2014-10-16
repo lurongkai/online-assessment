@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Course>
+@{
+    ViewBag.Title = "Choice Course";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var course in Model) {
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>@course.CourseName</h3>
+                        <p>@course.Description</p>
+                        <p>@Html.ActionLink("进入", "Index", new { courseName = course.CourseAbbr })</p>
+                    </div>
+                </div>
+            </div>
+        }
+        
+        @if (!Model.Any()) { <p>没有课程可供选择</p> }
+    </div>
+</div>

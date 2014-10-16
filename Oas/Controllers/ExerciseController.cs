@@ -10,7 +10,7 @@ namespace Oas.Controllers
     {
         public ActionResult Index(string courseName, Guid subjectId)
         {
-            return View();
+            throw new NotImplementedException();
         }
     }
 }

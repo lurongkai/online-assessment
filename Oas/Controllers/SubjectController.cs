@@ -9,7 +9,7 @@ namespace Oas.Controllers
     public class SubjectController : Controller
     {
         public ActionResult Index(string courseName) {
-            return View();
+            throw new NotImplementedException();
         }
 
         public ActionResult List(string courseName) {

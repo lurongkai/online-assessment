@@ -34,5 +34,9 @@ namespace Oas.Controllers
         public ActionResult CreateTeacher() {
             throw new NotImplementedException();
         }
+
+        public ActionResult CreateCourse() {
+            throw new NotImplementedException();
+        }
     }
 }
