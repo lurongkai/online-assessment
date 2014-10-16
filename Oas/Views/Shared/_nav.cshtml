@@ -1,62 +1,33 @@
-﻿<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+﻿<nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("职业技能培训系统模拟考核平台", "Index", "Home", null, new {@class = "navbar-brand active"})
+            @Html.ActionLink("职业技能培训系统模拟考核平台", "Index", "Home", null, new { @class = "navbar-brand" })
         </div>
-        <div class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#about">关于</a></li>
-                <li><a href="#contact">联系我们</a></li>
-            </ul>
-            @if (ViewData["DisableNavControl"] == null || !(bool) ViewData["DisableNavControl"]) {
-                <ul class="nav navbar-nav navbar-right">
-                    @Html.Partial("_login-partial", new LoginViewModel())
-                </ul>
-            }
-        </div>
-    </div>
-</div>
-
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">Default</a></li>
-                <li class="active"><a href="./">Static top</a></li>
-                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+            @if (Request.IsAuthenticated) {
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">你好 @User.Identity.Name <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("修改信息", "Manage", "Account")</li>
+                        <li class="active">@Html.ActionLink("注销", "LogOff", "Account")</li>
+                    </ul>
+                </li>
+            } else {
+                <li>@Html.ActionLink("登录", "Login", "Account")</li>
+                <li>@Html.ActionLink("注册", "Register", "Account")</li>
+            }
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
-</div>
+</nav>

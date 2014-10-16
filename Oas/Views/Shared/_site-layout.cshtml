@@ -13,8 +13,6 @@
     <body>
         @Html.Partial("_nav")
 
-        @RenderSection("notification_area", false)
-
         <div class="container" style="min-height: 500px;">
             @RenderBody()
         </div>
@@ -28,8 +26,6 @@
             "~/bundles/jquery-validation",
             "~/bundles/validation-patch")
 
-        @RenderSection("scripts", false)
-
         <script type="text/javascript">
             $(document).ready(function() {
                 //Globalize.culture('@Request.UserLanguages.First()');
@@ -38,5 +34,4 @@
             });
         </script>
     </body>
-
 </html>

@@ -1,12 +1,5 @@
 ﻿@{
     ViewBag.Title = "Manage Account";
-    Layout = "~/Views/Shared/_site-layout.cshtml";
-}
-
-@section notification_area {
-    @if (ViewData.ModelState.Count > 0) {
-        <div class="alert alert-danger">@Html.ValidationSummary(true) </div>
-    }
 }
 
 <div class="row">
@@ -19,5 +12,8 @@
                 @Html.Partial("_ChangePasswordPartial")
             </div>
         </div>
+        @if (ViewData.ModelState.Count > 0) {
+            <div class="alert alert-danger">@Html.ValidationSummary(true) </div>
+        }
     </div>
 </div>

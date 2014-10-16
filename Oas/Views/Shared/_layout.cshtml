@@ -11,11 +11,8 @@
     <![endif]-->
 </head>
 <body>
-
-    @RenderSection("notification_area", false)
-
-    <div class="container" style="min-height: 500px;">
-        @Html.Partial("_nav")
+    @Html.Partial("_nav")
+    <div class="container" style="min-height: 700px;">
         @RenderBody()
     </div>
 
@@ -27,8 +24,6 @@
             "~/bundles/globalization",
             "~/bundles/jquery-validation",
             "~/bundles/validation-patch")
-
-    @RenderSection("scripts", false)
 
     <script type="text/javascript">
             $(document).ready(function() {
