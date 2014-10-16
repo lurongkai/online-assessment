@@ -8,19 +8,19 @@ namespace Oas.Controllers
 {
     public class SubjectController : Controller
     {
-        public ActionResult Index(string courseName) {
+        public ActionResult Index(string courseId) {
             throw new NotImplementedException();
         }
 
-        public ActionResult List(string courseName) {
+        public ActionResult List(string courseId) {
             throw new NotImplementedException();
         }
 
-        public ActionResult Create(string courseName) {
+        public ActionResult Create(string courseId) {
             throw new NotImplementedException();
         }
 
-        public ActionResult PinCourse(string courseName, Guid courseId) {
+        public ActionResult PinSubject(string courseId, Guid subjectId) {
             throw new NotImplementedException();
         }
     }

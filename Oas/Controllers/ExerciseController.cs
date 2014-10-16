@@ -8,7 +8,7 @@ namespace Oas.Controllers
 {
     public class ExerciseController : Controller
     {
-        public ActionResult Index(string courseName, Guid subjectId)
+        public ActionResult Index(string courseId, Guid subjectId)
         {
             throw new NotImplementedException();
         }

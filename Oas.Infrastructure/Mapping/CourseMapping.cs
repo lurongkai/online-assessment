@@ -11,7 +11,7 @@ namespace Oas.Infrastructure.Mapping
     public class CourseMapping : EntityTypeConfiguration<Course>
     {
         public CourseMapping() {
-            HasKey(m => m.CourseName);
+            HasKey(m => m.CourseId);
         }
     }
 }

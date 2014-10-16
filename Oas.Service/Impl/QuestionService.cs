@@ -9,7 +9,7 @@ namespace Oas.Service.Impl
 {
     public class QuestionService : IQuestionService
     {
-        public IEnumerable<Domain.Question> GetAllQuestion(string courseName, Messages.PaginationData paginationData) {
+        public IEnumerable<Domain.Question> GetAllQuestion(string courseId, Messages.PaginationData paginationData) {
             throw new NotImplementedException();
         }
 
@@ -17,7 +17,7 @@ namespace Oas.Service.Impl
             throw new NotImplementedException();
         }
 
-        public Guid CreateQuestion(string courseName, Domain.Question question) {
+        public Guid CreateQuestion(string courseId, Domain.Question question) {
             throw new NotImplementedException();
         }
 

@@ -18,7 +18,7 @@ namespace Oas.Service.Interfaces
         void CreateTeacher(Teacher teacher);
         void CreateStudent(Student student);
 
-        void SubscribeCourse(Guid studentId, string courseName);
-        void AssigningCourse(Guid teacherId, string courseName);
+        void SubscribeCourse(Guid studentId, string courseId);
+        void AssigningCourse(Guid teacherId, string courseId);
     }
 }

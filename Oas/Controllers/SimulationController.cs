@@ -8,19 +8,19 @@ namespace Oas.Controllers
 {
     public class SimulationController : Controller
     {
-        public ActionResult Index(string courseName) {
+        public ActionResult Index(string courseId) {
             throw new NotImplementedException();
         }
 
-        public ActionResult StartNew(string courseName) {
+        public ActionResult StartNew(string courseId) {
             throw new NotImplementedException();
         }
 
-        public ActionResult Submit(string courseName, object something) {
+        public ActionResult Submit(string courseId, object something) {
             throw new NotImplementedException();
         }
 
-        public ActionResult Inspect(string courseName) {
+        public ActionResult Inspect(string courseId) {
             throw new NotImplementedException();
         }
     }

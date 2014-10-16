@@ -21,14 +21,14 @@ namespace Oas.Controllers
             
             if (User.IsInRole("Teacher")) {
                 var course = _courseService.GetTeacherTeachCourse(new Guid(userId));
-                return RedirectToAction("Index", "Course", new { courseName = course.CourseName });
+                return RedirectToAction("Index", "Course", new { courseId = course.CourseName });
             }
             
             if (User.IsInRole("Student")) {
                 var courses = _courseService.GetStudentCourses(new Guid(userId)).ToList();
 
                 if (courses.Count == 0) { return RedirectToAction("SetupCourse"); }
-                if (courses.Count == 1) { return RedirectToAction("Index", "Course", new { courseName = courses[0].CourseName }); }
+                if (courses.Count == 1) { return RedirectToAction("Index", "Course", new { courseId = courses[0].CourseName }); }
 
                 return RedirectToAction("ChoiceCourse");
             }

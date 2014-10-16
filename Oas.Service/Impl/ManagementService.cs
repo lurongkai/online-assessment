@@ -37,11 +37,11 @@ namespace Oas.Service.Impl
             throw new NotImplementedException();
         }
 
-        public void SubscribeCourse(Guid studentId, string courseName) {
+        public void SubscribeCourse(Guid studentId, string courseId) {
             throw new NotImplementedException();
         }
 
-        public void AssigningCourse(Guid teacherId, string courseName) {
+        public void AssigningCourse(Guid teacherId, string courseId) {
             throw new NotImplementedException();
         }
     }
