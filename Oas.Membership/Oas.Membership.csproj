@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OasIdentityInitializer.cs" />
     <Compile Include="OasIdentityUser.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="OasIdentityDbContext.cs" />

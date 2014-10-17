@@ -15,10 +15,12 @@ namespace Oas.Controllers
     public class AccountController : Controller
     {
         private OasUserManager _userManager;
+        private OasRoleManager _roleManager;
         private IManagementService _managementService;
 
-        public AccountController(OasUserManager userManager, IManagementService managementService) {
+        public AccountController(OasUserManager userManager, OasRoleManager roleManager, IManagementService managementService) {
             _userManager = userManager;
+            _roleManager = roleManager;
             _managementService = managementService;
         }
 
@@ -55,13 +57,15 @@ namespace Oas.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
                 var user = new OasIdentityUser { UserName = model.UserName };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded) {
-                    CreateStudentAsync(user);
+                var resultUser = await _userManager.CreateAsync(user, model.Password);
+                var resultRole = await _userManager.AddToRoleAsync(user.Id, "Student");
+                if (resultUser.Succeeded && resultRole.Succeeded) {
+                    CreateStudent(user);
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Course");
+                    return RedirectToAction("Index", "Dashboard");
                 }
-                AddErrors(result);
+                AddErrors(resultUser);
+                AddErrors(resultRole);
             }
 
             return View(model);
@@ -105,7 +109,7 @@ namespace Oas.Controllers
             get { return HttpContext.GetOwinContext().Authentication; }
         }
 
-        private void CreateStudentAsync(OasIdentityUser user) {
+        private void CreateStudent(OasIdentityUser user) {
             var student = new Student() { MemberId = new Guid(user.Id) };
             _managementService.CreateStudent(student);
         }
@@ -122,7 +126,7 @@ namespace Oas.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl) {
             if (Url.IsLocalUrl(returnUrl)) { return Redirect(returnUrl); }
-            return RedirectToAction("Index", "Course");
+            return RedirectToAction("Index", "Dashboard");
         }
 
         #endregion

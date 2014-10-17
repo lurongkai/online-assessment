@@ -8,15 +8,7 @@ namespace Oas.Controllers
 {
     public class CourseController : Controller
     {
-        public ActionResult Index() {
-            return RedirectToAction("List");
-        }
-
-        public ActionResult List() {
-            throw new NotImplementedException();
-        }
-
-        public ActionResult Subscribe(string courseId) {
+        public ActionResult Index(string courseId) {
             throw new NotImplementedException();
         }
     }
