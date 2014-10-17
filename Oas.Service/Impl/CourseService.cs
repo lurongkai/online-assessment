@@ -9,7 +9,7 @@ namespace Oas.Service.Impl
 {
     public class CourseService : ICourseService
     {
-        public IEnumerable<Domain.Course> GetAllSubjects() {
+        public IEnumerable<Domain.Course> GetAllCourses() {
             throw new NotImplementedException();
         }
 
@@ -21,7 +21,11 @@ namespace Oas.Service.Impl
             throw new NotImplementedException();
         }
 
-        public Guid CreateSubject(Guid courseId, Domain.Subject subject) {
+        public IEnumerable<Domain.Subject> GetCourseSubjects(string courseId) {
+            throw new NotImplementedException();
+        }
+
+        public Guid CreateSubject(string courseId, Domain.Subject subject) {
             throw new NotImplementedException();
         }
 
@@ -37,7 +41,7 @@ namespace Oas.Service.Impl
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Domain.Subject> GetCoursePinnedSubject(Guid courseId) {
+        public IEnumerable<Domain.Subject> GetCoursePinSubjects(string courseId) {
             throw new NotImplementedException();
         }
     }

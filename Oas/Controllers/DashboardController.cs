@@ -37,7 +37,7 @@ namespace Oas.Controllers
         [Authorize(Roles = "Student")]
         public ActionResult Subscribe() {
             var userId = User.Identity.GetUserId();
-            var allCourses = _courseService.GetAllSubjects();
+            var allCourses = _courseService.GetAllCourses();
             var studentCourses = _courseService.GetStudentCourses(new Guid(userId));
             var available = allCourses.Intersect(studentCourses);
 

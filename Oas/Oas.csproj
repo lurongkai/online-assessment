@@ -601,10 +601,12 @@
     <Content Include="Views\Shared\_sidebar.cshtml" />
     <Content Include="Views\Shared\_courseLayout.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Dashboard\Subscribe.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Dashboard\_ViewStart.cshtml" />
+    <Content Include="Views\Course\_ViewStart.cshtml" />
+    <Content Include="Views\Subject\List.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Admin\_ViewStart.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -680,10 +682,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Course\" />
+    <Folder Include="Models\Course\" />
     <Folder Include="Views\Exercise\" />
     <Folder Include="Views\Simulation\" />
-    <Folder Include="Views\Subject\" />
     <Folder Include="Views\Testing\" />
   </ItemGroup>
   <ItemGroup>
