@@ -13,18 +13,7 @@
 <body>
     @Html.Partial("_nav")
     <div class="container" style="min-height: 700px;">
-        @if (!User.Identity.IsAuthenticated) {
-            <div class="row">
-                <div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
-                    @Html.Partial("_sidebar")
-                </div>
-                <div class="col-md-9" role="main">
-                    @RenderBody()
-                </div>
-            </div>
-        } else {
-            @RenderBody()
-        }
+        @RenderBody()
     </div>
 
     @Html.Partial("_footer")

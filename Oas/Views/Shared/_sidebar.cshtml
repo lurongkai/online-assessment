@@ -6,7 +6,8 @@
     }
 
     @if (User.IsInRole("Student")) {
-        <a href="@Url.Action("List", "Question")" class="list-group-item">单元测试</a>
+        <a href="@Url.Action("SetupCourse", "Home")" class="list-group-item">订阅新课程</a>
+        <a href="@Url.Action("List", "Question")" class="list-group-item">单元测试 @ViewContext.RouteData.Values["courseId"]</a>
         <a href="@Url.Action("List", "Question")" class="list-group-item">模拟考试</a>
     }
     @if (User.IsInRole("Admin")) {

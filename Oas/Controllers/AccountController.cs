@@ -59,7 +59,7 @@ namespace Oas.Controllers
                 if (result.Succeeded) {
                     CreateStudentAsync(user);
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Course");
                 }
                 AddErrors(result);
             }
@@ -122,7 +122,7 @@ namespace Oas.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl) {
             if (Url.IsLocalUrl(returnUrl)) { return Redirect(returnUrl); }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Course");
         }
 
         #endregion
