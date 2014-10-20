@@ -1,24 +1,22 @@
-﻿@model LoginViewModel
-
+﻿@model Oas.Models.Admin.CreateTeacherViewModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "CreateTeacher";
 }
 
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">登录</h3>
+                <h3 class="panel-title">创建教师</h3>
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" })) {
+                @using (Html.BeginForm("CreateTeacher", "Admin", FormMethod.Post, new { @class = "form-horizontal" })) {
                     @Html.AntiForgeryToken()
-
                     <div class="form-group">
-                        @Html.LabelFor(m => m.UserName, new { @class = "col-sm-2 control-label" })
+                        @Html.LabelFor(m => m.Username, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-10">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "用户名" })
-                            @Html.ValidationMessageFor(m => m.UserName)
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "用户名" })
+                            @Html.ValidationMessageFor(m => m.Username)
                         </div>
                     </div>
                     <div class="form-group">
@@ -29,19 +27,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-8 col-md-offset-2">
-                            <label class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
-                            </label>
+                        @Html.LabelFor(m => m.CourseId, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @Html.DropDownList("CourseId", (IEnumerable<SelectListItem>)ViewBag.Courses, new { @class = "form-control", placeholder = "课程" })
+                            @Html.ValidationMessageFor(m => m.CourseId)
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-2">
-                            <button class="btn btn-primary" type="submit">登入</button>
-                            @Html.ActionLink("注册", "Register", "Account", null, new { @class = "btn btn-default" })
+                            <button class="btn btn-primary" type="submit">创建</button>
                         </div>
                     </div>
+                    @*@Html.ValidationSummary(true)*@
                 }
             </div>
         </div>
