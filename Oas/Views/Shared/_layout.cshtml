@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,16 +20,12 @@
 
     @Scripts.Render(
             "~/bundles/jquery",
-            "~/bundles/bootstrap",
-            "~/bundles/globalization",
             "~/bundles/jquery-validation",
-            "~/bundles/validation-patch")
+            "~/bundles/bootstrap")
 
     <script type="text/javascript">
         $(document).ready(function () {
-            //Globalize.culture('@Request.UserLanguages.First()');
-            Globalize.culture('zh-CN');
-            console.log(Globalize.culture().name);
+
         });
     </script>
 </body>
