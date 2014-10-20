@@ -58,8 +58,24 @@ namespace Oas.Controllers
             return View(teacherViewModel);
         }
 
+        [HttpGet]
         public ActionResult CreateCourse() {
-            throw new NotImplementedException();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateCourse(CreateCourseViewModel courseViewModel) {
+            if (ModelState.IsValid) {
+                var course = new Course {
+                    CourseId = courseViewModel.CourseAbbr,
+                    CourseName = courseViewModel.CourseName,
+                    Description = courseViewModel.Description
+                };
+
+                _courseService.CreateCourse(course);
+                return RedirectToAction("Index");
+            }
+
+            return View(courseViewModel);
         }
 
         private void AddErrors(IdentityResult result) {

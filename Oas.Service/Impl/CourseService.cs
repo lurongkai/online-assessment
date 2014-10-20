@@ -21,6 +21,10 @@ namespace Oas.Service.Impl
             throw new NotImplementedException();
         }
 
+        public string CreateCourse(Domain.Course course) {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Domain.Subject> GetCourseSubjects(string courseId) {
             throw new NotImplementedException();
         }
