@@ -6,5 +6,6 @@ namespace Oas.Domain
     {
         public int SubjectPinId { get; set; }
         public Guid SubjectId { get; set; }
+        public string PinName { get; set; }
     }
 }

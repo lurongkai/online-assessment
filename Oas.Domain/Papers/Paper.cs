@@ -10,8 +10,6 @@ namespace Oas.Domain
             SubjectiveQuestions = new List<SubjectiveQuestion>();
         }
 
-        public Guid PaperId { get; set; }
-
         public ICollection<SelectableQuestion> SelectableQuestions { get; set; }
         public ICollection<SubjectiveQuestion> SubjectiveQuestions { get; set; }
     }

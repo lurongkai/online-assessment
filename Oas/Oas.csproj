@@ -227,7 +227,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Views\Shared\_layout.cshtml" />
     <Content Include="Views\Course\Shared\_sidebar.cshtml" />
-    <Content Include="Views\Course\Shared\_Layout.cshtml" />
+    <Content Include="Views\Course\Shared\_layout.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Dashboard\Subscribe.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
@@ -297,8 +297,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
-    <Content Include="Views\Paper\Create.cshtml" />
-    <Content Include="Views\Paper\List.cshtml" />
     <Content Include="Views\Question\_multipleSelectionPartial.cshtml" />
     <Content Include="Views\Question\_singleSelectionPartial.cshtml" />
     <Content Include="Views\Question\_subjectivePartial.cshtml" />

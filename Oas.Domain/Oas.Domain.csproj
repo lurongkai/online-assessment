@@ -40,8 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Courses\Course.cs" />
-    <Compile Include="Exams\Exam.cs" />
-    <Compile Include="Exams\ExamSchedule.cs" />
     <Compile Include="IAggregateMember.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="Application\News.cs" />
@@ -54,10 +52,12 @@
     <Compile Include="Student.cs" />
     <Compile Include="Subjects\Subject.cs" />
     <Compile Include="Subjects\SubjectPin.cs" />
+    <Compile Include="Subjects\SubjectType.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="ValueObject.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Repository\" />
     <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
