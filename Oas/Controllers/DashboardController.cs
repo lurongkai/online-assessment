@@ -23,7 +23,7 @@ namespace Oas.Controllers
 
             if (User.IsInRole("Teacher")) {
                 var course = _courseService.GetTeacherTeachCourse(new Guid(userId));
-                return RedirectToAction("Index", "Dashboard", new { courseId = course.CourseId });
+                return RedirectToAction("Index", "Course", new { courseId = course.CourseId });
             }
 
             if (User.IsInRole("Student")) {

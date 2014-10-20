@@ -12,7 +12,7 @@
                     <div class="caption">
                         <h3>@course.CourseName</h3>
                         <p>@course.Description</p>
-                        <p>@Html.ActionLink("进入", "Index", "Dashboard", new { courseName = course.CourseId })</p>
+                        <p>@Html.ActionLink("进入", "Index", "Course", new { courseId = course.CourseId })</p>
                     </div>
                 </div>
             </div>

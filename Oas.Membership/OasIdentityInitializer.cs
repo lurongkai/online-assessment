@@ -23,8 +23,19 @@ namespace Oas.Membership
             var admin = new OasIdentityUser("admin");
             userManager.Create(admin, "admin");
             userManager.AddToRole(admin.Id, "Admin");
+#if DEBUG
+            var student = new OasIdentityUser("student");
+            userManager.Create(student, "student");
+            userManager.AddToRole(student.Id, "Student");
+
+            var teacher = new OasIdentityUser("teacher");
+            userManager.Create(teacher, "teacher");
+            userManager.AddToRole(teacher.Id, "Teacher");
+#endif
             userManager.PasswordValidator = passwordValidatorBackup;
             
+
+
             context.SaveChanges();
         }
     }

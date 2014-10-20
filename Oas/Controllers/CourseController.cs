@@ -19,5 +19,12 @@ namespace Oas.Controllers
         public ActionResult Index(string courseId) {
             return View();
         }
+
+        [Authorize(Roles = "Student")]
+        [ChildActionOnly]
+        public ActionResult PinnedSubjects(string courseId) {
+            var pinnedSubjects = _courseService.GetCoursePinSubjects(courseId);
+            return View("_pinnedSubjects", pinnedSubjects);
+        }
     }
 }
