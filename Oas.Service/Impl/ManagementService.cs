@@ -9,7 +9,7 @@ namespace Oas.Service.Impl
 {
     public class ManagementService : IManagementService
     {
-        public IEnumerable<Domain.Application.News> GetAllNews(Messages.PaginationData paginationData) {
+        public IEnumerable<Domain.Application.News> GetTopNews(int count) {
             throw new NotImplementedException();
         }
 

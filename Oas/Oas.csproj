@@ -286,15 +286,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Admin\NewsCreate.cshtml" />
-    <Content Include="Views\Admin\NewsEdit.cshtml" />
-    <Content Include="Views\Admin\NewsList.cshtml" />
-    <Content Include="Views\Admin\StudentList.cshtml" />
-    <Content Include="Views\Admin\SubjectCreate.cshtml" />
-    <Content Include="Views\Admin\SubjectEdit.cshtml" />
-    <Content Include="Views\Admin\SubjectList.cshtml" />
-    <Content Include="Views\Admin\TeacherList.cshtml" />
-    <Content Include="Views\Admin\UserList.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

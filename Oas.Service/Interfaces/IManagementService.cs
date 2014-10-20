@@ -8,7 +8,7 @@ namespace Oas.Service.Interfaces
 {
     public interface IManagementService
     {
-        IEnumerable<News> GetAllNews(PaginationData paginationData);
+        IEnumerable<News> GetTopNews(int count);
         News GetNews(Guid newsId);
 
         Guid CreateNews(News news);
