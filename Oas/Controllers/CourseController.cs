@@ -18,18 +18,14 @@ namespace Oas.Controllers
 
         [Authorize(Roles = "Student, Teacher")]
         public ActionResult Index(string courseId) {
-            return View();
+            var currentCourse = _courseService.GetCourse(courseId);
+            return View(currentCourse);
         }
 
         [Authorize(Roles = "Student")]
         [ChildActionOnly]
         public ActionResult PinnedSubjects(string courseId) {
-            //var pinnedSubjects = _courseService.GetCoursePinSubjects(courseId);
-            var pinnedSubjects = new List<SubjectPin>() {
-                new SubjectPin{SubjectId = Guid.NewGuid(), PinName = "Pin1"},
-                new SubjectPin{SubjectId = Guid.NewGuid(), PinName = "Pin2"},
-                new SubjectPin{SubjectId = Guid.NewGuid(), PinName = "Pin3"}
-            };
+            var pinnedSubjects = _courseService.GetCoursePinSubjects(courseId);
             return PartialView("Shared/_pinnedSubjects", pinnedSubjects);
         }
     }

@@ -7,6 +7,8 @@ namespace Oas.Service.Interfaces
     public interface ICourseService
     {
         IEnumerable<Course> GetAllCourses();
+        Course GetCourse(string courseId);
+
         IEnumerable<Course> GetStudentCourses(Guid studentId);
         Course GetTeacherTeachCourse(Guid teacherId);
         string CreateCourse(Course course);
@@ -17,6 +19,7 @@ namespace Oas.Service.Interfaces
         void DeleteSubject(Guid subjectId);
 
         void PinSubject(Guid subjectId);
-        IEnumerable<Subject> GetCoursePinSubjects(string courseId);
+        IEnumerable<SubjectPin> GetCoursePinSubjects(string courseId);
+
     }
 }

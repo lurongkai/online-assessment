@@ -13,6 +13,10 @@ namespace Oas.Service.Impl
             throw new NotImplementedException();
         }
 
+        public Domain.Course GetCourse(string courseId) {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Domain.Course> GetStudentCourses(Guid studentId) {
             throw new NotImplementedException();
         }
@@ -45,7 +49,7 @@ namespace Oas.Service.Impl
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Domain.Subject> GetCoursePinSubjects(string courseId) {
+        public IEnumerable<Domain.SubjectPin> GetCoursePinSubjects(string courseId) {
             throw new NotImplementedException();
         }
     }
