@@ -49,6 +49,9 @@
     <Compile Include="Questions\Question.cs" />
     <Compile Include="Questions\SelectableQuestion.cs" />
     <Compile Include="Questions\SubjectiveQuestion.cs" />
+    <Compile Include="Repository\ICourseRepository.cs" />
+    <Compile Include="Repository\INewsRepository.cs" />
+    <Compile Include="Repository\IQuestionService.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Subjects\Subject.cs" />
     <Compile Include="Subjects\SubjectPin.cs" />
@@ -57,7 +60,6 @@
     <Compile Include="ValueObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\" />
     <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,5 +10,8 @@ namespace Oas.Domain
         public int Score { get; set; }
 
         public abstract int Evaluate();
+
+        public virtual Course BelongTo { get; set; }
+        public virtual Subject Subject { get; set; }
     }
 }

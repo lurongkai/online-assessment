@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="Helpers\SidebarActivator.cs" />
     <Compile Include="Integration\DatabaseModule.cs" />
+    <Compile Include="Integration\RepositoryModule.cs" />
     <Compile Include="Integration\ServiceModule.cs" />
     <Compile Include="Integration\MembershipModule.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -203,8 +204,6 @@
     <Compile Include="Models\Admin\CreateTeacherViewModel.cs" />
     <Compile Include="Models\Admin\PublishNewsViewModel.cs" />
     <Compile Include="Models\Admin\UserManageViewModel.cs" />
-    <Compile Include="Models\Examination\ExaminationResultViewModel.cs" />
-    <Compile Include="Models\Menu\TeacherMenuViewModel.cs" />
     <Compile Include="Models\PredefinedRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
