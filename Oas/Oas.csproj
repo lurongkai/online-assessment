@@ -201,6 +201,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\CreateCourseViewModel.cs" />
     <Compile Include="Models\Admin\CreateTeacherViewModel.cs" />
+    <Compile Include="Models\Admin\PublishNewsViewModel.cs" />
     <Compile Include="Models\Admin\UserManageViewModel.cs" />
     <Compile Include="Models\Examination\ExaminationResultViewModel.cs" />
     <Compile Include="Models\Menu\TeacherMenuViewModel.cs" />
@@ -240,6 +241,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\CreateTeacher.cshtml" />
     <Content Include="Views\Admin\CreateCourse.cshtml" />
+    <Content Include="Views\Admin\PublishNews.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

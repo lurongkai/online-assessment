@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Oas.Domain;
+using Oas.Domain.Application;
 using Oas.Membership;
 using Oas.Models.Admin;
 using Oas.Service.Interfaces;
@@ -29,14 +30,24 @@ namespace Oas.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult PublishNews() {
-            throw new NotImplementedException();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult PublishNews(PublishNewsViewModel publishNewsViewModel) {
+            if (ModelState.IsValid) {
+                var news = new News {Title = publishNewsViewModel.Title, Content = publishNewsViewModel.Content, PublishedDate = DateTime.Now};
+                _managementService.CreateNews(news);
+                return RedirectToAction("Index");
+            }
+
+            return View(publishNewsViewModel);
         }
 
         [HttpGet]
         public ActionResult CreateTeacher() {
-            var courses = new List<Course>() {new Course(){CourseId = "A", CourseName = "AA"}, new Course(){CourseId = "B", CourseName = "BB"}};
-            //var courses = _courseService.GetAllCourses();
+            var courses = _courseService.GetAllCourses();
             ViewBag.Courses = new SelectList(courses, "CourseId", "CourseName");
             return View();
         }

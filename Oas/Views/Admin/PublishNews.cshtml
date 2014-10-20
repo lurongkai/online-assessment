@@ -1,36 +1,31 @@
-﻿@model Oas.Models.Admin.CreateCourseViewModel
+﻿@model Oas.Models.Admin.PublishNewsViewModel
 @{
-    ViewBag.Title = "Create Course";
+    ViewBag.Title = "Publish News";
 }
+
+<h2>PublishNews</h2>
 
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">创建课程</h3>
+                <h3 class="panel-title">创建新闻</h3>
             </div>
             <div class="panel-body">
                 @using (Html.BeginForm("CreateCourse", "Admin", FormMethod.Post, new { @class = "form-horizontal" })) {
                     @Html.AntiForgeryToken()
                     <div class="form-group">
-                        @Html.LabelFor(m => m.CourseAbbr, new { @class = "col-sm-2 control-label" })
+                        @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-10">
-                            @Html.TextBoxFor(m => m.CourseAbbr, new { @class = "form-control", placeholder = "缩写" })
-                            @Html.ValidationMessageFor(m => m.CourseAbbr)
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "标题" })
+                            @Html.ValidationMessageFor(m => m.Title)
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.CourseName, new { @class = "col-sm-2 control-label" })
+                        @Html.LabelFor(m => m.Content, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-10">
-                            @Html.PasswordFor(m => m.CourseName, new { @class = "form-control", placeholder = "名称" })
-                            @Html.ValidationMessageFor(m => m.CourseName)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label" })
-                        <div class="col-sm-10">
-                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "描述" })
-                            @Html.ValidationMessageFor(m => m.Description)
+                            @Html.TextAreaFor(m => m.Content, new { @class = "form-control", placeholder = "内容" })
+                            @Html.ValidationMessageFor(m => m.Content)
                         </div>
                     </div>
 
