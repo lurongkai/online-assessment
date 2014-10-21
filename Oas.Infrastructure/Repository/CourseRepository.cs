@@ -15,15 +15,16 @@ namespace Oas.Infrastructure.Repository
         }
 
         public Domain.Course FindCourse(string courseId) {
-            throw new NotImplementedException();
+            return _oasContext.Courses.Find(courseId);
         }
 
         public void CreateCourse(Domain.Course course) {
-            throw new NotImplementedException();
+            _oasContext.Courses.Add(course);
+            _oasContext.SaveChanges();
         }
 
         public IEnumerable<Domain.Subject> GetCourseSubjects(string courseId) {
-            throw new NotImplementedException();
+            return _oasContext.Subjects.Where(s => s.BelongTo.CourseId == courseId);
         }
 
         public IEnumerable<Domain.Subject> GetCoursePinnedSubject(string courseId) {

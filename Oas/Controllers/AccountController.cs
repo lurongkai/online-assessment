@@ -81,9 +81,11 @@ namespace Oas.Controllers
         public async Task<ActionResult> Manage(ManageUserViewModel model) {
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (ModelState.IsValid) {
-                var result =
-                    await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-                if (result.Succeeded) { return RedirectToAction("Manage"); }
+                var result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                if (result.Succeeded) {
+                    TempData.Add("FlashMessage", "Login Successful.");
+                    return RedirectToAction("Index", "Home");
+                }
                 AddErrors(result);
             }
 

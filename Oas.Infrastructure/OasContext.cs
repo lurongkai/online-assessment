@@ -7,7 +7,7 @@ namespace Oas.Infrastructure
 {
     public class OasContext : DbContext
     {
-        public OasContext() : base("DefaultConnection") {}
+        public OasContext() : base("DefaultConnection") { }
 
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
@@ -16,10 +16,6 @@ namespace Oas.Infrastructure
 
         public virtual DbSet<SelectableQuestion> SelectableQuestions { get; set; }
         public virtual DbSet<SubjectiveQuestion> SubjectiveQuestions { get; set; }
-
-        //public virtual DbSet<Examination> Examinations { get; set; }
-        //public virtual DbSet<ExaminationPaper> ExaminationPapers { get; set; }
-        //public virtual DbSet<AnswerSheet> AnswerSheets { get; set; }
 
         public virtual DbSet<News> News { get; set; }
 
@@ -30,16 +26,11 @@ namespace Oas.Infrastructure
 #endif
 
             modelBuilder.Configurations
-                .Add(new CourseMapping())
-                //.Add(new ExaminationMapping())
-                //.Add(new ExaminationPaperMapping())
-                //.Add(new PaperQuestionMapping())
-                //.Add(new PaperQuestionOptionMapping())
+                        .Add(new CourseMapping())
                         .Add(new SelectableQuestionMapping())
                         .Add(new SubjectiveQuestionMapping())
                         .Add(new QuestionOptionMapping())
                         .Add(new SubjectMapping())
-                //.Add(new AnswerSheetMapping())
                         .Add(new StudentMapping())
                         .Add(new TeacherMapping())
                         .Add(new NewsMapping());
