@@ -9,5 +9,6 @@ namespace Oas.Domain
         //public SubjectType SubjectType { get; set; }
 
         public virtual Course BelongTo { get; set; }
+
     }
 }
