@@ -66,6 +66,8 @@ namespace Oas.Controllers
                 AddErrors(result);
             }
 
+            var courses = _courseService.GetAllCourses();
+            ViewBag.Courses = new SelectList(courses, "CourseId", "CourseName");
             return View(teacherViewModel);
         }
 

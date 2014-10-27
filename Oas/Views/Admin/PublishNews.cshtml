@@ -10,7 +10,7 @@
                 <h3 class="panel-title">创建新闻</h3>
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm("CreateCourse", "Admin", FormMethod.Post, new { @class = "form-horizontal" })) {
+                @using (Html.BeginForm("PublishNews", "Admin", FormMethod.Post, new { @class = "form-horizontal" })) {
                     @Html.AntiForgeryToken()
                     <div class="form-group">
                         @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })

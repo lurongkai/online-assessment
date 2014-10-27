@@ -19,7 +19,7 @@ namespace Oas.Infrastructure.Mapping
             HasKey(m => m.MemberId);
             ToTable("Teachers");
 
-            HasRequired(m => m.TeachCourse);
+            HasOptional(m => m.TeachCourse);
         }
     }
 }

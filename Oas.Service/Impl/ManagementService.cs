@@ -68,7 +68,7 @@ namespace Oas.Service.Impl
 
         public void AssigningCourse(Guid teacherId, string courseId) {
             var teacher = _oasContext.Teachers.Find(teacherId);
-            var course = _oasContext.Courses.Find(courseId);
+            var course = _oasContext.Courses.FirstOrDefault(c => c.CourseId == courseId);
 
             teacher.Teach(course);
 
