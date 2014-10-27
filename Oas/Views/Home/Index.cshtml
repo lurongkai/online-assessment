@@ -1,0 +1,31 @@
+﻿@model Oas.Domain.Application.News
+
+<div class="jumbotron">
+    <h1>@Model.Title</h1>
+    <p>@Model.Content</p>
+    <p><a class="btn btn-primary btn-lg" role="button" href="@Url.Action("Register", "Account")">立即注册</a></p>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <h3>全新的在线测试学习平台</h3>
+        <p>一切操作皆在<strong>线上</strong>完成，没有繁琐的上下传文件。基于适应度的试卷生成算法，以及专为技能考试定制的随机采样生成算法确保了所有的测试都是可靠及高效的。</p>
+        <p>
+            <a href="@Url.Action("About")" class="btn btn-lg btn-info" role="button">了解更多</a>
+        </p>
+    </div>
+    <div class="col-sm-4">
+        <h3>完善的角色系统</h3>
+        <p>系统共有3种不同的角色，分别是<strong>学生</strong>、<strong>教师</strong>以及<strong>系统管理员</strong>。每种角色有着不同的功能，可以根据需要适时的对系统进行设置调整以满足不同的需求。</p>
+        <p>
+            <a href="@Url.Action("Contact")" class="btn btn-lg btn-info" role="button">联系我们</a>
+        </p>
+    </div>
+    <div class="col-sm-4">
+        <h3>丰富的自我测验选项</h3>
+        <p>系统可针对不同的需求快速生成用于不同目的的<strong>Subject</strong>，并可以“钉”在左侧的常用导航栏，便于学生在不同的主题间快速选择所需的知识模块进行自我测验。</p>
+        <p>
+            <a href="@Url.Action("Register", "Account")" class="btn btn-lg btn-primary" role="button">快速开始学习</a>
+        </p>
+    </div>
+</div>

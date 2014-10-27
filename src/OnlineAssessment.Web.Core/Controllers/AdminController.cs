@@ -1,25 +1,4 @@
-﻿// Author:
-//      Lu Rongkai <lurongkai@gmail.com>
-// 
-// Copyright (c) 2014 lurongkai
-// 
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-// 
-// Source code hosted on: https://github.com/lurongkai/online-assessment
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -69,8 +48,7 @@ namespace OnlineAssessment.Web.Core.Controllers
             try {
                 _subjectService.AddSubject(subject);
                 return RedirectToAction("SubjectList");
-            }
-            catch {
+            } catch {
                 ViewBag.Message = "科目key已经存在";
                 return View();
             }
@@ -104,8 +82,7 @@ namespace OnlineAssessment.Web.Core.Controllers
             var studentRole = _roleManager.FindByName("Student");
             var teachers = _userManager.Users
                                        .Where(u => u.Roles.Any(r => r.RoleId == teacherRole.Id))
-                                       .Select(u => new UserViewModel()
-                                       {
+                                       .Select(u => new UserViewModel() {
                                            Name = u.Name,
                                            Username = u.UserName,
                                            RoleName = "Teacher",
@@ -113,8 +90,7 @@ namespace OnlineAssessment.Web.Core.Controllers
                                        });
             var students = _userManager.Users
                                        .Where(u => u.Roles.Any(r => r.RoleId == studentRole.Id))
-                                       .Select(u => new UserViewModel()
-                                       {
+                                       .Select(u => new UserViewModel() {
                                            Name = u.Name,
                                            Username = u.UserName,
                                            RoleName = "Student",

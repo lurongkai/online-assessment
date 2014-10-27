@@ -1,25 +1,4 @@
-﻿// Author:
-//      Lu Rongkai <lurongkai@gmail.com>
-// 
-// Copyright (c) 2014 lurongkai
-// 
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-// 
-// Source code hosted on: https://github.com/lurongkai/online-assessment
-
-using System;
+﻿using System;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -40,8 +19,7 @@ namespace OnlineAssessment.Infrastructure
 
             #region Add Admin
 
-            var admin = new ApplicationUser
-            {
+            var admin = new ApplicationUser {
                 Name = "Admin",
                 UserName = "admin"
             };
@@ -54,18 +32,15 @@ namespace OnlineAssessment.Infrastructure
 
             #region Add Subjects
 
-            var subject1 = new Subject
-            {
+            var subject1 = new Subject {
                 SubjectKey = "CAI-L1",
                 Name = "网络课件设计师一级"
             };
-            var subject2 = new Subject
-            {
+            var subject2 = new Subject {
                 SubjectKey = "CAI-L2",
                 Name = "网络课件设计师二级"
             };
-            var subject3 = new Subject
-            {
+            var subject3 = new Subject {
                 SubjectKey = "CAI-L3",
                 Name = "网络课件设计师三级"
             };
@@ -77,13 +52,11 @@ namespace OnlineAssessment.Infrastructure
 
             #region Add test Student and Teacher
 
-            var student = new Student
-            {
+            var student = new Student {
                 Name = "Test Student",
                 UserName = "student"
             };
-            var teacher = new Teacher
-            {
+            var teacher = new Teacher {
                 Name = "Test Teacher",
                 UserName = "teacher",
                 ResponsibleSubject = subject1
@@ -102,8 +75,7 @@ namespace OnlineAssessment.Infrastructure
             var r = new Random();
 
             for (var i = 1; i <= 5000; i++) {
-                var question = new Question()
-                {
+                var question = new Question() {
                     QuestionBody = Guid.NewGuid().ToString(),
                     QuestionModule = QuestionModule.Theory
                 };
@@ -114,14 +86,12 @@ namespace OnlineAssessment.Infrastructure
                 if (i <= 2000) {
                     question.QuestionForm = QuestionForm.SingleSelection;
                     question.Score = 2;
-                    question.QuestionOptions.Add(new QuestionOption()
-                    {
+                    question.QuestionOptions.Add(new QuestionOption() {
                         Description = Guid.NewGuid().ToString(),
                         IsRightAnswer = true
                     });
                     for (var optionIndex = 0; optionIndex < r.Next(3, 6); optionIndex++) {
-                        question.QuestionOptions.Add(new QuestionOption()
-                        {
+                        question.QuestionOptions.Add(new QuestionOption() {
                             Description = Guid.NewGuid().ToString(),
                             IsRightAnswer = false
                         });
@@ -132,14 +102,12 @@ namespace OnlineAssessment.Infrastructure
                 if (i > 2000 && i <= 4000) {
                     question.QuestionForm = QuestionForm.MultipleSelection;
                     question.Score = 3;
-                    question.QuestionOptions.Add(new QuestionOption()
-                    {
+                    question.QuestionOptions.Add(new QuestionOption() {
                         Description = Guid.NewGuid().ToString(),
                         IsRightAnswer = true
                     });
                     for (var optionIndex = 0; optionIndex < r.Next(3, 6); optionIndex++) {
-                        question.QuestionOptions.Add(new QuestionOption()
-                        {
+                        question.QuestionOptions.Add(new QuestionOption() {
                             Description = Guid.NewGuid().ToString(),
                             IsRightAnswer = r.Next(0, 10) < 3
                         });
@@ -163,8 +131,7 @@ namespace OnlineAssessment.Infrastructure
             #region News
 
             for (var i = 0; i < 10; i++) {
-                context.News.Add(new News()
-                {
+                context.News.Add(new News() {
                     Title = Guid.NewGuid().ToString(),
                     Content = Guid.NewGuid().ToString(),
                     PublishedDate = DateTime.Now.AddDays(new Random().Next(1, 100))

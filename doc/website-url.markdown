@@ -17,33 +17,33 @@ Authenticated Home:
 Teacher
 -----
 Question:
-/{subjectKey}/Question/List
-/{subjectKey}/Question/Create
-/{subjectKey}/Question/Delete/{QuestionId}
-/{subjectKey}/Question/Edit/{QuestionId}
+/{courseId}/Question/List
+/{courseId}/Question/Create
+/{courseId}/Question/Delete/{QuestionId}
+/{courseId}/Question/Edit/{QuestionId}
 
 Examination Paper:
-/{subjectKey}/Paper/List
-/{subjectKey}/Paper/Create
-/{subjectKey}/Paper/Delete/{ExaminationPaperId}
+/{courseId}/Paper/List
+/{courseId}/Paper/Create
+/{courseId}/Paper/Delete/{ExaminationPaperId}
 
 Examination:
-/{subjectKey}/ExamManage/List
-/{subjectKey}/ExamManage/Archive/{ExaminationPaperId}
-/{subjectKey}/ExamManage/Active/{ExaminationPaperId}
+/{courseId}/ExamManage/List
+/{courseId}/ExamManage/Archive/{ExaminationPaperId}
+/{courseId}/ExamManage/Active/{ExaminationPaperId}
 
 Evaluating:
-/{subjectKey}/Eval/{ExaminationPaperId}/List
-/{subjectKey}/Eval/{ExaminationPaperId}/Evalute
+/{courseId}/Eval/{ExaminationPaperId}/List
+/{courseId}/Eval/{ExaminationPaperId}/Evalute
 
 Student
 -----
 Testing:
-/{subjectKey}/Test/{QuestionCategory}/[index -> datetime.now()]
+/{courseId}/Test/{QuestionCategory}/[index -> datetime.now()]
 
 Examination:
-/{subjectKey}/Exam/My
-/{subjectKey}/Exam/{ExaminationId}/Score
+/{courseId}/Exam/My
+/{courseId}/Exam/{ExaminationId}/Score
 
 Answering:
-/{subjectKey}/Exam/{ExaminationId}/Answering
+/{courseId}/Exam/{ExaminationId}/Answering

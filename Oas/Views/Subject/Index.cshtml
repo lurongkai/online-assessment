@@ -1,0 +1,35 @@
+﻿@model Oas.Models.Subject.SubjectViewModel
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">主题</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>科目</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Subjects) {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td style="width: 20%">
+                            @if (item.IsPinned) {
+                                <a class="btn btn-danger" href="@Url.Action("UnPinSubject", new { subjectId = item.SubjectId })">取消固定</a>
+                            } else {
+                                <a class="btn btn-primary" href="@Url.Action("PinSubject", new { subjectId = item.SubjectId })">添加固定</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <a class="btn btn-default" href="@Url.Action("Create")">添加</a>
+        </div>
+    </div>
+</div>
