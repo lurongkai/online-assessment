@@ -49,9 +49,6 @@
     <Compile Include="Questions\Question.cs" />
     <Compile Include="Questions\SelectableQuestion.cs" />
     <Compile Include="Questions\SubjectiveQuestion.cs" />
-    <Compile Include="Repository\ICourseRepository.cs" />
-    <Compile Include="Repository\INewsRepository.cs" />
-    <Compile Include="Repository\IQuestionService.cs" />
     <Compile Include="UserAndRole\Student.cs" />
     <Compile Include="Subjects\Subject.cs" />
     <Compile Include="Courses\SubjectPin.cs" />

@@ -1,4 +1,5 @@
-﻿using Oas.Service.Interfaces;
+﻿using Oas.Infrastructure;
+using Oas.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,48 +10,73 @@ namespace Oas.Service.Impl
 {
     public class CourseService : ICourseService
     {
+        private OasContext _oasContext;
+        public CourseService(OasContext oasContext) {
+            _oasContext = oasContext;
+        }
+
         public IEnumerable<Domain.Course> GetAllCourses() {
-            throw new NotImplementedException();
+            return _oasContext.Courses;
         }
 
         public Domain.Course GetCourse(string courseId) {
-            throw new NotImplementedException();
+            return _oasContext.Courses.Find(courseId);
         }
 
         public IEnumerable<Domain.Course> GetStudentCourses(Guid studentId) {
-            throw new NotImplementedException();
+            var student = _oasContext.Students.Find(studentId);
+            return student.SubscribeCourses;
         }
 
         public Domain.Course GetTeacherTeachCourse(Guid teacherId) {
-            throw new NotImplementedException();
+            var teacher = _oasContext.Teachers.Find(teacherId);
+            return teacher.TeachCourse;
         }
 
         public string CreateCourse(Domain.Course course) {
-            throw new NotImplementedException();
+            _oasContext.Courses.Add(course);
+            _oasContext.SaveChanges();
+
+            return course.CourseId;
         }
 
         public IEnumerable<Domain.Subject> GetCourseSubjects(string courseId) {
-            throw new NotImplementedException();
+            return _oasContext.Subjects.Where(s => s.BelongTo.CourseId == courseId);
         }
 
         public Guid CreateSubject(string courseId, Domain.Subject subject) {
-            throw new NotImplementedException();
+            var course = _oasContext.Courses.Find(courseId);
+            subject.BelongTo = course;
+            _oasContext.Subjects.Add(subject);
+            _oasContext.SaveChanges();
+            return subject.SubjectId;
         }
 
         public void ModifySubject(Guid subjectId, Domain.Subject subject) {
-            throw new NotImplementedException();
+            var old = _oasContext.Subjects.Find(subjectId);
+            old.Name = subject.Name;
+
+            _oasContext.SaveChanges();
         }
 
         public void DeleteSubject(Guid subjectId) {
-            throw new NotImplementedException();
+            var old = _oasContext.Subjects.Find(subjectId);
+            _oasContext.Subjects.Remove(old);
+
+            _oasContext.SaveChanges();
         }
 
         public void PinSubject(Guid subjectId) {
-            throw new NotImplementedException();
+            var subject = _oasContext.Subjects.Find(subjectId);
+            var course = subject.BelongTo;
+            course.Pin(subject);
+
+            _oasContext.SaveChanges();
         }
 
         public IEnumerable<Domain.SubjectPin> GetCoursePinSubjects(string courseId) {
-            throw new NotImplementedException();
+            var course = _oasContext.Courses.Find(courseId);
+            return course.PinSubjects;
         }
     }
 }

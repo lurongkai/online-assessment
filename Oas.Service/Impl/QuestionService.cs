@@ -1,4 +1,5 @@
-﻿using Oas.Service.Interfaces;
+﻿using Oas.Infrastructure;
+using Oas.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace Oas.Service.Impl
 {
     public class QuestionService : IQuestionService
     {
+        private OasContext _oasContext;
+        public QuestionService(OasContext oasContext) {
+            _oasContext = oasContext;
+        }
+
         public IEnumerable<Domain.Question> GetAllQuestion(string courseId, Messages.PaginationData paginationData) {
             throw new NotImplementedException();
         }

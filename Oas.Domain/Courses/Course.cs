@@ -19,5 +19,9 @@ namespace Oas.Domain
         //    yield return CourseName;
         //    yield return Description;
         //}
+
+        public void Pin(Subject subject) {
+            throw new System.NotImplementedException();
+        }
     }
 }

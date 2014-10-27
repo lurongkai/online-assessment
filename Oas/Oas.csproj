@@ -196,7 +196,6 @@
     </Compile>
     <Compile Include="Helpers\SidebarActivator.cs" />
     <Compile Include="Integration\DatabaseModule.cs" />
-    <Compile Include="Integration\RepositoryModule.cs" />
     <Compile Include="Integration\ServiceModule.cs" />
     <Compile Include="Integration\MembershipModule.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -324,7 +323,7 @@
       <Name>Oas.Membership</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oas.Service\Oas.Service.csproj">
-      <Project>{f84aa510-a09d-4b0c-844e-6d01e463a983}</Project>
+      <Project>{71e931c0-fb9d-44db-8501-038c160163a6}</Project>
       <Name>Oas.Service</Name>
     </ProjectReference>
   </ItemGroup>

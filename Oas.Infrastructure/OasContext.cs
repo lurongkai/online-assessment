@@ -7,7 +7,7 @@ namespace Oas.Infrastructure
 {
     public class OasContext : DbContext
     {
-        public OasContext() : base("DefaultConnection") { }
+        public OasContext() : base("Oas.Application") { }
 
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
