@@ -37,7 +37,7 @@
             </div>
         </div>
         @if (ViewData.ModelState.Count > 0) {
-            <div class="alert alert-danger">@Html.ValidationSummary(true) </div>
+            @Html.ValidationSummary(true)
         }
     </div>
 </div>

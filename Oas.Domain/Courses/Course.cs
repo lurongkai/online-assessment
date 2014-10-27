@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Oas.Domain
 {
@@ -21,7 +22,9 @@ namespace Oas.Domain
         //}
 
         public void Pin(Subject subject) {
-            throw new System.NotImplementedException();
+            if (PinSubjects.All(p => p.SubjectId != subject.SubjectId)) {
+                PinSubjects.Add(new SubjectPin() {SubjectId = subject.SubjectId, PinName = subject.Name});
+            }
         }
     }
 }

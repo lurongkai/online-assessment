@@ -3,6 +3,9 @@ namespace Oas.Domain
 {
     public class Subject: IAggregateRoot<Subject>
     {
+        public Subject() {
+            SubjectId = Guid.NewGuid();
+        }
         public Guid SubjectId { get; set; }
         public string Name { get; set; }
 
