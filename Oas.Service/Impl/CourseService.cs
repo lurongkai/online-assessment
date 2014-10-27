@@ -66,10 +66,18 @@ namespace Oas.Service.Impl
             _oasContext.SaveChanges();
         }
 
-        public void PinSubject(Guid subjectId) {
+        public void PinSubject(string courseId, Guid subjectId) {
+            var course = _oasContext.Courses.Find(courseId);
             var subject = _oasContext.Subjects.Find(subjectId);
-            var course = subject.BelongTo;
             course.Pin(subject);
+
+            _oasContext.SaveChanges();
+        }
+
+        public void UnPinSubject(string courseId, Guid subjectId) {
+            var course = _oasContext.Courses.Find(courseId);
+            var subject = _oasContext.Subjects.Find(subjectId);
+            course.UnPin(subject);
 
             _oasContext.SaveChanges();
         }

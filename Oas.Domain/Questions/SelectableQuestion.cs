@@ -6,6 +6,7 @@ namespace Oas.Domain
     public class SelectableQuestion : Question, IAggregateRoot<SelectableQuestion>
     {
         public SelectableQuestion() {
+            QuestionId = Guid.NewGuid();
             Options = new List<Option>();
         }
 

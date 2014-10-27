@@ -15,24 +15,46 @@ namespace Oas.Service.Impl
             _oasContext = oasContext;
         }
 
-        public IEnumerable<Domain.Question> GetAllQuestion(string courseId, Messages.PaginationData paginationData) {
-            throw new NotImplementedException();
+        public IEnumerable<Domain.Question> GetAllSelectableQuestion(string courseId, Guid subjectId) {
+            return _oasContext.SelectableQuestions.Where(q => q.Subject.SubjectId == subjectId);
+        }
+
+        public IEnumerable<Domain.Question> GetAllSubjectiveQuestion(string courseId, Guid subjectId) {
+            return _oasContext.SubjectiveQuestions.Where(q => q.Subject.SubjectId == subjectId);
         }
 
         public Domain.Question GetQuestion(Guid questionId) {
             throw new NotImplementedException();
         }
 
-        public Guid CreateQuestion(string courseId, Domain.Question question) {
-            throw new NotImplementedException();
+        public Guid CreateSelectableQuestion(Guid subjectId, Domain.SelectableQuestion question) {
+            var subject = _oasContext.Subjects.Find(subjectId);
+            question.Subject = subject;
+            question.BelongTo = subject.BelongTo;
+            _oasContext.SelectableQuestions.Add(question);
+
+            _oasContext.SaveChanges();
+            return question.QuestionId;
         }
 
-        public void ModifyQuestion(Guid questionId, Domain.Question question) {
-            throw new NotImplementedException();
+        public Guid CreateSubjectiveQuestion(Guid subjectId, Domain.SubjectiveQuestion question) {
+            var subject = _oasContext.Subjects.Find(subjectId);
+            question.Subject = subject;
+            question.BelongTo = subject.BelongTo;
+            _oasContext.SubjectiveQuestions.Add(question);
+
+            _oasContext.SaveChanges();
+            return question.QuestionId;
         }
 
         public void DeleteQuestion(Guid questionId) {
-            throw new NotImplementedException();
+            var selectable = _oasContext.SelectableQuestions.FirstOrDefault(q => q.QuestionId == questionId);
+            var subjective = _oasContext.SubjectiveQuestions.FirstOrDefault(q => q.QuestionId == questionId);
+
+            if (selectable != null) { _oasContext.SelectableQuestions.Remove(selectable); }
+            if (subjective != null) { _oasContext.SubjectiveQuestions.Remove(subjective); }
+
+            _oasContext.SaveChanges();
         }
     }
 }

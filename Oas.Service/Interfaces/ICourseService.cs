@@ -18,8 +18,8 @@ namespace Oas.Service.Interfaces
         void ModifySubject(Guid subjectId, Subject subject);
         void DeleteSubject(Guid subjectId);
 
-        void PinSubject(Guid subjectId);
+        void PinSubject(string courseId, Guid subjectId);
+        void UnPinSubject(string courseId, Guid subjectId);
         IEnumerable<SubjectPin> GetCoursePinSubjects(string courseId);
-
     }
 }

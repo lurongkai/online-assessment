@@ -36,12 +36,12 @@ namespace Oas.Controllers
         }
 
         public ActionResult PinSubject(string courseId, Guid subjectId) {
-            _courseService.PinSubject(subjectId);
+            _courseService.PinSubject(courseId, subjectId);
             return RedirectToAction("Index");
         }
 
         public ActionResult UnPinSubject(string courseId, Guid subjectId) {
-            
+            _courseService.UnPinSubject(courseId, subjectId);
             return RedirectToAction("Index");
         }
     }

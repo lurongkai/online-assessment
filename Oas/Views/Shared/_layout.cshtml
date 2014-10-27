@@ -33,6 +33,34 @@
         $(document).ready(function() {
             $('.validation-summary-errors').addClass('alert alert-warning');
         });
+
+        $(document).ready(function () {
+            var root = $('#selectable-options');
+            var formatTemplate = function (index) {
+                var template =
+    '<div class="input-group">' +
+        '<input type="hidden" name="Options.Index" value="' + index +'" />' +
+        '<span class="input-group-addon">' +
+            '<input type="checkbox" id="Options[' + index + '].IsRight" name="Options[' + index + '].IsRight" value="true">' +
+        '</span>' +
+        '<input type="text" class="form-control" id="Options[' + index + '].Content" name="Options[' + index + '].Content">' +
+        '<div class="input-group-btn">' +
+            '<button type="button" class="btn btn-default option-remove">移除</button>' +
+        '</div>' +
+    '</div>';
+                return template;
+            };
+            $('#add-option').click(function () {
+                var nextIndex = parseInt(root.attr('data-option-index'));
+                var html = formatTemplate(nextIndex);
+                root.append($(html));
+                root.attr('data-option-index', nextIndex + 1);
+            });
+            $(document).on('click', '.option-remove', function (){
+                var node = $(this).parent().parent();
+                node.remove();
+            });
+        });
     </script>
 </body>
 

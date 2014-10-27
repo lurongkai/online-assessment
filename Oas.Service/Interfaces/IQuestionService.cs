@@ -7,11 +7,13 @@ namespace Oas.Service.Interfaces
 {
     public interface IQuestionService
     {
-        IEnumerable<Question> GetAllQuestion(string courseId, PaginationData paginationData);
+        IEnumerable<Question> GetAllSelectableQuestion(string courseId, Guid subjectId);
+        IEnumerable<Question> GetAllSubjectiveQuestion(string courseId, Guid subjectId);
         Question GetQuestion(Guid questionId);
 
-        Guid CreateQuestion(string courseId, Question question);
-        void ModifyQuestion(Guid questionId, Question question);
+        Guid CreateSelectableQuestion(Guid subjectId, SelectableQuestion question);
+        Guid CreateSubjectiveQuestion(Guid subjectId, SubjectiveQuestion question);
+
         void DeleteQuestion(Guid questionId);
     }
 }

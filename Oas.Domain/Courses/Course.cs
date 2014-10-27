@@ -26,5 +26,10 @@ namespace Oas.Domain
                 PinSubjects.Add(new SubjectPin() {SubjectId = subject.SubjectId, PinName = subject.Name});
             }
         }
+
+        public void UnPin(Subject subject) {
+            var pin = PinSubjects.SingleOrDefault(p => p.SubjectId == subject.SubjectId);
+            if (pin != null) { PinSubjects.Remove(pin); }
+        }
     }
 }
