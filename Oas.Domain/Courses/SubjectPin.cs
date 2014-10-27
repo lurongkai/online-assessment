@@ -2,7 +2,7 @@
 
 namespace Oas.Domain
 {
-    public class SubjectPin
+    public class SubjectPin : IEntity<Course>
     {
         public int SubjectPinId { get; set; }
         public Guid SubjectId { get; set; }

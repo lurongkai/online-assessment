@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Courses\Course.cs" />
     <Compile Include="IAggregateMember.cs" />
-    <Compile Include="Member.cs" />
+    <Compile Include="UserAndRole\Member.cs" />
     <Compile Include="Application\News.cs" />
     <Compile Include="Papers\Paper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,11 +52,10 @@
     <Compile Include="Repository\ICourseRepository.cs" />
     <Compile Include="Repository\INewsRepository.cs" />
     <Compile Include="Repository\IQuestionService.cs" />
-    <Compile Include="Student.cs" />
+    <Compile Include="UserAndRole\Student.cs" />
     <Compile Include="Subjects\Subject.cs" />
-    <Compile Include="Subjects\SubjectPin.cs" />
-    <Compile Include="Subjects\SubjectType.cs" />
-    <Compile Include="Teacher.cs" />
+    <Compile Include="Courses\SubjectPin.cs" />
+    <Compile Include="UserAndRole\Teacher.cs" />
     <Compile Include="ValueObject.cs" />
   </ItemGroup>
   <ItemGroup>

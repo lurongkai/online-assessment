@@ -19,9 +19,11 @@ namespace Oas.Controllers
         [AllowAnonymous]
         public ActionResult Index() {
             if (!User.Identity.IsAuthenticated) {
-                //var topNews = _managementService.GetTopNews(1);
-                var topNews = new News() { Title = "T1", Content = "C1" };
-                return View(topNews);
+                var topNews = _managementService.GetTopNews(1).ToArray();
+                var topNew = topNews.Length == 0
+                    ? new News {Content = "Empty", Title = "Empty", PublishedDate = DateTime.Now}
+                    : topNews[0];
+                return View(topNew);
             }
 
             return RedirectToAction("Index", "Dashboard");

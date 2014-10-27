@@ -27,12 +27,17 @@ namespace Oas.Infrastructure
 
             modelBuilder.Configurations
                         .Add(new CourseMapping())
+                        .Add(new SubjectPinMapping())
+
+                        .Add(new SubjectMapping())
+
                         .Add(new SelectableQuestionMapping())
                         .Add(new SubjectiveQuestionMapping())
                         .Add(new QuestionOptionMapping())
-                        .Add(new SubjectMapping())
+
                         .Add(new StudentMapping())
                         .Add(new TeacherMapping())
+
                         .Add(new NewsMapping());
 
             base.OnModelCreating(modelBuilder);

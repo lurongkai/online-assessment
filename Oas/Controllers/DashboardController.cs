@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Oas.Domain;
 using Oas.Service.Interfaces;
 
 namespace Oas.Controllers
@@ -38,8 +40,9 @@ namespace Oas.Controllers
         public ActionResult Subscribe() {
             var userId = User.Identity.GetUserId();
             var allCourses = _courseService.GetAllCourses();
-            var studentCourses = _courseService.GetStudentCourses(new Guid(userId));
-            var available = allCourses.Intersect(studentCourses);
+            var studentCourses = _courseService.GetStudentCourses(new Guid(userId)).Select(c => c.CourseId).ToArray();
+
+            var available = allCourses.Where(allCourse => !studentCourses.Contains(allCourse.CourseId)).ToList();
 
             return View(available);
         }

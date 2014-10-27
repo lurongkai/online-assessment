@@ -11,6 +11,7 @@ namespace Oas.Infrastructure.Mapping
 
             HasKey(m => m.QuestionId);
             HasMany(m => m.Options).WithRequired().WillCascadeOnDelete(true);
+            HasRequired(m => m.BelongTo);
         }
     }
 
@@ -22,6 +23,7 @@ namespace Oas.Infrastructure.Mapping
 
             HasKey(m => m.QuestionId);
             Property(m => m.Answer).IsRequired();
+            HasRequired(m => m.BelongTo);
         }
     }
 

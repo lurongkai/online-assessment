@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Oas.Domain
 {
-    public class SelectableQuestion : Question
+    public class SelectableQuestion : Question, IAggregateRoot<SelectableQuestion>
     {
         public SelectableQuestion() {
             Options = new List<Option>();
