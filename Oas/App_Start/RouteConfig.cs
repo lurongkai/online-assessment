@@ -8,6 +8,8 @@ namespace Oas
         public static void RegisterRoutes(RouteCollection routes) {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.LowercaseUrls = true;
+
             routes.MapRoute("course-question", 
                 "course/{courseId}/question/{action}/{questionId}",
                 new { controller = "Question", action = "Index", questionId = UrlParameter.Optional });
