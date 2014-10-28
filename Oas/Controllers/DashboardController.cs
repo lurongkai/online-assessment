@@ -37,7 +37,7 @@ namespace Oas.Controllers
         }
 
         [Authorize(Roles = "Student")]
-        public ActionResult Subscribe() {
+        public ActionResult Available() {
             var userId = User.Identity.GetUserId();
             var allCourses = _courseService.GetAllCourses();
             var studentCourses = _courseService.GetStudentCourses(new Guid(userId)).Select(c => c.CourseId).ToArray();

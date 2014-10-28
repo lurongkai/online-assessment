@@ -58,6 +58,7 @@ namespace Oas.Service.Impl
         }
 
         public void SubscribeCourse(Guid studentId, string courseId) {
+            _oasContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
             var student = _oasContext.Students.Find(studentId);
             var course = _oasContext.Courses.Find(courseId);
 
@@ -68,7 +69,7 @@ namespace Oas.Service.Impl
 
         public void AssigningCourse(Guid teacherId, string courseId) {
             var teacher = _oasContext.Teachers.Find(teacherId);
-            var course = _oasContext.Courses.FirstOrDefault(c => c.CourseId == courseId);
+            var course = _oasContext.Courses.Find(courseId);
 
             teacher.Teach(course);
 

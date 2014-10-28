@@ -230,7 +230,7 @@
     <Content Include="Views\Shared\_sidebar.cshtml" />
     <Content Include="Views\Shared\_course-layout.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
-    <Content Include="Views\Dashboard\Subscribe.cshtml" />
+    <Content Include="Views\Dashboard\Available.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Subject\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
@@ -244,6 +244,7 @@
     <Content Include="Views\Subject\Create.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
     <Content Include="Views\Dashboard\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

@@ -4,10 +4,14 @@ namespace Oas.Domain
 {
     public class Student : Member
     {
-        public ICollection<Course> SubscribeCourses { get; set; }
+        public Student() {
+            SubscribeCourses = new List<Course>();
+        }
+
+        public virtual ICollection<Course> SubscribeCourses { get; set; }
 
         public void Subscribe(Course course) {
-            throw new System.NotImplementedException();
+            SubscribeCourses.Add(course);
         }
     }
 }

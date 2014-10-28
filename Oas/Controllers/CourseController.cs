@@ -26,7 +26,7 @@ namespace Oas.Controllers
         [ChildActionOnly]
         public ActionResult PinnedSubjects(string courseId) {
             var pinnedSubjects = _courseService.GetCoursePinSubjects(courseId);
-            return PartialView("Shared/_pinnedSubjects", pinnedSubjects);
+            return PartialView("_pinnedSubjects", pinnedSubjects);
         }
     }
 }
