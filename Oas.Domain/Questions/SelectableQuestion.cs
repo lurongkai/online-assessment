@@ -10,7 +10,7 @@ namespace Oas.Domain
             Options = new List<Option>();
         }
 
-        public ICollection<Option> Options { get; set; }
+        public virtual ICollection<Option> Options { get; set; }
 
         public override int Evaluate() {
             throw new NotImplementedException();

@@ -203,6 +203,7 @@
     <Compile Include="Models\Admin\CreateTeacherViewModel.cs" />
     <Compile Include="Models\Admin\PublishNewsViewModel.cs" />
     <Compile Include="Models\Admin\UserManageViewModel.cs" />
+    <Compile Include="Models\Exercise\QuestionType.cs" />
     <Compile Include="Models\PredefinedRole.cs" />
     <Compile Include="Models\Question\QuestionViewModel.cs" />
     <Compile Include="Models\Subject\SubjectViewModel.cs" />
@@ -245,6 +246,9 @@
     <Content Include="Views\Question\Index.cshtml" />
     <Content Include="Views\Dashboard\_ViewStart.cshtml" />
     <Content Include="Views\Account\_ViewStart.cshtml" />
+    <Content Include="Views\Exercise\Index.cshtml" />
+    <Content Include="Views\Exercise\PerformSelectable.cshtml" />
+    <Content Include="Views\Exercise\PerformSubjective.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -304,7 +308,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Course\" />
-    <Folder Include="Views\Exercise\" />
     <Folder Include="Views\Simulation\" />
     <Folder Include="Views\Testing\" />
   </ItemGroup>

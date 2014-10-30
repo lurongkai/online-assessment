@@ -10,14 +10,14 @@ namespace Oas
 
             routes.LowercaseUrls = true;
 
-            routes.MapRoute("course-question", 
-                "course/{courseId}/question/{action}/{questionId}",
+            routes.MapRoute("course-question",
+                "course/{courseId}/question/{questionId}/{action}",
                 new { controller = "Question", action = "Index", questionId = UrlParameter.Optional });
             routes.MapRoute("course-subject",
-                "course/{courseId}/subject/{action}/{subjectId}",
+                "course/{courseId}/subject/{subjectId}/{action}",
                 new { controller = "Subject", action = "Index", subjectId = UrlParameter.Optional });
             routes.MapRoute("course-exercise",
-                "course/{courseId}/exercise/{action}/{subjectId}",
+                "course/{courseId}/exercise/{subjectId}/{action}",
                 new { controller = "Exercise", action = "Index", subjectId = UrlParameter.Optional });
             routes.MapRoute("course-simulation",
                 "course/{courseId}/simulation/{action}/",

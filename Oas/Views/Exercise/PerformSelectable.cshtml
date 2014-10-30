@@ -1,0 +1,114 @@
+﻿@using Oas.Models.Exercise
+
+<div id="question-main">
+</div>
+<script>
+    (function () {
+        function isMultiple(q) {
+            if (q.Options.length > 0) {
+                var counter = 0;
+
+                q.Options.forEach(function(o) {
+                    if (o.IsRight == true) {
+                        counter ++;
+                    }
+                });
+
+                return counter > 1;
+            }
+
+            return false;
+        }
+
+        function renderAnswerArea(q) {
+            var html = '';
+            if (isMultiple(q)) {
+                q.Options.forEach(function(o) {
+                    html +=
+                        '<div class="checkbox">' +
+                        '    <label>' +
+                        '        <input type="checkbox" value="" data-isright="' + o.IsRight + '">' + o.Content +
+                        '    </label>' +
+                        '</div>';
+                });
+            } else {
+                q.Options.forEach(function (o) {
+                    html +=
+                        '<div class="radio">' +
+                        '    <label>' +
+                        '        <input type="radio" name="' + q.QuestionId + '" data-isright="' + o.IsRight + '">' + o.Content +
+                        '    </label>' +
+                        '</div>';
+                });
+            }
+            return html;
+        }
+
+        function questionEvaluate() {
+            $('.question-entry input').each(function () {
+                var _this = $(this);
+                if (_this.attr('data-isright') == 'true') {
+                    if (_this.is(':checked')) {
+                        _this.parent().append($(' <span class="glyphicon glyphicon-ok"></span>'));
+                        //_this.parent().parent().addClass('alert alert-success');
+                    } else {
+                        _this.parent().append($(' <span class="glyphicon glyphicon-remove"></span>'));
+                        //_this.parent().parent().addClass('alert alert-danger');
+                    }
+                } else {
+                    if (_this.is(':checked')) {
+                        _this.parent().append($(' <span class="glyphicon glyphicon-remove"></span>'));
+                        //_this.parent().parent().addClass('alert alert-danger');
+                    }
+                }
+            });
+
+            $('.question-evaluate').addClass('disabled');
+            $('.question-next').removeClass('disabled');
+        }
+
+        function renderQuestion(q) {
+            $("#question-main div").remove();
+
+            var html = '';
+            html +=
+                '<div class="panel panel-default">' +
+                '    <div class="panel-heading">' +
+                '        <h3 class="panel-title">答题(分值'+ q.Score +')</h3>' +
+                '    </div>' +
+                '    <div class="panel-body">'+
+                '        <div class="question-entry">' +
+                '            <h2>' + q.Body + '</h2>' +
+                             renderAnswerArea(q) +
+                '        </div>' +
+                '        <hr />' +
+                '        <div>' +
+                '            <button class="btn btn-primary question-evaluate" type="submit">确定</button>' +
+                '            <button class="btn btn-default question-next disabled">下一题</button>' +
+                '        </div>' +
+                '    </div>' +
+                '</div>';
+
+            $("#question-main").append($(html));
+        }
+
+        var nextQuestion = 0;
+        $(document).ready(function () {
+            $.getJSON('@Url.Action("GetData", new {type = QuestionType.Selectable})', function (data) {
+                if (data.length > 0) {
+                    $(document).on('click', '.question-evaluate', questionEvaluate);
+                    $(document).on('click', '.question-next', function () {
+                        if (nextQuestion >= data.length) {
+                            nextQuestion = 0;
+                        }
+                        renderQuestion(data[nextQuestion]);
+                        nextQuestion += 1;
+                    });
+
+                    renderQuestion(data[nextQuestion]);
+                    nextQuestion += 1;
+                }
+            });
+        });
+    })();
+</script>

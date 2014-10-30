@@ -1,0 +1,67 @@
+﻿@using Oas.Models.Exercise
+
+<div id="question-main">
+    <input type="hidden" value=""/>
+</div>
+<script>
+    (function () {
+        function renderAnswerArea(q) {
+            var html = '';
+            html +=
+                '<textarea class="form-control " rows="8"></textarea>' + 
+                '<div class="hidden answer">' +
+                '    <h4>参考答案</h4>' +
+                '    <p>' + q.Answer + '</p>' +
+                '</div>';
+            return html;
+        }
+
+        function questionEvaluate() {
+            $('.question-entry .answer').removeClass('hidden');
+        }
+
+        function renderQuestion(q) {
+            $("#question-main div").remove();
+
+            var html = '';
+            html +=
+                '<div class="panel panel-default">' +
+                '    <div class="panel-heading">' +
+                '        <h3 class="panel-title">答题(分值' + q.Score + ')</h3>' +
+                '    </div>' +
+                '    <div class="panel-body">' +
+                '        <div class="question-entry">' +
+                '            <h2>' + q.Body + '</h2>' +
+                             renderAnswerArea(q) +
+                '        </div>' +
+                '        <hr />' +
+                '        <div>' +
+                '            <button class="btn btn-primary question-evaluate" type="submit">确定</button>' +
+                '            <button class="btn btn-default question-next disabled">下一题</button>' +
+                '        </div>' +
+                '    </div>' +
+                '</div>';
+
+            $("#question-main").append($(html));
+        }
+
+        var nextQuestion = 0;
+        $(document).ready(function () {
+            $.getJSON('@Url.Action("GetData", new {type = QuestionType.Subjective})', function (data) {
+                if (data.length > 0) {
+                    $(document).on('click', '.question-evaluate', questionEvaluate);
+                    $(document).on('click', '.question-next', function () {
+                        if (nextQuestion >= data.length) {
+                            nextQuestion = 0;
+                        }
+                        renderQuestion(data[nextQuestion]);
+                        nextQuestion += 1;
+                    });
+
+                    renderQuestion(data[nextQuestion]);
+                    nextQuestion += 1;
+                }
+            });
+        });
+    })();
+</script>

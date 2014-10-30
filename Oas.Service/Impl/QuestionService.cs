@@ -15,11 +15,11 @@ namespace Oas.Service.Impl
             _oasContext = oasContext;
         }
 
-        public IEnumerable<Domain.Question> GetAllSelectableQuestion(string courseId, Guid subjectId) {
+        public IEnumerable<Domain.SelectableQuestion> GetAllSelectableQuestion(string courseId, Guid subjectId) {
             return _oasContext.SelectableQuestions.Where(q => q.Subject.SubjectId == subjectId);
         }
 
-        public IEnumerable<Domain.Question> GetAllSubjectiveQuestion(string courseId, Guid subjectId) {
+        public IEnumerable<Domain.SubjectiveQuestion> GetAllSubjectiveQuestion(string courseId, Guid subjectId) {
             return _oasContext.SubjectiveQuestions.Where(q => q.Subject.SubjectId == subjectId);
         }
 

@@ -7,8 +7,8 @@ namespace Oas.Service.Interfaces
 {
     public interface IQuestionService
     {
-        IEnumerable<Question> GetAllSelectableQuestion(string courseId, Guid subjectId);
-        IEnumerable<Question> GetAllSubjectiveQuestion(string courseId, Guid subjectId);
+        IEnumerable<SelectableQuestion> GetAllSelectableQuestion(string courseId, Guid subjectId);
+        IEnumerable<SubjectiveQuestion> GetAllSubjectiveQuestion(string courseId, Guid subjectId);
         Question GetQuestion(Guid questionId);
 
         Guid CreateSelectableQuestion(Guid subjectId, SelectableQuestion question);
