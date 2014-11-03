@@ -23,9 +23,9 @@ namespace Oas.Models.Subject
             foreach (var subject in _subjects) {
                 if (pinnedSubjectIds.Contains(subject.SubjectId)) {
                     var pin = _pinnedSubjects.First(p => p.SubjectId == subject.SubjectId);
-                    subjects.Add(new SubjectViewModelItem(subject.SubjectId, subject.Name, pin.PinName, true));
+                    subjects.Add(new SubjectViewModelItem(subject.SubjectId, subject.Name, pin.PinName, true, subject.ForSimulation));
                 } else {
-                    subjects.Add(new SubjectViewModelItem(subject.SubjectId, subject.Name, "", false));
+                    subjects.Add(new SubjectViewModelItem(subject.SubjectId, subject.Name, "", false, subject.ForSimulation));
                 }
             }
 
@@ -37,10 +37,11 @@ namespace Oas.Models.Subject
 
     public class SubjectViewModelItem
     {
-        public SubjectViewModelItem(Guid subjectId, string subjectName, string pinName, bool isPinned) {
+        public SubjectViewModelItem(Guid subjectId, string subjectName, string pinName, bool isPinned, bool isForSimulation) {
             SubjectId = subjectId;
             IsPinned = isPinned;
             Name = subjectName;
+            IsForSimulation = isForSimulation;
 
             if (isPinned && !String.IsNullOrEmpty(pinName)) { Name += String.Format("({0})", pinName); }
         }
@@ -48,5 +49,6 @@ namespace Oas.Models.Subject
         public Guid SubjectId { get; private set; }
         public string Name { get; private set; }
         public bool IsPinned { get; private set; }
+        public bool IsForSimulation { get; private set; }
     }
 }

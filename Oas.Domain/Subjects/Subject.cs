@@ -8,6 +8,7 @@ namespace Oas.Domain
         }
         public Guid SubjectId { get; set; }
         public string Name { get; set; }
+        public bool ForSimulation { get; set; }
 
         public virtual Course BelongTo { get; set; }
 

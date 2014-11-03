@@ -35,13 +35,19 @@ namespace Oas.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult PinSubject(string courseId, Guid subjectId) {
-            _courseService.PinSubject(courseId, subjectId);
+        [HttpPost]
+        public ActionResult PinSubject(string courseId, Guid subjectId, string pinName) {
+            _courseService.PinSubject(courseId, subjectId, pinName);
             return RedirectToAction("Index");
         }
 
         public ActionResult UnPinSubject(string courseId, Guid subjectId) {
             _courseService.UnPinSubject(courseId, subjectId);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SetForSimulation(string courseId, Guid subjectId) {
+            _courseService.SetSimulation(courseId, subjectId);
             return RedirectToAction("Index");
         }
     }

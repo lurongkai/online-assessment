@@ -21,9 +21,9 @@ namespace Oas.Domain
         //    yield return Description;
         //}
 
-        public void Pin(Subject subject) {
+        public void Pin(Subject subject, string pinName) {
             if (PinSubjects.All(p => p.SubjectId != subject.SubjectId)) {
-                PinSubjects.Add(new SubjectPin() {SubjectId = subject.SubjectId, PinName = subject.Name});
+                PinSubjects.Add(new SubjectPin() { SubjectId = subject.SubjectId, PinName = pinName });
             }
         }
 

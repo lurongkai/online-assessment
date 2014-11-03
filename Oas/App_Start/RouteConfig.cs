@@ -14,7 +14,7 @@ namespace Oas
                 "course/{courseId}/question/{questionId}/{action}",
                 new { controller = "Question", action = "Index", questionId = UrlParameter.Optional });
             routes.MapRoute("course-subject",
-                "course/{courseId}/subject/{subjectId}/{action}",
+                "course/{courseId}/subject/{action}/{subjectId}",
                 new { controller = "Subject", action = "Index", subjectId = UrlParameter.Optional });
             routes.MapRoute("course-exercise",
                 "course/{courseId}/exercise/{subjectId}/{action}",

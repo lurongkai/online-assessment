@@ -66,10 +66,10 @@ namespace Oas.Service.Impl
             _oasContext.SaveChanges();
         }
 
-        public void PinSubject(string courseId, Guid subjectId) {
+        public void PinSubject(string courseId, Guid subjectId, string pinName) {
             var course = _oasContext.Courses.Find(courseId);
             var subject = _oasContext.Subjects.Find(subjectId);
-            course.Pin(subject);
+            course.Pin(subject, pinName);
 
             _oasContext.SaveChanges();
         }
@@ -85,6 +85,21 @@ namespace Oas.Service.Impl
         public IEnumerable<Domain.SubjectPin> GetCoursePinSubjects(string courseId) {
             var course = _oasContext.Courses.Find(courseId);
             return course.PinSubjects;
+        }
+
+
+        public void SetSimulation(string courseId, Guid subjectId) {
+            var subjects = _oasContext.Subjects.Where(s => s.BelongTo.CourseId == courseId);
+
+            foreach (var subject in subjects) {
+                if (subject.SubjectId == subjectId) {
+                    subject.ForSimulation = true;
+                } else {
+                    subject.ForSimulation = false;
+                }
+            }
+
+            _oasContext.SaveChanges();
         }
     }
 }

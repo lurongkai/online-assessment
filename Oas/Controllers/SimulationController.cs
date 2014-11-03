@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Oas.Service.Interfaces;
 
 namespace Oas.Controllers
 {
     public class SimulationController : Controller
     {
-        public ActionResult Index(string courseId) {
-            throw new NotImplementedException();
+        private ISimulationService _simulationService;
+        public SimulationController(ISimulationService simulationService) {
+            _simulationService = simulationService;
         }
 
-        public ActionResult StartNew(string courseId) {
+        public ActionResult Index(string courseId) {
+            return View();
+        }
+
+        public ActionResult StartNew(string courseId, string style) {
             throw new NotImplementedException();
         }
 
