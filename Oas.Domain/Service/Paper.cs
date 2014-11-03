@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Oas.Domain
+namespace Oas.Domain.Service
 {
     public class Paper
     {
@@ -10,7 +10,7 @@ namespace Oas.Domain
             SubjectiveQuestions = new List<SubjectiveQuestion>();
         }
 
-        public ICollection<SelectableQuestion> SelectableQuestions { get; set; }
-        public ICollection<SubjectiveQuestion> SubjectiveQuestions { get; set; }
+        public List<SelectableQuestion> SelectableQuestions { get; set; }
+        public List<SubjectiveQuestion> SubjectiveQuestions { get; set; }
     }
 }

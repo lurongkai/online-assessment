@@ -46,6 +46,10 @@ namespace Oas.Service.Impl
 
         public Guid CreateSubject(string courseId, Domain.Subject subject) {
             var course = _oasContext.Courses.Find(courseId);
+            if (!_oasContext.Subjects.Any(s => s.BelongTo.CourseId == courseId)) {
+                subject.ForSimulation = true;
+            }
+
             subject.BelongTo = course;
             _oasContext.Subjects.Add(subject);
             _oasContext.SaveChanges();

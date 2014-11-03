@@ -206,6 +206,8 @@
     <Compile Include="Models\Exercise\QuestionType.cs" />
     <Compile Include="Models\PredefinedRole.cs" />
     <Compile Include="Models\Question\QuestionViewModel.cs" />
+    <Compile Include="Models\Simulation\SimulationInspectViewModel.cs" />
+    <Compile Include="Models\Simulation\SimulationViewModel.cs" />
     <Compile Include="Models\Subject\SubjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -250,6 +252,8 @@
     <Content Include="Views\Exercise\PerformSelectable.cshtml" />
     <Content Include="Views\Exercise\PerformSubjective.cshtml" />
     <Content Include="Views\Simulation\Index.cshtml" />
+    <Content Include="Views\Simulation\StartNew.cshtml" />
+    <Content Include="Views\Simulation\Inspect.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
