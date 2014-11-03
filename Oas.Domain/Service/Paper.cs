@@ -6,11 +6,13 @@ namespace Oas.Domain.Service
     public class Paper
     {
         public Paper() {
-            SelectableQuestions = new List<SelectableQuestion>();
+            SingleQuestions = new List<SelectableQuestion>();
+            MultipleQuestions = new List<SelectableQuestion>();
             SubjectiveQuestions = new List<SubjectiveQuestion>();
         }
 
-        public List<SelectableQuestion> SelectableQuestions { get; set; }
+        public List<SelectableQuestion> SingleQuestions { get; set; }
+        public List<SelectableQuestion> MultipleQuestions { get; set; }
         public List<SubjectiveQuestion> SubjectiveQuestions { get; set; }
     }
 }

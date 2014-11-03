@@ -11,7 +11,7 @@
                 '<textarea class="form-control " rows="8"></textarea>' + 
                 '<div class="hidden answer">' +
                 '    <h4>参考答案</h4>' +
-                '    <p>' + q.Answer + '</p>' +
+                '    <p>' + q.answer + '</p>' +
                 '</div>';
             return html;
         }
@@ -27,11 +27,11 @@
             html +=
                 '<div class="panel panel-default">' +
                 '    <div class="panel-heading">' +
-                '        <h3 class="panel-title">答题(分值' + q.Score + ')</h3>' +
+                '        <h3 class="panel-title">答题(分值' + q.score + ')</h3>' +
                 '    </div>' +
                 '    <div class="panel-body">' +
                 '        <div class="question-entry">' +
-                '            <h2>' + q.Body + '</h2>' +
+                '            <h2>' + q.body + '</h2>' +
                              renderAnswerArea(q) +
                 '        </div>' +
                 '        <hr />' +
