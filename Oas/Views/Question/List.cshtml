@@ -12,6 +12,8 @@
             <thead>
                 <tr>
                     <td>科目</td>
+                    <td>分值</td>
+                    <td>难度</td>
                     <td>操作</td>
                 </tr>
             </thead>
@@ -19,6 +21,8 @@
                 @foreach (var item in Model.SelectableQuestions) {
                     <tr>
                         <td>@item.Body.MaxLengthAs(20)</td>
+                        <td>@item.Score</td>
+                        <td>@item.Degree</td>
                         <td style="width: 20%">
                             @*@Html.ActionLink("查看", "Details", new { questionId = item.QuestionId }, new { @class = "btn btn-default btn-xs" })
                                 @Html.ActionLink("编辑", "Edit", new { questionId = item.QuestionId }, new { @class = "btn btn-primary btn-xs" })*@
@@ -45,6 +49,8 @@
             <thead>
                 <tr>
                     <td>科目</td>
+                    <td>分值</td>
+                    <td>难度</td>
                     <td>操作</td>
                 </tr>
             </thead>
@@ -52,6 +58,8 @@
                 @foreach (var item in Model.SubjectiveQuestions) {
                     <tr>
                         <td>@item.Body.MaxLengthAs(20)</td>
+                        <td>@item.Score</td>
+                        <td>@item.Degree</td>
                         <td style="width: 20%">
                             @*@Html.ActionLink("查看", "Details", new { questionId = item.QuestionId }, new { @class = "btn btn-default btn-xs" })
                                 @Html.ActionLink("编辑", "Edit", new { questionId = item.QuestionId }, new { @class = "btn btn-primary btn-xs" })*@
@@ -69,16 +77,6 @@
         </div>
     </div>
 </div>
-
-@*<div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            新建题目 <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a>选择题</a></li>
-            <li><a>主观题</a></li>
-        </ul>
-    </div>*@
 
 <div class="modal" id="create-selectable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -98,8 +96,14 @@
 
                     <label for="Score">分值</label>
                     <div>
-                        <input class="form-control" id="Score" name="Score" placeholder="分值" type="text" value="" data-val="true" data-val-required="题目必填">
+                        <input class="form-control" id="Score" name="Score" placeholder="分值" type="text" value="" data-val="true" data-val-required="分值必填">
                         <span class="field-validation-valid" data-valmsg-for="Score" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <label for="Score">难度(0-1.0)</label>
+                    <div>
+                        <input class="form-control" id="Degree" name="Degree" placeholder="难度" type="text" value="" data-val="true" data-val-required="难度必填">
+                        <span class="field-validation-valid" data-valmsg-for="Degree" data-valmsg-replace="true"></span>
                     </div>
 
                     <label for="Answer">选项/答案</label>
@@ -177,7 +181,12 @@
                         <input class="form-control" id="Score" name="Score" placeholder="分值" type="text" value="" data-val="true" data-val-required="分值必填">
                         <span class="field-validation-valid" data-valmsg-for="Score" data-valmsg-replace="true"></span>
                     </div>
-                    
+
+                    <label for="Score">难度</label>
+                    <div>
+                        <input class="form-control" id="Degree" name="Degree" placeholder="难度" type="text" value="" data-val="true" data-val-required="难度必填">
+                        <span class="field-validation-valid" data-valmsg-for="Degree" data-valmsg-replace="true"></span>
+                    </div>
                     <label for="Answer">答案</label>
                     <div>
                         <input class="form-control" id="Answer" name="Answer" placeholder="答案" type="text" value="" data-val="true" data-val-required="答案必填">

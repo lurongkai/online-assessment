@@ -25,35 +25,8 @@ namespace Oas.Controllers
         }
 
         public ActionResult StartNew(string courseId, string style) {
-            //var paper = _simulationService.GeneratePaper(courseId, style);
-            var paper = new Paper();
-            paper.SingleQuestions.Add(new SelectableQuestion() {
-                QuestionId = Guid.NewGuid(),
-                Body = "test single",
-                Options = new List<Option>() {
-                    new Option(){OptionId = Guid.NewGuid(),Content = "single1-true", IsRight = true},
-                    new Option(){OptionId = Guid.NewGuid(),Content = "single2-false", IsRight = false},
-                    new Option(){OptionId = Guid.NewGuid(),Content = "single3-false", IsRight = false},
-                    new Option(){OptionId = Guid.NewGuid(),Content = "single4-false", IsRight = false}
-                }
-            });
-            paper.MultipleQuestions.Add(new SelectableQuestion() {
-                QuestionId = Guid.NewGuid(),
-                Body = "test multiple",
-                Options = new List<Option>() {
-                    new Option(){OptionId = Guid.NewGuid(),Content = "multiple1-true", IsRight = true},
-                    new Option(){OptionId = Guid.NewGuid(),Content = "multiple2-false", IsRight = false},
-                    new Option(){OptionId = Guid.NewGuid(),Content = "multiple3-true", IsRight = true},
-                    new Option(){OptionId = Guid.NewGuid(),Content = "multiple4-false", IsRight = false}
-                }
-            });
-            paper.SubjectiveQuestions.Add(new SubjectiveQuestion() {
-                QuestionId = Guid.NewGuid(),
-                Body = "test subjective",
-                Answer = "test answer"
-            });
+            var paper = _simulationService.GeneratePaper(courseId, style);
             Session[Paper] = paper;
-
             return View(paper);
         }
 

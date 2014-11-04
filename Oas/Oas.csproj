@@ -302,7 +302,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
-    <Content Include="Views\Question\Create.cshtml" />
     <Content Include="Views\Question\List.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Shared\_nav.cshtml" />

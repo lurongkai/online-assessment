@@ -41,6 +41,9 @@
   <ItemGroup>
     <Compile Include="Courses\Course.cs" />
     <Compile Include="IAggregateMember.cs" />
+    <Compile Include="Service\IPaperGenerationService.cs" />
+    <Compile Include="Service\QuestionTicket.cs" />
+    <Compile Include="Service\QuestionTicketBag.cs" />
     <Compile Include="Service\RandomPaperGenerationService.cs" />
     <Compile Include="Service\SimplePaperGenerationService.cs" />
     <Compile Include="UserAndRole\Member.cs" />

@@ -11,7 +11,7 @@ namespace Oas
             routes.LowercaseUrls = true;
 
             routes.MapRoute("course-question",
-                "course/{courseId}/question/{questionId}/{action}",
+                "course/{courseId}/question/{action}/{questionId}",
                 new { controller = "Question", action = "Index", questionId = UrlParameter.Optional });
             routes.MapRoute("course-subject",
                 "course/{courseId}/subject/{action}/{subjectId}",
