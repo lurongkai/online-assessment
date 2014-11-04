@@ -1,0 +1,14 @@
+﻿@model Oas.Domain.Application.News
+@{
+    ViewBag.Title = "News";
+}
+
+<div class="page-header">
+    <h1>@Model.Title <small>发布日期：@Model.PublishedDate.ToString("d")</small></h1>
+</div>
+
+<div>
+    <p>
+        @Model.Content
+    </p>
+</div>

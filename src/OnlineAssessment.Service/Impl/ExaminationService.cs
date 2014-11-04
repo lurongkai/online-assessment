@@ -1,23 +1,4 @@
-﻿// Author:
-//      Lu Rongkai <lurongkai@gmail.com>
-// 
-// Copyright (c) 2014 lurongkai
-// 
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -36,8 +17,7 @@ namespace OnlineAssessment.Service
                     .Questions
                     .Include(q => q.QuestionOptions)
                     .Where(q => q.Subject.SubjectKey == config.SubjectKey)
-                    .Select(q => new QuestionCharacter()
-                    {
+                    .Select(q => new QuestionCharacter() {
                         QuestionId = q.QuestionId,
                         QuestionForm = q.QuestionForm,
                         QuestionDegree = q.QuestionDegree,
@@ -47,8 +27,7 @@ namespace OnlineAssessment.Service
                 var p = generator.GenerateExaminationPaper(config.AsPaperConstraint());
                 var questionList = p.GeneSeries.Select(qc => qc.QuestionId).ToList();
 
-                var paper = new ExaminationPaper()
-                {
+                var paper = new ExaminationPaper() {
                     Title = config.Title,
                     Description = config.Description,
                     Degree = p.Degree,
@@ -76,8 +55,7 @@ namespace OnlineAssessment.Service
                 examination.Duration = examinationPaper.Duration;
                 examination.Paper = paper;
 
-                if (examinationPaper.BeginImmediately) { examination.State = ExaminationState.Active; }
-                else { examination.State = ExaminationState.Pending; }
+                if (examinationPaper.BeginImmediately) { examination.State = ExaminationState.Active; } else { examination.State = ExaminationState.Pending; }
 
                 subject.Examinations.Add(examination);
                 context.SaveChanges();

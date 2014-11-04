@@ -1,0 +1,203 @@
+﻿@model Oas.Models.Question.QuestionViewModel
+
+@{
+    ViewBag.Title = "Question List";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">选择题</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>科目</td>
+                    <td>分值</td>
+                    <td>难度</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SelectableQuestions) {
+                    <tr>
+                        <td>@item.Body.MaxLengthAs(20)</td>
+                        <td>@item.Score</td>
+                        <td>@item.Degree</td>
+                        <td style="width: 20%">
+                            @*@Html.ActionLink("查看", "Details", new { questionId = item.QuestionId }, new { @class = "btn btn-default btn-xs" })
+                                @Html.ActionLink("编辑", "Edit", new { questionId = item.QuestionId }, new { @class = "btn btn-primary btn-xs" })*@
+                            <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { questionId = item.QuestionId, subjectId = ViewBag.SubjectId })">删除</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>
+            <button class="btn btn-default" data-toggle="modal" data-target="#create-selectable">
+                添加
+            </button>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">主观题</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>科目</td>
+                    <td>分值</td>
+                    <td>难度</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SubjectiveQuestions) {
+                    <tr>
+                        <td>@item.Body.MaxLengthAs(20)</td>
+                        <td>@item.Score</td>
+                        <td>@item.Degree</td>
+                        <td style="width: 20%">
+                            @*@Html.ActionLink("查看", "Details", new { questionId = item.QuestionId }, new { @class = "btn btn-default btn-xs" })
+                                @Html.ActionLink("编辑", "Edit", new { questionId = item.QuestionId }, new { @class = "btn btn-primary btn-xs" })*@
+                            <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { questionId = item.QuestionId, subjectId = ViewBag.SubjectId })">删除</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <button class="btn btn-default" data-toggle="modal" data-target="#create-subjective">
+                添加
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="create-selectable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="@Url.Action("CreateSelectable", new { subjectId = ViewBag.SubjectId })" method="POST">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新建选择题</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="Body">题目</label>
+                    <div>
+                        <input class="form-control" id="Body" name="Body" placeholder="题目" type="text" value="" data-val="true" data-val-required="题目必填">
+                        <span class="field-validation-valid" data-valmsg-for="Body" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <label for="Score">分值</label>
+                    <div>
+                        <input class="form-control" id="Score" name="Score" placeholder="分值" type="text" value="" data-val="true" data-val-required="分值必填">
+                        <span class="field-validation-valid" data-valmsg-for="Score" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <label for="Score">难度(0-1.0)</label>
+                    <div>
+                        <input class="form-control" id="Degree" name="Degree" placeholder="难度" type="text" value="" data-val="true" data-val-required="难度必填">
+                        <span class="field-validation-valid" data-valmsg-for="Degree" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <label for="Answer">选项/答案</label>
+                    <div id="selectable-options" data-option-index="4">
+                        <div class="input-group">
+                            <input type="hidden" name="Options.Index" value="0" />
+                            <span class="input-group-addon">
+                                <input type="checkbox" id="Options[0].IsRight" name="Options[0].IsRight" value="true">
+                            </span>
+                            <input type="text" class="form-control" id="Options[0].Content" name="Options[0].Content">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default option-remove">移除</button>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="hidden" name="Options.Index" value="1" />
+                            <span class="input-group-addon">
+                                <input type="checkbox" id="Options[1].IsRight" name="Options[1].IsRight" value="true">
+                            </span>
+                            <input type="text" class="form-control" id="Options[1].Content" name="Options[1].Content">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default option-remove">移除</button>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="hidden" name="Options.Index" value="2" />
+                            <span class="input-group-addon">
+                                <input type="checkbox" id="Options[2].IsRight" name="Options[2].IsRight" value="true">
+                            </span>
+                            <input type="text" class="form-control" id="Options[2].Content" name="Options[2].Content">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default option-remove">移除</button>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="hidden" name="Options.Index" value="3" />
+                            <span class="input-group-addon">
+                                <input type="checkbox" id="Options[3].IsRight" name="Options[3].IsRight" value="true">
+                            </span>
+                            <input type="text" class="form-control" id="Options[3].Content" name="Options[3].Content">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default option-remove">移除</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="add-option">添加</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <input type="submit" class="btn btn-primary" value="提交" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="create-subjective" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="@Url.Action("CreateSubjective", new { subjectId = ViewBag.SubjectId })" method="POST">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新建主观题</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="Body">题目</label>
+                    <div>
+                        <input class="form-control" id="Body" name="Body" placeholder="题目" type="text" value="" data-val="true" data-val-required="题目必填">
+                        <span class="field-validation-valid" data-valmsg-for="Body" data-valmsg-replace="true"></span>
+                    </div>
+                    
+                    <label for="Score">分值</label>
+                    <div>
+                        <input class="form-control" id="Score" name="Score" placeholder="分值" type="text" value="" data-val="true" data-val-required="分值必填">
+                        <span class="field-validation-valid" data-valmsg-for="Score" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <label for="Score">难度</label>
+                    <div>
+                        <input class="form-control" id="Degree" name="Degree" placeholder="难度" type="text" value="" data-val="true" data-val-required="难度必填">
+                        <span class="field-validation-valid" data-valmsg-for="Degree" data-valmsg-replace="true"></span>
+                    </div>
+                    <label for="Answer">答案</label>
+                    <div>
+                        <input class="form-control" id="Answer" name="Answer" placeholder="答案" type="text" value="" data-val="true" data-val-required="答案必填">
+                        <span class="field-validation-valid" data-valmsg-for="Answer" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <input type="submit" class="btn btn-primary" value="提交" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+﻿@model IEnumerable<SubjectPin>
+
+@foreach (var subjectPin in Model) {
+    <a href="@Url.Action("Index", "Exercise", new { subjectId = subjectPin.SubjectId })" class="list-group-item">@subjectPin.PinName</a>
+}

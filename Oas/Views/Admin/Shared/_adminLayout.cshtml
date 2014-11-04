@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
+        <div class="list-group">
+            <h4 class="list-group-item active">站点管理</h4>
+            <a href="@Url.Action("CreateCourse", "Admin")" class="list-group-item">创建科目</a>
+            <a href="@Url.Action("CreateTeacher", "Admin")" class="list-group-item">创建教师</a>
+            <a href="@Url.Action("PublishNews", "Admin")" class="list-group-item">发布信息</a>
+        </div>
+    </div>
+    <div class="col-md-9" role="main">
+        @RenderBody()
+    </div>
+</div>

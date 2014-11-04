@@ -1,0 +1,26 @@
+﻿@using Oas.Models.Exercise
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>选择练习题类型</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>选择题</h3>
+                    <p><a href="@Url.Action("Perform", "Exercise", new { type = QuestionType.Selectable })">进入</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>主观题</h3>
+                    <p><a href="@Url.Action("Perform", "Exercise", new { type = QuestionType.Subjective })">进入</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
