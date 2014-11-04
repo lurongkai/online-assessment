@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Oas.Domain;
 using Oas.Domain.Application;
-using Oas.Service.Messages;
 
 namespace Oas.Service.Interfaces
 {

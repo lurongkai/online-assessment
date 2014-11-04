@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Oas.Domain;
 using Oas.Models.Question;
 using Oas.Service.Interfaces;
-using Oas.Service.Messages;
 
 namespace Oas.Controllers
 {
@@ -12,6 +11,7 @@ namespace Oas.Controllers
     {
         private IQuestionService _questionService;
         private ICourseService _courseService;
+
         public QuestionController(IQuestionService questionService, ICourseService courseService) {
             _questionService = questionService;
             _courseService = courseService;
@@ -35,18 +35,19 @@ namespace Oas.Controllers
         [ActionName("CreateSelectable")]
         public ActionResult Create(string courseId, Guid subjectId, SelectableQuestion question) {
             _questionService.CreateSelectableQuestion(subjectId, question);
-            return RedirectToAction("List", new { subjectId = subjectId });
+            return RedirectToAction("List", new {subjectId});
         }
+
         [HttpPost]
         [ActionName("CreateSubjective")]
         public ActionResult Create(string courseId, Guid subjectId, SubjectiveQuestion question) {
             _questionService.CreateSubjectiveQuestion(subjectId, question);
-            return RedirectToAction("List", new {subjectId = subjectId});
+            return RedirectToAction("List", new {subjectId});
         }
 
         public ActionResult Delete(string courseId, Guid subjectId, Guid questionId) {
             _questionService.DeleteQuestion(questionId);
-            return RedirectToAction("List", new {subjectId = subjectId});
+            return RedirectToAction("List", new {subjectId});
         }
     }
 }

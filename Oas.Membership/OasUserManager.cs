@@ -4,6 +4,6 @@ namespace Oas.Membership
 {
     public class OasUserManager : UserManager<OasIdentityUser>
     {
-        public OasUserManager(IUserStore<OasIdentityUser> store) : base(store) { }
+        public OasUserManager(IUserStore<OasIdentityUser> store) : base(store) {}
     }
 }

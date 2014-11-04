@@ -7,7 +7,7 @@ namespace Oas.Infrastructure
 {
     public class OasContext : DbContext
     {
-        public OasContext() : base("Oas.Application") { }
+        public OasContext() : base("Oas.Application") {}
 
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
@@ -26,19 +26,15 @@ namespace Oas.Infrastructure
 #endif
 
             modelBuilder.Configurations
-                        .Add(new CourseMapping())
-                        .Add(new SubjectPinMapping())
-
-                        .Add(new SubjectMapping())
-
-                        .Add(new SelectableQuestionMapping())
-                        .Add(new SubjectiveQuestionMapping())
-                        .Add(new QuestionOptionMapping())
-
-                        .Add(new StudentMapping())
-                        .Add(new TeacherMapping())
-
-                        .Add(new NewsMapping());
+                .Add(new CourseMapping())
+                .Add(new SubjectPinMapping())
+                .Add(new SubjectMapping())
+                .Add(new SelectableQuestionMapping())
+                .Add(new SubjectiveQuestionMapping())
+                .Add(new QuestionOptionMapping())
+                .Add(new StudentMapping())
+                .Add(new TeacherMapping())
+                .Add(new NewsMapping());
 
             base.OnModelCreating(modelBuilder);
         }

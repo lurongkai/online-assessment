@@ -7,7 +7,7 @@
 
     @if (User.IsInRole("Student")) {
         <a href="@Url.Action("Index", "Dashboard")" class="list-group-item">我的课程</a>
-        Html.RenderAction("PinnedSubjects", "Course", new { courseId = ViewContext.RouteData.Values["courseId"] });
+        Html.RenderAction("PinnedSubjects", "Course", new {courseId = ViewContext.RouteData.Values["courseId"]});
         <a href="@Url.Action("Index", "Simulation")" class="list-group-item">模拟考试</a>
     }
 </div>

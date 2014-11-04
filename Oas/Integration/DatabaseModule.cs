@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using Autofac;
+﻿using Autofac;
 using Oas.Infrastructure;
 using Oas.Membership;
 

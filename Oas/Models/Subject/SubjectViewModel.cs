@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Oas.Domain;
 
 namespace Oas.Models.Subject
@@ -10,6 +9,7 @@ namespace Oas.Models.Subject
     {
         private Domain.Subject[] _subjects;
         private SubjectPin[] _pinnedSubjects;
+
         public SubjectViewModel(IEnumerable<Domain.Subject> subjects, IEnumerable<Domain.SubjectPin> pinnedSubjects) {
             this._subjects = subjects.ToArray();
             this._pinnedSubjects = pinnedSubjects.ToArray();
@@ -43,7 +43,9 @@ namespace Oas.Models.Subject
             Name = subjectName;
             IsForSimulation = isForSimulation;
 
-            if (isPinned && !String.IsNullOrEmpty(pinName)) { Name += String.Format("({0})", pinName); }
+            if (isPinned && !String.IsNullOrEmpty(pinName)) {
+                Name += String.Format("({0})", pinName);
+            }
         }
 
         public Guid SubjectId { get; private set; }

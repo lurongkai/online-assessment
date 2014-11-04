@@ -1,16 +1,15 @@
-﻿using Oas.Infrastructure;
-using Oas.Service.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Oas.Infrastructure;
+using Oas.Service.Interfaces;
 
 namespace Oas.Service.Impl
 {
     public class QuestionService : IQuestionService
     {
         private OasContext _oasContext;
+
         public QuestionService(OasContext oasContext) {
             _oasContext = oasContext;
         }
@@ -51,8 +50,12 @@ namespace Oas.Service.Impl
             var selectable = _oasContext.SelectableQuestions.FirstOrDefault(q => q.QuestionId == questionId);
             var subjective = _oasContext.SubjectiveQuestions.FirstOrDefault(q => q.QuestionId == questionId);
 
-            if (selectable != null) { _oasContext.SelectableQuestions.Remove(selectable); }
-            if (subjective != null) { _oasContext.SubjectiveQuestions.Remove(subjective); }
+            if (selectable != null) {
+                _oasContext.SelectableQuestions.Remove(selectable);
+            }
+            if (subjective != null) {
+                _oasContext.SubjectiveQuestions.Remove(subjective);
+            }
 
             _oasContext.SaveChanges();
         }

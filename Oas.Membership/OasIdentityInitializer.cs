@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
+﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -24,7 +20,6 @@ namespace Oas.Membership
             userManager.Create(admin, "admin");
             userManager.AddToRole(admin.Id, "Admin");
             userManager.PasswordValidator = passwordValidatorBackup;
-            
 
 
             context.SaveChanges();

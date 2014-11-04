@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Oas.Domain;
 using Oas.Service.Interfaces;
 
 namespace Oas.Controllers
@@ -13,6 +11,7 @@ namespace Oas.Controllers
     {
         private ICourseService _courseService;
         private IManagementService _managementService;
+
         public DashboardController(ICourseService courseService, IManagementService managementService) {
             _courseService = courseService;
             _managementService = managementService;
@@ -21,11 +20,13 @@ namespace Oas.Controllers
         public ActionResult Index() {
             var userId = User.Identity.GetUserId();
 
-            if (User.IsInRole("Admin")) { return RedirectToAction("Index", "Admin"); }
+            if (User.IsInRole("Admin")) {
+                return RedirectToAction("Index", "Admin");
+            }
 
             if (User.IsInRole("Teacher")) {
                 var course = _courseService.GetTeacherTeachCourse(new Guid(userId));
-                return RedirectToAction("Index", "Course", new { courseId = course.CourseId });
+                return RedirectToAction("Index", "Course", new {courseId = course.CourseId});
             }
 
             if (User.IsInRole("Student")) {
@@ -51,7 +52,7 @@ namespace Oas.Controllers
         public ActionResult Subscribe(string courseId) {
             var userId = User.Identity.GetUserId();
             _managementService.SubscribeCourse(new Guid(userId), courseId);
-            return RedirectToAction("Index", "Dashboard", new { courseId = courseId });
+            return RedirectToAction("Index", "Dashboard", new {courseId});
         }
     }
 }

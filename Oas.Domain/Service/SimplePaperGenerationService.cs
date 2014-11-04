@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oas.Domain.Service
 {
@@ -47,6 +45,7 @@ namespace Oas.Domain.Service
         private class TicketGroup
         {
             private const double Expected = 0.75;
+
             public TicketGroup(IEnumerable<QuestionTicket> questionTickets) {
                 Fitness = CalculateFitness(questionTickets);
                 QuestionTickets = questionTickets;

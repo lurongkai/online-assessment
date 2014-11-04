@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -7,7 +8,6 @@ using Oas.Domain;
 using Oas.Membership;
 using Oas.Models;
 using Oas.Service.Interfaces;
-using System;
 
 namespace Oas.Controllers
 {
@@ -56,12 +56,12 @@ namespace Oas.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
-                var user = new OasIdentityUser { UserName = model.UserName };
+                var user = new OasIdentityUser {UserName = model.UserName};
                 var resultUser = await _userManager.CreateAsync(user, model.Password);
                 var resultRole = await _userManager.AddToRoleAsync(user.Id, "Student");
                 if (resultUser.Succeeded && resultRole.Succeeded) {
                     CreateStudent(user);
-                    await SignInAsync(user, isPersistent: false);
+                    await SignInAsync(user, false);
                     return RedirectToAction("Index", "Dashboard");
                 }
                 AddErrors(resultUser);
@@ -112,7 +112,7 @@ namespace Oas.Controllers
         }
 
         private void CreateStudent(OasIdentityUser user) {
-            var student = new Student() { MemberId = new Guid(user.Id) };
+            var student = new Student {MemberId = new Guid(user.Id)};
             _managementService.CreateStudent(student);
         }
 
@@ -123,11 +123,15 @@ namespace Oas.Controllers
         }
 
         private void AddErrors(IdentityResult result) {
-            foreach (var error in result.Errors) { ModelState.AddModelError("", error); }
+            foreach (var error in result.Errors) {
+                ModelState.AddModelError("", error);
+            }
         }
 
         private ActionResult RedirectToLocal(string returnUrl) {
-            if (Url.IsLocalUrl(returnUrl)) { return Redirect(returnUrl); }
+            if (Url.IsLocalUrl(returnUrl)) {
+                return Redirect(returnUrl);
+            }
             return RedirectToAction("Index", "Dashboard");
         }
 

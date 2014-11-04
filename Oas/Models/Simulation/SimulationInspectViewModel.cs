@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Oas.Models.Simulation
 {
@@ -17,14 +16,16 @@ namespace Oas.Models.Simulation
 
             foreach (var q in paper.SingleQuestions) {
                 var a = model.SingleQuestions.FirstOrDefault(s => s.QuestionId == q.QuestionId);
-                var single = new SingleQuestionInspect() {
-                        QuestionId = q.QuestionId,
-                        Body = q.Body,
-                        Score = q.Score,
-                        Options = q.Options.Select(o => new QuestionOptionInspect() {
-                            OptionId = o.OptionId, IsRight = o.IsRight, Content = o.Content
-                        }).ToList()
-                    };
+                var single = new SingleQuestionInspect
+                {
+                    QuestionId = q.QuestionId,
+                    Body = q.Body,
+                    Score = q.Score,
+                    Options = q.Options.Select(o => new QuestionOptionInspect
+                    {
+                        OptionId = o.OptionId, IsRight = o.IsRight, Content = o.Content
+                    }).ToList()
+                };
 
                 if (a != null && a.CheckedOption.HasValue) {
                     var checkedOption = single.Options.FirstOrDefault(o => o.OptionId == a.CheckedOption.Value);
@@ -36,11 +37,13 @@ namespace Oas.Models.Simulation
             }
             foreach (var q in paper.MultipleQuestions) {
                 var a = model.MultipleQuestions.FirstOrDefault(s => s.QuestionId == q.QuestionId);
-                var multiple = new MultipleQuestionInspect() {
+                var multiple = new MultipleQuestionInspect
+                {
                     QuestionId = q.QuestionId,
                     Body = q.Body,
                     Score = q.Score,
-                    Options = q.Options.Select(o => new QuestionOptionInspect() {
+                    Options = q.Options.Select(o => new QuestionOptionInspect
+                    {
                         OptionId = o.OptionId, IsRight = o.IsRight, Content = o.Content
                     }).ToList()
                 };
@@ -57,7 +60,8 @@ namespace Oas.Models.Simulation
             }
             foreach (var q in paper.SubjectiveQuestions) {
                 var a = model.SubjectiveQuestions.FirstOrDefault(s => s.QuestionId == q.QuestionId);
-                var subjective = new SubjectiveQuestionInspect() {
+                var subjective = new SubjectiveQuestionInspect
+                {
                     QuestionId = q.QuestionId,
                     Body = q.Body,
                     Score = q.Score,

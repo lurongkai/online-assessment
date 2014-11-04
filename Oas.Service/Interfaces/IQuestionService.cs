@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Oas.Domain;
-using Oas.Service.Messages;
 
 namespace Oas.Service.Interfaces
 {

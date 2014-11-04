@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using Oas.Domain.Application;
 using Oas.Service.Interfaces;
-using Oas.Service.Messages;
 
 namespace Oas.Controllers
 {
     public class HomeController : Controller
     {
         private IManagementService _managementService;
+
         public HomeController(IManagementService managementService) {
             _managementService = managementService;
         }

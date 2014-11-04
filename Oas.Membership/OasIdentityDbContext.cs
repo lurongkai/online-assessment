@@ -5,7 +5,7 @@ namespace Oas.Membership
 {
     public class OasIdentityDbContext : IdentityDbContext<OasIdentityUser>
     {
-        public OasIdentityDbContext() : base("Oas.Membership") { }
+        public OasIdentityDbContext() : base("Oas.Membership") {}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             Database.SetInitializer(new OasIdentityInitializer());

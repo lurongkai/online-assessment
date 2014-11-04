@@ -13,7 +13,9 @@ namespace Oas.Helpers
                 theAction == action.ToLower()
                 ) {
                 var rawUrl = viewContext.RequestContext.HttpContext.Request.RawUrl.ToLower();
-                if (rawUrl.Contains(keyword.ToLower())) { return MvcHtmlString.Create("item-actived"); }
+                if (rawUrl.Contains(keyword.ToLower())) {
+                    return MvcHtmlString.Create("item-actived");
+                }
             }
             return MvcHtmlString.Create("");
         }

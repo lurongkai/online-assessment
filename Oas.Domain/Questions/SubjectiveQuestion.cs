@@ -7,6 +7,7 @@ namespace Oas.Domain
         public SubjectiveQuestion() {
             QuestionId = Guid.NewGuid();
         }
+
         public string Answer { get; set; }
 
         public override int Evaluate() {

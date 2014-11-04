@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Oas.Domain;
 using Oas.Domain.Application;
 using Oas.Membership;
 using Oas.Models.Admin;
 using Oas.Service.Interfaces;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
 
 namespace Oas.Controllers
 {
@@ -19,8 +18,8 @@ namespace Oas.Controllers
         private readonly OasUserManager _userManager;
 
         public AdminController(ICourseService courseService,
-                               IManagementService managementService,
-                               OasUserManager userManager) {
+            IManagementService managementService,
+            OasUserManager userManager) {
             _courseService = courseService;
             _managementService = managementService;
             _userManager = userManager;
@@ -34,6 +33,7 @@ namespace Oas.Controllers
         public ActionResult PublishNews() {
             return View();
         }
+
         [HttpPost]
         public ActionResult PublishNews(PublishNewsViewModel publishNewsViewModel) {
             if (ModelState.IsValid) {
@@ -51,6 +51,7 @@ namespace Oas.Controllers
             ViewBag.Courses = new SelectList(courses, "CourseId", "CourseName");
             return View();
         }
+
         [HttpPost]
         public async Task<ActionResult> CreateTeacher(CreateTeacherViewModel teacherViewModel) {
             if (ModelState.IsValid) {
@@ -58,7 +59,7 @@ namespace Oas.Controllers
                 var result = await _userManager.CreateAsync(teacher, teacherViewModel.Password);
                 if (result.Succeeded) {
                     _userManager.AddToRole(teacher.Id, "Teacher");
-                    _managementService.CreateTeacher(new Teacher() { MemberId = new Guid(teacher.Id) });
+                    _managementService.CreateTeacher(new Teacher {MemberId = new Guid(teacher.Id)});
                     _managementService.AssigningCourse(new Guid(teacher.Id), teacherViewModel.CourseId);
                     return RedirectToAction("Index");
                 }
@@ -75,10 +76,12 @@ namespace Oas.Controllers
         public ActionResult CreateCourse() {
             return View();
         }
+
         [HttpPost]
         public ActionResult CreateCourse(CreateCourseViewModel courseViewModel) {
             if (ModelState.IsValid) {
-                var course = new Course {
+                var course = new Course
+                {
                     CourseId = courseViewModel.CourseAbbr,
                     CourseName = courseViewModel.CourseName,
                     Description = courseViewModel.Description
@@ -92,7 +95,9 @@ namespace Oas.Controllers
         }
 
         private void AddErrors(IdentityResult result) {
-            foreach (var error in result.Errors) { ModelState.AddModelError("", error); }
+            foreach (var error in result.Errors) {
+                ModelState.AddModelError("", error);
+            }
         }
     }
 }

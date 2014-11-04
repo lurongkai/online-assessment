@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Oas.Models.Exercise;
 using Oas.Service.Interfaces;
@@ -11,6 +9,7 @@ namespace Oas.Controllers
     public class ExerciseController : Controller
     {
         private IQuestionService _questionService;
+
         public ExerciseController(IQuestionService questionService) {
             _questionService = questionService;
         }
@@ -34,11 +33,13 @@ namespace Oas.Controllers
         public ActionResult GetData(string courseId, Guid subjectId, QuestionType type) {
             if (type == QuestionType.Selectable) {
                 var questions = _questionService.GetAllSelectableQuestion(courseId, subjectId)
-                    .Select(q => new {
+                    .Select(q => new
+                    {
                         questionId = q.QuestionId,
                         body = q.Body,
                         score = q.Score,
-                        options = q.Options.Select(o => new {
+                        options = q.Options.Select(o => new
+                        {
                             content = o.Content,
                             isRight = o.IsRight
                         }).ToArray()
@@ -48,7 +49,8 @@ namespace Oas.Controllers
 
             if (type == QuestionType.Subjective) {
                 var questions = _questionService.GetAllSubjectiveQuestion(courseId, subjectId)
-                    .Select(q => new {
+                    .Select(q => new
+                    {
                         questionId = q.QuestionId,
                         body = q.Body,
                         score = q.Score,

@@ -1,9 +1,8 @@
 ﻿@using Oas.Models.Exercise
-
 <div id="question-main">
 </div>
 <script>
-    (function () {
+    (function() {
         function isMultiple(q) {
             if (q.options.length > 0) {
                 var counter = 0;
@@ -32,7 +31,7 @@
                         '</div>';
                 });
             } else {
-                q.options.forEach(function (o) {
+                q.options.forEach(function(o) {
                     html +=
                         '<div class="radio">' +
                         '    <label>' +
@@ -45,7 +44,7 @@
         }
 
         function questionEvaluate() {
-            $('.question-entry input').each(function () {
+            $('.question-entry input').each(function() {
                 var _this = $(this);
                 if (_this.attr('data-isright') == 'true') {
                     if (_this.is(':checked')) {
@@ -74,12 +73,12 @@
             html +=
                 '<div class="panel panel-default">' +
                 '    <div class="panel-heading">' +
-                '        <h3 class="panel-title">答题(分值'+ q.score +')</h3>' +
+                '        <h3 class="panel-title">答题(分值' + q.score + ')</h3>' +
                 '    </div>' +
-                '    <div class="panel-body">'+
+                '    <div class="panel-body">' +
                 '        <div class="question-entry">' +
                 '            <h2>' + q.body + '</h2>' +
-                             renderAnswerArea(q) +
+                renderAnswerArea(q) +
                 '        </div>' +
                 '        <hr />' +
                 '        <div>' +
@@ -93,11 +92,11 @@
         }
 
         var nextQuestion = 0;
-        $(document).ready(function () {
-            $.getJSON('@Url.Action("GetData", new {type = QuestionType.Selectable})', function (data) {
+        $(document).ready(function() {
+            $.getJSON('@Url.Action("GetData", new {type = QuestionType.Selectable})', function(data) {
                 if (data.length > 0) {
                     $(document).on('click', '.question-evaluate', questionEvaluate);
-                    $(document).on('click', '.question-next', function () {
+                    $(document).on('click', '.question-next', function() {
                         if (nextQuestion >= data.length) {
                             nextQuestion = 0;
                         }

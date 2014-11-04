@@ -21,7 +21,11 @@
                     var option = question.Options.ElementAt(o);
                     <div class="radio disabled">
                         <label>
-                            <input type="radio" disabled name="SingleQuestions[@i].CheckedOption" value="@option.OptionId" @{ if (option.Checked) { Write("checked=\"checked\""); }} />
+                            <input type="radio" disabled name="SingleQuestions[@i].CheckedOption" value="@option.OptionId" @{
+                                                                                                                               if (option.Checked) {
+                                                                                                                                   Write("checked=\"checked\"");
+                                                                                                                               }
+                                                                                                                           } />
                             @option.Content @if (option.IsRight) {
                                                 if (option.Checked) {
                                                     <span class="glyphicon glyphicon-ok"></span>
@@ -58,19 +62,23 @@
                     var option = question.Options.ElementAt(o);
                     <div class="checkbox disabled">
                         <label>
-                            <input type="checkbox" disabled name="MultipleQuestions[@i].CheckedOptions[@o].Checked" value="true" @{ if (option.Checked) { Write("checked=\"checked\""); } } />
+                            <input type="checkbox" disabled name="MultipleQuestions[@i].CheckedOptions[@o].Checked" value="true" @{
+                                                                                                                                     if (option.Checked) {
+                                                                                                                                         Write("checked=\"checked\"");
+                                                                                                                                     }
+                                                                                                                                 } />
 
                             @option.Content @if (option.IsRight) {
-                                if (option.Checked) {
-                                    <span class="glyphicon glyphicon-ok"></span>
-                                } else {
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                }
-                            } else {
-                                if (option.Checked) {
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                }
-                            }
+                                                if (option.Checked) {
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                } else {
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                }
+                                            } else {
+                                                if (option.Checked) {
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                }
+                                            }
                         </label>
                     </div>
                 }
@@ -87,7 +95,7 @@
             @for (int i = 0; i < Model.SubjectiveQuestions.Count; i++) {
                 var question = Model.SubjectiveQuestions[i];
                 <h2>@question.Body (@question.Score 分)</h2>
-                @Html.TextArea("SubjectiveQuestions[" + i + "].WriteDown", question.WriteDown, new { @class = "form-control", rows = 5, disabled="" })
+                @Html.TextArea("SubjectiveQuestions[" + i + "].WriteDown", question.WriteDown, new {@class = "form-control", rows = 5, disabled = ""})
                 <p>参考答案: @question.Answer</p>
             }
         </div>

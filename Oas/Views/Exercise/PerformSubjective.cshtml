@@ -1,14 +1,13 @@
 ﻿@using Oas.Models.Exercise
-
 <div id="question-main">
     <input type="hidden" value=""/>
 </div>
 <script>
-    (function () {
+    (function() {
         function renderAnswerArea(q) {
             var html = '';
             html +=
-                '<textarea class="form-control " rows="8"></textarea>' + 
+                '<textarea class="form-control " rows="8"></textarea>' +
                 '<div class="hidden answer">' +
                 '    <h4>参考答案</h4>' +
                 '    <p>' + q.answer + '</p>' +
@@ -32,7 +31,7 @@
                 '    <div class="panel-body">' +
                 '        <div class="question-entry">' +
                 '            <h2>' + q.body + '</h2>' +
-                             renderAnswerArea(q) +
+                renderAnswerArea(q) +
                 '        </div>' +
                 '        <hr />' +
                 '        <div>' +
@@ -46,11 +45,11 @@
         }
 
         var nextQuestion = 0;
-        $(document).ready(function () {
-            $.getJSON('@Url.Action("GetData", new {type = QuestionType.Subjective})', function (data) {
+        $(document).ready(function() {
+            $.getJSON('@Url.Action("GetData", new {type = QuestionType.Subjective})', function(data) {
                 if (data.length > 0) {
                     $(document).on('click', '.question-evaluate', questionEvaluate);
-                    $(document).on('click', '.question-next', function () {
+                    $(document).on('click', '.question-next', function() {
                         if (nextQuestion >= data.length) {
                             nextQuestion = 0;
                         }

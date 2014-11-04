@@ -15,7 +15,9 @@ namespace Oas.Domain
         /// <param name="right">Right-hand side object.</param>
         /// <returns></returns>
         protected static bool EqualOperator(ValueObject left, ValueObject right) {
-            if (ReferenceEquals(left, null) ^ ReferenceEquals(right, null)) { return false; }
+            if (ReferenceEquals(left, null) ^ ReferenceEquals(right, null)) {
+                return false;
+            }
             return ReferenceEquals(left, null) || left.Equals(right);
         }
 
@@ -42,13 +44,19 @@ namespace Oas.Domain
         /// <param name="obj">Object to compare to.</param>
         /// <returns>True if objects are considered equal.</returns>
         public override bool Equals(object obj) {
-            if (obj == null || obj.GetType() != GetType()) { return false; }
+            if (obj == null || obj.GetType() != GetType()) {
+                return false;
+            }
             var other = (ValueObject) obj;
             var thisValues = GetAtomicValues().GetEnumerator();
             var otherValues = other.GetAtomicValues().GetEnumerator();
             while (thisValues.MoveNext() && otherValues.MoveNext()) {
-                if (ReferenceEquals(thisValues.Current, null) ^ ReferenceEquals(otherValues.Current, null)) { return false; }
-                if (thisValues.Current != null && !thisValues.Current.Equals(otherValues.Current)) { return false; }
+                if (ReferenceEquals(thisValues.Current, null) ^ ReferenceEquals(otherValues.Current, null)) {
+                    return false;
+                }
+                if (thisValues.Current != null && !thisValues.Current.Equals(otherValues.Current)) {
+                    return false;
+                }
             }
             return !thisValues.MoveNext() && !otherValues.MoveNext();
         }

@@ -1,16 +1,15 @@
-﻿using Oas.Infrastructure;
-using Oas.Service.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Oas.Infrastructure;
+using Oas.Service.Interfaces;
 
 namespace Oas.Service.Impl
 {
     public class ManagementService : IManagementService
     {
         private OasContext _oasContext;
+
         public ManagementService(OasContext oasContext) {
             _oasContext = oasContext;
         }

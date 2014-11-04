@@ -11,12 +11,12 @@
                 <h3 class="panel-title">创建科目</h3>
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm("Create", "Subject", FormMethod.Post, new { @class = "form-horizontal" })) {
+                @using (Html.BeginForm("Create", "Subject", FormMethod.Post, new {@class = "form-horizontal"})) {
                     @Html.AntiForgeryToken()
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Name, new { @class = "col-sm-2 control-label" })
+                        @Html.LabelFor(m => m.Name, new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
-                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "标题" })
+                            @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "标题"})
                             @Html.ValidationMessageFor(m => m.Name)
                         </div>
                     </div>
