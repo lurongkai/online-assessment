@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Courses\Course.cs" />
     <Compile Include="IAggregateMember.cs" />
+    <Compile Include="Service\EnumerableExtension.cs" />
     <Compile Include="Service\IPaperGenerationService.cs" />
     <Compile Include="Service\QuestionTicket.cs" />
     <Compile Include="Service\QuestionTicketBag.cs" />

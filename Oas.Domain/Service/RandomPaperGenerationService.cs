@@ -15,46 +15,23 @@ namespace Oas.Domain.Service
         }
 
         public IEnumerable<Guid> GenerateSingleSelectionQuestions(int count) {
-            if (_bag.SingleSelectionQuestions.Count() <= count) {
-                return _bag.SingleSelectionQuestions.Select(q => q.QuestionId);
-            }
-
-            return _bag.SingleSelectionQuestions.TakeRandom(count).Select(q => q.QuestionId);
+            return TakeRandomCount(_bag.SingleSelectionQuestions, count);
         }
 
         public IEnumerable<Guid> GenerateMultipleSelectionQuestions(int count) {
-            if (_bag.MultipleSelectionQuestions.Count() <= count) {
-                return _bag.MultipleSelectionQuestions.Select(q => q.QuestionId);
-            }
-
-            return _bag.MultipleSelectionQuestions.TakeRandom(count).Select(q => q.QuestionId);
+            return TakeRandomCount(_bag.MultipleSelectionQuestions, count);
         }
 
         public IEnumerable<Guid> GenerateSubjectiveSelectionQuestions(int count) {
-            if (_bag.SubjectiveQuestions.Count() <= count) {
-                return _bag.SubjectiveQuestions.Select(q => q.QuestionId);
-            }
-
-            return _bag.SubjectiveQuestions.TakeRandom(count).Select(q => q.QuestionId);
+            return TakeRandomCount(_bag.SubjectiveQuestions, count);
         }
-    }
 
-    internal static class EnumerableExtension
-    {
-        internal static IEnumerable<T> TakeRandom<T>(this IEnumerable<T> source, int count) {
-            var list = source.ToList();
-            var random = new Random();
-
-            var result = new List<T>();
-            for (int i = 0; i < count; i++) {
-                var location = random.Next(0, list.Count - i);
-                var node = list[location];
-                result.Add(node);
-                list.Remove(node);
-                list.Add(node);
+        private IEnumerable<Guid> TakeRandomCount(IEnumerable<QuestionTicket> questionTickets, int count) {
+            if (questionTickets.Count() <= count) {
+                return questionTickets.Select(q => q.QuestionId);
             }
 
-            return result;
+            return questionTickets.TakeRandom(count).Select(q => q.QuestionId);
         }
     }
 }

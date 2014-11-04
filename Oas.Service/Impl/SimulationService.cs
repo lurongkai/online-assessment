@@ -33,7 +33,7 @@ namespace Oas.Service.Impl
                 service = new RandomPaperGenerationService(bag);
             }
             if (style.ToLower() == "simple") {
-                service = new SimplePaperGenerationService();
+                service = new SimplePaperGenerationService(bag);
             }
 
             if (service == null) {
