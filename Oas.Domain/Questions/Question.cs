@@ -8,6 +8,7 @@ namespace Oas.Domain
 
         public string Body { get; set; }
         public int Score { get; set; }
+        public double Degree { get; set; }
 
         public abstract int Evaluate();
 
