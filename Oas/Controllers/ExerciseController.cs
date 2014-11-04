@@ -51,6 +51,7 @@ namespace Oas.Controllers
                     .Select(q => new {
                         questionId = q.QuestionId,
                         body = q.Body,
+                        score = q.Score,
                         answer = q.Answer
                     });
                 return Json(questions.ToArray(), JsonRequestBehavior.AllowGet);
