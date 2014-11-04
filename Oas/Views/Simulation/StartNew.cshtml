@@ -17,7 +17,7 @@
 
                         var question = Model.SingleQuestions[i];
                         @Html.Hidden("SingleQuestions[" + i + "].QuestionId", question.QuestionId)
-                        <p>@question.Body</p>
+                        <p>@question.Body (@question.Score 分)</p>
 
                         for (int o = 0; o < question.Options.Count; o++) {
                             var option = question.Options.ElementAt(o);
@@ -45,7 +45,7 @@
                         
                         var question = Model.MultipleQuestions[i];
                         @Html.Hidden("MultipleQuestions[" + i + "].QuestionId", question.QuestionId)
-                        <p>@question.Body</p>
+                        <p>@question.Body (@question.Score 分)</p>
 
                         for (int o = 0; o < question.Options.Count; o++) {
                             var option = question.Options.ElementAt(o);
@@ -69,9 +69,9 @@
                 </div>
                 <div class="panel-body">
                     @for (int i = 0; i < Model.SubjectiveQuestions.Count; i++) {
-                        var question = Model.SingleQuestions[i];
+                        var question = Model.SubjectiveQuestions[i];
                         @Html.Hidden("SubjectiveQuestions[" + i + "].QuestionId", question.QuestionId)
-                        <h2>@question.Body</h2>
+                        <h2>@question.Body (@question.Score 分)</h2>
                         @Html.TextArea("SubjectiveQuestions[" + i + "].WriteDown", new { @class = "form-control", rows = 5 })
                     }
                 </div>

@@ -16,7 +16,7 @@ namespace Oas.Models.Simulation
     {
         public Guid QuestionId { get; set; }
         public string Body { get; set; }
-        public Guid CheckedOption { get; set; }
+        public Guid? CheckedOption { get; set; }
     }
 
     public class MultipleQuestion

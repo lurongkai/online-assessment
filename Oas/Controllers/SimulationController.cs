@@ -26,8 +26,6 @@ namespace Oas.Controllers
 
         public ActionResult StartNew(string courseId, string style) {
             //var paper = _simulationService.GeneratePaper(courseId, style);
-            //Session[Paper] = paper;
-            //var viewModel = new SimulationViewModel(paper);
             var paper = new Paper();
             paper.SingleQuestions.Add(new SelectableQuestion() {
                 QuestionId = Guid.NewGuid(),
@@ -54,19 +52,21 @@ namespace Oas.Controllers
                 Body = "test subjective",
                 Answer = "test answer"
             });
+            Session[Paper] = paper;
 
             return View(paper);
         }
 
         public ActionResult Submit(string courseId, SimulationInputModel model) {
-            //model.Evaluate();
-            TempData[Paper] = model;
+            var paper = (Paper)Session[Paper];
+            var viewModel = new SimulationInspectViewModel(paper, model);
+            TempData["Inspect"] = viewModel;
             return RedirectToAction("Inspect");
         }
 
         public ActionResult Inspect(string courseId) {
-            var model = (SimulationInputModel)TempData[Paper];
-            return View(model);
+            var viewModel = (SimulationInspectViewModel)TempData["Inspect"];
+            return View(viewModel);
         }
     }
 }
