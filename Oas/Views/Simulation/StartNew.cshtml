@@ -71,7 +71,7 @@
                 @for (int i = 0; i < Model.SubjectiveQuestions.Count; i++) {
                     var question = Model.SubjectiveQuestions[i];
                     @Html.Hidden("SubjectiveQuestions[" + i + "].QuestionId", question.QuestionId)
-                    <h2>@question.Body (@question.Score 分)</h2>
+                    <p>@question.Body (@question.Score 分)</p>
                     @Html.TextArea("SubjectiveQuestions[" + i + "].WriteDown", new {@class = "form-control", rows = 5})
                 }
             </div>
