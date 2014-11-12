@@ -17,6 +17,9 @@
 
         function questionEvaluate() {
             $('.question-entry .answer').removeClass('hidden');
+
+            $('.question-evaluate').addClass('disabled');
+            $('.question-next').removeClass('disabled');
         }
 
         function renderQuestion(q) {
@@ -30,7 +33,11 @@
                 '    </div>' +
                 '    <div class="panel-body">' +
                 '        <div class="question-entry">' +
-                '            <h2>' + q.body + '</h2>' +
+                '            <h2>' + q.body + '</h2>';
+                if (q.attachmentName && q.attachmentPath) {
+                    html += '<p>附件：<a href="' + q.attachmentPath + '">' + q.attachmentName + '</a><p>';
+                }
+                html +=
                 renderAnswerArea(q) +
                 '        </div>' +
                 '        <hr />' +

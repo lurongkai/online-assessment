@@ -23,6 +23,8 @@ namespace Oas.Infrastructure.Mapping
 
             HasKey(m => m.QuestionId);
             Property(m => m.Answer).IsRequired();
+            Property(m => m.AttachmentName).IsOptional();
+            Property(m => m.AttachmentPath).IsOptional();
             HasRequired(m => m.BelongTo);
         }
     }

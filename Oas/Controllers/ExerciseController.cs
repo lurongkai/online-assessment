@@ -54,12 +54,19 @@ namespace Oas.Controllers
                         questionId = q.QuestionId,
                         body = q.Body,
                         score = q.Score,
-                        answer = q.Answer
+                        answer = q.Answer,
+                        attachmentName = q.AttachmentName,
+                        attachmentPath = Url.Action("DownloadAttachment", new { questionId = q.QuestionId})
                     });
                 return Json(questions.ToArray(), JsonRequestBehavior.AllowGet);
             }
 
             throw new InvalidOperationException("wrong type.");
+        }
+
+        public ActionResult DownloadAttachment(Guid questionId) {
+            var question = _questionService.GetSubjectiveQuestion(questionId);
+            return File(question.AttachmentPath, @"application/octet-stream", question.AttachmentName);
         }
     }
 }

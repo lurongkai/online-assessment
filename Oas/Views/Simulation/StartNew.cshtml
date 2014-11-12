@@ -72,6 +72,9 @@
                     var question = Model.SubjectiveQuestions[i];
                     @Html.Hidden("SubjectiveQuestions[" + i + "].QuestionId", question.QuestionId)
                     <p>@question.Body (@question.Score 分)</p>
+                    if (!string.IsNullOrEmpty(question.AttachmentPath) && !string.IsNullOrEmpty(question.AttachmentName)) {
+                        <p>附件: <a href="@Url.Action("DownloadAttachment", new {questionId = question.QuestionId})">@question.AttachmentName</a></p>
+                    }
                     @Html.TextArea("SubjectiveQuestions[" + i + "].WriteDown", new {@class = "form-control", rows = 5})
                 }
             </div>

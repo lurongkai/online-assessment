@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 using Oas.Domain;
 using Oas.Models.Question;
@@ -40,7 +42,21 @@ namespace Oas.Controllers
 
         [HttpPost]
         [ActionName("CreateSubjective")]
-        public ActionResult Create(string courseId, Guid subjectId, SubjectiveQuestion question) {
+        public ActionResult Create(string courseId, Guid subjectId, SubjectiveQuestion question, HttpPostedFileBase attachment) {
+            if (attachment != null) {
+                var basePath = Path.Combine(Server.MapPath("~"), "questionAttachments");
+                if (!Directory.Exists(basePath)) {
+                    Directory.CreateDirectory(basePath);
+                }
+
+                var fileName = attachment.FileName;
+                var extension = Path.GetExtension(fileName);
+                var targetPath = Path.Combine(basePath, Guid.NewGuid() + extension);
+                attachment.SaveAs(targetPath);
+
+                question.AttachmentName = fileName;
+                question.AttachmentPath = targetPath;
+            }
             _questionService.CreateSubjectiveQuestion(subjectId, question);
             return RedirectToAction("List", new {subjectId});
         }

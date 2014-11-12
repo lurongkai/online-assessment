@@ -33,6 +33,15 @@ namespace Oas.Models.Simulation
                         checkedOption.Checked = true;
                     }
                 }
+
+                if (a == null) {
+                    single.GotScore = 0;
+                } else {
+                    single.GotScore = single.Options.FirstOrDefault(o => o.OptionId == a.CheckedOption.Value).IsRight
+                        ? single.Score
+                        : 0;
+                }
+
                 SingleQuestions.Add(single);
             }
             foreach (var q in paper.MultipleQuestions) {
@@ -56,6 +65,22 @@ namespace Oas.Models.Simulation
                         }
                     }
                 }
+
+                if (a == null) {
+                    multiple.GotScore = 0;
+                } else {
+                    bool isAllRight = true;
+                    foreach (var co in a.CheckedOptions) {
+                        if (!multiple.Options.FirstOrDefault(o => o.OptionId == co.OptionId).IsRight) {
+                            isAllRight = false;
+                            break;
+                        }
+                    }
+                    multiple.GotScore = isAllRight
+                        ? multiple.Score
+                        : 0;
+                }
+
                 MultipleQuestions.Add(multiple);
             }
             foreach (var q in paper.SubjectiveQuestions) {
@@ -85,6 +110,7 @@ namespace Oas.Models.Simulation
         public Guid QuestionId { get; set; }
         public string Body { get; set; }
         public int Score { get; set; }
+        public int GotScore { get; set; }
         public List<QuestionOptionInspect> Options { get; set; }
     }
 
@@ -93,6 +119,7 @@ namespace Oas.Models.Simulation
         public Guid QuestionId { get; set; }
         public string Body { get; set; }
         public int Score { get; set; }
+        public int GotScore { get; set; }
         public List<QuestionOptionInspect> Options { get; set; }
     }
 

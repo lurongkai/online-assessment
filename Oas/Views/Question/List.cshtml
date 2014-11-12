@@ -163,7 +163,7 @@
 <div class="modal" id="create-subjective" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="@Url.Action("CreateSubjective", new {subjectId = ViewBag.SubjectId})" method="POST">
+            <form action="@Url.Action("CreateSubjective", new {subjectId = ViewBag.SubjectId})" method="POST" enctype="multipart/form-data">
                 @Html.AntiForgeryToken()
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -172,24 +172,28 @@
                 <div class="modal-body">
                     <label for="Body">题目</label>
                     <div>
-                        <input class="form-control" id="Body" name="Body" placeholder="题目" type="text" value="" data-val="true" data-val-required="题目必填">
+                        <textarea class="form-control" id="Body" name="question.Body" placeholder="题目" data-val="true" data-val-required="题目必填" rows="10"></textarea>
                         <span class="field-validation-valid" data-valmsg-for="Body" data-valmsg-replace="true"></span>
                     </div>
-                    
+                    <label for="Attachment">附件</label>
+                    <div>
+                        <input class="form-control" id="Attachment" name="Attachment" placeholder="附件" type="file">
+                    </div>
+
                     <label for="Score">分值</label>
                     <div>
-                        <input class="form-control" id="Score" name="Score" placeholder="分值" type="text" value="" data-val="true" data-val-required="分值必填">
+                        <input class="form-control" id="Score" name="question.Score" placeholder="分值" type="text" value="" data-val="true" data-val-required="分值必填">
                         <span class="field-validation-valid" data-valmsg-for="Score" data-valmsg-replace="true"></span>
                     </div>
 
-                    <label for="Score">难度(0-1.0)</label>
+                    <label for="Degree">难度(0-1.0)</label>
                     <div>
-                        <input class="form-control" id="Degree" name="Degree" placeholder="难度" type="text" value="" data-val="true" data-val-required="难度必填">
+                        <input class="form-control" id="Degree" name="question.Degree" placeholder="难度" type="text" value="" data-val="true" data-val-required="难度必填">
                         <span class="field-validation-valid" data-valmsg-for="Degree" data-valmsg-replace="true"></span>
                     </div>
                     <label for="Answer">答案</label>
                     <div>
-                        <input class="form-control" id="Answer" name="Answer" placeholder="答案" type="text" value="" data-val="true" data-val-required="答案必填">
+                        <input class="form-control" id="Answer" name="question.Answer" placeholder="答案" type="text" value="" data-val="true" data-val-required="答案必填">
                         <span class="field-validation-valid" data-valmsg-for="Answer" data-valmsg-replace="true"></span>
                     </div>
                 </div>

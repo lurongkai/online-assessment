@@ -22,6 +22,10 @@ namespace Oas.Service.Impl
             return _oasContext.SubjectiveQuestions.Where(q => q.Subject.SubjectId == subjectId);
         }
 
+        public Domain.SubjectiveQuestion GetSubjectiveQuestion(Guid questionId) {
+            return _oasContext.SubjectiveQuestions.Find(questionId);
+        }
+
         public Domain.Question GetQuestion(Guid questionId) {
             throw new NotImplementedException();
         }

@@ -16,7 +16,7 @@
 
                 var question = Model.SingleQuestions[i];
                 <p>@question.Body (@question.Score 分)</p>
-
+                <p>您的得分: @question.GotScore</p>
                 for (int o = 0; o < question.Options.Count; o++) {
                     var option = question.Options.ElementAt(o);
                     <div class="radio disabled">
@@ -57,7 +57,7 @@
 
                 var question = Model.MultipleQuestions[i];
                 <p>@question.Body (@question.Score 分)</p>
-
+                <p>您的得分: @question.GotScore</p>
                 for (int o = 0; o < question.Options.Count; o++) {
                     var option = question.Options.ElementAt(o);
                     <div class="checkbox disabled">
@@ -94,7 +94,7 @@
         <div class="panel-body">
             @for (int i = 0; i < Model.SubjectiveQuestions.Count; i++) {
                 var question = Model.SubjectiveQuestions[i];
-                <h2>@question.Body (@question.Score 分)</h2>
+                <p>@question.Body (@question.Score 分)</p>
                 @Html.TextArea("SubjectiveQuestions[" + i + "].WriteDown", question.WriteDown, new {@class = "form-control", rows = 5, disabled = ""})
                 <p>参考答案: @question.Answer</p>
             }
