@@ -17,12 +17,15 @@ namespace Oas.Service.Impl
         public Paper GeneratePaper(string courseId, string style) {
             var bag = new QuestionTicketBag();
             bag.SingleSelectionQuestions = _oasContext.SelectableQuestions
+                .Where(q => q.BelongTo.CourseId == courseId)
                 .Where(q => q.Options.Count(o => o.IsRight) == 1)
                 .Select(q => new QuestionTicket {QuestionId = q.QuestionId, Score = q.Score, Degree = q.Degree});
             bag.MultipleSelectionQuestions = _oasContext.SelectableQuestions
+                .Where(q => q.BelongTo.CourseId == courseId)
                 .Where(q => q.Options.Count(o => o.IsRight) > 1)
                 .Select(q => new QuestionTicket {QuestionId = q.QuestionId, Score = q.Score, Degree = q.Degree});
             bag.SubjectiveQuestions = _oasContext.SubjectiveQuestions
+                .Where(q => q.BelongTo.CourseId == courseId)
                 .Select(q => new QuestionTicket {QuestionId = q.QuestionId, Score = q.Score, Degree = q.Degree});
             
             var singleCount = 20;
