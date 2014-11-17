@@ -25,6 +25,10 @@ namespace Oas.Domain.Service
         }
 
         private IEnumerable<Guid> TakeTopFitness(IEnumerable<QuestionTicket> questionTickets, int count) {
+            if (count == 0) {
+                return Enumerable.Empty<Guid>();
+            }
+
             if (questionTickets.Count() <= count) {
                 return questionTickets.Select(q => q.QuestionId);
             }

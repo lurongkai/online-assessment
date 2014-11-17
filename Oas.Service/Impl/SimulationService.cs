@@ -24,22 +24,25 @@ namespace Oas.Service.Impl
                 .Select(q => new QuestionTicket {QuestionId = q.QuestionId, Score = q.Score, Degree = q.Degree});
             bag.SubjectiveQuestions = _oasContext.SubjectiveQuestions
                 .Select(q => new QuestionTicket {QuestionId = q.QuestionId, Score = q.Score, Degree = q.Degree});
+            
+            var singleCount = 20;
+            var multipleCount = 20;
+            var subjectiveCount = 5;
 
             IPaperGenerationService service = null;
             if (style.ToLower() == "random") {
                 service = new RandomPaperGenerationService(bag);
+                singleCount = 0;
+                multipleCount = 0;
             }
             if (style.ToLower() == "simple") {
                 service = new SimplePaperGenerationService(bag);
+                subjectiveCount = 0;
             }
 
             if (service == null) {
                 throw new InvalidOperationException("wrong style.");
             }
-
-            var singleCount = 20;
-            var multipleCount = 20;
-            var subjectiveCount = 5;
 
             var paper = new Paper();
             var singles = service.GenerateSingleSelectionQuestions(singleCount).ToArray();

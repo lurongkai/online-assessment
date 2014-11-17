@@ -3,15 +3,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>选择试卷生成方式</h2>
+<h2>选择试卷形式</h2>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>随机抽选试题</h3>
-                    <p>将随机从模拟考试题库中抽选试题生成试卷</p>
+                    <h3>实操题考试</h3>
+                    <p>一体化地考试形式，将理论融入实际操作中</p>
                     <p>@Html.ActionLink("开始", "StartNew", new {style = "Random"})</p>
                 </div>
             </div>
@@ -19,8 +19,8 @@
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>简单试卷生成</h3>
-                    <p>采用更为合理的算法自成试卷</p>
+                    <h3>理论题考试</h3>
+                    <p>理论知识考试</p>
                     <p>@Html.ActionLink("开始", "StartNew", new {style = "Simple"})</p>
                 </div>
             </div>

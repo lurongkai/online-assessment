@@ -4,81 +4,89 @@
 }
 
 @using (Html.BeginForm("Submit", "Simulation", FormMethod.Post, new {@class = "form-horizontal"})) {
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">单选题</h3>
-            </div>
-            <div class="panel-body">
-                @for (int i = 0; i < Model.SingleQuestions.Count; i++) {
-                    if (i != 0) {
-                        <hr/>
-                    }
+    if (Model.SingleQuestions.Any()) {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">单选题</h3>
+                </div>
+                <div class="panel-body">
+                    @for (int i = 0; i < Model.SingleQuestions.Count; i++) {
+                        if (i != 0) {
+                            <hr/>
+                        }
 
-                    var question = Model.SingleQuestions[i];
-                    @Html.Hidden("SingleQuestions[" + i + "].QuestionId", question.QuestionId)
-                    <p>@question.Body (@question.Score 分)</p>
+                        var question = Model.SingleQuestions[i];
+                        @Html.Hidden("SingleQuestions[" + i + "].QuestionId", question.QuestionId)
+                        <p>@question.Body (@question.Score 分)</p>
 
-                    for (int o = 0; o < question.Options.Count; o++) {
-                        var option = question.Options.ElementAt(o);
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="SingleQuestions[@i].CheckedOption" value="@option.OptionId" />
-                                @option.Content
-                            </label>
-                        </div>
+                        for (int o = 0; o < question.Options.Count; o++) {
+                            var option = question.Options.ElementAt(o);
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="SingleQuestions[@i].CheckedOption" value="@option.OptionId" />
+                                    @option.Content
+                                </label>
+                            </div>
+                        }
                     }
-                }
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">多选题</h3>
-            </div>
-            <div class="panel-body">
-                @for (int i = 0; i < Model.MultipleQuestions.Count; i++) {
-                    if (i != 0) {
-                        <hr />
-                    }
+    }
+    
+    if (Model.MultipleQuestions.Any()) {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">多选题</h3>
+                </div>
+                <div class="panel-body">
+                    @for (int i = 0; i < Model.MultipleQuestions.Count; i++) {
+                        if (i != 0) {
+                            <hr />
+                        }
 
-                    var question = Model.MultipleQuestions[i];
-                    @Html.Hidden("MultipleQuestions[" + i + "].QuestionId", question.QuestionId)
-                    <p>@question.Body (@question.Score 分)</p>
+                        var question = Model.MultipleQuestions[i];
+                        @Html.Hidden("MultipleQuestions[" + i + "].QuestionId", question.QuestionId)
+                        <p>@question.Body (@question.Score 分)</p>
 
-                    for (int o = 0; o < question.Options.Count; o++) {
-                        var option = question.Options.ElementAt(o);
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="MultipleQuestions[@i].CheckedOptions[@o].Checked" value="true" />
-                                @option.Content
-                                <input type="hidden" name="MultipleQuestions[@i].CheckedOptions[@o].Checked" value="false" />
-                                <input type="hidden" name="MultipleQuestions[@i].CheckedOptions[@o].OptionId" value="@option.OptionId" />
-                            </label>
-                        </div>
+                        for (int o = 0; o < question.Options.Count; o++) {
+                            var option = question.Options.ElementAt(o);
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="MultipleQuestions[@i].CheckedOptions[@o].Checked" value="true" />
+                                    @option.Content
+                                    <input type="hidden" name="MultipleQuestions[@i].CheckedOptions[@o].Checked" value="false" />
+                                    <input type="hidden" name="MultipleQuestions[@i].CheckedOptions[@o].OptionId" value="@option.OptionId" />
+                                </label>
+                            </div>
+                        }
                     }
-                }
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">主观题</h3>
-            </div>
-            <div class="panel-body">
-                @for (int i = 0; i < Model.SubjectiveQuestions.Count; i++) {
-                    var question = Model.SubjectiveQuestions[i];
-                    @Html.Hidden("SubjectiveQuestions[" + i + "].QuestionId", question.QuestionId)
-                    <p>@question.Body (@question.Score 分)</p>
-                    if (!string.IsNullOrEmpty(question.AttachmentPath) && !string.IsNullOrEmpty(question.AttachmentName)) {
-                        <p>附件: <a href="@Url.Action("DownloadAttachment", new {questionId = question.QuestionId})">@question.AttachmentName</a></p>
+    }
+
+    if (Model.SubjectiveQuestions.Any()) {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">主观题</h3>
+                </div>
+                <div class="panel-body">
+                    @for (int i = 0; i < Model.SubjectiveQuestions.Count; i++) {
+                        var question = Model.SubjectiveQuestions[i];
+                        @Html.Hidden("SubjectiveQuestions[" + i + "].QuestionId", question.QuestionId)
+                        <p>@question.Body (@question.Score 分)</p>
+                        if (!string.IsNullOrEmpty(question.AttachmentPath) && !string.IsNullOrEmpty(question.AttachmentName)) {
+                            <p>附件: <a href="@Url.Action("DownloadAttachment", new {questionId = question.QuestionId})">@question.AttachmentName</a></p>
+                        }
+                        @Html.TextArea("SubjectiveQuestions[" + i + "].WriteDown", new {@class = "form-control", rows = 5})
                     }
-                    @Html.TextArea("SubjectiveQuestions[" + i + "].WriteDown", new {@class = "form-control", rows = 5})
-                }
+                </div>
             </div>
         </div>
-    </div>
+    }
     <input type="submit" class="btn btn-primary" value="提交" />
 }
