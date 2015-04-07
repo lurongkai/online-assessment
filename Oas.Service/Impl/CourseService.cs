@@ -51,7 +51,7 @@ namespace Oas.Service.Impl
             return subject.SubjectId;
         }
 
-        public void ModifySubject(string subjectId, Domain.Subject subject)
+        public void ModifySubject(Guid subjectId, Domain.Subject subject)
         {
             var old = _oasContext.Subjects.Find(subjectId);
             old.Name = subject.Name;
@@ -59,9 +59,14 @@ namespace Oas.Service.Impl
             _oasContext.SaveChanges();
         }
 
-        public void DeleteSubject(string subjectId)
+        public void DeleteSubject(Guid subjectId)
         {
             var old = _oasContext.Subjects.Find(subjectId);
+            var toDelete1 = _oasContext.SelectableQuestions.Where(q => q.Subject.SubjectId == old.SubjectId);
+            var toDelete2 = _oasContext.SubjectiveQuestions.Where(q => q.Subject.SubjectId == old.SubjectId);
+            
+            _oasContext.SelectableQuestions.RemoveRange(toDelete1);
+            _oasContext.SubjectiveQuestions.RemoveRange(toDelete2);
             _oasContext.Subjects.Remove(old);
 
             _oasContext.SaveChanges();

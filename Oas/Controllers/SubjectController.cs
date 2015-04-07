@@ -34,9 +34,9 @@ namespace Oas.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(string courseId)
+        public ActionResult Delete(Guid subjectId)
         {
-            _courseService.DeleteSubject(courseId);
+            _courseService.DeleteSubject(subjectId);
             return RedirectToAction("Index");
         }
     }
