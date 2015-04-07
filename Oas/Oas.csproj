@@ -239,7 +239,6 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Shared\_adminLayout.cshtml" />
-    <Content Include="Views\Shared\_pinnedSubjects.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\CreateTeacher.cshtml" />
     <Content Include="Views\Admin\CreateCourse.cshtml" />
@@ -254,6 +253,7 @@
     <Content Include="Views\Simulation\Index.cshtml" />
     <Content Include="Views\Simulation\StartNew.cshtml" />
     <Content Include="Views\Simulation\Inspect.cshtml" />
+    <Content Include="Views\Shared\_pinnedSubjects.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

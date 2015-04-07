@@ -21,8 +21,8 @@ namespace Oas.Controllers
         [Authorize(Roles = "Student")]
         [ChildActionOnly]
         public ActionResult PinnedSubjects(string courseId) {
-            var pinnedSubjects = _courseService.GetCoursePinSubjects(courseId);
-            return PartialView("_pinnedSubjects", pinnedSubjects);
+            var subjects = _courseService.GetCourseSubjects(courseId);
+            return PartialView("_pinnedSubjects", subjects);
         }
     }
 }

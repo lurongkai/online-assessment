@@ -57,7 +57,6 @@
     <Compile Include="Questions\SubjectiveQuestion.cs" />
     <Compile Include="UserAndRole\Student.cs" />
     <Compile Include="Subjects\Subject.cs" />
-    <Compile Include="Courses\SubjectPin.cs" />
     <Compile Include="UserAndRole\Teacher.cs" />
     <Compile Include="ValueObject.cs" />
   </ItemGroup>
