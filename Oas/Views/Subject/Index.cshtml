@@ -17,9 +17,7 @@
                     <tr>
                         <td>@item.Name</td>
                         <td style="width: 20%">
-                            @if (!item.IsForSimulation) {
-                                <a class="btn btn-default btn-sm" href="@Url.Action("SetForSimulation", new {subjectId = item.SubjectId})">设定模拟</a>
-                            }
+                            <a class="btn btn-default btn-sm" href="@Url.Action("Delete", new {subjectId = item.SubjectId})">删除</a>
                         </td>
                     </tr>
                 }

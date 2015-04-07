@@ -33,8 +33,10 @@ namespace Oas.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult SetForSimulation(string courseId, Guid subjectId) {
-            _courseService.SetSimulation(courseId, subjectId);
+        [HttpGet]
+        public ActionResult Delete(string courseId)
+        {
+            _courseService.DeleteSubject(courseId);
             return RedirectToAction("Index");
         }
     }

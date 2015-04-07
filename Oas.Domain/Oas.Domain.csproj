@@ -47,6 +47,7 @@
     <Compile Include="Service\QuestionTicketBag.cs" />
     <Compile Include="Service\RandomPaperGenerationService.cs" />
     <Compile Include="Service\SimplePaperGenerationService.cs" />
+    <Compile Include="Subjects\SubjectType.cs" />
     <Compile Include="UserAndRole\Member.cs" />
     <Compile Include="Application\News.cs" />
     <Compile Include="Service\Paper.cs" />

@@ -18,7 +18,7 @@ namespace Oas.Models.Subject
         private void InitializeSubjectItems() {
             var subjects = new List<SubjectViewModelItem>();
             foreach (var subject in _subjects) {
-                subjects.Add(new SubjectViewModelItem(subject.SubjectId, subject.Name, subject.ForSimulation));
+                subjects.Add(new SubjectViewModelItem(subject.SubjectId, subject.Name, subject.SubjectType));
             }
 
             Subjects = subjects;
@@ -29,14 +29,14 @@ namespace Oas.Models.Subject
 
     public class SubjectViewModelItem
     {
-        public SubjectViewModelItem(Guid subjectId, string subjectName, bool isForSimulation) {
+        public SubjectViewModelItem(Guid subjectId, string subjectName, SubjectType subjectType) {
             SubjectId = subjectId;
             Name = subjectName;
-            IsForSimulation = isForSimulation;
+            SubjectType = subjectType;
         }
 
         public Guid SubjectId { get; private set; }
         public string Name { get; private set; }
-        public bool IsForSimulation { get; private set; }
+        public SubjectType SubjectType { get; private set; }
     }
 }

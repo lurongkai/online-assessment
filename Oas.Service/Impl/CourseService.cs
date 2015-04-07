@@ -45,40 +45,24 @@ namespace Oas.Service.Impl
 
         public Guid CreateSubject(string courseId, Domain.Subject subject) {
             var course = _oasContext.Courses.Find(courseId);
-            if (!_oasContext.Subjects.Any(s => s.BelongTo.CourseId == courseId)) {
-                subject.ForSimulation = true;
-            }
-
             subject.BelongTo = course;
             _oasContext.Subjects.Add(subject);
             _oasContext.SaveChanges();
             return subject.SubjectId;
         }
 
-        public void ModifySubject(Guid subjectId, Domain.Subject subject) {
+        public void ModifySubject(string subjectId, Domain.Subject subject)
+        {
             var old = _oasContext.Subjects.Find(subjectId);
             old.Name = subject.Name;
 
             _oasContext.SaveChanges();
         }
 
-        public void DeleteSubject(Guid subjectId) {
+        public void DeleteSubject(string subjectId)
+        {
             var old = _oasContext.Subjects.Find(subjectId);
             _oasContext.Subjects.Remove(old);
-
-            _oasContext.SaveChanges();
-        }
-
-        public void SetSimulation(string courseId, Guid subjectId) {
-            var subjects = _oasContext.Subjects.Where(s => s.BelongTo.CourseId == courseId);
-
-            foreach (var subject in subjects) {
-                if (subject.SubjectId == subjectId) {
-                    subject.ForSimulation = true;
-                } else {
-                    subject.ForSimulation = false;
-                }
-            }
 
             _oasContext.SaveChanges();
         }
