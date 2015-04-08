@@ -53,12 +53,12 @@
     <Compile Include="Impl\ExerciseService.cs" />
     <Compile Include="Impl\ManagementService.cs" />
     <Compile Include="Impl\QuestionService.cs" />
-    <Compile Include="Impl\SimulationService.cs" />
+    <Compile Include="Impl\ExamService.cs" />
     <Compile Include="Interfaces\ICourseService.cs" />
     <Compile Include="Interfaces\IExerciseService.cs" />
     <Compile Include="Interfaces\IManagementService.cs" />
     <Compile Include="Interfaces\IQuestionService.cs" />
-    <Compile Include="Interfaces\ISimulationService.cs" />
+    <Compile Include="Interfaces\IExamService.cs" />
     <Compile Include="Messages\PaginationData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Oas.Models.Simulation
+namespace Oas.Models.Exam
 {
-    public class SimulationInspectViewModel
+    public class ExamInspectViewModel
     {
         private Domain.Service.Paper paper;
-        private SimulationInputModel model;
+        private ExamInputModel model;
 
-        public SimulationInspectViewModel(Domain.Service.Paper paper, SimulationInputModel model) {
+        public ExamInspectViewModel(Domain.Service.Paper paper, ExamInputModel model) {
             SingleQuestions = new List<SingleQuestionInspect>();
             MultipleQuestions = new List<MultipleQuestionInspect>();
             SubjectiveQuestions = new List<SubjectiveQuestionInspect>();

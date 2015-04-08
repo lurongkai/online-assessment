@@ -2,7 +2,7 @@
 
 namespace Oas.Service.Interfaces
 {
-    public interface ISimulationService
+    public interface IExamService
     {
         Paper GeneratePaper(string courseId, string style);
     }

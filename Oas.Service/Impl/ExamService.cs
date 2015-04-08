@@ -6,11 +6,11 @@ using Oas.Service.Interfaces;
 
 namespace Oas.Service.Impl
 {
-    public class SimulationService : ISimulationService
+    public class ExamService : IExamService
     {
         private OasContext _oasContext;
 
-        public SimulationService(OasContext oasContext) {
+        public ExamService(OasContext oasContext) {
             _oasContext = oasContext;
         }
 

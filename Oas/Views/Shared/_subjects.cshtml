@@ -1,5 +1,13 @@
 ﻿@model IEnumerable<Subject>
 
 @foreach (var subject in Model) {
-    <a href="@Url.Action("Index", "Exercise", new {subjectId = subject.SubjectId})" class="list-group-item">@subject.Name</a>
+    if (subject.SubjectType == SubjectType.Normally)
+    {
+        <a href="@Url.Action("Index", "Exercise", new {subjectId = subject.SubjectId})" class="list-group-item">@subject.Name</a>
+    }
+
+    if (subject.SubjectType == SubjectType.Examination)
+    {
+        <a href="@Url.Action("Index", "Exam", new {subjectId = subject.SubjectId})" class="list-group-item">@subject.Name</a>
+    }
 }

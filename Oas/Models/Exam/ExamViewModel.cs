@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Oas.Models.Simulation
+namespace Oas.Models.Exam
 {
-    public class SimulationInputModel
+    public class ExamInputModel
     {
         public List<SingleQuestion> SingleQuestions { get; set; }
         public List<MultipleQuestion> MultipleQuestions { get; set; }
