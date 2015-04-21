@@ -25,7 +25,8 @@ namespace Oas.Controllers
             _userManager = userManager;
         }
 
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             return View();
         }
 
@@ -39,6 +40,8 @@ namespace Oas.Controllers
             if (ModelState.IsValid) {
                 var news = new News {Title = publishNewsViewModel.Title, Content = publishNewsViewModel.Content, PublishedDate = DateTime.Now};
                 _managementService.CreateNews(news);
+
+                TempData["FlashMessage"] = "创建成功";
                 return RedirectToAction("Index");
             }
 
@@ -61,6 +64,8 @@ namespace Oas.Controllers
                     _userManager.AddToRole(teacher.Id, "Teacher");
                     _managementService.CreateTeacher(new Teacher {MemberId = new Guid(teacher.Id)});
                     _managementService.AssigningCourse(new Guid(teacher.Id), teacherViewModel.CourseId);
+                    
+                    TempData["FlashMessage"] = "创建成功";
                     return RedirectToAction("Index");
                 }
 
@@ -73,7 +78,8 @@ namespace Oas.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateCourse() {
+        public ActionResult CreateCourse()
+        {
             return View();
         }
 
@@ -82,12 +88,13 @@ namespace Oas.Controllers
             if (ModelState.IsValid) {
                 var course = new Course
                 {
-                    CourseId = courseViewModel.CourseAbbr,
+                    CourseId = Course.GenerateCourseId(),
                     CourseName = courseViewModel.CourseName,
                     Description = courseViewModel.Description
                 };
 
                 _courseService.CreateCourse(course);
+                TempData["FlashMessage"] = "创建成功";
                 return RedirectToAction("Index");
             }
 
