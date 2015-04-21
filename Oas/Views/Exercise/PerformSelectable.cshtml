@@ -106,6 +106,9 @@
 
                     renderQuestion(data[nextQuestion]);
                     nextQuestion += 1;
+                } else {
+                    var message = "<p>当前题库中没有试题</p>";
+                    $("#question-main").append($(message));
                 }
             });
         });
