@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Courses\Course.cs" />
+    <Compile Include="Exam\AnswerSheet.cs" />
     <Compile Include="IAggregateMember.cs" />
     <Compile Include="Service\EnumerableExtension.cs" />
     <Compile Include="Service\IPaperGenerationService.cs" />

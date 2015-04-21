@@ -22,6 +22,9 @@ namespace Oas
             routes.MapRoute("course-exam",
                 "course/{courseId}/exam/{action}/",
                 new {controller = "Exam", action = "Index"});
+            routes.MapRoute("course-record",
+                "course/{courseId}/record/{action}/",
+                new { controller = "Record", action = "Index" });
             routes.MapRoute("course",
                 "course/{courseId}/{action}",
                 new {controller = "Course", action = "Index", questionId = UrlParameter.Optional});

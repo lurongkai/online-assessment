@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Oas.Domain;
 using Oas.Domain.Service;
 using Oas.Infrastructure;
 using Oas.Service.Interfaces;
@@ -56,6 +57,46 @@ namespace Oas.Service.Impl
             paper.SubjectiveQuestions = _oasContext.SubjectiveQuestions.Where(q => subjectives.Contains(q.QuestionId)).ToList();
 
             return paper;
+        }
+        
+        public Guid UploadAnswerSheet(string courseId, Guid studentId, AnswerSheet answerSheet)
+        {
+            var course = _oasContext.Courses.Find(courseId);
+            var student = _oasContext.Students.Find(studentId);
+
+            answerSheet.Course = course;
+            answerSheet.Student = student;
+            answerSheet.Timestamp = DateTime.Now;
+
+            _oasContext.AnswerSheets.Add(answerSheet);
+            _oasContext.SaveChanges();
+
+            return answerSheet.AnswerSheetId;
+        }
+
+        public void PreEvaluation(Guid answerSheetId)
+        {
+            var answerSheet = _oasContext.AnswerSheets
+                .Include("SelectableQuestionAnswers.Question")
+                .Include("SubjectiveQuestionAnswers.Question")
+                .SingleOrDefault(a => a.AnswerSheetId == answerSheetId);
+            answerSheet.PreEvaluate();
+            _oasContext.SaveChanges();
+        }
+
+        public System.Collections.Generic.IEnumerable<AnswerSheet> GetStudentAnswerSheets(Guid studentId)
+        {
+            return _oasContext.AnswerSheets.Where(a => a.Student.MemberId == studentId);
+        }
+
+        public System.Collections.Generic.IEnumerable<AnswerSheet> GetUnevaluatedAnswerSheets(string courseId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EvaluateAnswerSheet(Guid answerSheetId, Messages.AnswerSheetScore score)
+        {
+            throw new NotImplementedException();
         }
     }
 }
