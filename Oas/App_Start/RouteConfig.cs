@@ -25,6 +25,9 @@ namespace Oas
             routes.MapRoute("course-record",
                 "course/{courseId}/record/{action}/",
                 new { controller = "Record", action = "Index" });
+            routes.MapRoute("course-eval",
+                "course/{courseId}/eval/{action}/",
+                new { controller = "Eval", action = "Index" });
             routes.MapRoute("course",
                 "course/{courseId}/{action}",
                 new {controller = "Course", action = "Index", questionId = UrlParameter.Optional});

@@ -1,1 +1,1 @@
-".nuget/NuGet.exe" restore OnlineAssesment.sln
+".nuget/NuGet.exe" restore Oas.sln

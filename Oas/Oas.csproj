@@ -185,6 +185,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EvalController.cs" />
     <Compile Include="Controllers\ExerciseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
@@ -256,6 +257,8 @@
     <Content Include="Views\Exam\Inspect.cshtml" />
     <Content Include="Views\Shared\_subjects.cshtml" />
     <Content Include="Views\Record\Index.cshtml" />
+    <Content Include="Views\Eval\Index.cshtml" />
+    <Content Include="Views\Eval\Perform.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

@@ -3,6 +3,7 @@
     @if (User.IsInRole("Teacher")) {
         <a href="@Url.Action("Index", "Subject")" class="list-group-item">科目管理</a>
         <a href="@Url.Action("Index", "Question")" class="list-group-item">题库管理</a>
+        <a href="@Url.Action("Index", "Eval")" class="list-group-item">阅卷管理</a>
     }
 
     @if (User.IsInRole("Student")) {

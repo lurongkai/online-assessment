@@ -6,6 +6,7 @@ using Oas.Service.Interfaces;
 
 namespace Oas.Controllers
 {
+    [Authorize]
     public class RecordController : Controller
     {
         private readonly IExamService _examService;

@@ -38,6 +38,11 @@ namespace Oas.Domain
                 selectableQuestionAnswer.Evaluate();
             }
 
+            if (SubjectiveQuestionAnswers.Count == 0)
+            {
+                IsEnvaluated = true;
+            }
+
             TotalScore = SelectableQuestionAnswers.Sum(sqa => sqa.GotScore);
         }
 

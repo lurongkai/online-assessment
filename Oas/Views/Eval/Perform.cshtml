@@ -1,0 +1,116 @@
+﻿@model AnswerSheet
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">请评估</h3>
+        </div>
+        <div class="panel-body">
+            <form action="@Url.Action("Perform", new {answerSheetId = Model.AnswerSheetId})" method="POST">
+                @for (var i = 0; i < Model.SubjectiveQuestionAnswers.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        <hr/>
+                    }
+                    var question = Model.SubjectiveQuestionAnswers[i].Question;
+                    var answer = Model.SubjectiveQuestionAnswers[i];
+
+                    @Html.Hidden("Items[" + i + "].QuestionId", question.QuestionId)
+                    <p>@question.Body (@question.Score 分)</p>
+                    if (!string.IsNullOrEmpty(question.AttachmentPath) && !string.IsNullOrEmpty(question.AttachmentName))
+                    {
+                        <p>
+                            附件: <a href="@Url.Action("DownloadAttachment", "Exam", new {questionId = question.QuestionId})">@question.AttachmentName</a>
+                        </p>
+                    }
+                    <p>
+                        参考答案：
+                        <div style="background: #e0ffff; border-radius: 3px; padding: 2px 5px;">
+                            <span>@question.Answer</span>
+                        </div>
+                    </p>
+                    <p>
+                        实际答案：
+                        <div style="background: #fafad2; border-radius: 3px; padding: 2px 5px;">
+                            <span>@answer.WriteDown</span>
+                        </div>
+                    </p>
+                    <p>
+                        @Html.Hidden("Items[" + i + "].Score", 0)
+                        <button type="button" class="btn btn-primary evaluate-btn" max-score="@question.Score">评分</button>
+                    </p>
+                }
+                <hr/>
+                <input type="submit" class="btn btn-primary evaluate-submit-btn" value="提交"/>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="score-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">请输入得分</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <input id="get-score" type="number"/>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section script{
+    <script>
+        $(document).ready(function() {
+            var scoreContext = {
+                scoreNode: null,
+                evaluateButtonNode: null
+            };
+
+            $(".evaluate-btn").click(function() {
+                var self = $(this);
+
+                var maxScore = self.attr("max-score");
+                var scoreNode = self.parent().find("input");
+
+                scoreContext.scoreNode = scoreNode;
+                scoreContext.evaluateButtonNode = self;
+
+                $("#get-score").attr("max-score", maxScore);
+                $("#get-score").val(maxScore);
+                $("#score-dialog").modal();
+            });
+
+            $("#score-dialog").on("hide.bs.modal", function() {
+                var maxScore = $("#get-score").attr("max-score");
+                var score = $("#get-score").val();
+
+                if (isNaN(score) || score == "") {
+                    alert("请输入数值");
+                    return false;
+                }
+                if (parseInt(score) < 0) {
+                    alert("请输入大于等于0的值");
+                    return false;
+                }
+                if (parseInt(score) > parseInt(maxScore)) {
+                    alert("最大得分不能超过试题分数：" + maxScore);
+                    return false;
+                }
+
+                scoreContext.scoreNode.val(parseInt(score));
+                scoreContext.evaluateButtonNode.remove();
+            });
+        });
+    </script>
+}

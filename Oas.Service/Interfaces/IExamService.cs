@@ -14,6 +14,7 @@ namespace Oas.Service.Interfaces
         void PreEvaluation(Guid answerSheetId);
         IEnumerable<AnswerSheet> GetStudentAnswerSheets(Guid studentId);
         IEnumerable<AnswerSheet> GetUnevaluatedAnswerSheets(string courseId);
-        void EvaluateAnswerSheet(Guid answerSheetId, AnswerSheetScore score);
+        void EvaluateAnswerSheet(Guid answerSheetId, AnswerSheetEnvaluation evaluation);
+        AnswerSheet GetAnswerSheet(Guid answerSheetId);
     }
 }
