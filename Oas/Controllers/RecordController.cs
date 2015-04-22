@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Oas.Service.Interfaces;
+using Oas.Models.Record;
 
 namespace Oas.Controllers
 {
@@ -26,7 +27,9 @@ namespace Oas.Controllers
 
         public ActionResult Detail(Guid answerSheetId)
         {
-            throw new NotImplementedException();
+            var answerSheet = _examService.GetAnswerSheet(answerSheetId);
+            var viewModel = new AnswerSheetDetailViewModel(answerSheet);
+            return View(viewModel);
         }
     }
 }

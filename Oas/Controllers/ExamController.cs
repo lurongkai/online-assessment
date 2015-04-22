@@ -11,7 +11,6 @@ namespace Oas.Controllers
 {
     public class ExamController : Controller
     {
-        private const string Paper = "CurrentPaper";
         private IExamService _examService;
         private IQuestionService _questionService;
 
@@ -30,7 +29,6 @@ namespace Oas.Controllers
         }
 
         public ActionResult Submit(string courseId, ExamInputModel model) {
-            var paper = (Paper) Session[Paper];
             var answerSheet = ConvertToAnswerSheet(model);
 
             var userId = User.Identity.GetUserId();
@@ -40,11 +38,6 @@ namespace Oas.Controllers
             TempData["SlashMessage"] = "提交成功，请等待老师为主观题打分";
 
             return RedirectToAction("Index", "Record");
-        }
-
-        public ActionResult Inspect(string courseId) {
-            var viewModel = (ExamInspectViewModel) TempData["Inspect"];
-            return View(viewModel);
         }
 
         public ActionResult DownloadAttachment(Guid questionId) {
