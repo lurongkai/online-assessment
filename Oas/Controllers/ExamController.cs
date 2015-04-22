@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Oas.Domain;
@@ -72,7 +73,7 @@ namespace Oas.Controllers
                 var item = new SelectableQuestionItem();
                 item.QuestionId = multipleQuestion.QuestionId;
                 item.IsSingle = false;
-                foreach (var option in multipleQuestion.CheckedOptions)
+                foreach (var option in multipleQuestion.CheckedOptions.Where(co => co.Checked))
                 {
                     item.CheckedOptions.Add(new QuestionItemOption
                     {
