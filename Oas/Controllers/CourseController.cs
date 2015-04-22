@@ -20,9 +20,9 @@ namespace Oas.Controllers
 
         [Authorize(Roles = "Student")]
         [ChildActionOnly]
-        public ActionResult PinnedSubjects(string courseId) {
-            var pinnedSubjects = _courseService.GetCoursePinSubjects(courseId);
-            return PartialView("_pinnedSubjects", pinnedSubjects);
+        public ActionResult Subjects(string courseId) {
+            var subjects = _courseService.GetCourseSubjects(courseId);
+            return PartialView("_subjects", subjects);
         }
     }
 }

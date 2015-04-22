@@ -17,8 +17,7 @@ namespace Oas.Controllers
 
         public ActionResult Index(string courseId) {
             var subjects = _courseService.GetCourseSubjects(courseId);
-            var pinnedSubjects = _courseService.GetCoursePinSubjects(courseId);
-            var viewModel = new SubjectViewModel(subjects, pinnedSubjects);
+            var viewModel = new SubjectViewModel(subjects);
 
             return View(viewModel);
         }
@@ -34,19 +33,10 @@ namespace Oas.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult PinSubject(string courseId, Guid subjectId, string pinName) {
-            _courseService.PinSubject(courseId, subjectId, pinName);
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult UnPinSubject(string courseId, Guid subjectId) {
-            _courseService.UnPinSubject(courseId, subjectId);
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult SetForSimulation(string courseId, Guid subjectId) {
-            _courseService.SetSimulation(courseId, subjectId);
+        [HttpGet]
+        public ActionResult Delete(Guid subjectId)
+        {
+            _courseService.DeleteSubject(subjectId);
             return RedirectToAction("Index");
         }
     }

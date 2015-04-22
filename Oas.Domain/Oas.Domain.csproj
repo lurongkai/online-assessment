@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Courses\Course.cs" />
+    <Compile Include="Exam\AnswerSheet.cs" />
     <Compile Include="IAggregateMember.cs" />
     <Compile Include="Service\EnumerableExtension.cs" />
     <Compile Include="Service\IPaperGenerationService.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Service\QuestionTicketBag.cs" />
     <Compile Include="Service\RandomPaperGenerationService.cs" />
     <Compile Include="Service\SimplePaperGenerationService.cs" />
+    <Compile Include="Subjects\SubjectType.cs" />
     <Compile Include="UserAndRole\Member.cs" />
     <Compile Include="Application\News.cs" />
     <Compile Include="Service\Paper.cs" />
@@ -57,7 +59,6 @@
     <Compile Include="Questions\SubjectiveQuestion.cs" />
     <Compile Include="UserAndRole\Student.cs" />
     <Compile Include="Subjects\Subject.cs" />
-    <Compile Include="Courses\SubjectPin.cs" />
     <Compile Include="UserAndRole\Teacher.cs" />
     <Compile Include="ValueObject.cs" />
   </ItemGroup>

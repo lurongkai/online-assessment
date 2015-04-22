@@ -17,11 +17,5 @@ namespace Oas.Service.Interfaces
         Guid CreateSubject(string courseId, Subject subject);
         void ModifySubject(Guid subjectId, Subject subject);
         void DeleteSubject(Guid subjectId);
-
-        void PinSubject(string courseId, Guid subjectId, string pinName);
-        void UnPinSubject(string courseId, Guid subjectId);
-        IEnumerable<SubjectPin> GetCoursePinSubjects(string courseId);
-
-        void SetSimulation(string courseId, Guid subjectId);
     }
 }

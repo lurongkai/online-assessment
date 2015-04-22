@@ -11,7 +11,7 @@ namespace Oas.Integration
             builder.RegisterType<ExerciseService>().As<IExerciseService>().InstancePerRequest();
             builder.RegisterType<ManagementService>().As<IManagementService>().InstancePerRequest();
             builder.RegisterType<QuestionService>().As<IQuestionService>().InstancePerRequest();
-            builder.RegisterType<SimulationService>().As<ISimulationService>().InstancePerRequest();
+            builder.RegisterType<ExamService>().As<IExamService>().InstancePerRequest();
         }
     }
 }

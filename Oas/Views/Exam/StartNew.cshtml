@@ -4,7 +4,7 @@
 }
 
 @if (Model.SingleQuestions.Any() || Model.MultipleQuestions.Any() || Model.SubjectiveQuestions.Any()) {
-    using (Html.BeginForm("Submit", "Simulation", FormMethod.Post, new {@class = "form-horizontal"})) {
+    using (Html.BeginForm("Submit", "Exam", FormMethod.Post, new {@class = "form-horizontal"})) {
         if (Model.SingleQuestions.Any()) {
             <div class="row">
                 <div class="panel panel-default">

@@ -1,0 +1,114 @@
+﻿@model Oas.Models.Record.AnswerSheetDetailViewModel
+@{
+    ViewBag.Title = "View Answer Sheet";
+}
+
+@if (Model.SingleSelectableQuestions.Any())
+{
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">单选题</h3>
+            </div>
+            <div class="panel-body">
+                @for (int i = 0; i < Model.SingleSelectableQuestions.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        <hr/>
+                    }
+
+                    var question = Model.SingleSelectableQuestions[i];
+                    <p>@question.Body (@question.Score 分)</p>
+                    <p>您的得分: @question.GotScore</p>
+                    for (int o = 0; o < question.Options.Count; o++)
+                    {
+                        var option = question.Options.ElementAt(o);
+                        <div class="radio disabled">
+                            <label>
+                                <input type="radio" disabled name="SingleQuestions[@i].CheckedOption" @{if (option.Checked) { Write("checked=\"checked\""); } }/>
+                                @option.Content @if (option.Checked)
+                                                {
+                                                    if (option.ChoiceIsRight)
+                                                    {
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    }
+                                                }
+                            </label>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.MultipleSelectableQuestions.Any())
+{
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">多选题</h3>
+            </div>
+            <div class="panel-body">
+                @for (int i = 0; i < Model.MultipleSelectableQuestions.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        <hr />
+                    }
+
+                    var question = Model.MultipleSelectableQuestions[i];
+                    <p>@question.Body (@question.Score 分)</p>
+                    <p>您的得分: @question.GotScore</p>
+                    for (int o = 0; o < question.Options.Count; o++)
+                    {
+                        var option = question.Options.ElementAt(o);
+                        <div class="checkbox disabled">
+                            <label>
+                                <input type="checkbox" disabled name="MultipleQuestions[@i].CheckedOptions[@o].Checked" value="true" @{ if (option.Checked) { Write("checked=\"checked\""); } } />
+
+                                @option.Content @if (option.Checked)
+                                {
+                                    if (option.ChoiceIsRight)
+                                    {
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    }
+                                }
+                            </label>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.SubjectiveQuestions.Any())
+{
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">主观题</h3>
+            </div>
+            <div class="panel-body">
+                @foreach(var question in Model.SubjectiveQuestions)
+                {
+                    <p>@question.Body (@question.Score 分)</p>
+                    @Html.TextArea("writeDown", question.WriteDown, new {@class = "form-control", rows = 5, disabled = ""})
+                    <p>参考答案: @question.Answer</p>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+

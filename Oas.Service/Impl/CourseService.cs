@@ -45,62 +45,29 @@ namespace Oas.Service.Impl
 
         public Guid CreateSubject(string courseId, Domain.Subject subject) {
             var course = _oasContext.Courses.Find(courseId);
-            if (!_oasContext.Subjects.Any(s => s.BelongTo.CourseId == courseId)) {
-                subject.ForSimulation = true;
-            }
-
             subject.BelongTo = course;
             _oasContext.Subjects.Add(subject);
             _oasContext.SaveChanges();
             return subject.SubjectId;
         }
 
-        public void ModifySubject(Guid subjectId, Domain.Subject subject) {
+        public void ModifySubject(Guid subjectId, Domain.Subject subject)
+        {
             var old = _oasContext.Subjects.Find(subjectId);
             old.Name = subject.Name;
 
             _oasContext.SaveChanges();
         }
 
-        public void DeleteSubject(Guid subjectId) {
+        public void DeleteSubject(Guid subjectId)
+        {
             var old = _oasContext.Subjects.Find(subjectId);
+            var toDelete1 = _oasContext.SelectableQuestions.Where(q => q.Subject.SubjectId == old.SubjectId);
+            var toDelete2 = _oasContext.SubjectiveQuestions.Where(q => q.Subject.SubjectId == old.SubjectId);
+            
+            _oasContext.SelectableQuestions.RemoveRange(toDelete1);
+            _oasContext.SubjectiveQuestions.RemoveRange(toDelete2);
             _oasContext.Subjects.Remove(old);
-
-            _oasContext.SaveChanges();
-        }
-
-        public void PinSubject(string courseId, Guid subjectId, string pinName) {
-            var course = _oasContext.Courses.Find(courseId);
-            var subject = _oasContext.Subjects.Find(subjectId);
-            course.Pin(subject, pinName);
-
-            _oasContext.SaveChanges();
-        }
-
-        public void UnPinSubject(string courseId, Guid subjectId) {
-            var course = _oasContext.Courses.Find(courseId);
-            var subject = _oasContext.Subjects.Find(subjectId);
-            course.UnPin(subject);
-
-            _oasContext.SaveChanges();
-        }
-
-        public IEnumerable<Domain.SubjectPin> GetCoursePinSubjects(string courseId) {
-            var course = _oasContext.Courses.Find(courseId);
-            return course.PinSubjects;
-        }
-
-
-        public void SetSimulation(string courseId, Guid subjectId) {
-            var subjects = _oasContext.Subjects.Where(s => s.BelongTo.CourseId == courseId);
-
-            foreach (var subject in subjects) {
-                if (subject.SubjectId == subjectId) {
-                    subject.ForSimulation = true;
-                } else {
-                    subject.ForSimulation = false;
-                }
-            }
 
             _oasContext.SaveChanges();
         }

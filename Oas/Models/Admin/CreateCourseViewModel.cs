@@ -6,10 +6,6 @@ namespace Oas.Models.Admin
     public class CreateCourseViewModel
     {
         [Required]
-        [DisplayName("课程缩写")]
-        public string CourseAbbr { get; set; }
-
-        [Required]
         [DisplayName("课程名称")]
         public string CourseName { get; set; }
 
